@@ -158,6 +158,7 @@
 
         <div class="section-box">
             <h3>2. முழுமையான மேட்ரிமோனி சுயவிவரப் பதிவு</h3>
+            
             <div class="form-group">
                 <label>பெயர் (Full Name):</label>
                 <input type="text" id="name" placeholder="உங்கள் பெயர்">
@@ -170,24 +171,44 @@
                 </select>
             </div>
             <div class="form-group">
+                <label>திருமண நிலை (Marital Status):</label>
+                <select id="maritalStatus">
+                    <option value="Unmarried">திருமணமாகாதவர் (Unmarried)</option>
+                    <option value="Divorced">விவாகரத்து பெற்றவர் (Divorced)</option>
+                    <option value="Widow/Widower">ஆதரவற்றவர் / கைம்பெண் (Widow/Widower)</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label>கைப்பேசி எண் & முகவரி:</label>
                 <input type="text" id="phoneAddress" placeholder="போன் நம்பர் மற்றும் ஊர், மாவட்டம்">
             </div>
             <div class="form-group">
+                <label>தந்தை பெயர் (Father's Name):</label>
+                <input type="text" id="fatherName" placeholder="அப்பா பெயர்">
+            </div>
+            <div class="form-group">
+                <label>தாய் பெயர் (Mother's Name):</label>
+                <input type="text" id="motherName" placeholder="அம்மா பெயர்">
+            </div>
+            <div class="form-group">
+                <label>உடன்பிறந்தோர் விவரம் (Brother / Sister Details):</label>
+                <input type="text" id="siblings" placeholder="எ.கா: 1 அண்ணன், 1 தங்கை">
+            </div>
+            <div class="form-group">
+                <label>கல்வித் தகுதி (Education Details):</label>
+                <input type="text" id="education" placeholder="எ.கா: B.E / M.Sc / B.Com">
+            </div>
+            <div class="form-group">
+                <label>மாத வருமானம் (Income Details):</label>
+                <input type="text" id="income" placeholder="எ.கா: ₹40,000 / மாதம்">
+            </div>
+            <div class="form-group">
+                <label>சொத்து விவரங்கள் (Asset Details):</label>
+                <textarea id="assets" placeholder="வீடு, நிலம் போன்ற சொத்து விவரங்கள்"></textarea>
+            </div>
+            <div class="form-group">
                 <label>ராசி & நட்சத்திரம்:</label>
                 <input type="text" id="rasiNakshatra" placeholder="எ.கா: ரிஷபம், ரோகிணி">
-            </div>
-            <div class="form-group">
-                <label>குடும்ப விவரங்கள் (அப்பா, அம்மா, ভাই/தங்கை):</label>
-                <input type="text" id="familyDetails" placeholder="பெற்றோர் மற்றும் உடன் பிறந்தோர் பெயர்">
-            </div>
-            <div class="form-group">
-                <label>கல்வி & வருமானம்:</label>
-                <input type="text" id="eduIncome" placeholder="கல்வித் தகுதி மற்றும் மாத வருமானம்">
-            </div>
-            <div class="form-group">
-                <label>சொத்து விவரங்கள்:</label>
-                <textarea id="assets" placeholder="வீடு, நிலம் போன்ற சொத்து விவரங்கள்"></textarea>
             </div>
             <div class="form-group">
                 <label>📷 சுயவிவரப் புகைப்படம் (Photo Upload):</label>
@@ -211,26 +232,26 @@
         </div>
 
         <div class="section-box">
-            <h3>🛕 தமிழ்நாட்டின் முக்கிய கோவில்கள் & நேரங்கள்</h3>
+            <h3>🛕 தமிழ்நாட்டின் முக்கிய கோவில்கள், நேரங்கள் & சிறப்பு பூஜைகள்</h3>
             <div class="temple-card">
                 <b>1. மதுரை மீனாட்சி சுந்தரேசுவரர் கோவில்:</b><br>
-                • நடை திறக்கும் நேரம்: காலை 6:00 - 12:30 | மாலை 4:00 - 9:30<br>
-                • சிறப்பு பூஜை: வெள்ளிக்கிழமை ராஜகோபுர பூஜை & திருக்கல்யாணம்.
+                • <b>நடை திறக்கும் நேரம்:</b> காலை 6:00 - 12:30 | மாலை 4:00 - 9:30<br>
+                • <b>சிறப்பு பூஜை:</b> வெள்ளிக்கிழமை ராஜகோபுர பூஜை & திருக்கல்யாணம்.
             </div>
             <div class="temple-card">
                 <b>2. தஞ்சாவூர் பெரிய கோவில்:</b><br>
-                • நடை திறக்கும் நேரம்: காலை 6:00 - 12:30 | மாலை 4:00 - 8:30<br>
-                • சிறப்பு பூஜை: பிரதோச நாட்களில் நந்தி பெருமானுக்கு சிறப்பு அபிஷேகம்.
+                • <b>நடை திறக்கும் நேரம்:</b> காலை 6:00 - 12:30 | மாலை 4:00 - 8:30<br>
+                • <b>சிறப்பு பூஜை:</b> பிரதோச நாட்களில் நந்தி பெருமானுக்கு சிறப்பு அபிஷேகம்.
             </div>
             <div class="temple-card">
                 <b>3. ராமேஸ்வரம் ராமநாதசுவாமி கோவில்:</b><br>
-                • நடை திறக்கும் நேரம்: காலை 5:00 - 1:00 | மாலை 3:00 - 9:00<br>
-                • சிறப்பு பூஜை: 21 தீர்த்தக் கிணறுகளில் நீராடல் & ஸ்படிக லிங்க தரிசனம்.
+                • <b>நடை திறக்கும் நேரம்:</b> காலை 5:00 - 1:00 | மாலை 3:00 - 9:00<br>
+                • <b>சிறப்பு பூஜை:</b> 21 தீர்த்தக் கிணறுகளில் நீராடல் & ஸ்படிக லிங்க தரிசனம்.
             </div>
             <div class="temple-card">
                 <b>4. ஸ்ரீரங்கம் அரங்கநாதசுவாமி கோவில்:</b><br>
-                • நடை திறக்கும் நேரம்: காலை 6:00 - 9:00 இரவு வரை<br>
-                • சிறப்பு பூஜை: வைகுண்ட ஏகாதசி மற்றும் தாயார் சேவை.
+                • <b>நடை திறக்கும் நேரம்:</b> காலை 6:00 - இரவு 9:00 வரை<br>
+                • <b>சிறப்பு பூஜை:</b> வைகுண்ட ஏகாதசி மற்றும் தாயார் சேவை.
             </div>
         </div>
 
@@ -302,12 +323,13 @@
 
         function registerUser() {
             let name = document.getElementById('name').value;
+            let fatherName = document.getElementById('fatherName').value;
             let phoneAddress = document.getElementById('phoneAddress').value;
             let photo = document.getElementById('userPhoto').files[0];
             let pdf = document.getElementById('userHoroscopePDF').files[0];
 
-            if(!name || !phoneAddress) { 
-                alert("தயவுசெய்து பெயர் மற்றும் கைப்பேசி எண்ணை உள்ளிடவும்!"); 
+            if(!name || !fatherName || !phoneAddress) { 
+                alert("தயவுசெய்து பெயர், தந்தை பெயர் மற்றும் கைப்பேசி எண்ணை உள்ளிடவும்!"); 
                 return; 
             }
             
@@ -342,9 +364,11 @@
             } else if(lowerQ.includes("sabarimala") || lowerQ.includes("சபரிமலை")) {
                 reply = "🤖 <b>AI Support:</b> மேலே உள்ள 'Sabarimala Online Booking' பொத்தானை பயன்படுத்தி தரிசனத்திற்கு பதிவு செய்யலாம்.";
             } else if(lowerQ.includes("payment") || lowerQ.includes("பணம்") || lowerQ.includes("upi")) {
-                reply = "🤖 <b>AI Support:</b> `alagirik1956@okaxis` என்ற UPI ஐடிக்கு பணம் செலுத்தி ஸ்கிரீன்ஷாட்டை அனுப்பவும்.";
+                reply = "🤖 <b>AI Support:</b> `alagirik1956@okaxis` என்ற UPI ஐடிக்கு பணம் செலுத்தி ஸ்கிரீன்ஷா트를 அனுப்பவும்.";
             } else if(lowerQ.includes("rahu") || lowerQ.includes("ராகு காலம்")) {
                 reply = "🤖 <b>AI Support:</b> இன்றைய ராகு காலம் மதியம் 12:00 முதல் 01:30 வரை ஆகும்.";
+            } else if(lowerQ.includes("kovil") || lowerQ.includes("கோவில்")) {
+                reply = "🤖 <b>AI Support:</b> தமிழ்நாட்டில் உள்ள முக்கிய கோவில் நேரங்கள் மற்றும் சிறப்பு பூஜைகள் விவரங்கள் மேலே கொடுக்கப்பட்டுள்ளன.";
             }
 
             setTimeout(() => {
@@ -371,4 +395,5 @@
     </script>
 
 </body>
-</html>
+                        </html>
+    

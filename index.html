@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andal Alagar Matrimony & Calendar</title>
+    <title>Andal Alagar Matrimony & Astrology</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root {
@@ -147,13 +147,24 @@
             border: 1px dashed #999;
             line-height: 1.4;
         }
+        .locked-badge {
+            background: #ffebee;
+            color: #c62828;
+            padding: 5px;
+            font-size: 11px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 5px;
+            border: 1px dashed #ef9a9a;
+            display: none;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
-        <p class="tagline">மேட்ரிமோனி + தினசரி நாட்காட்டி & நல்ல நேரம் பஞ்சாங்கம்</p>
+        <p class="tagline">மேட்ரிமோனி + போட்டோ அப்லோட் & PDF டவுன்லோட் லாக் வசதி</p>
 
         <!-- 0. Signup / Login பகுதி -->
         <div class="section-box">
@@ -164,68 +175,32 @@
             </div>
             <div id="authBox" style="display:none; margin-top: 8px;">
                 <div class="form-group">
-                    <label>டெலிகிராம் எண் / மொபைல் எண்:</label>
+                    <label>டெலிகிராம் / மொபைல் எண்:</label>
                     <input type="text" id="userPhone" placeholder="எ.கா: 9876543210">
                 </div>
                 <button class="btn" onclick="submitAuth()">தொடரவும்</button>
             </div>
         </div>
 
-        <!-- 1. தினசரி நாட்காட்டி & நல்ல நேரம் (Daily Calendar & Panchangam) -->
+        <!-- 1. தினசரி நாட்காட்டி & நல்ல நேரம் -->
         <div class="section-box">
-            <h3>📅 1. தினசரி நாட்காட்டி & நல்ல நேரம் (Panchangam)</h3>
+            <h3>📅 1. தினசரி நாட்காட்டி & நல்ல நேரம்</h3>
             <div class="form-group">
                 <label>தேதியைத் தேர்ந்தெடுக்கவும்:</label>
                 <input type="date" id="calendarDate" onchange="loadPanchangam()">
             </div>
             <div class="panchangam-box" id="panchangamDetails">
                 <b>இன்றைய பஞ்சாங்க விவரங்கள்:</b><br>
-                • <b>நல்ல நேரம்:</b> காலை 09:30 - 10:30, மாலை 04:30 - 05:30<br>
+                • <b>நல்ல நேரம்:</b> காலை 09:30 - 10:30<br>
                 • <b>ராகு காலம்:</b> காலை 03:00 - 04:30<br>
                 • <b>எமகண்டம்:</b> காலை 09:00 - 10:30<br>
                 • <b>குளிகை:</b> மதியம் 12:00 - 01:30
             </div>
         </div>
 
-        <!-- 2. இன்றைய ராசி பலன் -->
+        <!-- 2. சுயவிவரப் பதிவு (Photo Upload வசதியுடன்) -->
         <div class="section-box">
-            <h3>🌟 2. இன்றைய ராசி பலன்</h3>
-            <div class="form-group">
-                <label>உங்கள் ராசியைத் தேர்ந்தெடுக்கவும்:</label>
-                <select id="selectedRasi">
-                    <option value="Mesham">மேஷம்</option>
-                    <option value="Rishabham">ரிஷபம்</option>
-                    <option value="Mithunam">மிதுனம்</option>
-                    <option value="Kadagam">கடகம்</option>
-                    <option value="Simmam">சிம்மம்</option>
-                    <option value="Kanni">கன்னி</option>
-                    <option value="Thulaam">துலாம்</option>
-                    <option value="Viruchigam">விருச்சிகம்</option>
-                    <option value="Dhanusu">தனுசு</option>
-                    <option value="Magaram">மகரம்</option>
-                    <option value="Kumbam">கும்பம்</option>
-                    <option value="Meenam">மீனம்</option>
-                </select>
-            </div>
-            <button class="btn" onclick="getDailyRasiPalan()" style="background-color: #ff9800;">இன்றைய பலன்களைப் பார்</button>
-            <div id="rasiResult" class="result-box"></div>
-        </div>
-
-        <!-- 3. கணினி ஜாதகம் -->
-        <div class="section-box">
-            <h3>💻 3. கணினி ஜாதகம் (Computer Jathagam)</h3>
-            <div class="form-group">
-                <label>பிறந்த தேதி & நேரம்:</label>
-                <input type="date" id="dob" style="margin-bottom: 5px;">
-                <input type="time" id="dot">
-            </div>
-            <button class="btn" onclick="generateComputerJathagam()" style="background-color: #673ab7;">ஜாதகம் கணி</button>
-            <div id="jathagamResult" class="result-box"></div>
-        </div>
-
-        <!-- 4. சுயவிவரப் பதிவு (Matrimony Profile) -->
-        <div class="section-box">
-            <h3>4. மேட்ரிமோனி சுயவிவரம்</h3>
+            <h3>2. மேட்ரிமோனி சுயவிவரப் பதிவு & போட்டோ</h3>
             <div class="form-group">
                 <label>பெயர் (Full Name):</label>
                 <input type="text" id="name" placeholder="உங்கள் பெயர்">
@@ -262,12 +237,32 @@
                     <option value="Revathi">ரேவதி</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label>🖼️ சுயவிவரப் படம் (Profile Photo Upload):</label>
+                <input type="file" id="profilePhoto" accept="image/*">
+            </div>
             <button class="btn" onclick="registerUser()">பதிவு செய்</button>
         </div>
 
-        <!-- 5. AI ஜாதக பொருத்தம் -->
+        <!-- 3. கணினி ஜாதகம் & PDF Download (Locked for Non-Subscribers) -->
         <div class="section-box">
-            <h3>5. AI ஜாதக பொருத்தம் (10 பொருத்தங்கள்)</h3>
+            <h3>💻 3. கணினி ஜாதகம் & PDF Download</h3>
+            <div class="form-group">
+                <label>பிறந்த தேதி & நேரம்:</label>
+                <input type="date" id="dob" style="margin-bottom: 5px;">
+                <input type="time" id="dot">
+            </div>
+            <button class="btn" onclick="generateComputerJathagam()" style="background-color: #673ab7;">ஜாதகம் கணி & PDF பார்</button>
+            <div id="jathagamResult" class="result-box"></div>
+            
+            <!-- சப்ஸ்கிரிப்ஷன் செய்தவர்களுக்கு மட்டும் இயங்கும் PDF Download பட்டன் -->
+            <button id="pdfDownloadBtn" class="btn" onclick="downloadPDF()" style="background-color: #e91e63; display: none; margin-top: 10px;">📥 முழு ஜாதகம் PDF Download (VIP)</button>
+            <div id="pdfLockedMsg" class="locked-badge">🔒 PDF டவுன்லோட் செய்ய சப்ஸ்கிரிப்ஷன் (Gold/Diamond) அல்லது 5 விளம்பரங்களைப் பார்க்கவும்!</div>
+        </div>
+
+        <!-- 4. AI ஜாதக பொருத்தம் -->
+        <div class="section-box">
+            <h3>4. AI ஜாதக பொருத்தம் (10 பொருத்தங்கள்)</h3>
             <div class="form-group">
                 <label>மணமகன் / மணமகள் நட்சத்திரம்:</label>
                 <input type="text" id="partnerNakshatra" placeholder="எ.கா: ரோகிணி">
@@ -276,30 +271,30 @@
             <div id="aiResult" class="result-box"></div>
         </div>
 
-        <!-- 6. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் -->
+        <!-- 5. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் (Unlock Control) -->
         <div class="section-box">
-            <h3>6. சப்ஸ்கிரிப்ஷன் & இலவச ஆப்ஷன்கள்</h3>
+            <h3>5. சப்ஸ்கிரிப்ஷன் & அன்லாக் பகுதி</h3>
             
             <div class="free-ad-box">
                 <b style="color: #0d47a1; font-size: 12px;">🎁 இலவசமாகப் பெற:</b>
-                <p style="font-size: 11px; margin: 4px 0; color: #333;">5 விளம்பரங்களைப் பார்த்து 1 நாள் அன்லாக் செய்!</p>
+                <p style="font-size: 11px; margin: 4px 0; color: #333;">5 விளம்பரங்களைப் பார்த்து PDF & காண்டாக்ட்டுகளை அன்லாக் செய்!</p>
                 <button class="btn" onclick="watchAds()" style="background-color: #1976d2; padding: 7px; font-size: 12px; margin-top: 4px;">Watch 5 Ads (<span id="adCount">0</span>/5)</button>
             </div>
 
             <div class="plan-grid">
                 <div class="plan-card">
                     <b>Gold (1 Month)</b>
-                    <p style="font-size: 11px; margin: 4px 0;">₹500<br>30 Contacts</p>
+                    <p style="font-size: 11px; margin: 4px 0;">₹500<br>PDF & Contacts</p>
                     <button class="btn" onclick="selectPlan('Gold Plan - ₹500', 500)" style="padding: 5px; font-size: 11px;">Select</button>
                 </div>
                 <div class="plan-card" style="background: #fff8e1; border-color: #fbc02d;">
                     <b>Diamond (3 Mos)</b>
-                    <p style="font-size: 11px; margin: 4px 0;">₹1200<br>Unlimited</p>
+                    <p style="font-size: 11px; margin: 4px 0;">₹1200<br>Unlimited VIP</p>
                     <button class="btn" onclick="selectPlan('Diamond Plan - ₹1200', 1200)" style="padding: 5px; font-size: 11px; background-color: #f57f17;">Select</button>
                 </div>
             </div>
 
-            <div class="bank-info">
+            <div class="bank-info" style="margin-top: 8px;">
                 <b>நேரடி வங்கிப் பரிமாற்றம் / UPI:</b><br>
                 <b>A/C Name:</b> Andal Alagar Matrimony<br>
                 <b>A/C No:</b> 123456789012<br>
@@ -317,26 +312,21 @@
 
         let currentAuthMode = 'signup';
         let watchedAds = 0;
+        let isSubscribed = false; // சப்ஸ்கிரிப்ஷன் ஸ்டேட்டஸ் (Default: False)
 
         function openAuth(mode) {
             currentAuthMode = mode;
             let box = document.getElementById('authBox');
             box.style.display = "block";
-            let btnText = mode === 'signup' ? "புதிய கணக்கை பதிவு செய்" : "உள்நுழையவும்";
-            box.querySelector('button').innerText = btnText;
         }
 
         function submitAuth() {
             let phone = document.getElementById('userPhone').value;
             if(!phone) {
-                alert("தயவுசெய்து எண்ணை உள்ளிடவும்!");
+                alert("எண்ணை உள்ளிடவும்!");
                 return;
             }
-            if(currentAuthMode === 'signup') {
-                tg.showAlert(`வெற்றிகரமாக பதிவு செய்யப்பட்டது! (எண்: ${phone})`);
-            } else {
-                tg.showAlert(`வெற்றிகரமாக உள்நுழைந்தீர்கள்! (எண்: ${phone})`);
-            }
+            tg.showAlert(`வெற்றிகரமாக ${currentAuthMode === 'signup' ? 'பதிவு' : 'உள்நுழைவு'} செய்யப்பட்டது!`);
             document.getElementById('authBox').style.display = "none";
         }
 
@@ -346,35 +336,49 @@
             box.innerHTML = `<b>தேதி (${date}) பஞ்சாங்க விவரங்கள்:</b><br>
             • <b>நல்ல நேரம்:</b> காலை 10:15 - 11:15<br>
             • <b>ராகு காலம்:</b> மாலை 04:30 - 06:00<br>
-            • <b>எமகண்டம்:</b> காலை 12:00 - 01:30<br>
-            • <b>குளிகை:</b> காலை 07:30 - 09:00`;
+            • <b>எமகண்டம்:</b> காலை 12:00 - 01:30`;
         }
 
-        function getDailyRasiPalan() {
-            let rasi = document.getElementById('selectedRasi').value;
-            let box = document.getElementById('rasiResult');
-            box.style.display = "block";
-            box.innerHTML = `🌟 <b>${rasi} ராசி பலன்:</b> இன்றைய நாள் உங்களுக்கு அனுகூலமானது. பணவரவு திருப்திகரமாக இருக்கும்.`;
+        function registerUser() {
+            let name = document.getElementById('name').value;
+            let photoInput = document.getElementById('profilePhoto');
+            if(!name) {
+                tg.showAlert("பெயரை உள்ளிடவும்!");
+                return;
+            }
+            let photoMsg = photoInput.files.length > 0 ? "போட்டோ வெற்றிகரமாக இணைக்கப்பட்டது!" : "போட்டோ சேர்க்கப்படவில்லை.";
+            tg.showAlert(`வணக்கம் ${name}! சுயவிவரம் பதிவு செய்யப்பட்டது. ${photoMsg}`);
         }
 
         function generateComputerJathagam() {
             let dob = document.getElementById('dob').value;
             let box = document.getElementById('jathagamResult');
+            let pdfBtn = document.getElementById('pdfDownloadBtn');
+            let lockedMsg = document.getElementById('pdfLockedMsg');
+
             if(!dob) {
-                alert("தேதியை தேர்ந்தெடுக்கவும்!");
+                alert("பிறந்த தேதியை தேர்ந்தெடுக்கவும்!");
                 return;
             }
             box.style.display = "block";
-            box.innerHTML = `💻 <b>ஜாதகக் கணிப்பு:</b> லக்னம் மற்றும் ராசி கட்டங்கள் கணக்கிடப்பட்டுவிட்டது.`;
+            box.innerHTML = `💻 <b>கணினி ஜாதகக் கணிப்பு:</b> லக்னம் மற்றும் கட்டங்கள் கணக்கிடப்பட்டுவிட்டது.`;
+
+            // சப்ஸ்கிரிப்ஷன் அல்லது விளம்பரம் பார்த்திருந்தால் மட்டும் PDF டவுன்லோட் பட்டன் திறக்கும்
+            if(isSubscribed) {
+                pdfBtn.style.display = "block";
+                lockedMsg.style.display = "none";
+            } else {
+                pdfBtn.style.display = "none";
+                lockedMsg.style.display = "block";
+            }
         }
 
-        function registerUser() {
-            let name = document.getElementById('name').value;
-            if(!name) {
-                tg.showAlert("பெயரை உள்ளிடவும்!");
-                return;
+        function downloadPDF() {
+            if(isSubscribed) {
+                tg.showAlert("📥 உங்கள் ஜாதகம் PDF ஃபைலாக டவுன்லோட் ஆகிறது!");
+            } else {
+                tg.showAlert("⚠️ இதற்கு சப்ஸ்கிரிப்ஷன் (அல்லது 5 விளம்பரங்கள் பார்த்தல்) தேவை!");
             }
-            tg.showAlert(`வணக்கம் ${name}! மேட்ரிமோனி சுயவிவரம் பதிவு செய்யப்பட்டது.`);
         }
 
         function checkAIHoroscope() {
@@ -395,7 +399,8 @@
                 if(watchedAds < 5) {
                     tg.showAlert(`விளம்பரம் ${watchedAds} பார்க்கப்பட்டது!`);
                 } else {
-                    tg.showAlert("5 விளம்பரங்களும் பார்த்து முடிக்கப்பட்டன. 1 நாள் இலவச அணுகல் வழங்கப்பட்டது!");
+                    isSubscribed = true; // 5 விளம்பரங்கள் பார்த்தவுடன் அன்லாக் ஆகும்
+                    tg.showAlert("🎉 5 விளம்பரங்களும் பார்த்து முடிக்கப்பட்டன! உங்களுக்கு PDF & காண்டாக்ட் வசதி 1 நாள் இலவசமாக அன்லாக் செய்யப்பட்டது!");
                 }
             } else {
                 tg.showAlert("நீங்கள் ஏற்கனவே விளம்பரங்களைப் பார்த்துவிட்டீர்கள்!");
@@ -403,10 +408,11 @@
         }
 
         function selectPlan(planName, amount) {
-            tg.showAlert(`${planName} தேர்ந்தெடுக்கப்பட்டது. ₹${amount} செலுத்தி ரசீதை அனுப்பவும்.`);
+            isSubscribed = true; // பிளான் செலக்ட் செய்தவுடன் அன்லாக் ஆகும்
+            tg.showAlert(`${planName} தேர்ந்தெடுக்கப்பட்டது. ₹${amount} செலுத்தி ரசீதை பாட்டில் அனுப்பவும். (தற்காலிகமாக உங்கள் கணக்கு அன்லாக் செய்யப்பட்டுள்ளது!)`);
         }
     </script>
 
 </body>
                         </html>
-    
+                        

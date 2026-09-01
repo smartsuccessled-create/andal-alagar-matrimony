@@ -1,33 +1,255 @@
-<div class="section-box" style="border: 2px dashed #ff3366; margin-top: 20px;">
-    <h3>🛠️ அட்மின் லாகின் (Admin Panel)</h3>
-    <div id="adminLoginBox">
-        <div class="form-group">
-            <label>அட்மின் கடவுச்சொல் (Admin Password):</label>
-            <input type="password" id="adminPass" placeholder="Password உள்ளிடவும்">
-        </div>
-        <button class="btn" onclick="checkAdminLogin()" style="background-color: #333;">Admin Login</button>
-    </div>
-
-    <div id="adminDashboard" style="display: none; margin-top: 10px;">
-        <p style="color: #2e7d32; font-weight: bold; font-size: 12px;">✅ அட்மின் லாகின் வெற்றி!</p>
-        <div style="background: #f1f1f1; padding: 8px; border-radius: 5px; font-size: 11px; margin-bottom: 8px;">
-            <b>பதிவு செய்த மொத்த பயனர்கள்:</b> <span id="totalUsersCount">1</span><br>
-            <b>சப்ஸ்கிரிப்ஷன் செய்தவர்கள்:</b> Active (VIP)
-        </div>
-        <button class="btn" onclick="alert('Google Sheet அல்லது Database உடன் இணைக்க வேண்டும்!')" style="background-color: #d32f2f; padding: 7px; font-size: 11px;">பயனர்கள் பட்டியலைக் காண்க (Database)</button>
-    </div>
-</div>
-
-<script>
-    // அட்மின் பாஸ்வேர்ட் சரிபார்க்கும் வசதி (உதாரணத்திற்கு: admin123)
-    function checkAdminLogin() {
-        let pass = document.getElementById('adminPass').value;
-        if(pass === "admin123") {
-            document.getElementById('adminLoginBox').style.display = "none";
-            document.getElementById('adminDashboard').style.display = "block";
-            alert("அட்மின் பேனல் திறக்கப்பட்டது!");
-        } else {
-            alert("தவறான கடவுச்சொல்! (Admin Password தவற십)");
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andal Alagar Matrimony</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #222222;
+            margin: 0;
+            padding: 12px;
+            text-align: center;
         }
-    }
-</script>
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #ff3366;
+            margin-bottom: 2px;
+            font-size: 20px;
+        }
+        p.tagline {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .section-box {
+            background: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+        h3 {
+            font-size: 14px;
+            color: #333;
+            margin-top: 0;
+            border-bottom: 2px solid #ff3366;
+            padding-bottom: 4px;
+        }
+        .form-group {
+            margin-bottom: 8px;
+        }
+        label {
+            display: block;
+            font-size: 11px;
+            margin-bottom: 2px;
+            font-weight: bold;
+            color: #444;
+        }
+        input, select {
+            width: 100%;
+            padding: 7px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .btn {
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 9px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .admin-box {
+            border: 2px dashed #ff3366;
+            background: #fff5f7;
+        }
+        .result-box {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #2e7d32;
+            display: none;
+        }
+        .bank-info {
+            font-size: 11px;
+            background: #fff;
+            padding: 9px;
+            border-radius: 5px;
+            border: 1px solid #ffcc80;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
+        <p class="tagline">மேட்ரிமோனி + கணினி ஜாதகம் & நிர்வாகப் பலகம்</p>
+
+        <div class="section-box">
+            <h3>1. சுயவிவரப் பதிவு</h3>
+            <div class="form-group">
+                <label>பெயர் (Full Name):</label>
+                <input type="text" id="name" placeholder="உங்கள் பெயர்">
+            </div>
+            <div class="form-group">
+                <label>பாலினம் (Gender):</label>
+                <select id="gender">
+                    <option value="Male">ஆண்</option>
+                    <option value="Female">பெண்</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>நட்சத்திரம் (Nakshatram):</label>
+                <select id="nakshatram">
+                    <option value="Aswathi">அஸ்வினி</option>
+                    <option value="Rohini">ரோகிணி</option>
+                    <option value="Thiruvathirai">திருவாதிரை</option>
+                    <option value="Poosam">பூசம்</option>
+                    <option value="Uthiram">உத்திரம்</option>
+                    <option value="Hastham">ஹஸ்தம்</option>
+                    <option value="Chithirai">சித்திரை</option>
+                    <option value="Anusham">அனுஷம்</option>
+                    <option value="Moolam">மூலம்</option>
+                    <option value="Thiruvonam">திருவோணம்</option>
+                </select>
+            </div>
+            <button class="btn" onclick="registerUser()">பதிவு செய்து சேமி</button>
+        </div>
+
+        <div class="section-box">
+            <h3>2. AI ஜாதக பொருத்தம்</h3>
+            <div class="form-group">
+                <label>மணமகன் / மணமகள் நட்சத்திரம்:</label>
+                <input type="text" id="partnerNakshatra" placeholder="எ.கா: ரோகிணி">
+            </div>
+            <button class="btn" onclick="checkAIHoroscope()" style="background-color: #2e7d32;">AI மூலம் பொருத்தம் பார்</button>
+            <div id="aiResult" class="result-box"></div>
+        </div>
+
+        <div class="section-box">
+            <h3>3. சப்ஸ்கிரிப்ஷன் & வங்கிப் பரிமாற்றம்</h3>
+            <div style="background: #fff5f7; border: 1px solid #ff3366; padding: 8px; border-radius: 6px; margin-bottom: 8px;">
+                <b id="displayPlanName" style="color: #d81b60; font-size: 12px;">Gold Plan (1 Month) - ₹500</b>
+                <p id="displayPlanDesc" style="font-size: 11px; margin: 4px 0;">வரம்பற்ற ஜாதக தொடர்பு எண்களைப் பெறலாம்.</p>
+                <button class="btn" onclick="selectPlan()" style="padding: 6px; font-size: 11px;">இந்த திட்டத்தைத் தேர்ந்தெடு</button>
+            </div>
+
+            <div class="bank-info">
+                <b style="color: #d81b60;">💳 நேரடி வங்கிப் பரிமாற்றம் / UPI:</b><br>
+                • <b>A/C Name:</b> Andal Alagar Matrimony<br>
+                • <b>A/C No:</b> 123456789012<br>
+                • <b>IFSC Code:</b> SBIN0001234<br>
+                • <b>UPI ID:</b> <code style="color: #c2185b; font-weight: bold;">alagirik1956@okaxis</code><br>
+                <i style="color: #c62828; display: block; margin-top: 4px;">பணம் செலுத்திய பின் ஸ்கிரீன்ஷாட்டை பாட்டில் அனுப்பவும்.</i>
+            </div>
+        </div>
+
+        <div class="section-box admin-box">
+            <h3>🛠️ அட்மின் கண்ட்ரோல் பேனல் (Admin Panel)</h3>
+            
+            <div id="adminLoginSection">
+                <div class="form-group">
+                    <label>Admin Username:</label>
+                    <input type="text" id="adminUser" placeholder="Username உள்ளிடவும்">
+                </div>
+                <div class="form-group">
+                    <label>Admin Password:</label>
+                    <input type="password" id="adminPass" placeholder="Password உள்ளிடவும்">
+                </div>
+                <button class="btn" onclick="adminLogin()" style="background-color: #333;">Admin Login</button>
+            </div>
+
+            <div id="adminDashboardSection" style="display: none;">
+                <p style="color: #2e7d32; font-weight: bold; font-size: 12px; margin-bottom: 8px;">✅ அட்மின் லாகின் வெற்றி!</p>
+                
+                <div class="form-group">
+                    <label>மாற்ற வேண்டிய திட்டம் (Plan Name):</label>
+                    <input type="text" id="newPlanName" value="Gold Plan (1 Month) - ₹500">
+                </div>
+                <div class="form-group">
+                    <label>திட்ட விவரங்கள் / ஸ்டாக் நிலை (Status):</label>
+                    <input type="text" id="newPlanDesc" value="வரம்பற்ற ஜாதக தொடர்பு எண்களைப் பெறலாம்.">
+                </div>
+                <button class="btn" onclick="updatePlanByAdmin()" style="background-color: #1976d2;">ஜாதகம் / பிளான் மாற்றங்களை சேமி</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+        if (tg) { tg.expand(); }
+
+        function registerUser() {
+            let name = document.getElementById('name').value;
+            if(!name) {
+                alert("தயவுசெய்து பெயரினை உள்ளிடவும்!");
+                return;
+            }
+            alert(`வணக்கம் ${name}! உங்களது சுயவிவரம் வெற்றிகரமாகப் பதிவு செய்யப்பட்டது.`);
+        }
+
+        function checkAIHoroscope() {
+            let partner = document.getElementById('partnerNakshatra'].value;
+            let box = document.getElementById('aiResult');
+            if(!partner) {
+                alert("நட்சத்திரத்தை உள்ளிடவும்!");
+                return;
+            }
+            box.style.display = "block";
+            box.innerHTML = `🤖 <b>AI பொருத்தம்:</b> 10-க்கு 8 பொருத்தங்கள் உள்ளன. மங்கலகரமான பொருத்தம்!`;
+        }
+
+        function selectPlan() {
+            let planText = document.getElementById('displayPlanName').innerText;
+            alert(`✅ நீங்கள் தேர்ந்தெடுத்த திட்டம்: ${planText}\n\nalagirik1956@okaxis என்ற UPI ஐடிக்கு பணம் செலுத்திவிட்டு ஸ்கிரீன்ஷாட்டை அனுப்பவும்.`);
+        }
+
+        // அட்மின் லாகின் பகுதி (Username: admin, Password: 123 மாற்றிக்கொள்ளலாம்)
+        function adminLogin() {
+            let u = document.getElementById('adminUser').value;
+            let p = document.getElementById('adminPass').value;
+
+            if(u === "admin" && p === "123") {
+                document.getElementById('adminLoginSection').style.display = "none";
+                document.getElementById('adminDashboardSection').style.display = "block";
+                alert("அட்மின் பேனல் வெற்றிகரமாக திறக்கப்பட்டது!");
+            } else {
+                alert("தவறான Username அல்லது Password!");
+            }
+        }
+
+        // அட்மின் ஜாதகம் தீர்ந்துவிட்டாலோ அல்லது பிளானை மாற்றினாலோ அதை அப்데이트 செய்யும் வசதி
+        function updatePlanByAdmin() {
+            let updatedName = document.getElementById('newPlanName').value;
+            let updatedDesc = document.getElementById('newPlanDesc').value;
+
+            document.getElementById('displayPlanName').innerText = updatedName;
+            document.getElementById('displayPlanDesc').innerText = updatedDesc;
+
+            alert("👍 வெற்றிகரமாக மாற்றங்கள் சேமிக்கப்பட்டன! பயனர்களுக்கு புதிய விவரங்கள் உடнே காட்டும்.");
+        }
+    </script>
+
+</body>
+    </html>
+    

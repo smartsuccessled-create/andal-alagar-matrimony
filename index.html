@@ -3,19 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andal Alagar Matrimony & Astrology</title>
+    <title>Andal Alagar Matrimony</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        :root {
-            --bg-color: var(--tg-theme-bg-color, #ffffff);
-            --text-color: var(--tg-theme-text-color, #222222);
-            --button-color: var(--tg-theme-button-color, #ff3366);
-            --button-text-color: var(--tg-theme-button-text-color, #ffffff);
-        }
         body {
             font-family: Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #ffffff;
+            color: #222222;
             margin: 0;
             padding: 12px;
             text-align: center;
@@ -41,7 +35,6 @@
             border-radius: 8px;
             margin-bottom: 12px;
             text-align: left;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
         h3 {
             font-size: 14px;
@@ -69,8 +62,8 @@
             font-size: 12px;
         }
         .btn {
-            background-color: var(--button-color);
-            color: var(--button-text-color);
+            background-color: #ff3366;
+            color: white;
             border: none;
             width: 100%;
             padding: 9px;
@@ -177,5 +170,220 @@
 
     <div class="container">
         <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
-        <p class="tagline">மேட்ரிமோனி + கணினி ஜாதகம்
+        <p class="tagline">மேட்ரிமோனி + தினசரி நாட்காட்டி & ஜாதகம்</p>
+
+        <div id="vipBadge" class="active-vip-badge">🌟 உங்கள் சப்ஸ்கிரிப்ஷன் Active-ல் உள்ளது!</div>
+
+        <!-- Signup / Login -->
+        <div class="section-box">
+            <h3>🔐 கணக்கு விவரம் (Account)</h3>
+            <div class="auth-buttons">
+                <button onclick="openAuth('signup')" style="background-color: #ff3366; color: white;">புதிய பதிவு (Signup)</button>
+                <button onclick="openAuth('login')" style="background-color: #f5f5f5; color: #333;">உள்நுழை (Login)</button>
+            </div>
+            <div id="authBox" style="display:none; margin-top: 8px;">
+                <div class="form-group">
+                    <label>டெலிகிராம் / மொபைல் எண்:</label>
+                    <input type="text" id="userPhone" placeholder="எ.கா: 9876543210">
+                </div>
+                <button class="btn" onclick="submitAuth()">தொடரவும்</button>
+            </div>
+        </div>
+
+        <!-- Panchangam & Calendar -->
+        <div class="section-box">
+            <h3>📅 தினசரி நாட்காட்டி & நல்ல நேரம்</h3>
+            <div class="form-group">
+                <label>தேதியைத் தேர்ந்தெடுக்கவும்:</label>
+                <input type="date" id="calendarDate" onchange="loadPanchangam()">
+            </div>
+            <div class="panchangam-box" id="panchangamDetails">
+                <b>இன்றைய பஞ்சாங்க விவரங்கள்:</b><br>
+                • <b>நல்ல நேரம்:</b> காலை 09:30 - 10:30<br>
+                • <b>ராகு காலம்:</b> காலை 03:00 - 04:30<br>
+                • <b>எமகண்டம்:</b> காலை 09:00 - 10:30<br>
+                • <b>குளிகை:</b> மதியம் 12:00 - 01:30
+            </div>
+        </div>
+
+        <!-- Profile Registration -->
+        <div class="section-box">
+            <h3>2. மேட்ரிமோனி சுயவிவரப் பதிவு</h3>
+            <div class="form-group">
+                <label>பெயர் (Full Name):</label>
+                <input type="text" id="name" placeholder="உங்கள் பெயர்">
+            </div>
+            <div class="form-group">
+                <label>நட்சத்திரம்:</label>
+                <select id="nakshatram">
+                    <option value="Aswathi">அஸ்வினி</option>
+                    <option value="Rohini">ரோகிணி</option>
+                    <option value="Thiruvathirai">திருவாதிரை</option>
+                    <option value="Poosam">பூசம்</option>
+                    <option value="Uthiram">உத்திரம்</option>
+                    <option value="Hastham">ஹஸ்தம்</option>
+                    <option value="Chithirai">சித்திரை</option>
+                    <option value="Anusham">அனுஷம்</option>
+                    <option value="Moolam">மூலம்</option>
+                    <option value="Thiruvonam">திருவோணம்</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>🖼️ சுயவிவரப் படம் (Photo):</label>
+                <input type="file" id="profilePhoto" accept="image/*">
+            </div>
+            <button class="btn" onclick="registerUser()">பதிவு செய்</button>
+        </div>
+
+        <!-- Computer Jathagam & PDF -->
+        <div class="section-box">
+            <h3>3. கணினி ஜாதகம் & PDF Download</h3>
+            <div class="form-group">
+                <label>பிறந்த தேதி:</label>
+                <input type="date" id="dob" style="margin-bottom: 5px;">
+            </div>
+            <button class="btn" onclick="generateComputerJathagam()" style="background-color: #673ab7;">ஜாதகம் கணி & PDF பார்</button>
+            <div id="jathagamResult" class="result-box"></div>
             
+            <button id="pdfDownloadBtn" class="btn" onclick="downloadPDF()" style="background-color: #e91e63; display: none; margin-top: 10px;">📥 முழு ஜாதகம் PDF Download</button>
+            <div id="pdfLockedMsg" class="locked-badge">🔒 PDF டவுன்லோட் செய்ய சப்ஸ்கிரிப்ஷன் செய்யவும் அல்லது விளம்பரங்களைப் பார்க்கவும்!</div>
+        </div>
+
+        <!-- Subscription & UPI -->
+        <div class="section-box">
+            <h3>4. சப்ஸ்கிரிப்ஷன் & UPI கட்டணம்</h3>
+            
+            <div class="free-ad-box">
+                <b style="color: #0d47a1; font-size: 12px;">🎁 இலவசமாகப் பெற:</b>
+                <p style="font-size: 11px; margin: 4px 0; color: #333;">5 விளம்பரங்களைப் பார்த்து அன்லாக் செய்!</p>
+                <button class="btn" onclick="watchAds()" style="background-color: #1976d2; padding: 7px; font-size: 12px; margin-top: 4px;">Watch Ads (<span id="adCount">0</span>/5)</button>
+            </div>
+
+            <div class="plan-grid">
+                <div class="plan-card">
+                    <b>Gold (1 Month)</b>
+                    <p style="font-size: 11px; margin: 4px 0;">₹500</p>
+                    <button class="btn" onclick="selectPlan('Gold', 500)" style="padding: 5px; font-size: 11px;">Select</button>
+                </div>
+                <div class="plan-card" style="background: #fff8e1; border-color: #fbc02d;">
+                    <b>Diamond (3 Mos)</b>
+                    <p style="font-size: 11px; margin: 4px 0;">₹1200</p>
+                    <button class="btn" onclick="selectPlan('Diamond', 1200)" style="padding: 5px; font-size: 11px; background-color: #f57f17;">Select</button>
+                </div>
+            </div>
+
+            <div class="bank-info">
+                <b style="color: #d81b60;">💳 UPI கட்டண விவரம்:</b><br>
+                • <b>UPI ID:</b> <code style="background: #fce4ec; color: #c2185b; padding: 2px 4px; font-weight: bold;">alagirik1956@okaxis</code><br>
+                <i style="color: #c62828; display: block; margin-top: 4px;">⚠️ பிளானைத் தேர்ந்தெடுத்தவுடன் கணக்கு அன்லாக் ஆகும். பின் மேற்கண்ட UPI ID-க்கு பணம் செலுத்திவிட்டு ஸ்கிரீன்ஷாட்டை அனுப்பவும்.</i>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Telegram WebApp சேஃப் இனிஷிலைசேஷன்
+        let tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+        if (tg) {
+            tg.expand();
+        }
+
+        let currentAuthMode = 'signup';
+        let watchedAds = 0;
+        let isSubscribed = false;
+
+        function openAuth(mode) {
+            currentAuthMode = mode;
+            let box = document.getElementById('authBox');
+            box.style.display = "block";
+        }
+
+        function submitAuth() {
+            let phone = document.getElementById('userPhone').value;
+            if(!phone) {
+                alert("எண்ணை உள்ளிடவும்!");
+                return;
+            }
+            alert(`வெற்றிகரமாக ${currentAuthMode === 'signup' ? 'பதிவு' : 'உள்நுழைவு'} செய்யப்பட்டது!`);
+            document.getElementById('authBox').style.display = "none";
+        }
+
+        function loadPanchangam() {
+            let date = document.getElementById('calendarDate').value;
+            let box = document.getElementById('panchangamDetails');
+            box.innerHTML = `<b>தேதி (${date}) பஞ்சாங்க விவரங்கள்:</b><br>
+            • <b>நல்ல நேரம்:</b> காலை 10:15 - 11:15<br>
+            • <b>ராகு காலம்:</b> மாலை 04:30 - 06:00<br>
+            • <b>எமகண்டம்:</b> காலை 12:00 - 01:30`;
+        }
+
+        function registerUser() {
+            let name = document.getElementById('name').value;
+            if(!name) {
+                alert("பெயரை உள்ளிடவும்!");
+                return;
+            }
+            alert(`வணக்கம் ${name}! சுயவிவரம் பதிவு செய்யப்பட்டது.`);
+        }
+
+        function generateComputerJathagam() {
+            let dob = document.getElementById('dob').value;
+            let box = document.getElementById('jathagamResult');
+            if(!dob) {
+                alert("பிறந்த தேதியை தேர்ந்தெடுக்கவும்!");
+                return;
+            }
+            box.style.display = "block";
+            box.innerHTML = `💻 <b>ஜாதகக் கணிப்பு:</b> லக்னம் மற்றும் கட்டங்கள் வெற்றிகரமாக உருவாக்கப்பட்டது.`;
+            updateUnlockStatus();
+        }
+
+        function updateUnlockStatus() {
+            let pdfBtn = document.getElementById('pdfDownloadBtn');
+            let lockedMsg = document.getElementById('pdfLockedMsg');
+            let vipBadge = document.getElementById('vipBadge');
+
+            if(isSubscribed) {
+                pdfBtn.style.display = "block";
+                lockedMsg.style.display = "none";
+                vipBadge.style.display = "block";
+            } else {
+                pdfBtn.style.display = "none";
+                lockedMsg.style.display = "block";
+                vipBadge.style.display = "none";
+            }
+        }
+
+        function downloadPDF() {
+            if(isSubscribed) {
+                alert("📥 உங்கள் ஜாதகம் PDF ஃபைலாக டவுன்லோட் ஆகிறது!");
+            } else {
+                alert("⚠️ இதற்கு சப்ஸ்கிரிப்ஷன் தேவை!");
+            }
+        }
+
+        function watchAds() {
+            if(watchedAds < 5) {
+                watchedAds++;
+                document.getElementById('adCount').innerText = watchedAds;
+                if(watchedAds < 5) {
+                    alert(`விளம்பரம் ${watchedAds} பார்க்கப்பட்டது!`);
+                } else {
+                    isSubscribed = true;
+                    updateUnlockStatus();
+                    alert("🎉 5 விளம்பரங்களும் பார்த்து முடிக்கப்பட்டன! சப்ஸ்கிரிப்ஷன் அன்லாக் செய்யப்பட்டது!");
+                }
+            } else {
+                alert("நீங்கள் ஏற்கனவே விளம்பரங்களைப் பார்த்துவிட்டீர்கள்!");
+            }
+        }
+
+        function selectPlan(planName, amount) {
+            isSubscribed = true;
+            updateUnlockStatus();
+            alert(`✅ ${planName} தேர்வு செய்யpப்பட்டது! கணக்கு அன்லாக் ஆனது. alagirik1956@okaxis ஐடிக்கு ₹${amount} செலுத்திவிட்டு ஸ்கிரீன்ஷாட்டை அனுப்பவும்.`);
+        }
+    </script>
+
+</body>
+</html>

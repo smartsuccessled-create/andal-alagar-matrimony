@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andal Alagar Matrimony</title>
+    <title>Andal Alagar Matrimony & Astrology</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
@@ -24,24 +24,24 @@
             font-size: 20px;
         }
         p.tagline {
-            font-size: 12px;
+            font-size: 11px;
             color: #666;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .section-box {
             background: #fdfdfd;
             border: 1px solid #e0e0e0;
-            padding: 12px;
+            padding: 10px;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             text-align: left;
         }
         h3 {
-            font-size: 14px;
+            font-size: 13px;
             color: #333;
             margin-top: 0;
             border-bottom: 2px solid #ff3366;
-            padding-bottom: 4px;
+            padding-bottom: 3px;
         }
         .form-group {
             margin-bottom: 8px;
@@ -66,22 +66,22 @@
             color: white;
             border: none;
             width: 100%;
-            padding: 9px;
+            padding: 8px;
             border-radius: 5px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 8px;
+            margin-top: 6px;
         }
         .plan-grid {
             display: flex;
-            gap: 8px;
-            margin-bottom: 8px;
+            gap: 6px;
+            margin-bottom: 6px;
         }
         .plan-card {
             flex: 1;
             border: 1px solid #ff3366;
-            padding: 8px;
+            padding: 6px;
             border-radius: 6px;
             background: #fff5f7;
             text-align: center;
@@ -89,9 +89,9 @@
         .free-ad-box {
             background: #e3f2fd;
             border: 1px solid #2196f3;
-            padding: 10px;
+            padding: 8px;
             border-radius: 6px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-align: center;
         }
         .admin-box {
@@ -103,24 +103,34 @@
             border: 1px solid #4caf50;
             padding: 8px;
             border-radius: 6px;
-            margin-top: 8px;
-            font-size: 12px;
+            margin-top: 6px;
+            font-size: 11px;
             color: #2e7d32;
             display: none;
+            line-height: 1.4;
+        }
+        .astro-info {
+            font-size: 11px;
+            background: #fff8e1;
+            border: 1px solid #ffe0b2;
+            padding: 8px;
+            border-radius: 6px;
+            line-height: 1.5;
+            margin-bottom: 8px;
         }
         .bank-info {
             font-size: 11px;
             background: #fff;
-            padding: 9px;
+            padding: 8px;
             border-radius: 5px;
             border: 1px solid #ffcc80;
-            line-height: 1.5;
-            margin-top: 8px;
+            line-height: 1.4;
+            margin-top: 6px;
         }
         .active-vip-badge {
             background: #e8f5e9;
             color: #2e7d32;
-            padding: 6px;
+            padding: 5px;
             font-size: 11px;
             border-radius: 4px;
             text-align: center;
@@ -135,12 +145,57 @@
 
     <div class="container">
         <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
-        <p class="tagline">மேட்ரிமோனி + AI ஜாதகம் + Ads Plan & Admin Panel</p>
+        <p class="tagline">மேட்ரிமோனி + தினசரி ராசி பலன், நல்ல நேரம் & ஆன்மீகப் பரிகாரங்கள்</p>
 
+        <!-- VIP ஸ்டேட்டஸ் நோட்டீஸ் -->
         <div id="vipBadge" class="active-vip-badge">🌟 உங்கள் கணக்கு / சப்ஸ்கிரிப்ஷன் Active-ல் உள்ளது!</div>
 
+        <!-- 1. தினசரி பஞ்சாங்கம், நல்ல நேரம் & ராகு காலம் -->
         <div class="section-box">
-            <h3>1. சுயவிவரப் பதிவு</h3>
+            <h3>☀️ இன்றைய பஞ்சாங்கம் & நல்ல நேரம்</h3>
+            <div class="astro-info">
+                • <b>நல்ல நேரம்:</b> காலை 09:15 - 10:15 | மாலை 04:45 - 05:45<br>
+                • <b>ராகு காலம்:</b> மதியம் 12:00 - 01:30<br>
+                • <b>எமகண்டம்:</b> காலை 07:30 - 09:00<br>
+                • <b>சூலம்:</b> வடக்கு (பரிகாரம்: பால் வெல்லம் உட்கொள்ளவும்)
+            </div>
+        </div>
+
+        <!-- 2. இன்றைய ராசி பலன் & பரிகாரங்கள் -->
+        <div class="section-box">
+            <h3>🔮 இன்றைய ராசி பலன் & பரிகாரங்கள்</h3>
+            <div class="form-group">
+                <label>உங்கள் ராசியைத் தேர்ந்தெடுக்கவும்:</label>
+                <select id="userRasi">
+                    <option value="Mesham">மேஷம் (Aries)</option>
+                    <option value="Rishabham">ரிஷபம் (Taurus)</option>
+                    <option value="Midhunam">மிதுனம் (Gemini)</option>
+                    <option value="Kadagam">கடகம் (Cancer)</option>
+                    <option value="Simmam">சிம்மம் (Leo)</option>
+                    <option value="Kanni">கன்னி (Virgo)</option>
+                    <option value="Thulaam">துலாம் (Libra)</option>
+                    <option value="Vrichigam">விருச்சிகம் (Scorpio)</option>
+                    <option value="Dhanusu">தனுசு (Sagittarius)</option>
+                    <option value="Magaram">மகரம் (Capricorn)</option>
+                    <option value="Kumbam">கும்பம் (Aquarius)</option>
+                    <option value="Meenam">மீனம் (Pisces)</option>
+                </select>
+            </div>
+            <button class="btn" onclick="checkRasiPalangal()" style="background-color: #7b1fa2;">இன்றைய பலன் & பரிகாரம் காண்க</button>
+            <div id="rasiResult" class="result-box"></div>
+        </div>
+
+        <!-- 3. சுப முகூர்த்த நாட்கள் & கோவில் பரிகாரங்கள் -->
+        <div class="section-box">
+            <h3>📅 சுப முகூர்த்த நாட்கள் & கோவில் பரிகாரங்கள்</h3>
+            <button class="btn" onclick="showMuhurthaDays()" style="background-color: #00838f; margin-bottom: 6px;">மங்கலகரமான முகூர்த்த நாள்களைப் பார்</button>
+            <button class="btn" onclick="showTemplePariharam()" style="background-color: #ef6c00;">சிறப்பு ஆன்மீகக் கோவில் பரிகாரங்கள்</button>
+            <div id="specialInfoResult" class="result-box"></div>
+        </div>
+
+        <!-- 4. சுயவிவரப் பதிவு பகுதி -->
+        <div class="section-box">
+            <h3>4. மேட்ரிமோனி சுயவிவரப் பதிவு</h3>
             <div class="form-group">
                 <label>பெயர் (Full Name):</label>
                 <input type="text" id="name" placeholder="உங்கள் பெயர்">
@@ -152,107 +207,67 @@
                     <option value="Female">பெண்</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label>நட்சத்திரம் (Nakshatram):</label>
-                <select id="nakshatram">
-                    <option value="Aswathi">அஸ்வினி</option>
-                    <option value="Rohini">ரோகிணி</option>
-                    <option value="Thiruvathirai">திருவாதிரை</option>
-                    <option value="Poosam">பூசம்</option>
-                    <option value="Uthiram">உத்திரம்</option>
-                    <option value="Hastham">ஹஸ்தம்</option>
-                    <option value="Chithirai">சித்திரை</option>
-                    <option value="Anusham">அனுஷம்</option>
-                    <option value="Moolam">மூலம்</option>
-                    <option value="Thiruvonam">திருவோணம்</option>
-                </select>
-            </div>
             <button class="btn" onclick="registerUser()">பதிவு செய்து சேமி</button>
         </div>
 
+        <!-- 5. சப்ஸ்கிரிப்ஷன், Ads Plan & UPI கட்டணம் -->
         <div class="section-box">
-            <h3>2. AI ஜாதக பொருத்தம் (10 பொருத்தங்கள்)</h3>
-            <div class="form-group">
-                <label>மணமகன் / மணமகள் நட்சத்திரம்:</label>
-                <input type="text" id="partnerNakshatra" placeholder="எ.கா: ரோகிணி / கார்த்திகை">
-            </div>
-            <button class="btn" onclick="checkAIHoroscope()" style="background-color: #2e7d32;">AI மூலம் விரிவான பொருத்தம் பார்</button>
-            <div id="aiResult" class="result-box"></div>
-        </div>
-
-        <div class="section-box">
-            <h3>3. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் (Ads Plan)</h3>
+            <h3>5. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் (Ads Plan)</h3>
             
             <div class="free-ad-box">
-                <b style="color: #0d47a1; font-size: 12px;">🎁 இலவசமாகப் பெற (Ads Plan):</b>
-                <p style="font-size: 11px; margin: 4px 0; color: #333;">5 விளம்பரங்களைப் பார்த்து இலவசமாக சப்ஸ்கிரிப்ஷனை அன்லாக் செய்!</p>
-                <button class="btn" onclick="watchAds()" style="background-color: #1976d2; padding: 7px; font-size: 12px; margin-top: 4px;">Watch 5 Ads (<span id="adCount">0</span>/5)</button>
+                <b style="color: #0d47a1; font-size: 11px;">🎁 இலவசமாகப் பெற (Ads Plan):</b>
+                <p style="font-size: 10px; margin: 3px 0; color: #333;">5 விளம்பரங்களைப் பார்த்து இலவசமாக அன்லாக் செய்!</p>
+                <button class="btn" onclick="watchAds()" style="background-color: #1976d2; padding: 6px; font-size: 11px; margin-top: 4px;">Watch 5 Ads (<span id="adCount">0</span>/5)</button>
             </div>
 
             <div class="plan-grid">
                 <div class="plan-card">
-                    <b id="goldTitle" style="color: #d81b60; font-size: 12px;">Gold (1 Month)</b>
-                    <p id="goldPrice" style="font-size: 11px; margin: 4px 0; font-weight: bold;">₹500</p>
+                    <b id="goldTitle" style="color: #d81b60; font-size: 11px;">Gold (1 Month)</b>
+                    <p id="goldPrice" style="font-size: 11px; margin: 3px 0; font-weight: bold;">₹500</p>
                     <p id="goldDesc" style="font-size: 10px; color: #555; margin: 2px 0;">30 Contacts</p>
-                    <button class="btn" onclick="selectPlan('Gold (1 Month)', '500')" style="padding: 5px; font-size: 11px; margin-top: 6px;">Select</button>
+                    <button class="btn" onclick="selectPlan('Gold (1 Month)', '500')" style="padding: 4px; font-size: 10px; margin-top: 4px;">Select</button>
                 </div>
                 <div class="plan-card" style="background: #fffaf0; border-color: #fbc02d;">
-                    <b id="diamondTitle" style="color: #f57f17; font-size: 12px;">Diamond (3 Mos)</b>
-                    <p id="diamondPrice" style="font-size: 11px; margin: 4px 0; font-weight: bold;">₹1200</p>
+                    <b id="diamondTitle" style="color: #f57f17; font-size: 11px;">Diamond (3 Mos)</b>
+                    <p id="diamondPrice" style="font-size: 11px; margin: 3px 0; font-weight: bold;">₹1200</p>
                     <p id="diamondDesc" style="font-size: 10px; color: #555; margin: 2px 0;">Unlimited</p>
-                    <button class="btn" onclick="selectPlan('Diamond (3 Mos)', '1200')" style="padding: 5px; font-size: 11px; background-color: #f57f17; margin-top: 6px;">Select</button>
+                    <button class="btn" onclick="selectPlan('Diamond (3 Mos)', '1200')" style="padding: 4px; font-size: 10px; background-color: #f57f17; margin-top: 4px;">Select</button>
                 </div>
             </div>
 
             <div class="bank-info">
-                <b style="color: #d81b60;">💳 UPI கட்டண விவரங்கள்:</b><br>
-                • <b>UPI ID:</b> <code style="background: #fce4ec; color: #c2185b; padding: 2px 4px; font-weight: bold;">alagirik1956@okaxis</code><br>
-                • <b>கணக்கு பெயர்:</b> Andal Alagar Matrimony<br>
-                <i style="color: #c62828; display: block; margin-top: 4px;">பணம் செலுத்திய பின் ஸ்கிரீன்ஷாட்டை பாட்டில் அனுப்பவும்.</i>
+                <b style="color: #d81b60;">💳 UPI கட்டணம்:</b> <code style="background: #fce4ec; color: #c2185b; padding: 2px 3px; font-weight: bold;">alagirik1956@okaxis</code><br>
+                <i style="color: #c62828; display: block; margin-top: 3px;">பணம் செலுத்திய பின் ஸ்கிரீன்ஷாட்டை பாட்டில் அனுப்பவும்.</i>
             </div>
         </div>
 
+        <!-- 6. அட்மின் கண்ட்ரோல் பேனல் -->
         <div class="section-box admin-box">
             <h3>🛠️ அட்மின் கண்ட்ரோல் பேனல் (Admin Panel)</h3>
             
             <div id="adminLoginSection">
                 <div class="form-group">
                     <label>Admin Username:</label>
-                    <input type="text" id="adminUser" placeholder="Username உள்ளிடவும்">
+                    <input type="text" id="adminUser" placeholder="Username (admin)">
                 </div>
                 <div class="form-group">
                     <label>Admin Password:</label>
-                    <input type="password" id="adminPass" placeholder="Password உள்ளிடவும்">
+                    <input type="password" id="adminPass" placeholder="Password (123)">
                 </div>
                 <button class="btn" onclick="adminLogin()" style="background-color: #333;">Admin Login</button>
             </div>
 
             <div id="adminDashboardSection" style="display: none;">
-                <p style="color: #2e7d32; font-weight: bold; font-size: 12px; margin-bottom: 8px;">✅ அட்மின் லாகின் வெற்றி!</p>
-                
-                <hr style="border: 0; border-top: 1px solid #ccc; margin: 8px 0;">
-                <b style="font-size: 11px; color: #333;">Gold Plan மாற்றங்கள்:</b>
-                <div class="form-group" style="margin-top: 4px;">
-                    <label>விலை (Price):</label>
+                <p style="color: #2e7d32; font-weight: bold; font-size: 11px; margin-bottom: 6px;">✅ அட்மின் லாகின் வெற்றி!</p>
+                <div class="form-group">
+                    <label>Gold Plan விலை:</label>
                     <input type="text" id="editGoldPrice" value="₹500">
                 </div>
                 <div class="form-group">
-                    <label>விவரம் (Status):</label>
-                    <input type="text" id="editGoldDesc" value="30 Contacts">
-                </div>
-
-                <hr style="border: 0; border-top: 1px solid #ccc; margin: 8px 0;">
-                <b style="font-size: 11px; color: #333;">Diamond Plan மாற்றங்கள்:</b>
-                <div class="form-group" style="margin-top: 4px;">
-                    <label>விலை (Price):</label>
+                    <label>Diamond Plan விலை:</label>
                     <input type="text" id="editDiamondPrice" value="₹1200">
                 </div>
-                <div class="form-group">
-                    <label>விவரம் (Status):</label>
-                    <input type="text" id="editDiamondDesc" value="Unlimited">
-                </div>
-
-                <button class="btn" onclick="updatePlansByAdmin()" style="background-color: #1976d2; margin-top: 6px;">மாற்றங்களை உடனே சேமி</button>
+                <button class="btn" onclick="updatePlansByAdmin()" style="background-color: #1976d2; padding: 6px;">மாற்றங்களைச் சேமி</button>
             </div>
         </div>
 
@@ -267,34 +282,59 @@
 
         function registerUser() {
             let name = document.getElementById('name').value;
-            if(!name) {
-                alert("தயவுசெய்து பெயரினை உள்ளிடவும்!");
-                return;
-            }
-            alert(`வணக்கம் ${name}! உங்களது சுயவிவரம் வெற்றிகரமாகப் பதிவு செய்யப்பட்டது.`);
+            if(!name) { alert("தயவுசெய்து பெயரினை உள்ளிடவும்!"); return; }
+            alert(`வணக்கம் ${name}! உங்களது சுயவிவரம் பதிவு செய்யப்பட்டது.`);
         }
 
-        function checkAIHoroscope() {
-            let partner = document.getElementById('partnerNakshatra').value;
-            let box = document.getElementById('aiResult');
-            if(!partner) {
-                alert("நட்சத்திரத்தை உள்ளிடவும்!");
-                return;
-            }
+        // ராசி பலன் மற்றும் பரிகாரங்கள்
+        function checkRasiPalangal() {
+            let rasi = document.getElementById('userRasi').value;
+            let box = document.getElementById('rasiResult');
             box.style.display = "block";
-            box.innerHTML = `🤖 <b>AI பொருத்தம்:</b> 10-க்கு 8 பொருத்தங்கள் உள்ளன. மங்கலகரமான பொருத்தம்!`;
+            
+            let messages = {
+                "Mesham": "♈ <b>மேஷம்:</b> சந்திராஷ்டமம் விலகியதால் நன்மைகள் நடக்கும். புதிய முயற்சிகள் வெற்றி தரும்.<br>🌿 <b>பரிகாரம்:</b> முருகப் பெருமானுக்கு செவ்வரளி மாலை சாற்றி வழிபடவும்.",
+                "Rishabham": "♉ <b>ரிஷபம்:</b> குடும்பத்தில் மகிழ்ச்சி நிலவும். பொருளாதார ரீதியாக லாபம் உண்டு.<br>🌿 <b>பரிகாரம்:</b> மகாலட்சுமி தாயாருக்கு நெய் தீபம் ஏற்றவும்.",
+                "Midhunam": "♊ <b>மிதுனம்:</b> உத்தியோகத்தில் சக ஊழியர்களின் ஆதரவு கிடைக்கும். வரவுகள் அதிகரிக்கும்.<br>🌿 <b>பரிகாரம்:</b> பெருமாளுக்கு துளசி மாலை அணிவிக்க வேண்டும்.",
+                "Kadagam": "♋ <b>கடகம்:</b> மன அமைதி தரும் செய்திகள் தேடிவரும். சொத்து விவகாரங்களில் சாதகமான தீர்வு.<br>🌿 <b>பரிகாரம்:</b> சிவபெருமானுக்கு வில்வ இலை அர்ச்சனை செய்யவும்.",
+                "Simmam": "♌ <b>சிம்மம்:</b> புதிய பொறுப்புகள் உங்களை தேடிவரும். தைரியமாகச் செயல்பட்டு வெற்றி பெறுவீர்கள்.<br>🌿 <b>பரிகாரம்:</b> சூரிய பகவானுக்கு நீர் வார்த்து வணங்கவும்.",
+                "Kanni": "♍ <b>கன்னி:</b> பிள்ளைகள் வழியில் பெருமை சேரும். வியாபாரத்தில் புதிய ஒப்பந்தங்கள் கைகூடும்.<br>🌿 <b>பரிகாரம்:</b> ஐயப்பனை அல்லது சாஸ்தாவை நினைத்து வழிபடவும்.",
+                "Thulaam": "♎ <b>துலாம்:</b> நீண்ட நாளாக எதிர்பார்த்த காரியம் இன்று வெற்றிகரமாக முடியும். சுபச் செய்திகள் உண்டு.<br>🌿 <b>பரிகாரம்:</b> துர்க்கை அம்மனுக்கு எள் தீபம் ஏற்றி வழிபடவும்.",
+                "Vrichigam": "♏ <b>விருச்சிகம்:</b> பண வரவு சீராக இருக்கும். உடல் ஆரோக்கியத்தில் மட்டும் கூடுதல் கவனம் தேவை.<br>🌿 <b>பரிகாரம்:</b> முருகனுக்கு கந்த சஷ்டி கவசம் படிக்கவும்.",
+                "Dhanusu": "♐ <b>தனுசு:</b> ஆன்மீக ஈடுபாடு அதிகரிக்கும். குடும்பத்தினருடன் கோவிலுக்குச் சென்று வருவீர்கள்.<br>🌿 <b>பரிகாரம்:</b> தட்சிணாமூர்த்திக்கு கொண்டைக்கடலை மாலை சாற்றவும்.",
+                "Magaram": "♑ <b>மகரம்:</b> உழைப்புக்கு ஏற்ற நற்பலன்கள் கிடைக்கும். தடைபட்ட காரியங்கள் தடையின்றி நடக்கும்.<br>🌿 <b>பரிகாரம்:</b> சனீஸ்வர பகவானுக்கு நல்லெண்ணெய் தீபம் ஏற்றவும்.",
+                "Kumbam": "♒ <b>கும்பம்:</b> நண்பர்களின் ஒத்துழைப்பு மனதுக்கு மகிழ்ச்சியைத் தரும். புதிய முதலீடுகளில் லாபம் உண்டு.<br>🌿 <b>பரிகாரம்:</b> விநாயகருக்கு அருகம்புல் மாலை சாற்றவும்.",
+                "Meenam": "♓ <b>மீனம்:</b> எதிர்பார்த்த இடத்திலிருந்து உதவிகள் கிடைக்கும். குடும்பத்தில் ஒற்றுமை பலப்படும்.<br>🌿 <b>பரிகாரம்:</b> ராகவேந்திரர் அல்லது குரு பகவானை வழிபடவும்."
+            };
+            box.innerHTML = messages[rasi] || "இன்றைய நாள் உங்களுக்கு இனிய நாளாக அமைய வாழ்த்துகள்!";
+        }
+
+        // சுப முகூர்த்த நாட்கள்
+        function showMuhurthaDays() {
+            let box = document.getElementById('specialInfoResult');
+            box.style.display = "block";
+            box.innerHTML = `📅 <b>வரவிருக்கும் சுப முகூர்த்த நாட்கள்:</b><br>` +
+                            `• செப்டம்பர் 12 (வெள்ளிக்கிழமை) - சுப நாள்<br>` +
+                            `• செப்டம்பர் 18 (புதன்கிழமை) - விசேஷ முகூர்த்த நாள்<br>` +
+                            `• செப்டம்பர் 25 (வியாழக்கிழமை) - கல்யாண சுபதினம்<br>` +
+                            `<i style="color:#555;">(விவாகம் மற்றும் கிரகப்பிரவேசத்திற்கு உகந்த நாட்கள்.)</i>`;
+        }
+
+        // கோவில் பரிகாரங்கள்
+        function showTemplePariharam() {
+            let box = document.getElementById('specialInfoResult');
+            box.style.display = "block";
+            box.innerHTML = `🛕 <b>சிறப்பு ஆன்மீகக் கோவில் பரிகாரங்கள்:</b><br>` +
+                            `• <b>திருமண தடை நீங்க:</b> திருச்சுழி திருமேனிநாதர் கோவில் அல்லது திருநீலக்குடி சென்று வழிபடலாம்.<br>` +
+                            `• <b>தோஷ நிவர்த்தி:</b> வைத்தீஸ்வரன் கோவில் சென்று அங்காரக வழிபாடு செய்வது நல்லது.<br>` +
+                            `• <b>Lunar / Rasi Pariharam:</b> நவகிரக சன்னதியில் செவ்வாய் மற்றும் சனி பகவானுக்கு அர்ச்சனை செய்து நல்லெண்ணெய் தீபம் ஏற்றுவது தோஷங்களைப் போக்கும்.`;
         }
 
         function updateVIPStatus() {
             let vipBadge = document.getElementById('vipBadge');
-            if(isSubscribed) {
-                vipBadge.style.display = "block";
-            } else {
-                vipBadge.style.display = "none";
-            }
+            vipBadge.style.display = isSubscribed ? "block" : "none";
         }
 
-        // Ads Plan மூலம் அன்லாக் செய்யும் வசதி
         function watchAds() {
             if(watchedAds < 5) {
                 watchedAds++;
@@ -304,7 +344,7 @@
                 } else {
                     isSubscribed = true;
                     updateVIPStatus();
-                    alert("🎉 வாழ்த்துகள்! 5 விளம்பரங்களையும் பார்த்து முடித்துவிட்டீர்கள். உங்களுக்கு சப்ஸ்கிரிப்ஷன் உடனடியாக அன்லாக் செய்யப்பட்டது!");
+                    alert("🎉 வாழ்த்துகள்! 5 விளம்பரங்களையும் பார்த்து முடித்துவிட்டீர்கள். சப்ஸ்கிரிப்ஷன் அன்லாக் செய்யப்பட்டது!");
                 }
             } else {
                 alert("நீங்கள் ஏற்கனவே விளம்பரங்களைப் பார்த்துவிட்டீர்கள்!");
@@ -314,14 +354,12 @@
         function selectPlan(planName, amount) {
             isSubscribed = true;
             updateVIPStatus();
-            alert(`✅ நீங்கள் ${planName} தேர்வு செய்துள்ளீர்கள்!\n\nகணக்கு அன்லாக் ஆனது. alagirik1956@okaxis என்ற UPI ஐடிக்கு ₹${amount} செலுத்திவிட்டு ஸ்கிரீன்ஷாட்டை பாட்டில் அனுப்பவும்.`);
+            alert(`✅ ${planName} தேர்வு செய்யப்பட்டது!\n\nalagirik1956@okaxis என்ற UPI ஐடிக்கு ₹${amount} செலுத்திவிட்டு ஸ்கிரீன்ஷாட்டை பாட்டில் அனுப்பவும்.`);
         }
 
-        // அட்மின் லாகின் (Username: admin, Password: 123)
         function adminLogin() {
             let u = document.getElementById('adminUser').value;
             let p = document.getElementById('adminPass').value;
-
             if(u === "admin" && p === "123") {
                 document.getElementById('adminLoginSection').style.display = "none";
                 document.getElementById('adminDashboardSection').style.display = "block";
@@ -331,21 +369,15 @@
             }
         }
 
-        // அட்மின் பிளான் விலைகளை மாற்றும் வசதி
         function updatePlansByAdmin() {
             let gPrice = document.getElementById('editGoldPrice').value;
-            let gDesc = document.getElementById('editGoldDesc').value;
             let dPrice = document.getElementById('editDiamondPrice').value;
-            let dDesc = document.getElementById('editDiamondDesc').value;
-
             document.getElementById('goldPrice').innerText = gPrice;
-            document.getElementById('goldDesc').innerText = gDesc;
             document.getElementById('diamondPrice').innerText = dPrice;
-            document.getElementById('diamondDesc').innerText = dDesc;
-
-            alert("👍 வெற்றிகரமாக பிளான் விலைகள் மாற்றப்பட்டுவிட்டன!");
+            alert("👍 பிளான் விலைகள் வெற்றிகரமாக மாற்றப்பட்டுவிட்டன!");
         }
     </script>
 
 </body>
-</html>
+                                                           </html>
+                        

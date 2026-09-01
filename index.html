@@ -97,6 +97,14 @@
             font-size: 12px;
             color: #d81b60;
         }
+        .free-ad-box {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
         .result-box {
             background: #e8f5e9;
             border: 1px solid #4caf50;
@@ -122,7 +130,7 @@
 
     <div class="container">
         <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
-        <p class="tagline">AI ஜாதக பொருத்தம் & நேரடி வங்கிப் பரிமாற்ற வசதியுடன்</p>
+        <p class="tagline">AI ஜாதக பொருத்தம் & விளம்பரங்கள் மூலம் இலவச அணுகல்</p>
 
         <!-- 1. சுயவிவரப் பதிவு -->
         <div class="section-box">
@@ -190,7 +198,7 @@
             <button class="btn" onclick="registerUser()">பதிவு செய்து சேமி</button>
         </div>
 
-        <!-- 2. AI ஜாதக பொருத்தம் (Advanced) -->
+        <!-- 2. AI ஜாதக பொருத்தம் -->
         <div class="section-box">
             <h3>2. AI ஜாதக பொருத்தம் (10 பொருத்தங்கள்)</h3>
             <div class="form-group">
@@ -201,9 +209,17 @@
             <div id="aiResult" class="result-box"></div>
         </div>
 
-        <!-- 3. மெம்பர்ஷிப் பிளான்கள் & நேரடி வங்கிப் பரிமாற்றம் -->
+        <!-- 3. மெம்பர்ஷிப், விளம்பரங்கள் & வங்கிப் பரிமாற்றம் -->
         <div class="section-box">
-            <h3>3. சப்ஸ்கிரிப்ஷன் & வங்கிப் பரிமாற்றம்</h3>
+            <h3>3. சப்ஸ்கிரிப்ஷன் & இலவச ஆப்ஷன்கள்</h3>
+            
+            <!-- புதிய விளம்பர மூலம் இலவசம் பெறும் வசதி -->
+            <div class="free-ad-box">
+                <b style="color: #0d47a1; font-size: 12px;">🎁 இலவசமாகப் பெற (Free Access):</b>
+                <p style="font-size: 11px; margin: 4px 0; color: #333;">5 விளம்பரங்களைப் பார்த்து 1 நாள் அன்லாக் செய்யவும்!</p>
+                <button class="btn" onclick="watchAds()" style="background-color: #1976d2; padding: 7px; font-size: 12px; margin-top: 4px;">Watch 5 Ads & Get Free Access (<span id="adCount">0</span>/5)</button>
+            </div>
+
             <div class="plan-grid">
                 <div class="plan-card">
                     <b>Gold (1 Month)</b>
@@ -223,7 +239,7 @@
                 <b>A/C No:</b> 123456789012<br>
                 <b>IFSC Code:</b> SBIN0001234<br>
                 <b>UPI ID:</b> andalalagar@sbi<br>
-                <i style="color: #c62828;">பணம் செலுத்திய பின் ஸ்கிரீன்ஷாட்டை பாட்டில் அனுப்பவும்.</i>
+                <i style="color: #c62828;">பணம் செலுத்திய பின் ஸ்கிரீன்ஷா트를 பாட்டில் அனுப்பவும்.</i>
             </div>
         </div>
 
@@ -232,6 +248,8 @@
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
+
+        let watchedAds = 0;
 
         function registerUser() {
             let name = document.getElementById('name').value;
@@ -251,8 +269,7 @@
                 alert("பொருத்தம் பார்க்க வேண்டிய நட்சத்திரத்தை உள்ளிடவும்!");
                 return;
             }
-            // Advanced AI simulation logic
-            let score = Math.floor(Math.random() * 3) + 8; // 8 to 10 score
+            let score = Math.floor(Math.random() * 3) + 8;
             resultBox.style.display = "block";
             resultBox.innerHTML = `🤖 <b>AI ஜாதக பகுப்பாய்வு முடிவு:</b><br>
             • நட்சத்திரப் பொருத்தம்: உத்தமம்<br>
@@ -261,11 +278,26 @@
             • <b>மொத்தப் பொருத்தங்கள்: 10-க்கு ${score} பொருத்தங்கள் உள்ளன! திருமணம் செய்யலாம்.</b>`;
         }
 
+        function watchAds() {
+            if(watchedAds < 5) {
+                watchedAds++;
+                document.getElementById('adCount').innerText = watchedAds;
+                if(watchedAds < 5) {
+                    tg.showAlert(` விளம்பரம் ${watchedAds} பார்த்தாச்சு! இன்னும் ${5 - watchAds} விளம்பரங்கள் பார்க்கவும்.`);
+                } else {
+                    tg.showAlert(" வாழ்த்துகள்! 5 விளம்பரங்களையும் வெற்றிகரமாகப் பார்த்துவிட்டீர்கள். உங்களுக்கு 1 நாள் இலவச காண்டாக்ட் அன்லாக் செய்யப்பட்டது!");
+                }
+            } else {
+                tg.showAlert("நீங்கள் ஏற்கனவே 5 விளம்பரங்களைப் பார்த்து இலவச அணுகலைப் பெற்றுவிட்டீர்கள்!");
+            }
+        }
+
         function selectPlan(planName, amount) {
             tg.showAlert(`நீங்கள் ${planName} தேர்வு செய்துள்ளீர்கள். வங்கி அல்லது UPI மூலம் ₹${amount} செலுத்தி ரசீதை பாட்டில் பகிரவும்.`);
         }
     </script>
 
 </body>
-                                                   </html>
+</html>
+</html>
     

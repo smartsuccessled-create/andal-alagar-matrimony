@@ -133,13 +133,17 @@
             margin-bottom: 6px;
             font-size: 11px;
         }
+        .admin-box {
+            border: 2px dashed #ff3366;
+            background: #fff5f7;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
-        <p class="tagline">மேட்ரிமோனி + ஆன்மீகம் + AI சாட் & புக்கிங் சேவைகள்</p>
+        <p class="tagline">மேட்ரிமோனி + ஆன்மீகம் + புக்கிங் & கஸ்டமர் கேர் சேவைகள்</p>
 
         <div class="section-box" style="border: 2px solid #ff8f00; background: #fff8e1;">
             <h3>🎟️ ஆன்லைன் தரிசன புக்கிங் (Official Tickets)</h3>
@@ -153,14 +157,37 @@
         </div>
 
         <div class="section-box">
-            <h3>2. மேட்ரிமோனி சுயவிவரப் பதிவு & ஆவணங்கள்</h3>
+            <h3>2. முழுமையான மேட்ரிமோனி சுயவிவரப் பதிவு</h3>
             <div class="form-group">
-                <label>பெயர் & கைப்பேசி எண்:</label>
-                <input type="text" id="namePhone" placeholder="பெயர், போன் நம்பர்">
+                <label>பெயர் (Full Name):</label>
+                <input type="text" id="name" placeholder="உங்கள் பெயர்">
+            </div>
+            <div class="form-group">
+                <label>பாலினம் (Gender):</label>
+                <select id="gender">
+                    <option value="Male">ஆண்</option>
+                    <option value="Female">பெண்</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>கைப்பேசி எண் & முகவரி:</label>
+                <input type="text" id="phoneAddress" placeholder="போன் நம்பர் மற்றும் ஊர், மாவட்டம்">
             </div>
             <div class="form-group">
                 <label>ராசி & நட்சத்திரம்:</label>
                 <input type="text" id="rasiNakshatra" placeholder="எ.கா: ரிஷபம், ரோகிணி">
+            </div>
+            <div class="form-group">
+                <label>குடும்ப விவரங்கள் (அப்பா, அம்மா, ভাই/தங்கை):</label>
+                <input type="text" id="familyDetails" placeholder="பெற்றோர் மற்றும் உடன் பிறந்தோர் பெயர்">
+            </div>
+            <div class="form-group">
+                <label>கல்வி & வருமானம்:</label>
+                <input type="text" id="eduIncome" placeholder="கல்வித் தகுதி மற்றும் மாத வருமானம்">
+            </div>
+            <div class="form-group">
+                <label>சொத்து விவரங்கள்:</label>
+                <textarea id="assets" placeholder="வீடு, நிலம் போன்ற சொத்து விவரங்கள்"></textarea>
             </div>
             <div class="form-group">
                 <label>📷 சுயவிவரப் புகைப்படம் (Photo Upload):</label>
@@ -170,7 +197,7 @@
                 <label>📄 ஜாதகம் PDF பதிவேற்றம் (Horoscope PDF):</label>
                 <input type="file" id="userHoroscopePDF" accept=".pdf">
             </div>
-            <button class="btn" onclick="registerUser()">சுயவிவரத்தைப் பதிவு செய்</button>
+            <button class="btn" onclick="registerUser()">சுயவிவரத்தைப் பதிவு செய்து சேமி</button>
         </div>
 
         <div class="section-box">
@@ -179,39 +206,47 @@
                 <label>மணமகன் / மணமகள் நட்சத்திரம்:</label>
                 <input type="text" id="partnerNakshatra" placeholder="எ.கா: கார்த்திகை">
             </div>
-            <button class="btn" onclick="checkAIHoroscope()" style="background-color: #2e7d32;">AI மூலம் பொருத்தம் பார்</button>
+            <button class="btn" onclick="checkAIHoroscope()" style="background-color: #2e7d32;">AI மூலம் விரிவான பொருத்தம் பார்</button>
             <div id="aiResult" class="result-box"></div>
         </div>
 
         <div class="section-box">
-            <h3>🛕 தமிழ்நாட்டின் மிக முக்கியமான கோவில்கள்</h3>
+            <h3>🛕 தமிழ்நாட்டின் முக்கிய கோவில்கள் & நேரங்கள்</h3>
             <div class="temple-card">
-                <b>1. மதுரை மீனாட்சி சுந்தரேசுவரர் கோவில்:</b><br>சிறப்பு: உலகப் புகழ்பெற்ற கோபுரங்கள் மற்றும் சிற்பக்கலை.
+                <b>1. மதுரை மீனாட்சி சுந்தரேசுவரர் கோவில்:</b><br>
+                • நடை திறக்கும் நேரம்: காலை 6:00 - 12:30 | மாலை 4:00 - 9:30<br>
+                • சிறப்பு பூஜை: வெள்ளிக்கிழமை ராஜகோபுர பூஜை & திருக்கல்யாணம்.
             </div>
             <div class="temple-card">
-                <b>2. தஞ்சாவூர் பெரிய கோவில்:</b><br>சிறப்பு: ராஜராஜ சோழனால் கட்டப்பட்ட யுனெஸ்கோ பாரம்பரிய தளம்.
+                <b>2. தஞ்சாவூர் பெரிய கோவில்:</b><br>
+                • நடை திறக்கும் நேரம்: காலை 6:00 - 12:30 | மாலை 4:00 - 8:30<br>
+                • சிறப்பு பூஜை: பிரதோச நாட்களில் நந்தி பெருமானுக்கு சிறப்பு அபிஷேகம்.
             </div>
             <div class="temple-card">
-                <b>3. ராமேஸ்வரம் ராமநாதசுவாமி கோவில்:</b><br>சிறப்பு: பன்னிரண்டு ஜோதி லிங்க தலங்களில் ஒன்று.
+                <b>3. ராமேஸ்வரம் ராமநாதசுவாமி கோவில்:</b><br>
+                • நடை திறக்கும் நேரம்: காலை 5:00 - 1:00 | மாலை 3:00 - 9:00<br>
+                • சிறப்பு பூஜை: 21 தீர்த்தக் கிணறுகளில் நீராடல் & ஸ்படிக லிங்க தரிசனம்.
             </div>
             <div class="temple-card">
-                <b>4. ஸ்ரீரங்கம் அரங்கநாதசுவாமி கோவில் (திருச்சி):</b><br>சிறப்பு: பூலோக வைகுண்டம் என்று அழைக்கப்படும் வைணவத் தளம்.
+                <b>4. ஸ்ரீரங்கம் அரங்கநாதசுவாமி கோவில்:</b><br>
+                • நடை திறக்கும் நேரம்: காலை 6:00 - 9:00 இரவு வரை<br>
+                • சிறப்பு பூஜை: வைகுண்ட ஏகாதசி மற்றும் தாயார் சேவை.
             </div>
         </div>
 
         <div class="section-box">
-            <h3>☀️ இன்றைய பஞ்சாங்கம் & ராகு காலம்</h3>
+            <h3>☀️ இன்றைய பஞ்சாங்கம், ராகு காலம் & நல்ல நேரம்</h3>
             <div class="astro-info">
                 • <b>நல்ல நேரம்:</b> காலை 09:15 - 10:15 | மாலை 04:45 - 05:45<br>
                 • <b>ராகு காலம்:</b> மதியம் 12:00 - 01:30<br>
                 • <b>எமகண்டம்:</b> காலை 07:30 - 09:00<br>
-                • <b>சிறப்புப் பரிகாரம்:</b> நவகிரக வழிபாடு மற்றும் தீபம் ஏற்றுவது நல்லது.
+                • <b>சூலம்:</b> வடக்கு (பரிகாரம்: பால் வெல்லம் உட்கொள்ளவும்)
             </div>
         </div>
 
         <div class="section-box" style="border: 2px solid #0288d1; background: #f0f8ff;">
             <h3>🎧 Customer Care & AI Chat Support Portal</h3>
-            <p style="font-size: 10px; color: #555; margin: 3px 0 6px 0;">சந்தேகங்களை உடனுக்குடன் கேட்டு அறியுங்கள்:</p>
+            <p style="font-size: 10px; color: #555; margin: 3px 0 6px 0;">உங்கள் சந்தேகங்களை உடனுக்குடன் கேட்டு அறியுங்கள்:</p>
             <div id="chatHistory" class="chat-box-content">
                 🤖 <b>AI Support:</b> வணக்கம்! ஆண்டாள் அழகர் கஸ்டமர் கேர் பகுதிக்கு உங்களை வரவேற்கிறேன். நான் உங்களுக்கு எப்படி உதவ வேண்டும்?
             </div>
@@ -237,7 +272,25 @@
             </div>
             <div class="bank-info">
                 <b style="color: #d81b60;">💳 UPI கட்டணம்:</b> <code style="background: #fce4ec; color: #c2185b; padding: 2px 3px; font-weight: bold;">alagirik1956@okaxis</code><br>
-                <i style="color: #c62828; display: block; margin-top: 3px;">பணம் செலுத்திய பின் ஸ்கிரீன்ஷாட்டை பாட்டில் அனுப்பவும்.</i>
+                <i style="color: #c62828; display: block; margin-top: 3px;">பணம் செலுத்திய பின் ஸ்கிரீன்ஷா트를 பாட்டில் அனுப்பவும்.</i>
+            </div>
+        </div>
+
+        <div class="section-box admin-box">
+            <h3>🛠️ அட்மின் கண்ட்ரோல் பேனல் (Admin Panel)</h3>
+            <div id="adminLoginSection">
+                <div class="form-group">
+                    <label>Admin Username:</label>
+                    <input type="text" id="adminUser" placeholder="admin">
+                </div>
+                <div class="form-group">
+                    <label>Admin Password:</label>
+                    <input type="password" id="adminPass" placeholder="123">
+                </div>
+                <button class="btn" onclick="adminLogin()" style="background-color: #333;">Admin Login</button>
+            </div>
+            <div id="adminDashboardSection" style="display: none;">
+                <p style="color: #2e7d32; font-weight: bold; font-size: 11px;">✅ அட்மின் லாகின் வெற்றி! அனைத்து சுயவிவரங்கள் மற்றும் புக்கிங் விவரங்கள் கட்டுப்பாட்டில் உள்ளன.</p>
             </div>
         </div>
 
@@ -248,28 +301,29 @@
         if (tg) { tg.expand(); }
 
         function registerUser() {
-            let namePhone = document.getElementById('namePhone').value;
+            let name = document.getElementById('name').value;
+            let phoneAddress = document.getElementById('phoneAddress').value;
             let photo = document.getElementById('userPhoto').files[0];
             let pdf = document.getElementById('userHoroscopePDF').files[0];
 
-            if(!namePhone) { 
-                alert("பெயர் மற்றும் போன் நம்பரை உள்ளிடவும்!"); 
+            if(!name || !phoneAddress) { 
+                alert("தயவுசெய்து பெயர் மற்றும் கைப்பேசி எண்ணை உள்ளிடவும்!"); 
                 return; 
             }
             
-            let msg = "சுயவிவரப் பதிவு வெற்றிகரமாகச் சேமிக்கப்பட்டது!";
-            if(photo) msg += "\n📷 புகைப்படம் இணைக்கப்பட்டது.";
-            if(pdf) msg += "\n📄 ஜாதகம் PDF இணைக்கப்பட்டது.";
+            let msg = `வணக்கம் ${name}! உங்களது முழுமையான சுயவிவரம் வெற்றிகரமாகச் சேமிக்கப்பட்டது.`;
+            if(photo) msg += "\n📷 புகைப்படம் வெற்றிகரமாக இணைக்கப்பட்டது.";
+            if(pdf) msg += "\n📄 ஜாதகம் PDF வெற்றிகரமாக இணைக்கப்பட்டது.";
             
             alert(msg);
         }
 
         function checkAIHoroscope() {
             let partner = document.getElementById('partnerNakshatra').value;
-            if(!partner) { alert("நட்சத்திரத்தை உள்ளிடவும்!"); return; }
+            if(!partner) { alert("பொருத்த வேண்டிய நட்சத்திரத்தை உள்ளிடவும்!"); return; }
             let box = document.getElementById('aiResult');
             box.style.display = "block";
-            box.innerHTML = `🤖 <b>AI ஜாதகப் பொருத்தம்:</b> 10-க்கு 8 பொருத்தங்கள் உள்ளன. உத்தமமான பொருத்தம்!`;
+            box.innerHTML = `🤖 <b>AI ஜாதகப் பொருத்தம்:</b> 10-க்கு 8 பொருத்தங்கள் உள்ளன. ரஜு மற்றும் தினப் பொருத்தம் உத்தமமாக உள்ளது!`;
         }
 
         function sendToAIChat() {
@@ -300,10 +354,21 @@
         }
 
         function selectPlan(planName, amount) {
-            alert(`✅ ${planName} தேர்வு செய்யப்பட்டது!\n\nalagirik1956@okaxis என்ற UPI ஐடிக்கு ₹${amount} செலுத்திவிட்டு ஸ்கிரீன்ஷாட்டை அனுப்பவும்.`);
+            alert(`✅ ${planName} தேர்வு செய்யப்பட்டது!\n\nalagirik1956@okaxis என்ற UPI ஐடிக்கு ₹${amount} செலுத்திவிட்டு ஸ்கிரீன்ஷா트를 அனுப்பவும்.`);
+        }
+
+        function adminLogin() {
+            let u = document.getElementById('adminUser').value;
+            let p = document.getElementById('adminPass').value;
+            if(u === "admin" && p === "123") {
+                document.getElementById('adminLoginSection').style.display = "none";
+                document.getElementById('adminDashboardSection').style.display = "block";
+                alert("அட்மின் பேனல் வெற்றிகரமாகத் திறக்கப்பட்டது!");
+            } else {
+                alert("தவறான Username அல்லது Password!");
+            }
         }
     </script>
 
 </body>
-    </html>
-                
+</html>

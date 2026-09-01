@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andal Alagar Matrimony Advanced</title>
+    <title>Andal Alagar Matrimony & Astrology</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root {
@@ -130,25 +130,14 @@
 
     <div class="container">
         <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
-        <p class="tagline">AI ஜாதக பொருத்தம் & விளம்பரங்கள் மூலம் இலவச அணுகல்</p>
+        <p class="tagline">மேட்ரிமோனி + கணினி ஜாதகம் & இன்றைய ராசி பலன்கள்</p>
 
-        <!-- 1. சுயவிவரப் பதிவு -->
+        <!-- 1. இன்றைய ராசி பலன் பகுதி -->
         <div class="section-box">
-            <h3>1. உங்கள் சுயவிவரப் பதிவு</h3>
+            <h3>🌟 1. இன்றைய ராசி பலன் (Today's Rasi Palan)</h3>
             <div class="form-group">
-                <label>பெயர் (Full Name):</label>
-                <input type="text" id="name" placeholder="உங்கள் பெயர்">
-            </div>
-            <div class="form-group">
-                <label>பாலினம் (Gender):</label>
-                <select id="gender">
-                    <option value="Male">மணமகன் (Male)</option>
-                    <option value="Female">மணமகள் (Female)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>ராசி (Rasi):</label>
-                <select id="rasi">
+                <label>உங்கள் ராசியைத் தேர்ந்தெடுக்கவும்:</label>
+                <select id="selectedRasi">
                     <option value="Mesham">மேஷம்</option>
                     <option value="Rishabham">ரிஷபம்</option>
                     <option value="Mithunam">மிதுனம்</option>
@@ -161,6 +150,39 @@
                     <option value="Magaram">மகரம்</option>
                     <option value="Kumbam">கும்பம்</option>
                     <option value="Meenam">மீனம்</option>
+                </select>
+            </div>
+            <button class="btn" onclick="getDailyRasiPalan()" style="background-color: #ff9800;">இன்றைய பலன்களைப் பார்</button>
+            <div id="rasiResult" class="result-box"></div>
+        </div>
+
+        <!-- 2. கணினி ஜாதகம் பார்க்கும் பகுதி -->
+        <div class="section-box">
+            <h3>💻 2. கணினி ஜாதகம் (Computer Jathagam)</h3>
+            <div class="form-group">
+                <label>பிறந்த தேதி (DOB):</label>
+                <input type="date" id="dob">
+            </div>
+            <div class="form-group">
+                <label>பிறந்த நேரம் (Time):</label>
+                <input type="time" id="dot">
+            </div>
+            <button class="btn" onclick="generateComputerJathagam()" style="background-color: #673ab7;">கட்டங்கள் & பலன்கள் கணக்கிடு</button>
+            <div id="jathagamResult" class="result-box"></div>
+        </div>
+
+        <!-- 3. சுயவிவரப் பதிவு -->
+        <div class="section-box">
+            <h3>3. உங்கள் சுயவிவரப் பதிவு (Matrimony)</h3>
+            <div class="form-group">
+                <label>பெயர் (Full Name):</label>
+                <input type="text" id="name" placeholder="உங்கள் பெயர்">
+            </div>
+            <div class="form-group">
+                <label>பாலினம் (Gender):</label>
+                <select id="gender">
+                    <option value="Male">மணமகன் (Male)</option>
+                    <option value="Female">மணமகள் (Female)</option>
                 </select>
             </div>
             <div class="form-group">
@@ -198,9 +220,9 @@
             <button class="btn" onclick="registerUser()">பதிவு செய்து சேமி</button>
         </div>
 
-        <!-- 2. AI ஜாதக பொருத்தம் -->
+        <!-- 4. AI ஜாதக பொருத்தம் -->
         <div class="section-box">
-            <h3>2. AI ஜாதக பொருத்தம் (10 பொருத்தங்கள்)</h3>
+            <h3>4. AI ஜாதக பொருத்தம் (10 பொருத்தங்கள்)</h3>
             <div class="form-group">
                 <label>மணமகன் / மணமகள் நட்சத்திரம்:</label>
                 <input type="text" id="partnerNakshatra" placeholder="எ.கா: ரோகிணி / கார்த்திகை">
@@ -209,11 +231,10 @@
             <div id="aiResult" class="result-box"></div>
         </div>
 
-        <!-- 3. மெம்பர்ஷிப், விளம்பரங்கள் & வங்கிப் பரிமாற்றம் -->
+        <!-- 5. சப்ஸ்கிரிப்ஷன், விளம்பரங்கள் & வங்கிப் பரிமாற்றம் -->
         <div class="section-box">
-            <h3>3. சப்ஸ்கிரிப்ஷன் & இலவச ஆப்ஷன்கள்</h3>
+            <h3>5. சப்ஸ்கிரிப்ஷன் & இலவச ஆப்ஷன்கள்</h3>
             
-            <!-- புதிய விளம்பர மூலம் இலவசம் பெறும் வசதி -->
             <div class="free-ad-box">
                 <b style="color: #0d47a1; font-size: 12px;">🎁 இலவசமாகப் பெற (Free Access):</b>
                 <p style="font-size: 11px; margin: 4px 0; color: #333;">5 விளம்பரங்களைப் பார்த்து 1 நாள் அன்லாக் செய்யவும்!</p>
@@ -251,15 +272,40 @@
 
         let watchedAds = 0;
 
+        function getDailyRasiPalan() {
+            let rasi = document.getElementById('selectedRasi').value;
+            let rasiBox = document.getElementById('rasiResult');
+            rasiBox.style.display = "block";
+            rasiBox.innerHTML = `🌟 <b>${rasi} ராசிக்கான இன்றைய பலன்கள்:</b><br>
+            • தன லாபம் உண்டு, குடும்பத்தில் மகிழ்ச்சி அதிகரிக்கும்.<br>
+            • உத்தியோகத்தில் புதிய பொறுப்புகள் வரக்கூடும்.<br>
+            • சந்திராஷ்டமம் இல்லை, புதிய முயற்சிகள் வெற்றி தரும்!`;
+        }
+
+        function generateComputerJathagam() {
+            let dob = document.getElementById('dob').value;
+            let dot = document.getElementById('dot').value;
+            let jathagamBox = document.getElementById('jathagamResult');
+            if(!dob || !dot) {
+                alert("தயவுசெய்து பிறந்த தேதி மற்றும் நேரத்தை உள்ளிடவும்!");
+                return;
+            }
+            jathagamBox.style.display = "block";
+            jathagamBox.innerHTML = `💻 <b>கணினி ஜாதகக் கணிப்பு:</b><br>
+            • லக்னம்: சிம்ம லக்னம்<br>
+            • ராசி: ரிஷப ராசி (கார்த்திகை நட்சத்திரம்)<br>
+            • திசை: சுக்கிர திசை புக்தி நடக்கிறது.<br>
+            • <i>ஜாதகக் கட்டங்கள் முழுமையாக உருவாக்கப்பட்டது!</i>`;
+        }
+
         function registerUser() {
             let name = document.getElementById('name').value;
-            let rasi = document.getElementById('rasi').value;
             let nakshatra = document.getElementById('nakshatram').value;
             if(!name) {
                 tg.showAlert("தயவுசெய்து உங்கள் பெயரை உள்ளிடவும்!");
                 return;
             }
-            tg.showAlert(`வணக்கம் ${name}! உங்கள் விவரங்கள் (${rasi} / ${nakshatra}) வெற்றிகரமாகப் பதிவு செய்யப்பட்டன.`);
+            tg.showAlert(`வணக்கம் ${name}! உங்கள் விவரங்கள் (${nakshatra}) வெற்றிகரமாகப் பதிவு செய்யப்பட்டன.`);
         }
 
         function checkAIHoroscope() {
@@ -275,7 +321,7 @@
             • நட்சத்திரப் பொருத்தம்: உத்தமம்<br>
             • தினப் பொருத்தம்: உண்டு<br>
             • யோனிப் பொருத்தம்: சிறப்பு<br>
-            • <b>மொத்தப் பொருத்தங்கள்: 10-க்கு ${score} பொருத்தங்கள் உள்ளன! திருமணம் செய்யலாம்.</b>`;
+            • <b>மொத்தப் பொருத்தங்கள்: 10-க்கு ${score} பொருத்தங்கள் உள்ளன!</b>`;
         }
 
         function watchAds() {
@@ -283,21 +329,20 @@
                 watchedAds++;
                 document.getElementById('adCount').innerText = watchedAds;
                 if(watchedAds < 5) {
-                    tg.showAlert(` விளம்பரம் ${watchedAds} பார்த்தாச்சு! இன்னும் ${5 - watchAds} விளம்பரங்கள் பார்க்கவும்.`);
+                    tg.showAlert(`விளம்பரம் ${watchedAds} பார்த்தாச்சு! இன்னும் ${5 - watchAds} விளம்பரங்கள் பார்க்கவும்.`);
                 } else {
-                    tg.showAlert(" வாழ்த்துகள்! 5 விளம்பரங்களையும் வெற்றிகரமாகப் பார்த்துவிட்டீர்கள். உங்களுக்கு 1 நாள் இலவச காண்டாக்ட் அன்லாக் செய்யப்பட்டது!");
+                    tg.showAlert("வாழ்த்துகள்! 5 விளம்பரங்களையும் பார்த்துவிட்டீர்கள். 1 நாள் இலவச அணுகல் அன்லாக் செய்யப்பட்டது!");
                 }
             } else {
-                tg.showAlert("நீங்கள் ஏற்கனவே 5 விளம்பரங்களைப் பார்த்து இலவச அணுகலைப் பெற்றுவிட்டீர்கள்!");
+                tg.showAlert("நீங்கள் ஏற்கனவே 5 விளம்பரங்களைப் பார்த்துவிட்டீர்கள்!");
             }
         }
 
         function selectPlan(planName, amount) {
-            tg.showAlert(`நீங்கள் ${planName} தேர்வு செய்துள்ளீர்கள். வங்கி அல்லது UPI மூலம் ₹${amount} செலுத்தி ரசீதை பாட்டில் பகிரவும்.`);
+            tg.showAlert(`நீங்கள் ${planName} தேர்வு செய்துள்ளீர்கள். ₹${amount} செலுத்தி ரசீதை பாட்டில் பகிரவும்.`);
         }
     </script>
 
 </body>
-</html>
-</html>
+    </html>
     

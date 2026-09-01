@@ -94,18 +94,6 @@
             background: #fff5f7;
             text-align: center;
         }
-        .free-ad-box {
-            background: #e3f2fd;
-            border: 1px solid #2196f3;
-            padding: 8px;
-            border-radius: 6px;
-            margin-bottom: 8px;
-            text-align: center;
-        }
-        .admin-box {
-            border: 2px dashed #ff3366;
-            background: #fff5f7;
-        }
         .result-box {
             background: #e8f5e9;
             border: 1px solid #4caf50;
@@ -137,18 +125,6 @@
             line-height: 1.4;
             margin-top: 6px;
         }
-        .active-vip-badge {
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 5px;
-            font-size: 11px;
-            border-radius: 4px;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 8px;
-            border: 1px solid #a5d6a7;
-            display: none;
-        }
         .temple-card {
             background: #fff3e0;
             border: 1px solid #ffb74d;
@@ -163,25 +139,21 @@
 
     <div class="container">
         <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
-        <p class="tagline">மேட்ரிமோனி + ஆன்மீகச் சேவைகள் & தரிசன புக்கிங்</p>
-
-        <div id="vipBadge" class="active-vip-badge">🌟 உங்கள் கணக்கு / சப்ஸ்கிரிப்ஷன் Active-ல் உள்ளது!</div>
+        <p class="tagline">மேட்ரிமோனி + ஆன்மீகம் + AI சாட் & புக்கிங் சேவைகள்</p>
 
         <div class="section-box" style="border: 2px solid #ff8f00; background: #fff8e1;">
             <h3>🎟️ ஆன்லைன் தரிசன புக்கிங் (Official Tickets)</h3>
-            <p style="font-size: 10px; color: #555; margin: 3px 0 6px 0;">கீழிலுள்ள பொத்தான்களை அழுத்தி அதிகாரப்பூர்வ வலைத்தளத்தில் டிக்கெட் முன்பதிவு செய்யலாம்:</p>
-            
+            <p style="font-size: 10px; color: #555; margin: 3px 0 6px 0;">அதிகாரப்பூர்வ வலைத்தளத்தில் நேரடி முன்பதிவு:</p>
             <a href="https://tirupatibalaji.ap.gov.in/" target="_blank" class="btn" style="background-color: #d81b60; margin-bottom: 6px;">
                 🔴 Tirupati TTD Online Ticket Booking
             </a>
-
             <a href="https://sabarimalaonline.org/" target="_blank" class="btn" style="background-color: #f57f17;">
                 🟢 Sabarimala Online Booking (Virtual Queue)
             </a>
         </div>
 
         <div class="section-box">
-            <h3>2. மேட்ரிமோனி சுயவிவரப் பதிவு</h3>
+            <h3>2. மேட்ரிமோனி சுயவிவரப் பதிவு & ஆவணங்கள்</h3>
             <div class="form-group">
                 <label>பெயர் & கைப்பேசி எண்:</label>
                 <input type="text" id="namePhone" placeholder="பெயர், போன் நம்பர்">
@@ -189,6 +161,14 @@
             <div class="form-group">
                 <label>ராசி & நட்சத்திரம்:</label>
                 <input type="text" id="rasiNakshatra" placeholder="எ.கா: ரிஷபம், ரோகிணி">
+            </div>
+            <div class="form-group">
+                <label>📷 சுயவிவரப் புகைப்படம் (Photo Upload):</label>
+                <input type="file" id="userPhoto" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label>📄 ஜாதகம் PDF பதிவேற்றம் (Horoscope PDF):</label>
+                <input type="file" id="userHoroscopePDF" accept=".pdf">
             </div>
             <button class="btn" onclick="registerUser()">சுயவிவரத்தைப் பதிவு செய்</button>
         </div>
@@ -219,25 +199,30 @@
             </div>
         </div>
 
+        <div class="section-box">
+            <h3>☀️ இன்றைய பஞ்சாங்கம் & ராகு காலம்</h3>
+            <div class="astro-info">
+                • <b>நல்ல நேரம்:</b> காலை 09:15 - 10:15 | மாலை 04:45 - 05:45<br>
+                • <b>ராகு காலம்:</b> மதியம் 12:00 - 01:30<br>
+                • <b>எமகண்டம்:</b> காலை 07:30 - 09:00<br>
+                • <b>சிறப்புப் பரிகாரம்:</b> நவகிரக வழிபாடு மற்றும் தீபம் ஏற்றுவது நல்லது.
+            </div>
+        </div>
+
         <div class="section-box" style="border: 2px solid #0288d1; background: #f0f8ff;">
-            <h3>🎧 Customer Care & AI Chat Support</h3>
+            <h3>🎧 Customer Care & AI Chat Support Portal</h3>
+            <p style="font-size: 10px; color: #555; margin: 3px 0 6px 0;">சந்தேகங்களை உடனுக்குடன் கேட்டு அறியுங்கள்:</p>
             <div id="chatHistory" class="chat-box-content">
-                🤖 <b>AI Support:</b> வணக்கம்! ஆண்டாள் அழகர் மேட்ரிமோனி சேவைக்கு வரவேற்கிறோம்.
+                🤖 <b>AI Support:</b> வணக்கம்! ஆண்டாள் அழகர் கஸ்டமர் கேர் பகுதிக்கு உங்களை வரவேற்கிறேன். நான் உங்களுக்கு எப்படி உதவ வேண்டும்?
             </div>
             <div class="form-group" style="margin-bottom: 4px;">
-                <input type="text" id="userQuery" placeholder="உங்கள் கேள்வியை இங்கே கேட்கவும்...">
+                <input type="text" id="userQuery" placeholder="உங்கள் கேள்வியை இங்கே தட்டச்சு செய்யவும்...">
             </div>
-            <button class="btn" onclick="sendToAIChat()" style="background-color: #0288d1; padding: 6px;">கேள்வியை அனுப்பு</button>
+            <button class="btn" onclick="sendToAIChat()" style="background-color: #0288d1; padding: 6px;">கேள்வியை அனுப்பு (Send)</button>
         </div>
 
         <div class="section-box">
-            <h3>6. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் (Ads Plan)</h3>
-            <div class="free-ad-box">
-                <b style="color: #0d47a1; font-size: 11px;">🎁 இலவச அன்லாக் (Ads Plan):</b>
-                <p style="font-size: 10px; margin: 3px 0; color: #333;">5 விளம்பரங்களைப் பார்த்து இலவசமாகப் பெறுங்கள்!</p>
-                <button class="btn" onclick="watchAds()" style="background-color: #1976d2; padding: 6px; font-size: 11px; margin-top: 4px;">Watch 5 Ads (<span id="adCount">0</span>/5)</button>
-            </div>
-
+            <h3>7. சப்ஸ்கிரிப்ஷன் & வங்கிப் பரிமாற்றம்</h3>
             <div class="plan-grid">
                 <div class="plan-card">
                     <b style="color: #d81b60; font-size: 11px;">Gold (1 Month)</b>
@@ -250,7 +235,6 @@
                     <button class="btn" onclick="selectPlan('Diamond', '1200')" style="padding: 4px; background-color: #f57f17; font-size: 10px;">Select</button>
                 </div>
             </div>
-
             <div class="bank-info">
                 <b style="color: #d81b60;">💳 UPI கட்டணம்:</b> <code style="background: #fce4ec; color: #c2185b; padding: 2px 3px; font-weight: bold;">alagirik1956@okaxis</code><br>
                 <i style="color: #c62828; display: block; margin-top: 3px;">பணம் செலுத்திய பின் ஸ்கிரீன்ஷாட்டை பாட்டில் அனுப்பவும்.</i>
@@ -263,20 +247,29 @@
         let tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
         if (tg) { tg.expand(); }
 
-        let watchedAds = 0;
-        let isSubscribed = false;
-
         function registerUser() {
             let namePhone = document.getElementById('namePhone').value;
-            if(!namePhone) { alert("பெயர் மற்றும் போன் நம்பரை உள்ளிடவும்!"); return; }
-            alert("சுயவிவரப் பதிவு வெற்றிகரமாகச் சேமிக்கப்பட்டது!");
+            let photo = document.getElementById('userPhoto').files[0];
+            let pdf = document.getElementById('userHoroscopePDF').files[0];
+
+            if(!namePhone) { 
+                alert("பெயர் மற்றும் போன் நம்பரை உள்ளிடவும்!"); 
+                return; 
+            }
+            
+            let msg = "சுயவிவரப் பதிவு வெற்றிகரமாகச் சேமிக்கப்பட்டது!";
+            if(photo) msg += "\n📷 புகைப்படம் இணைக்கப்பட்டது.";
+            if(pdf) msg += "\n📄 ஜாதகம் PDF இணைக்கப்பட்டது.";
+            
+            alert(msg);
         }
 
         function checkAIHoroscope() {
             let partner = document.getElementById('partnerNakshatra').value;
             if(!partner) { alert("நட்சத்திரத்தை உள்ளிடவும்!"); return; }
-            document.getElementById('aiResult').style.display = "block";
-            document.getElementById('aiResult').innerHTML = `🤖 <b>AI ஜாதகப் பொருத்தம்:</b> 10-க்கு 8 பொருத்தங்கள் உள்ளன. உத்தமமான பொருத்தம்!`;
+            let box = document.getElementById('aiResult');
+            box.style.display = "block";
+            box.innerHTML = `🤖 <b>AI ஜாதகப் பொருத்தம்:</b> 10-க்கு 8 பொருத்தங்கள் உள்ளன. உத்தமமான பொருத்தம்!`;
         }
 
         function sendToAIChat() {
@@ -290,12 +283,14 @@
             let reply = "🤖 <b>AI Support:</b> உங்கள் கேள்விக்கு நன்றி! விரைவில் எங்களது கஸ்டமர் கேர் பிரதிநிதி உங்களைத் தொடர்பு கொள்வார்.";
             let lowerQ = query.toLowerCase();
 
-            if(lowerQ.includes("tirupati") || lowerQ.includes("திருப்பதி") || lowerQ.includes("darshan")) {
-                reply = "🤖 <b>AI Support:</b> மேலே உள்ள 'Tirupati TTD Online Ticket Booking' பொத்தானை அழுத்தி நீங்கள் நேராக முன்பதிவு செய்யலாம்.";
-            } else if(lowerQ.includes("sabarimala") || lowerQ.includes("சபரிமலை") || lowerQ.includes("ayyappa")) {
-                reply = "🤖 <b>AI Support:</b> மேலே உள்ள 'Sabarimala Online Booking' பொத்தானை அழுத்தி பக்தர்கள் தரிசனத்திற்கு பதிவு செய்யலாம்.";
+            if(lowerQ.includes("tirupati") || lowerQ.includes("திருப்பதி")) {
+                reply = "🤖 <b>AI Support:</b> மேலே உள்ள 'Tirupati TTD Online Ticket Booking' பொத்தானை பயன்படுத்தி முன்பதிவு செய்யலாம்.";
+            } else if(lowerQ.includes("sabarimala") || lowerQ.includes("சபரிமலை")) {
+                reply = "🤖 <b>AI Support:</b> மேலே உள்ள 'Sabarimala Online Booking' பொத்தானை பயன்படுத்தி தரிசனத்திற்கு பதிவு செய்யலாம்.";
             } else if(lowerQ.includes("payment") || lowerQ.includes("பணம்") || lowerQ.includes("upi")) {
                 reply = "🤖 <b>AI Support:</b> `alagirik1956@okaxis` என்ற UPI ஐடிக்கு பணம் செலுத்தி ஸ்கிரீன்ஷாட்டை அனுப்பவும்.";
+            } else if(lowerQ.includes("rahu") || lowerQ.includes("ராகு காலம்")) {
+                reply = "🤖 <b>AI Support:</b> இன்றைய ராகு காலம் மதியம் 12:00 முதல் 01:30 வரை ஆகும்.";
             }
 
             setTimeout(() => {
@@ -304,28 +299,11 @@
             }, 500);
         }
 
-        function watchAds() {
-            if(watchedAds < 5) {
-                watchedAds++;
-                document.getElementById('adCount').innerText = watchedAds;
-                if(watchedAds < 5) {
-                    alert(`விளம்பரம் ${watchedAds} பார்க்கப்பட்டது!`);
-                } else {
-                    isSubscribed = true;
-                    document.getElementById('vipBadge').style.display = "block";
-                    alert("🎉 வாழ்த்துகள்! 5 விளம்பரங்களைப் பார்த்து முடித்துவிட்டீர்கள். சப்ஸ்கிரிப்ஷன் அன்லாக் செய்யப்பட்டது!");
-                }
-            } else {
-                alert("நீங்கள் ஏற்கனவே விளம்பரங்களைப் பார்த்துவிட்டீர்கள்!");
-            }
-        }
-
         function selectPlan(planName, amount) {
-            isSubscribed = true;
-            document.getElementById('vipBadge').style.display = "block";
             alert(`✅ ${planName} தேர்வு செய்யப்பட்டது!\n\nalagirik1956@okaxis என்ற UPI ஐடிக்கு ₹${amount} செலுத்திவிட்டு ஸ்கிரீன்ஷாட்டை அனுப்பவும்.`);
         }
     </script>
 
 </body>
-</html>
+    </html>
+                

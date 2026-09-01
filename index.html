@@ -3,6 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andal Alagar Matrimony & Calendar</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root {
+            --bg-color: var(--tg-theme-bg-color, #ffffff);
+            --text-color: var(--tg-theme-text-color, #222222);
+            --button-color: var(--tg-theme-button-color, #ff3366);
+            --button-text-color: var(--tg-theme-button-text-color, #ffffff);
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 12px;
+            text-align: center;
+        }
+        .container {
+            max-width: 420px;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #ff3366;
+            margin-bottom: 2px;
+            font-size: 20px;
+        }
+        p.tagline {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .section-box {
+            background: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        h3 {
+            font-size: 14px;
+            color: #333;
+            margin-top: 0;
+            border-bottom: 2px solid #ff3366;
+            padding-bottom: 4px;
+        }
+        .form-group {
+            margin-bottom: 8px;
+        }
+        label {
+            display: block;
+            font-size: 11px;
+            margin-bottom: 2px;
+            font-weight: bold;
+            color: #444;
+        }
+        input, select {
+            width: 100%;
+            padding: 7px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .btn {
+            background-color: var(--button-color);
+            color: var(--button-text-color);
+            border: none;
+            width: 100%;
+            padding: 9px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .auth-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .auth-buttons button {
+            flex: 1;
+            padding: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 5px;
+            border: 1px solid #ff3366;
+            cursor: pointer;
+        }
+        .panchangam-box {
+            background: #fff3e0;
+            border: 1px solid #ffb74d;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #e65100;
+        }
+        .plan-grid {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .plan-card {
+            flex: 1;
+            border: 1px solid #ff3366;
+            padding: 8px;
+            border-radius: 6px;
+            background: #fff5f7;
+            text-align: center;
+        }
+        .plan-card b {
+            font-size: 12px;
+            color: #d81b60;
+        }
+        .free-ad-box {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .result-box {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #2e7d32;
+            display: none;
+            text-align: left;
+        }
+        .bank-info {
+            font-size: 11px;
+            background: #fff;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px dashed #999;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
+        <p class="tagline">மேட்ரிமோனி + தினசரி நாட்காட்டி & நல்ல நேரம் பஞ்சாங்கம்</p>
+
+        <!-- 0. Signup / Login பகுதி -->
+        <div class="section-box">
+            <h3>🔐 கணக்கு விவரம் (Account)</h3>
+            <div class="auth-buttons">
+                <button onclick="openAuth('signup')" style="background-color: #ff3366; color: white;">புதிய பதிவு (Signup)</button>
+                <button onclick="openAuth('login')" style="background-color: #f5f5f5; color: #333;">உள்நுழை (Login)</button>
+            </div>
+            <div id="authBox" style="display:none; margin-top: 8px;">
+                <div class="form-group">
+                    <label>டெலிகிராம் எண் / மொபைல் எண்:</label>
+                    <input type="text" id="userPhone" placeholder="எ.கா: 9876543210">
+                </div>
+                <button class="btn" onclick="submitAuth()">தொடரவும்</button>
+            </div>
+        </div>
+
+        <!-- 1. தினசரி நாட்காட்டி & நல்ல நேரம் (Daily Calendar & Panchangam) -->
+        <div class="section-box">
+            <h3>📅 1. தினசரி நாட்காட்டி & நல்ல நேரம் (Panchangam)</h3>
+            <div class="form-group">
+                <label>தேதியைத் தேர்ந்தெடுக்கவும்:</label>
+                <input type="date" id="calendarDate" onchange="loadPanchangam()">
+            </div>
+            <div class="panchangam-box" id="panchangamDetails">
+                <b>இன்றைய பஞ்சாங்க விவரங்கள்:</b><br>
+                • <b>நல்ல நேரம்:</b> காலை 09:30 - 10:30, மாலை 04:30 - 05:30<br>
+                • <b>ராகு காலம்:</b> காலை 03:00 - 04:30<br>
+                • <b>எமகண்டம்:</b> காலை 09:00 - 10:30<br>
+                • <b>குளிகை:</b> மதியம் 12:00 - 01:30
+            </div>
+        </div>
+
+        <!-- 2. இன்றைய ராசி பலன் -->
+        <div class="section-box">
+            <h3>🌟 2. இன்றைய ராசி பலன்</h3>
+            <div class="form-group">
+                <label>உங்கள் ராசியைத் தேர்ந்தெடுக்கவும்:</label>
+                <select id="selectedRasi">
+                    <option value="Mesham">மேஷம்</option>
+                    <option value="Rishabham">ரிஷபம்</option>
+                    <option value="Mithunam">மிதுனம்</option>
+                    <option value="Kadagam">கடகம்</option>
+                    <option value="Simmam">சிம்மம்</option>
+                    <option value="Kanni">கன்னி</option>
+                    <option value="Thulaam">துலாம்</option>
+                    <option value="Viruchigam">விருச்சிகம்</option>
+                    <option value="Dhanusu">தனுசு</option>
+                    <option value="Magaram">மகரம்</option>
+                    <option value="Kumbam">கும்பம்</option>
+                    <option value="Meenam">மீனம்</option>
+                </select>
+            </div>
+            <button class="btn" onclick="getDailyRasiPalan()" style="background-color: #ff9800;">இன்றைய பலன்களைப் பார்</button>
+            <div id="rasiResult" class="result-box"></div>
+        </div>
+
+        <!-- 3. கணினி ஜாதகம் -->
+        <div class="section-box">
+            <h3>💻 3. கணினி ஜாதகம் (Computer Jathagam)</h3>
+            <div class="form-group">
+                <label>பிறந்த தேதி & நேரம்:</label>
+                <input type="date" id="dob" style="margin-bottom: 5px;">
+                <input type="time" id="dot">
+            </div>
+            <button class="btn" onclick="generateComputerJathagam()" style="background-color: #673ab7;">ஜாதகம் கணி</button>
+            <div id="jathagamResult" class="result-box"></div>
+        </div>
+
+        <!-- 4. சுயவிவரப் பதிவு (Matrimony Profile) -->
+        <div class="section-box">
+            <h3>4. மேட்ரிமோனி சுயவிவரம்</h3>
+            <div class="form-group">
+                <label>பெயர் (Full Name):</label>
+                <input type="text" id="name" placeholder="உங்கள் பெயர்">
+            </div>
+            <div class="form-group">
+                <label>நட்சத்திரம் (Nakshatram):</label>
+                <select id="nakshatram">
+                    <option value="Aswathi">அஸ்வினி</option>
+                    <option value="Bharani">பரணி</option>
+                    <option value="Karthigai">கார்த்திகை</option>
+                    <option value="Rohini">ரோகிணி</option>
+                    <option value="Mrigasirsham">மிருகசீரிடம்</option>
+                    <option value="Thiruvathirai">திருவாதிரை</option>
+                    <option value="Punarthiram">புனர்பூசம்</option>
+                    <option value="Poosam">பூசம்</option>
+                    <option value="Ayilyam">ஆயில்யம்</option>
+                    <option value="Makam">மகம்</option>
+                    <option value="Pooram">பூரம்</option>
+                    <option value="Uthiram">உத்திரம்</option>
+                    <option value="Hastham">ஹஸ்தம்</option>
+                    <option value="Chithirai">சித்திரை</option>
+                    <option value="Swathi">சுவாதி</option>
+                    <option value="Visakam">விசாகம்</option>
+                    <option value="Anusham">அனுஷம்</option>
+                    <option value="Kettai">கேட்டை</option>
+                    <option value="Moolam">மூலம்</option>
+                    <option value="Pooradam">பூராடம்</option>
+                    <option value="Uthiradam">உத்திராடம்</option>
+                    <option value="Thiruvonam">திருவோணம்</option>
+                    <option value="Avittam">அவிட்டம்</option>
+                    <option value="Sathayam">சதயம்</option>
+                    <option value="Purattathi">பூரட்டாதி</option>
+                    <option value="Uthirattathi">உத்திரட்டாதி</option>
+                    <option value="Revathi">ரேவதி</option>
+                </select>
+            </div>
+            <button class="btn" onclick="registerUser()">பதிவு செய்</button>
+        </div>
+
+        <!-- 5. AI ஜாதக பொருத்தம் -->
+        <div class="section-box">
+            <h3>5. AI ஜாதக பொருத்தம் (10 பொருத்தங்கள்)</h3>
+            <div class="form-group">
+                <label>மணமகன் / மணமகள் நட்சத்திரம்:</label>
+                <input type="text" id="partnerNakshatra" placeholder="எ.கா: ரோகிணி">
+            </div>
+            <button class="btn" onclick="checkAIHoroscope()" style="background-color: #2e7d32;">AI பொருத்தம் பார்</button>
+            <div id="aiResult" class="result-box"></div>
+        </div>
+
+        <!-- 6. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் -->
+        <div class="section-box">
+            <h3>6. சப்ஸ்கிரிப்ஷன் & இலவச ஆப்ஷன்கள்</h3>
+            
+            <div class="free-ad-box">
+                <b style="color: #0d47a1; font-size: 12px;">🎁 இலவசமாகப் பெற:</b>
+                <p style="font-size: 11px; margin: 4px 0; color: #333;">5 விளம்பரங்களைப் பார்த்து 1 நாள் அன்லாக் செய்!</p>
+                <button class="btn" onclick="watchAds()" style="background-color: #1976d2; padding: 7px; font-size: 12px; margin-top: 4px;">Watch 5 Ads (<span id="adCount">0</span>/5)</button>
+            </div>
+
+            <div class="plan-grid">
+                <div class="plan-card">
+                    <b>Gold (1 Month)</b>
+                    <p style="font-size: 11px; margin: 4px 0;">₹500<br>30 Contacts</p>
+                    <button class="btn" onclick="selectPlan('Gold Plan - ₹500', 500)" style="padding: 5px; font-size: 11px;">Select</button>
+                </div>
+                <div class="plan-card" style="background: #fff8e1; border-color: #fbc02d;">
+                    <b>Diamond (3 Mos)</b>
+                    <p style="font-size: 11px; margin: 4px 0;">₹1200<br>Unlimited</p>
+                    <button class="btn" onclick="selectPlan('Diamond Plan - ₹1200', 1200)" style="padding: 5px; font-size: 11px; background-color: #f57f17;">Select</button>
+                </div>
+            </div>
+
+            <div class="bank-info">
+                <b>நேரடி வங்கிப் பரிமாற்றம் / UPI:</b><br>
+                <b>A/C Name:</b> Andal Alagar Matrimony<br>
+                <b>A/C No:</b> 123456789012<br>
+                <b>IFSC Code:</b> SBIN0001234<br>
+                <b>UPI ID:</b> andalalagar@sbi<br>
+                <i style="color: #c62828;">பணம் செலுத்திய ரசீதை பாட்டில் அனுப்பவும்.</i>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+
+        let currentAuthMode = 'signup';
+        let watchedAds = 0;
+
+        function openAuth(mode) {
+            currentAuthMode = mode;
+            let box = document.getElementById('authBox');
+            box.style.display = "block";
+            let btnText = mode === 'signup' ? "புதிய கணக்கை பதிவு செய்" : "உள்நுழையவும்";
+            box.querySelector('button').innerText = btnText;
+        }
+
+        function submitAuth() {
+            let phone = document.getElementById('userPhone').value;
+            if(!phone) {
+                alert("தயவுசெய்து எண்ணை உள்ளிடவும்!");
+                return;
+            }
+            if(currentAuthMode === 'signup') {
+                tg.showAlert(`வெற்றிகரமாக பதிவு செய்யப்பட்டது! (எண்: ${phone})`);
+            } else {
+                tg.showAlert(`வெற்றிகரமாக உள்நுழைந்தீர்கள்! (எண்: ${phone})`);
+            }
+            document.getElementById('authBox').style.display = "none";
+        }
+
+        function loadPanchangam() {
+            let date = document.getElementById('calendarDate').value;
+            let box = document.getElementById('panchangamDetails');
+            box.innerHTML = `<b>தேதி (${date}) பஞ்சாங்க விவரங்கள்:</b><br>
+            • <b>நல்ல நேரம்:</b> காலை 10:15 - 11:15<br>
+            • <b>ராகு காலம்:</b> மாலை 04:30 - 06:00<br>
+            • <b>எமகண்டம்:</b> காலை 12:00 - 01:30<br>
+            • <b>குளிகை:</b> காலை 07:30 - 09:00`;
+        }
+
+        function getDailyRasiPalan() {
+            let rasi = document.getElementById('selectedRasi').value;
+            let box = document.getElementById('rasiResult');
+            box.style.display = "block";
+            box.innerHTML = `🌟 <b>${rasi} ராசி பலன்:</b> இன்றைய நாள் உங்களுக்கு அனுகூலமானது. பணவரவு திருப்திகரமாக இருக்கும்.`;
+        }
+
+        function generateComputerJathagam() {
+            let dob = document.getElementById('dob').value;
+            let box = document.getElementById('jathagamResult');
+            if(!dob) {
+                alert("தேதியை தேர்ந்தெடுக்கவும்!");
+                return;
+            }
+            box.style.display = "block";
+            box.innerHTML = `💻 <b>ஜாதகக் கணிப்பு:</b> லக்னம் மற்றும் ராசி கட்டங்கள் கணக்கிடப்பட்டுவிட்டது.`;
+        }
+
+        function registerUser() {
+            let name = document.getElementById('name').value;
+            if(!name) {
+                tg.showAlert("பெயரை உள்ளிடவும்!");
+                return;
+            }
+            tg.showAlert(`வணக்கம் ${name}! மேட்ரிமோனி சுயவிவரம் பதிவு செய்யப்பட்டது.`);
+        }
+
+        function checkAIHoroscope() {
+            let partner = document.getElementById('partnerNakshatra').value;
+            let box = document.getElementById('aiResult');
+            if(!partner) {
+                alert("நட்சத்திரத்தை உள்ளிடவும்!");
+                return;
+            }
+            box.style.display = "block";
+            box.innerHTML = `🤖 <b>AI பொருத்தம்:</b> 10-க்கு 8 பொருத்தங்கள் உள்ளன. உத்தமம்!`;
+        }
+
+        function watchAds() {
+            if(watchedAds < 5) {
+                watchedAds++;
+                document.getElementById('adCount').innerText = watchedAds;
+                if(watchedAds < 5) {
+                    tg.showAlert(`விளம்பரம் ${watchedAds} பார்க்கப்பட்டது!`);
+                } else {
+                    tg.showAlert("5 விளம்பரங்களும் பார்த்து முடிக்கப்பட்டன. 1 நாள் இலவச அணுகல் வழங்கப்பட்டது!");
+                }
+            } else {
+                tg.showAlert("நீங்கள் ஏற்கனவே விளம்பரங்களைப் பார்த்துவிட்டீர்கள்!");
+            }
+        }
+
+        function selectPlan(planName, amount) {
+            tg.showAlert(`${planName} தேர்ந்தெடுக்கப்பட்டது. ₹${amount} செலுத்தி ரசீதை அனுப்பவும்.`);
+        }
+    </script>
+
+</body>
+                    </html>
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andal Alagar Matrimony & Astrology</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>

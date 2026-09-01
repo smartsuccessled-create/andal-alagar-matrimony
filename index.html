@@ -94,6 +94,14 @@
             background: #fff5f7;
             text-align: center;
         }
+        .free-ad-box {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
         .result-box {
             background: #e8f5e9;
             border: 1px solid #4caf50;
@@ -128,14 +136,27 @@
         .temple-card {
             background: #fff3e0;
             border: 1px solid #ffb74d;
-            padding: 6px;
-            border-radius: 5px;
-            margin-bottom: 6px;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 8px;
             font-size: 11px;
+            line-height: 1.5;
         }
         .admin-box {
             border: 2px dashed #ff3366;
             background: #fff5f7;
+        }
+        .active-vip-badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 5px;
+            font-size: 11px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 8px;
+            border: 1px solid #a5d6a7;
+            display: none;
         }
     </style>
 </head>
@@ -145,6 +166,10 @@
         <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
         <p class="tagline">மேட்ரிமோனி + ஆன்மீகம் + புக்கிங் & கஸ்டமர் கேர் சேவைகள்</p>
 
+        <!-- VIP ஸ்டேட்டஸ் நோட்டீஸ் -->
+        <div id="vipBadge" class="active-vip-badge">🌟 உங்கள் கணக்கு / சப்ஸ்கிரிப்ஷன் Active-ல் உள்ளது!</div>
+
+        <!-- 1. திருப்பதி & சபரிமலை ஆன்லைன் புக்கிங் -->
         <div class="section-box" style="border: 2px solid #ff8f00; background: #fff8e1;">
             <h3>🎟️ ஆன்லைன் தரிசன புக்கிங் (Official Tickets)</h3>
             <p style="font-size: 10px; color: #555; margin: 3px 0 6px 0;">அதிகாரப்பூர்வ வலைத்தளத்தில் நேரடி முன்பதிவு:</p>
@@ -156,6 +181,7 @@
             </a>
         </div>
 
+        <!-- 2. முழுமையான மேட்ரிமோனி சுயவிவரப் பதிவு -->
         <div class="section-box">
             <h3>2. முழுமையான மேட்ரிமோனி சுயவிவரப் பதிவு</h3>
             
@@ -221,6 +247,7 @@
             <button class="btn" onclick="registerUser()">சுயவிவரத்தைப் பதிவு செய்து சேமி</button>
         </div>
 
+        <!-- 3. AI ஜாதக பொருத்தம் -->
         <div class="section-box">
             <h3>3. AI ஜாதகப் பொருத்தம் (10 பொருத்தங்கள்)</h3>
             <div class="form-group">
@@ -231,30 +258,36 @@
             <div id="aiResult" class="result-box"></div>
         </div>
 
-        <div class="section-box">
-            <h3>🛕 தமிழ்நாட்டின் முக்கிய கோவில்கள், நேரங்கள் & சிறப்பு பூஜைகள்</h3>
+        <!-- 4. கோவில் நேரங்கள் மற்றும் சிறப்பு பூஜைகள் (Temple Timings & Special Poojas) -->
+        <div class="section-box" style="border: 2px solid #e91e63; background: #fff0f5;">
+            <h3 style="color: #c2185b; border-bottom: 2px solid #e91e63;">🛕 கோவில் நேரங்கள் & சிறப்பு பூஜைகள்</h3>
+            
             <div class="temple-card">
-                <b>1. மதுரை மீனாட்சி சுந்தரேசுவரர் கோவில்:</b><br>
-                • <b>நடை திறக்கும் நேரம்:</b> காலை 6:00 - 12:30 | மாலை 4:00 - 9:30<br>
-                • <b>சிறப்பு பூஜை:</b> வெள்ளிக்கிழமை ராஜகோபுர பூஜை & திருக்கல்யாணம்.
+                <b>1. ஸ்ரீ ஆண்டாள் திருக்கோவில் (ஸ்ரீவில்லிபுத்தூர்):</b><br>
+                • <b>நடை திறக்கும் நேரம்:</b> காலை 6:00 - 1:00 | மாலை 4:00 - 8:30<br>
+                • <b>சிறப்பு பூஜைகள்:</b> ஆண்டாள் சாற்றுமுறை, திருக்கல்யாண உற்சவம் மற்றும் மங்களாசாசனம்.
             </div>
+
             <div class="temple-card">
-                <b>2. தஞ்சாவூர் பெரிய கோவில்:</b><br>
-                • <b>நடை திறக்கும் நேரம்:</b> காலை 6:00 - 12:30 | மாலை 4:00 - 8:30<br>
-                • <b>சிறப்பு பூஜை:</b> பிரதோச நாட்களில் நந்தி பெருமானுக்கு சிறப்பு அபிஷேகம்.
+                <b>2. மதுரை மீனாட்சி சுந்தரேசுவரர் கோவில்:</b><br>
+                • <b>நடை திறக்கும் நேரம்:</b> காலை 5:00 - 12:30 | மாலை 4:00 - 9:30<br>
+                • <b>சிறப்பு பூஜைகள்:</b> ஸ்படிக லிங்க பூஜை, அர்த்தஜாம பூஜை மற்றும் திருக்கல்யாணம்.
             </div>
+
             <div class="temple-card">
-                <b>3. ராமேஸ்வரம் ராமநாதசுவாமி கோவில்:</b><br>
-                • <b>நடை திறக்கும் நேரம்:</b> காலை 5:00 - 1:00 | மாலை 3:00 - 9:00<br>
-                • <b>சிறப்பு பூஜை:</b> 21 தீர்த்தக் கிணறுகளில் நீராடல் & ஸ்படிக லிங்க தரிசனம்.
+                <b>3. திருத்தணி சுப்பிரமணிய சுவாமி கோவில்:</b><br>
+                • <b>நடை திறக்கும் நேரம்:</b> காலை 6:00 - இரவு 9:00 (அனைத்து நாட்களிலும்)<br>
+                • <b>சிறப்பு பூஜைகள்:</b> சஷ்டி விரத பூஜை, பால் அபிஷேகம் மற்றும் தங்கவேல் தரிசனம்.
             </div>
+
             <div class="temple-card">
-                <b>4. ஸ்ரீரங்கம் அரங்கநாதசுவாமி கோவில்:</b><br>
-                • <b>நடை திறக்கும் நேரம்:</b> காலை 6:00 - இரவு 9:00 வரை<br>
-                • <b>சிறப்பு பூஜை:</b> வைகுண்ட ஏகாதசி மற்றும் தாயார் சேவை.
+                <b>4. தஞ்சாவூர் பெரிய கோவில் (பிரகதீஸ்வரர் கோவில்):</b><br>
+                • <b>நடை திறக்கும் நேரம்:</b> காலை 6:00 - மதியம் 12:30 | மாலை 4:00 - 8:30<br>
+                • <b>சிறப்பு பூஜைகள்:</b> பிரதோஷ கால நந்தி சிறப்பு அபிஷேகம் மற்றும் பெருவுடையார் தீபாராதனை.
             </div>
         </div>
 
+        <!-- 5. இன்றைய பஞ்சாங்கம், ராகு காலம் & நல்ல நேரம் -->
         <div class="section-box">
             <h3>☀️ இன்றைய பஞ்சாங்கம், ராகு காலம் & நல்ல நேரம்</h3>
             <div class="astro-info">
@@ -265,6 +298,7 @@
             </div>
         </div>
 
+        <!-- 6. Customer Care & AI Chat Support Portal -->
         <div class="section-box" style="border: 2px solid #0288d1; background: #f0f8ff;">
             <h3>🎧 Customer Care & AI Chat Support Portal</h3>
             <p style="font-size: 10px; color: #555; margin: 3px 0 6px 0;">உங்கள் சந்தேகங்களை உடனுக்குடன் கேட்டு அறியுங்கள்:</p>
@@ -277,8 +311,15 @@
             <button class="btn" onclick="sendToAIChat()" style="background-color: #0288d1; padding: 6px;">கேள்வியை அனுப்பு (Send)</button>
         </div>
 
+        <!-- 7. சப்ஸ்கிரிப்ஷன், 5 விளம்பரங்கள் & UPI கட்டணம் -->
         <div class="section-box">
-            <h3>7. சப்ஸ்கிரிப்ஷன் & வங்கிப் பரிமாற்றம்</h3>
+            <h3>7. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் (Ads Plan)</h3>
+            <div class="free-ad-box">
+                <b style="color: #0d47a1; font-size: 11px;">🎁 இலவச அன்லாக் (Ads Plan):</b>
+                <p style="font-size: 10px; margin: 3px 0; color: #333;">5 விளம்பரங்களைப் பார்த்து இலவசமாக அன்லாக் செய்யுங்கள்!</p>
+                <button class="btn" onclick="watchAds()" style="background-color: #1976d2; padding: 6px; font-size: 11px; margin-top: 4px;">Watch 5 Ads (<span id="adCount">0</span>/5)</button>
+            </div>
+
             <div class="plan-grid">
                 <div class="plan-card">
                     <b style="color: #d81b60; font-size: 11px;">Gold (1 Month)</b>
@@ -291,12 +332,14 @@
                     <button class="btn" onclick="selectPlan('Diamond', '1200')" style="padding: 4px; background-color: #f57f17; font-size: 10px;">Select</button>
                 </div>
             </div>
+
             <div class="bank-info">
                 <b style="color: #d81b60;">💳 UPI கட்டணம்:</b> <code style="background: #fce4ec; color: #c2185b; padding: 2px 3px; font-weight: bold;">alagirik1956@okaxis</code><br>
                 <i style="color: #c62828; display: block; margin-top: 3px;">பணம் செலுத்திய பின் ஸ்கிரீன்ஷா트를 பாட்டில் அனுப்பவும்.</i>
             </div>
         </div>
 
+        <!-- 8. அட்மின் கண்ட்ரோல் பேனல் (Admin Panel) -->
         <div class="section-box admin-box">
             <h3>🛠️ அட்மின் கண்ட்ரோல் பேனல் (Admin Panel)</h3>
             <div id="adminLoginSection">
@@ -320,6 +363,9 @@
     <script>
         let tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
         if (tg) { tg.expand(); }
+
+        let watchedAds = 0;
+        let isSubscribed = false;
 
         function registerUser() {
             let name = document.getElementById('name').value;
@@ -367,8 +413,8 @@
                 reply = "🤖 <b>AI Support:</b> `alagirik1956@okaxis` என்ற UPI ஐடிக்கு பணம் செலுத்தி ஸ்கிரீன்ஷா트를 அனுப்பவும்.";
             } else if(lowerQ.includes("rahu") || lowerQ.includes("ராகு காலம்")) {
                 reply = "🤖 <b>AI Support:</b> இன்றைய ராகு காலம் மதியம் 12:00 முதல் 01:30 வரை ஆகும்.";
-            } else if(lowerQ.includes("kovil") || lowerQ.includes("கோவில்")) {
-                reply = "🤖 <b>AI Support:</b> தமிழ்நாட்டில் உள்ள முக்கிய கோவில் நேரங்கள் மற்றும் சிறப்பு பூஜைகள் விவரங்கள் மேலே கொடுக்கப்பட்டுள்ளன.";
+            } else if(lowerQ.includes("kovil") || lowerQ.includes("கோவில்") || lowerQ.includes("timing")) {
+                reply = "🤖 <b>AI Support:</b> ஸ்ரீவில்லிபுத்தூர் ஆண்டாள் கோவில், மதுரை மீனாட்சி கோவில் உள்ளிட்ட முக்கிய கோவில் நேரங்கள் மற்றும் சிறப்பு பூஜைகள் விவரங்கள் பக்கத்தில் கொடுக்கப்பட்டுள்ளன.";
             }
 
             setTimeout(() => {
@@ -377,7 +423,25 @@
             }, 500);
         }
 
+        function watchAds() {
+            if(watchedAds < 5) {
+                watchedAds++;
+                document.getElementById('adCount').innerText = watchedAds;
+                if(watchedAds < 5) {
+                    alert(`விளம்பரம் ${watchedAds} பார்க்கப்பட்டது!`);
+                } else {
+                    isSubscribed = true;
+                    document.getElementById('vipBadge').style.display = "block";
+                    alert("🎉 வாழ்த்துகள்! 5 விளம்பரங்களைப் பார்த்து முடித்துவிட்டீர்கள். சப்ஸ்கிரிப்ஷன் அன்லாக் செய்யப்பட்டது!");
+                }
+            } else {
+                alert("நீங்கள் ஏற்கனவே விளம்பரங்களைப் பார்த்துவிட்டீர்கள்!");
+            }
+        }
+
         function selectPlan(planName, amount) {
+            isSubscribed = true;
+            document.getElementById('vipBadge').style.display = "block";
             alert(`✅ ${planName} தேர்வு செய்யப்பட்டது!\n\nalagirik1956@okaxis என்ற UPI ஐடிக்கு ₹${amount} செலுத்திவிட்டு ஸ்கிரீன்ஷா트를 அனுப்பவும்.`);
         }
 
@@ -386,14 +450,4 @@
             let p = document.getElementById('adminPass').value;
             if(u === "admin" && p === "123") {
                 document.getElementById('adminLoginSection').style.display = "none";
-                document.getElementById('adminDashboardSection').style.display = "block";
-                alert("அட்மின் பேனல் வெற்றிகரமாகத் திறக்கப்பட்டது!");
-            } else {
-                alert("தவறான Username அல்லது Password!");
-            }
-        }
-    </script>
-
-</body>
-                        </html>
-    
+                documen

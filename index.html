@@ -4,6 +4,241 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andal Alagar Matrimony</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root {
+            --bg-color: var(--tg-theme-bg-color, #ffffff);
+            --text-color: var(--tg-theme-text-color, #222222);
+            --button-color: var(--tg-theme-button-color, #ff3366);
+            --button-text-color: var(--tg-theme-button-text-color, #ffffff);
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #ff3366;
+            margin-bottom: 5px;
+        }
+        p.tagline {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .section-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        h3 {
+            font-size: 15px;
+            color: #333;
+            margin-top: 0;
+            border-bottom: 2px solid #ff3366;
+            padding-bottom: 5px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 3px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .btn {
+            background-color: var(--button-color);
+            color: var(--button-text-color);
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .plan-card {
+            border: 1px solid #ff3366;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: #fff5f7;
+            text-align: left;
+        }
+        .result-box {
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #2e7d32;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
+        <p class="tagline">AI ஜாதக பொருத்தத்துடன் கூடிய நவீன திருமணத் தளம்</p>
+
+        <!-- 1. அடிப்படை பதிவுப் பகுதி -->
+        <div class="section-box">
+            <h3>1. சுயவிவரப் பதிவு</h3>
+            <div class="form-group">
+                <label>பெயர் (Full Name):</label>
+                <input type="text" id="name" placeholder="உங்கள் பெயர்">
+            </div>
+            <div class="form-group">
+                <label>பாலினம் (Gender):</label>
+                <select id="gender">
+                    <option value="Male">ஆண்</option>
+                    <option value="Female">பெண்</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>ராசி (Rasi):</label>
+                <select id="rasi">
+                    <option value="Mesham">மேஷம்</option>
+                    <option value="Rishabham">ரிஷபம்</option>
+                    <option value="Mithunam">மிதுனம்</option>
+                    <option value="Kadagam">கடகம்</option>
+                    <option value="Simmam">சிம்மம்</option>
+                    <option value="Kanni">கன்னி</option>
+                    <option value="Thulaam">துலாம்</option>
+                    <option value="Viruchigam">விருச்சிகம்</option>
+                    <option value="Dhanusu">தனுசு</option>
+                    <option value="Magaram">மகரம்</option>
+                    <option value="Kumbam">கும்பம்</option>
+                    <option value="Meenam">மீனம்</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>நட்சத்திரம் (Nakshatram):</label>
+                <select id="nakshatram">
+                    <option value="Aswathi">அஸ்வினி</option>
+                    <option value="Bharani">பரணி</option>
+                    <option value="Karthigai">கார்த்திகை</option>
+                    <option value="Rohini">ரோகிணி</option>
+                    <option value="Mrigasirsham">மிருகசீரிடம்</option>
+                    <option value="Thiruvathirai">திருவாதிரை</option>
+                    <option value="Punarthiram">புனர்பூசம்</option>
+                    <option value="Poosam">பூசம்</option>
+                    <option value="Ayilyam">ஆயில்யம்</option>
+                    <option value="Makam">மகம்</option>
+                    <option value="Pooram">பூரம்</option>
+                    <option value="Uthiram">உத்திரம்</option>
+                    <option value="Hastham">ஹஸ்தம்</option>
+                    <option value="Chithirai">சித்திரை</option>
+                    <option value="Swathi">சுவாதி</option>
+                    <option value="Visakam">விசாகம்</option>
+                    <option value="Anusham">அனுஷம்</option>
+                    <option value="Kettai">கேட்டை</option>
+                    <option value="Moolam">மூலம்</option>
+                    <option value="Pooradam">பூராடம்</option>
+                    <option value="Uthiradam">உத்திராடம்</option>
+                    <option value="Thiruvonam">திருவோணம்</option>
+                    <option value="Avittam">அவிட்டம்</option>
+                    <option value="Sathayam">சதயம்</option>
+                    <option value="Purattathi">பூரட்டாதி</option>
+                    <option value="Uthirattathi">உத்திரட்டாதி</option>
+                    <option value="Revathi">ரேவதி</option>
+                </select>
+            </div>
+            <button class="btn" onclick="registerUser()">பதிவு செய்</button>
+        </div>
+
+        <!-- 2. AI ஜாதக பொருத்தம் பார்க்கும் பகுதி -->
+        <div class="section-box">
+            <h3>2. AI ஜாதக பொருத்தம்</h3>
+            <div class="form-group">
+                <label>மணமகன் / மணமகள் நட்சத்திரம்:</label>
+                <input type="text" id="partnerNakshatra" placeholder="எ.கா: ரோகிணி">
+            </div>
+            <button class="btn" onclick="checkAIHoroscope()" style="background-color: #4caf50;">AI மூலம் பொருத்தம் பார்</button>
+            <div id="aiResult" class="result-box"></div>
+        </div>
+
+        <!-- 3. சப்ஸ்கிரிப்ஷன் மற்றும் நேரடி வங்கிப் பரிமாற்றம் -->
+        <div class="section-box">
+            <h3>3. சப்ஸ்கிரிப்ஷன் & வங்கிப் பரிமாற்றம்</h3>
+            <div class="plan-card">
+                <b>Gold Plan (1 Month) - ₹500</b>
+                <p style="font-size: 11px; margin: 5px 0;">வரம்பற்ற ஜாதக தொடர்பு எண்களைப் பெறலாம்.</p>
+                <button class="btn" onclick="selectPlan('Gold Plan - 500 Rs')" style="padding: 6px; font-size: 12px;">இந்த திட்டத்தைத் தேர்ந்தெடு</button>
+            </div>
+            
+            <div style="font-size: 12px; margin-top: 10px; background: #fff; padding: 8px; border-radius: 5px; border: 1px dashed #666;">
+                <b>நேரடி வங்கிப் பரிமாற்றம் (Direct Bank Transfer):</b><br>
+                A/C Name: Andal Alagar Matrimony<br>
+                A/C No: 123456789012<br>
+                IFSC Code: SBIN0001234<br>
+                Bank: State Bank of India<br>
+                <i>பணம் செலுத்திய ரசீதை பாட்டில் அனுப்பவும்.</i>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+
+        function registerUser() {
+            let name = document.getElementById('name').value;
+            if(!name) {
+                tg.showAlert("தயவுசெய்து உங்கள் பெயரை உள்ளிடவும்!");
+                return;
+            }
+            tg.showAlert(`வணக்கம் ${name}! உங்கள் விவரங்கள் வெற்றிகரமாகப் பதிவு செய்யப்பட்டன.`);
+        }
+
+        function checkAIHoroscope() {
+            let partner = document.getElementById('partnerNakshatra').value;
+            let resultBox = document.getElementById('aiResult');
+            if(!partner) {
+                alert("பொருத்தம் பார்க்க வேண்டிய நட்சத்திரத்தை உள்ளிடவும்!");
+                return;
+            }
+            // AI பொருத்தம் கணக்கீடு (Simulation)
+            resultBox.style.display = "block";
+            resultBox.innerHTML = `🤖 <b>AI பகுப்பாய்வு முடிவு:</b> நீங்கள் குறிப்பிட்ட நட்சத்திரத்துடன் <b>10-க்கு 8 பொருத்தங்கள்</b> உள்ளன. உத்தேசப் பொருத்தம் மிகவும் உகந்தது!`;
+        }
+
+        function selectPlan(planName) {
+            tg.showAlert(`நீங்கள் ${planName} தேர்ந்தெடுக்கப்பட்டுள்ளது. மேலே உள்ள வங்கி கணக்கிற்கு பணத்தை அனுப்பி ஸ்கிரீன்ஷாட்டை பகிரவும்.`);
+        }
+    </script>
+
+</body>
+    </html>
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andal Alagar Matrimony</title>
     <!-- டெலிகிராம் மினி ஆப் ஸ்டைல் மற்றும் SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>

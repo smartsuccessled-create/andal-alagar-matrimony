@@ -84,6 +84,7 @@
         .btn-orange { background-color: #ef6c00; }
         .btn-purple { background-color: #7b1fa2; }
         .btn-blue { background-color: #1976d2; }
+        .btn-brown { background-color: #6d4c41; }
         
         /* Astro Grid */
         .astro-grid {
@@ -168,20 +169,44 @@
 <body>
 
 <div class="container">
-    <!-- Header -->
     <div class="header-box">
         <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
-        <div class="sub-title">மேட்ரிமோனி + ஆன்மீகம் + புக்கிங் & கஸ்டமர் கேர் சேவைகள்<br>Customer Care: 9047661638</div>
+        <div class="sub-title">மேட்ரிமோனி + ஆன்மீகம் + கல்யாண மண்டப புக்கிங் சேவைகள்<br>Customer Care: 9047661638</div>
     </div>
 
-    <!-- 1. ஆன்லைன் தரிசன புக்கிங் -->
+    <div class="section-box" style="border-color: #6d4c41; background: #efebe9;">
+        <h3 style="color: #6d4c41; border-color: #6d4c41;">🏛️ கல்யாண மண்டபம் புக்கிங் (Marriage Halls Booking)</h3>
+        <div style="font-size: 11px; margin-bottom: 8px; color: #555;">உங்கள் ஊரில் உள்ள திருமண மண்டபங்களை முன்பதிவு செய்ய:</div>
+        <button class="btn btn-brown" onclick="toggleSection('hallBookingBox')">மண்டபங்களைப் பார்த்து புக் செய்</button>
+        
+        <div id="hallBookingBox" class="dynamic-content" style="background: #fff; border-color: #6d4c41;">
+            <b>📋 மண்டபப் பட்டியல் & முன்பதிவுப் படிவம்:</b><br>
+            <div class="form-group" style="margin-top: 8px;">
+                <label>மண்டபம் தேர்ந்தெடுக்கவும்:</label>
+                <select>
+                    <option>ஸ்ரீவில்லிபுத்தூர் - ஆண்டாள் திருமண மண்டபம்</option>
+                    <option>மதுரை - மீனாட்சி அம்மன் கல்யாண மஹால்</option>
+                    <option>சென்னை - ஆண்டாள் அழகர் திருமண மண்டபம்</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>திருமணத் தேதி (Wedding Date):</label>
+                <input type="date">
+            </div>
+            <div class="form-group">
+                <label>உங்கள் பெயர் & போன் நம்பர்:</label>
+                <input type="text" placeholder="பெயர் மற்றும் போன் நம்பர்">
+            </div>
+            <button class="btn btn-brown" onclick="alert('மண்டப புக்கிங் கோரிக்கை வெற்றிகரமாக அனுப்பப்பட்டது! விரைவில் உங்களைத் தொடர்புகொள்வோம்.')">மண்டபத்தை புக் செய் (Book Now)</button>
+        </div>
+    </div>
+
     <div class="section-box" style="border-color: #ef6c00; background: #fffde7;">
-        <h3 style="color: #ef6c00; border-color: #ef6c00;">1. ஆன்லைன் தரிசன புக்கிங் (Official Tickets)</h3>
+        <h3 style="color: #ef6c00; border-color: #ef6c00;">2. ஆன்லைன் தரிசன புக்கிங் (Official Tickets)</h3>
         <button class="btn btn-purple" onclick="window.open('https://ttdevasthanams.ap.gov.in', '_blank')">🔴 Tirupati TTD Online Ticket Booking</button>
         <button class="btn btn-orange" onclick="window.open('https://sabarimalaonline.org', '_blank')">🟢 Sabarimala Online Booking (Virtual Queue)</button>
     </div>
 
-    <!-- 2. Astro MS - முழுமையான 8 ஜோதிடக் கருவிகள் -->
     <div class="section-box" style="border-color: #0f3822; background: #f1f8e9;">
         <h3 style="color: #0f3822; border-color: #0f3822;">🌟 astro ms - ஜாதகம் & பஞ்சாங்கம்</h3>
         <div class="astro-grid">
@@ -211,20 +236,19 @@
             </div>
         </div>
 
-        <!-- 8 Astro MS Hidden Sections -->
         <div id="zatakamBox" class="dynamic-content">
             <b>🔮 ஜாதகம் (தசாபுக்தி விவரங்கள்):</b><br>
             • தற்போதைய தசை: சுக்கிர தசை (புத்தி: சந்திரன்)<br>
-            • ஆயுள் மற்றும் ஜென்ம நட்சத்திரக் கட்டங்கள் இங்கே முழுமையாகக் கணக்கிடப்பட்டுள்ளன.
+            • ஆயுள் மற்றும் ஜென்ம நட்சத்திரக் கட்டங்கள் கணக்கிடப்பட்டுள்ளன.
         </div>
         <div id="pdfBox" class="dynamic-content">
             <b>📥 ஜாதகம் PDF டவுன்லோட்:</b><br>
-            உங்கள் ஜாதகக் கட்டங்கள் அடங்கிய PDF ஃபைல் தயாராக உள்ளது.<br>
+            • உங்கள் ஜாதகக் கட்டங்கள் அடங்கிய PDF ஃபைல் தயாராக உள்ளது.<br>
             <button class="btn" style="padding: 5px; font-size: 10px; margin-top: 5px;" onclick="alert('ஜாதகம் PDF வெற்றிகரமாக டவுன்லோட் ஆனது!')">Download PDF Now</button>
         </div>
         <div id="vasthuBox" class="dynamic-content">
             <b>🏠 வாஸ்து நாட்கள் (மனை முகூர்த்தம்):</b><br>
-            • மனை அடிக்கல் நாட்ட மற்றும் வீடு புகுவிழா நடத்த உகந்த சுப நாட்கள் பட்டியல்.
+            • மனை அடிக்கல் நாட்ட மற்றும் வீடு புகுவிழா நடத்த உகந்த சுப நாட்கள்.
         </div>
         <div id="monthPanjangamBox" class="dynamic-content">
             <b>📅 மாத பஞ்சாங்கம்:</b><br>
@@ -232,23 +256,22 @@
         </div>
         <div id="advancePanjangamBox" class="dynamic-content">
             <b>⚡ பஞ்சாங்கம் அட்வான்ஸ்:</b><br>
-            • திதி, வாரம், நட்சத்திரம், யோகம் மற்றும் கரணம் பற்றிய முழுமையான அட்வான்ஸ் கணிப்பு.
+            • திதி, வாரம், நட்சத்திரம், யோகம் மற்றும் கரணத்தின் முழுமையான கணிப்பு.
         </div>
         <div id="prasannaBox" class="dynamic-content">
             <b>⭐ பிரசன்ன ஜாதகம்:</b><br>
-            • கேள்வி எழுப்பிய நேரத்தின் அடிப்படையில் காரிய வெற்றி குறித்த உடனடி ஆன்மீகப் பலன்கள்.
+            • கேள்வி எழுப்பிய நேரத்தின் அடிப்படையில் காரிய வெற்றி குறித்த பலன்கள்.
         </div>
         <div id="clockPrasannaBox" class="dynamic-content">
             <b>⏰ கடிகார பிரசன்னம்:</b><br>
-            • தற்போது மணி மற்றும் நிமிடத்தை அடிப்படையாகக் கொண்டு நடக்கும் பலன்களைக் கணிக்கும் முறை.
+            • தற்போது மணி மற்றும் நிமிடத்தை அடிப்படையாகக் கொண்டு நடக்கும் பலன்கள்.
         </div>
         <div id="dailyBalanBox" class="dynamic-content">
             <b>☀️ இன்றைய தினபலன் (12 ராசிகள்):</b><br>
-            • மேஷம் முதல் மீனம் வரை உள்ள அனைத்து ராசிகளுக்கும் இன்றைய நாள் சந்திராஷ்டமம் மற்றும் சந்திராபலன் விவரங்கள்.
+            • மேஷம் முதல் மீனம் வரை உள்ள அனைத்து ராசிகளுக்கும் இன்றைய பலன்கள்.
         </div>
     </div>
 
-    <!-- 3. கோவில் நேரங்கள் & சிறப்பு பூஜைகள் -->
     <div class="section-box" style="border-color: #c2185b; background: #fff5f8;">
         <h3 style="color: #c2185b; border-color: #c2185b;">🛕 கோவில் நேரங்கள் & சிறப்பு பூஜைகள்</h3>
         <div class="info-card">
@@ -261,37 +284,8 @@
             • நடை திறக்கும் நேரம்: காலை 5:00 - 12:30 | மாலை 4:00 - 9:30<br>
             • சிறப்பு பூஜைகள்: ஸ்படிக லிங்க பூஜை, அர்த்தசாம பூஜை.
         </div>
-        <div class="info-card">
-            <b>3. திருத்தணி சுப்பிரமணிய சுவாமி கோவில்:</b><br>
-            • நடை திறக்கும் நேரம்: காலை 6:00 - இரவு 9:00<br>
-            • சிறப்பு பூஜைகள்: சஷ்டி விரத பூஜை, பால் அபிஷேகம்.
-        </div>
     </div>
 
-    <!-- 4. சுப முகூர்த்த நாட்கள் & கோவில் பரிகாரங்கள் -->
-    <div class="section-box" style="border-color: #2e7d32; background: #f1f8e9;">
-        <h3 style="color: #2e7d32; border-color: #2e7d32;">📅 சுப முகூர்த்த நாட்கள் & கோவில் பரிகாரங்கள்</h3>
-        <button class="btn btn-green" onclick="toggleSection('pariharamBox')">கோவில் பரிகாரங்கள் & முகூர்த்த நாட்களைப் பார்</button>
-        <div id="pariharamBox" class="dynamic-content">
-            <b>🙏 சிறப்பு ஆன்மீகக் கோவில் பரிகாரங்கள்:</b><br>
-            • <b>திருமண தடை நீங்க:</b> ஸ்ரீவில்லிபுத்தூர் ஆண்டாள் ரங்கமன்னார் மாலையை வழிபடுதல்.<br>
-            • <b>தோஷ நிவர்த்தி:</b> நவகிரக சன்னதியில் நல்லெண்ணெய் தீபம் ஏற்றுதல்.<br>
-            • <b>முகூர்த்த நாட்கள்:</b> இந்த ஆண்டின் அனைத்து மாதங்களுக்கும் உரிய சுப முகூர்த்தத் தேதிகள் தொகுக்கப்பட்டுள்ளன.
-        </div>
-    </div>
-
-    <!-- 5. இன்றைய பஞ்சாங்கம், ராகு காலம் & நல்ல நேரம் -->
-    <div class="section-box" style="border-color: #f57c00; background: #fffde7;">
-        <h3 style="color: #f57c00; border-color: #f57c00;">☀️ இன்றைய பஞ்சாங்கம், ராகு காலம் & நல்ல நேரம்</h3>
-        <div class="info-card" style="background: #fff; margin-bottom: 0;">
-            • <b>நல்ல நேரம்:</b> காலை 09:15 - 10:15 | மாலை 04:45 - 05:45<br>
-            • <b>ராகு காலம்:</b> மதியம் 12:00 - 01:30<br>
-            • <b>எமகண்டம்:</b> காலை 07:30 - 09:00<br>
-            • <b>சூலம்:</b> வடக்கு (பரிகாரம்: பால் வெல்லம்)
-        </div>
-    </div>
-
-    <!-- 6. AI ஜாதகப் பொருத்தம் (10 பொருத்தங்கள்) -->
     <div class="section-box" style="border-color: #2e7d32; background: #f1f8e9;">
         <h3 style="color: #2e7d32; border-color: #2e7d32;">🔮 AI ஜாதகப் பொருத்தம் (10 பொருத்தங்கள்)</h3>
         <div class="form-group">
@@ -320,9 +314,8 @@
         </div>
     </div>
 
-    <!-- 7. மேட்ரிமோனி சுயவிவரப் பதிவு -->
     <div class="section-box">
-        <h3>7. மேட்ரிமோனி சுயவிவரப் பதிவு</h3>
+        <h3>6. மேட்ரிமோனி சுயவிவரப் பதிவு</h3>
         <div class="form-group">
             <label>பெயர் (Full Name):</label>
             <input type="text" placeholder="உங்கள் பெயர்">
@@ -335,16 +328,11 @@
             <label>கைப்பேசி எண் & முகவரி:</label>
             <input type="text" placeholder="போன் நம்பர் மற்றும் ஊர்">
         </div>
-        <div class="form-group">
-            <label>கல்வி & வருமானம்:</label>
-            <input type="text" placeholder="Degree / Salary">
-        </div>
         <button class="btn" onclick="alert('சுயவிவரம் வெற்றிகரமாகச் சேமிக்கப்பட்டது!')">சுயவிவரத்தைப் பதிவு செய்து சேமி</button>
     </div>
 
-    <!-- 8. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் -->
     <div class="section-box" style="border-color: #f57c00; background: #fff3e0;">
-        <h3 style="color: #f57c00; border-color: #f57c00;">8. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் (Ads Plan)</h3>
+        <h3 style="color: #f57c00; border-color: #f57c00;">7. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் (Ads Plan)</h3>
         <button class="btn btn-orange" onclick="alert('விளம்பரம் பார்க்கப்பட்டது (1/5)')">Watch 5 Ads (0/5)</button>
         
         <div class="plan-container">
@@ -365,16 +353,6 @@
         </div>
     </div>
 
-    <!-- 9. Customer Care & AI Chat Support Portal -->
-    <div class="section-box" style="border-color: #1976d2; background: #e3f2fd;">
-        <h3 style="color: #1976d2; border-color: #1976d2;">🎧 Customer Care & AI Chat Support Portal</h3>
-        <div class="form-group">
-            <input type="text" placeholder="உங்கள் கேள்வியை இங்கே பதிவு செய்யவும்...">
-        </div>
-        <button class="btn btn-blue" onclick="alert('உங்கள் கேள்வி அனுப்பப்பட்டது!')">கேள்வியை அனுப்பு (Send)</button>
-    </div>
-
-    <!-- 10. அட்மின் கண்ட்ரோல் பேனல் -->
     <div class="section-box" style="border-style: dashed; border-color: #555; background: #fafafa;">
         <h3 style="color: #333; border-color: #999;">🛠️ அட்மின் கண்ட்ரோல் பேனல் (Admin Panel)</h3>
         <div class="form-group">
@@ -403,5 +381,5 @@ function toggleSection(sectionId) {
 </script>
 
 </body>
-                                  </html>
-    
+    </html>
+                                   

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ஆண்டாள் அழகர் - 3 Portal System</title>
+    <title>ஆண்டாள் அழகர் - மல்டி-போர்டல் சிஸ்டம்</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,6 +35,16 @@
             font-size: 11px;
             color: #555;
             line-height: 1.4;
+        }
+        .contact-links {
+            margin-top: 5px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .contact-links a {
+            color: #2e7d32;
+            text-decoration: none;
+            margin: 0 5px;
         }
         
         /* Portal Switcher Buttons */
@@ -103,7 +113,6 @@
             margin-top: 5px;
         }
         
-        /* Main Portals Container (Initially Hidden/Shown) */
         .portal-section {
             display: none;
         }
@@ -111,12 +120,14 @@
             display: block;
         }
 
-        .order-card {
-            background: #f9f9f9;
-            border: 1px solid #ddd;
-            padding: 8px;
+        /* Dynamic Payment / Hidden Sections */
+        .dynamic-sub-section {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff3e0;
+            border: 1px dashed #ef6c00;
             border-radius: 5px;
-            margin-bottom: 8px;
             font-size: 11px;
         }
     </style>
@@ -124,20 +135,27 @@
 <body>
 
 <div class="container">
+    <!-- Header -->
     <div class="header-box">
         <h2>ஆண்டாள் அழகர் மல்டி-போர்டல் சிஸ்டம்</h2>
-        <div class="sub-title">Customer, Agency & Admin Portals<br>Customer Care: 9092745268</div>
+        <div class="sub-title">Customer, Agency & Admin Portals</div>
+        <div class="contact-links">
+            📞 Call: <a href="tel:8270045268">8270045268</a> | 
+            💚 <a href="https://wa.me/919092745268?text=Vanakkam%20Andal%20Alagar%20Matrimony" target="_blank">WhatsApp Us</a>
+        </div>
     </div>
 
+    <!-- 3 Portal Switcher Buttons -->
     <div class="portal-switcher">
-        <button class="portal-btn btn-customer" onclick="switchPortal('customerPortal')">👤 Customer Portal</button>
-        <button class="portal-btn btn-agency" onclick="switchPortal('agencyPortal')">🏢 Agency Portal</button>
-        <button class="portal-btn btn-admin" onclick="switchPortal('adminPortal')">🛠️ Admin Portal</button>
+        <button class="portal-btn btn-customer" onclick="switchPortal('customerPortal')">👤 Customer</button>
+        <button class="portal-btn btn-agency" onclick="switchPortal('agencyPortal')">🏢 Agency</button>
+        <button class="portal-btn btn-admin" onclick="switchPortal('adminPortal')">🛠️ Admin</button>
     </div>
 
+    <!-- ================= 1. CUSTOMER PORTAL ================= -->
     <div id="customerPortal" class="portal-section active">
         <div class="section-box" style="border-color: #2e7d32; background: #f1f8e9;">
-            <h3 style="color: #2e7d32; border-color: #2e7d32;">👤 1. வாடிக்கையாளர் தளம் (Customer Portal)</h3>
+            <h3 style="color: #2e7d32; border-color: #2e7d32;">👤 வாடிக்கையாளர் தளம் (Customer Portal)</h3>
             
             <div class="form-group">
                 <label>உங்கள் பெயர்:</label>
@@ -149,78 +167,78 @@
             </div>
             <div class="form-group">
                 <label>தேவையான சேவை (Services):</label>
-                <select>
-                    <option>மேட்ரிமோனி சுயவிவரப் பதிவு</option>
-                    <option>கல்யாண மண்டபம் புக்கிங்</option>
-                    <option>கேடரிங் சர்வீஸ் (Catering)</option>
-                    <option>டெக்கரேஷன் & பிளக்ஸ் பிரிண்டிங்</option>
-                    <option>ஜாதகப் பொருத்தம் பார்க்க</option>
+                <select id="serviceSelect" onchange="checkPaymentOption()">
+                    <option value="normal">மேட்ரிமோனி சுயவிவரப் பதிவு / சாதாரண சேவைகள்</option>
+                    <option value="payment">மண்டபம் / பிரீமியம் புக்கிங் (Payment & Subscription)</option>
                 </select>
             </div>
-            <button class="btn" style="background-color: #2e7d32;" onclick="alert('உங்கள் கோரிக்கை Customer Portal மூலமாக வெற்றிகரமாகப் பதிவு செய்யப்பட்டது!')">ஆர்டரை சமர்ப்பிக்க (Submit Request)</button>
+
+            <!-- பேமெண்ட் ஆப்ஷன் தேர்வு செய்தால் மட்டுமே ஓபன் ஆகும் பகுதி -->
+            <div id="paymentSection" class="dynamic-sub-section">
+                <b style="color: #d81b60;">💳 ஆன்லைன் கட்டணம் & பேமெண்ட் விவரங்கள்:</b><br>
+                <p>உங்களின் புக்கிங்கை உறுதி செய்ய கீழே உள்ள UPI முகவரிக்குக் கட்டணத்தைச் செலுத்தவும்:</p>
+                <div style="background: #fff; padding: 6px; border-radius: 4px; border: 1px solid #ccc; text-align: center; font-weight: bold; color: #d81b60; margin-bottom: 8px;">
+                    UPI ID: alagirik1956@okaxis
+                </div>
+                <div class="form-group">
+                    <label>UPI Transaction Reference No (UTR):</label>
+                    <input type="text" placeholder="பணம் செலுத்திய ரசீது எண் (UTR)">
+                </div>
+            </div>
+
+            <button class="btn" style="background-color: #2e7d32;" onclick="alert('உங்கள் கோரிக்கை வெற்றிகரமாகச் சமர்ப்பிக்கப்பட்டது!')">ஆர்டரை சமர்ப்பிக்க (Submit)</button>
         </div>
     </div>
 
+    <!-- ================= 2. AGENCY PORTAL ================= -->
     <div id="agencyPortal" class="portal-section">
         <div class="section-box" style="border-color: #ef6c00; background: #fffde7;">
-            <h3 style="color: #ef6c00; border-color: #ef6c00;">🏢 2. ஏஜென்சி / வெண்டர் தளம் (Agency Portal)</h3>
-            <div style="font-size: 11px; color: #555; margin-bottom: 8px;">மண்டபம், கேடரிங் அல்லது பிளக்ஸ் உரிமையாளர்கள் லாகின் செய்ய:</div>
-            
+            <h3 style="color: #ef6c00; border-color: #ef6c00;">🏢 ஏஜென்சி / வெண்டர் தளம் (Agency Portal)</h3>
             <div class="form-group">
                 <label>Agency Username:</label>
-                <input type="text" placeholder="Vendor ID / Email">
+                <input type="text" placeholder="Vendor ID">
             </div>
             <div class="form-group">
                 <label>Password:</label>
                 <input type="password" placeholder="Password">
             </div>
-            <button class="btn" style="background-color: #ef6c00;" onclick="alert('Agency Login வெற்றி! உங்களுக்குரிய புதிய ஆர்டர்கள் கீழே தெரியும்.')">Agency Login</button>
-
-            <div style="margin-top: 12px;">
-                <b style="font-size: 11px; color: #ef6c00;">📥 உங்களுக்கு வந்த புதிய புக்கிங் ஆர்டர்கள்:</b>
-                <div class="order-card">
-                    <b>Order #101:</b> ஸ்ரீவில்லிபுத்தூர் மண்டபம் புக்கிங்<br>
-                    <b>Customer:</b> குமார் (Ph: 9876543210)<br>
-                    <b>Status:</b> <span style="color: green; font-weight: bold;">Pending Confirmation</span>
-                </div>
-            </div>
+            <button class="btn" style="background-color: #ef6c00;" onclick="alert('Agency Login வெற்றி!')">Agency Login</button>
         </div>
     </div>
 
+    <!-- ================= 3. ADMIN PORTAL ================= -->
     <div id="adminPortal" class="portal-section">
         <div class="section-box" style="border-color: #37474f; background: #f5f5f5;">
-            <h3 style="color: #37474f; border-color: #37474f;">🛠️ 3. அட்மின் கண்ட்ரோல் பேனல் (Admin Portal)</h3>
-            
+            <h3 style="color: #37474f; border-color: #37474f;">🛠️ அட்மின் கண்ட்ரோல் பேனல் (Admin Portal)</h3>
             <div class="form-group">
                 <label>Admin Master Key:</label>
                 <input type="password" value="admin123">
             </div>
-            <button class="btn" style="background-color: #37474f;" onclick="alert('அட்மின் முழு கட்டுப்பாட்டுக்குள் நுழைந்துவிட்டீர்கள்!')">Master Admin Login</button>
-
-            <div style="margin-top: 12px; background: #fff; padding: 8px; border-radius: 4px; border: 1px solid #ccc; font-size: 11px;">
-                <b>📊 சிஸ்டம் கண்ணோட்டம் (System Stats):</b><br>
-                • மொத்த பதிவு செய்யப்பட்ட கஸ்டமர்கள்: <b>142</b><br>
-                • பதிவு செய்யப்பட்ட ஏஜென்சிகள்: <b>18</b><br>
-                • இன்றைய மொத்த புக்கிங் ஆர்டர்கள்: <b>7</b><br>
-                • கமிஷன் வருமானம்: <span style="color: #d81b60; font-weight: bold;">₹2,450</span>
-            </div>
+            <button class="btn" style="background-color: #37474f;" onclick="alert('Admin Login வெற்றி!')">Master Login</button>
         </div>
     </div>
 
 </div>
 
 <script>
-// 3 போர்ட்களுக்கு இடையே மாறுவதற்குரிய ஜாவாஸ்கிரிப்ட்
+// போர்ட்களை மாற்றும் பங்க்ஷன்
 function switchPortal(portalId) {
-    // அனைத்து போர்ட்களையும் மறைக்கவும்
     let portals = document.querySelectorAll('.portal-section');
     portals.forEach(p => p.classList.remove('active'));
-    
-    // கிளிக் செய்த போர்டை மட்டும் காட்டவும்
     document.getElementById(portalId).classList.add('active');
+}
+
+// பேமெண்ட் ஆப்ஷன் செலக்ட் செய்தால் மட்டும் பேமெண்ட் பாக்ஸ் ஓபன் ஆகும் பங்க்ஷன்
+function checkPaymentOption() {
+    let selectVal = document.getElementById('serviceSelect').value;
+    let payBox = document.getElementById('paymentSection');
+    if (selectVal === 'payment') {
+        payBox.style.display = 'block';
+    } else {
+        payBox.style.display = 'none';
+    }
 }
 </script>
 
 </body>
-    </html>
-    
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ஆண்டாள் அழகர் மேட்ரிமோனி & ஆன்மீக சேவைகள்</title>
+    <title>ஆண்டாள் அழகர் மேட்ரிமோனி & திருமண சேவைகள்</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -85,6 +85,7 @@
         .btn-purple { background-color: #7b1fa2; }
         .btn-blue { background-color: #1976d2; }
         .btn-brown { background-color: #6d4c41; }
+        .btn-teal { background-color: #00796b; }
         
         /* Astro Grid */
         .astro-grid {
@@ -169,35 +170,65 @@
 <body>
 
 <div class="container">
+    .header-box {
+        text-align: center;
+        border-bottom: 2px solid #d81b60;
+        padding-bottom: 8px;
+        margin-bottom: 15px;
+    }
     <div class="header-box">
-        <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
-        <div class="sub-title">மேட்ரிமோனி + ஆன்மீகம் + கல்யாண மண்டப புக்கிங் சேவைகள்<br>Customer Care: 9047661638</div>
+        <h2>ஆண்டாள் அழகர் மேட்ரிமோனி & ஈவென்ட்ஸ்</h2>
+        <div class="sub-title">மேட்ரிமோனி + ஆன்மீகம் + திருமணச் சேவைகள் புக்கிங்<br>Customer Care: 9047661638</div>
     </div>
 
-    <div class="section-box" style="border-color: #6d4c41; background: #efebe9;">
-        <h3 style="color: #6d4c41; border-color: #6d4c41;">🏛️ கல்யாண மண்டபம் புக்கிங் (Marriage Halls Booking)</h3>
-        <div style="font-size: 11px; margin-bottom: 8px; color: #555;">உங்கள் ஊரில் உள்ள திருமண மண்டபங்களை முன்பதிவு செய்ய:</div>
-        <button class="btn btn-brown" onclick="toggleSection('hallBookingBox')">மண்டபங்களைப் பார்த்து புக் செய்</button>
+    <div class="section-box" style="border-color: #00796b; background: #e0f2f1;">
+        <h3 style="color: #00796b; border-color: #00796b;">🎪 திருமணச் சேவைகள் புக்கிங் (All-in-One Booking)</h3>
+        <div style="font-size: 11px; margin-bottom: 8px; color: #333;">மண்டபம், கேடரிங், டெக்கரேஷன் மற்றும் பிளக்ஸ் புக் செய்ய:</div>
+        <button class="btn btn-teal" onclick="toggleSection('weddingServicesBox')">சேவைகளைத் தேர்ந்தெடுத்து புக் செய்</button>
         
-        <div id="hallBookingBox" class="dynamic-content" style="background: #fff; border-color: #6d4c41;">
-            <b>📋 மண்டபப் பட்டியல் & முன்பதிவுப் படிவம்:</b><br>
+        <div id="weddingServicesBox" class="dynamic-content" style="background: #fff; border-color: #00796b;">
+            <b>📋 கல்யாணச் சேவை முன்பதிவுப் படிவம்:</b><br>
+            
             <div class="form-group" style="margin-top: 8px;">
-                <label>மண்டபம் தேர்ந்தெடுக்கவும்:</label>
+                <label>1. கல்யாண மண்டபம் (Marriage Hall):</label>
                 <select>
-                    <option>ஸ்ரீவில்லிபுத்தூர் - ஆண்டாள் திருமண மண்டபம்</option>
-                    <option>மதுரை - மீனாட்சி அம்மன் கல்யாண மஹால்</option>
-                    <option>சென்னை - ஆண்டாள் அழகர் திருமண மண்டபம்</option>
+                    <option>ஸ்ரீவில்லிபுத்தூர் - ஆண்டாள் திருமண மஹால்</option>
+                    <option>மதுரை - மீனாட்சி அம்மன் கல்யாண மண்டபம்</option>
+                    <option>மற்ற ஊர் மண்டபம் (நேரில் பேசுக)</option>
                 </select>
             </div>
+
             <div class="form-group">
-                <label>திருமணத் தேதி (Wedding Date):</label>
-                <input type="date">
+                <label>2. கேடரிங் சர்வீஸ் (Catering - சாப்பாடு):</label>
+                <select>
+                    <option>சைவ உணவு (Vegetarian - 100 பேருக்கு)</option>
+                    <option>சைவ உணவு (Vegetarian - 300 பேருக்கு மேல்)</option>
+                    <option>அசைவ விருந்து (Non-Veg Catering)</option>
+                </select>
             </div>
+
             <div class="form-group">
-                <label>உங்கள் பெயர் & போன் நம்பர்:</label>
-                <input type="text" placeholder="பெயர் மற்றும் போன் நம்பர்">
+                <label>3. டெக்கரேஷன் (Decoration Design):</label>
+                <select>
+                    <option>இயற்கை மலர் அலங்காரம் (Fresh Flower Decore)</option>
+                    <option>எல்.ஈ.டி லைட் & ரிசப்ஷன் செட்டப் (LED Setup)</option>
+                </select>
             </div>
-            <button class="btn btn-brown" onclick="alert('மண்டப புக்கிங் கோரிக்கை வெற்றிகரமாக அனுப்பப்பட்டது! விரைவில் உங்களைத் தொடர்புகொள்வோம்.')">மண்டபத்தை புக் செய் (Book Now)</button>
+
+            <div class="form-group">
+                <label>4. பிளக்ஸ் & பேனர் ప్రింటింగ్ (Flex / Banners):</label>
+                <select>
+                    <option>வரவேற்பு பேனர் + மேடைப் பின்புறம் (Welcome & Stage Flex)</option>
+                    <option>அழைப்பிதழ் மற்றும் வழிநெடுகிலும் போர்டுகள்</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>திருமணத் தேதி & உங்கள் பெயர்/போன்:</label>
+                <input type="text" placeholder="தேதி மற்றும் போன் நம்பர் குறிப்பிடவும்">
+            </div>
+
+            <button class="btn btn-teal" onclick="alert('உங்கள் அனைத்து திருமணச் சேவை புக்கிங் கோரிக்கையும் வெற்றிகரமாகப் பதிவு செய்யப்பட்டது! விரைவில் உங்களைத் தொடர்புகொள்வோம்.')">அனைத்துச் சேவைகளையும் புக் செய் (Book All)</button>
         </div>
     </div>
 
@@ -381,5 +412,5 @@ function toggleSection(sectionId) {
 </script>
 
 </body>
-    </html>
-                                   
+        </html>
+                

@@ -120,15 +120,25 @@
             display: block;
         }
 
-        /* Dynamic Payment / Hidden Sections */
+        /* Dynamic Payment Section */
         .dynamic-sub-section {
-            display: none;
             margin-top: 10px;
             padding: 10px;
             background: #fff3e0;
             border: 1px dashed #ef6c00;
             border-radius: 5px;
             font-size: 11px;
+        }
+
+        /* Ragu Kalam Box */
+        .ragu-kalam-box {
+            background: #fce4ec;
+            border: 1px solid #d81b60;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-bottom: 10px;
+            color: #880e4f;
         }
     </style>
 </head>
@@ -157,36 +167,65 @@
         <div class="section-box" style="border-color: #2e7d32; background: #f1f8e9;">
             <h3 style="color: #2e7d32; border-color: #2e7d32;">👤 வாடிக்கையாளர் தளம் (Customer Portal)</h3>
             
+            <!-- ராகு காலம் தகவல் பகுதி -->
+            <div class="ragu-kalam-box">
+                <b>⏳ இன்றைய ராகு காலம் (Ragu Kalam Timing):</b><br>
+                • திங்கள்: காலை 07:30 - 09:00<br>
+                • செவ்வாய்: பிற்பகல் 03:00 - 04:30<br>
+                • புதன்: பகல் 12:00 - 01:30<br>
+                • வியாழன்: பகல் 01:30 - 03:00<br>
+                • வெள்ளி: காலை 10:30 - 12:00<br>
+                • சனி: காலை 09:00 - 10:30<br>
+                • ஞாயிறு: மாலை 04:30 - 06:00
+            </div>
+
             <div class="form-group">
-                <label>உங்கள் பெயர்:</label>
+                <label>உங்கள் பெயர் (Applicant Name):</label>
                 <input type="text" placeholder="பெயரை உள்ளிடவும்">
             </div>
             <div class="form-group">
-                <label>கைப்பேசி எண்:</label>
+                <label>கைப்பேசி எண் (Phone Number):</label>
                 <input type="text" placeholder="போன் நம்பர்">
             </div>
             <div class="form-group">
-                <label>தேவையான சேவை (Services):</label>
-                <select id="serviceSelect" onchange="checkPaymentOption()">
-                    <option value="normal">மேட்ரிமோனி சுயவிவரப் பதிவு / சாதாரண சேவைகள்</option>
-                    <option value="payment">மண்டபம் / பிரீமியம் புக்கிங் (Payment & Subscription)</option>
-                </select>
+                <label>தந்தை பெயர் (Father's Name):</label>
+                <input type="text" placeholder="அப்பா பெயர்">
+            </div>
+            <div class="form-group">
+                <label>தாய் பெயர் (Mother's Name):</label>
+                <input type="text" placeholder="அம்மா பெயர்">
+            </div>
+            <div class="form-group">
+                <label>கல்வித் தகுதி (Education Details):</label>
+                <input type="text" placeholder="எ.கா: B.E, B.Sc, Diploma">
+            </div>
+            <div class="form-group">
+                <label>வருமான விவரம் (Income Details):</label>
+                <input type="text" placeholder="மாத / வருட வருமானம்">
+            </div>
+            <div class="form-group">
+                <label>சொத்து விவரம் (Asset Details):</label>
+                <textarea rows="2" placeholder="வீடு, நிலம் போன்ற சொத்து விவரங்கள்"></textarea>
+            </div>
+            <div class="form-group">
+                <label>முகவரி (Address):</label>
+                <textarea rows="2" placeholder="முழு முகவரி"></textarea>
             </div>
 
-            <!-- பேமெண்ட் ஆப்ஷன் தேர்வு செய்தால் மட்டுமே ஓபன் ஆகும் பகுதி -->
-            <div id="paymentSection" class="dynamic-sub-section">
+            <!-- கட்டாய பேமெண்ட் பகுதி -->
+            <div class="dynamic-sub-section">
                 <b style="color: #d81b60;">💳 ஆன்லைன் கட்டணம் & பேமெண்ட் விவரங்கள்:</b><br>
-                <p>உங்களின் புக்கிங்கை உறுதி செய்ய கீழே உள்ள UPI முகவரிக்குக் கட்டணத்தைச் செலுத்தவும்:</p>
+                <p>பதிவுக் கட்டணத்தைச் செலுத்த கீழே உள்ள UPI முகவையைப் பயன்படுத்தவும்:</p>
                 <div style="background: #fff; padding: 6px; border-radius: 4px; border: 1px solid #ccc; text-align: center; font-weight: bold; color: #d81b60; margin-bottom: 8px;">
                     UPI ID: alagirik1956@okaxis
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 0;">
                     <label>UPI Transaction Reference No (UTR):</label>
                     <input type="text" placeholder="பணம் செலுத்திய ரசீது எண் (UTR)">
                 </div>
             </div>
 
-            <button class="btn" style="background-color: #2e7d32;" onclick="alert('உங்கள் கோரிக்கை வெற்றிகரமாகச் சமர்ப்பிக்கப்பட்டது!')">ஆர்டரை சமர்ப்பிக்க (Submit)</button>
+            <button class="btn" style="background-color: #2e7d32;" onclick="alert('உங்கள் விண்ணப்பம் மற்றும் பேமெண்ட் விவரங்கள் வெற்றிகரமாகச் சமர்ப்பிக்கப்பட்டது!')">ஆர்டரை சமர்ப்பிக்க (Submit)</button>
         </div>
     </div>
 
@@ -226,17 +265,6 @@ function switchPortal(portalId) {
     let portals = document.querySelectorAll('.portal-section');
     portals.forEach(p => p.classList.remove('active'));
     document.getElementById(portalId).classList.add('active');
-}
-
-// பேமெண்ட் ஆப்ஷன் செலக்ட் செய்தால் மட்டும் பேமெண்ட் பாக்ஸ் ஓபன் ஆகும் பங்க்ஷன்
-function checkPaymentOption() {
-    let selectVal = document.getElementById('serviceSelect').value;
-    let payBox = document.getElementById('paymentSection');
-    if (selectVal === 'payment') {
-        payBox.style.display = 'block';
-    } else {
-        payBox.style.display = 'none';
-    }
 }
 </script>
 

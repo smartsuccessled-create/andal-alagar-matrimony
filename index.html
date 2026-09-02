@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ஆண்டாள் அழகர் - மல்டி-போர்டல் சிஸ்டம்</title>
+    <title>ஆண்டாள் அழகர் Matrimony & Multi Portal System</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,7 +28,7 @@
         }
         h2 {
             color: #d81b60;
-            font-size: 18px;
+            font-size: 16px;
             margin: 0 0 5px 0;
         }
         .sub-title {
@@ -112,6 +112,7 @@
             cursor: pointer;
             margin-top: 5px;
         }
+        .btn-green { background-color: #2e7d32; }
         
         .portal-section {
             display: none;
@@ -130,8 +131,8 @@
             font-size: 11px;
         }
 
-        /* Ragu Kalam Box */
-        .ragu-kalam-box {
+        /* Boxes for Ragu Kalam & Rasi Palangal */
+        .info-box {
             background: #fce4ec;
             border: 1px solid #d81b60;
             padding: 8px;
@@ -140,6 +141,42 @@
             margin-bottom: 10px;
             color: #880e4f;
         }
+        .rasi-box {
+            background: #e8f5e9;
+            border: 1px solid #2e7d32;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-bottom: 12px;
+            color: #1b5e20;
+        }
+
+        /* Table for AI Matching */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            margin-top: 8px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 5px;
+            text-align: center;
+        }
+        th {
+            background-color: #2e7d32;
+            color: white;
+        }
+        .dynamic-content {
+            display: none;
+            margin-top: 8px;
+            padding: 8px;
+            background: #f1f8e9;
+            border: 1px dashed #2e7d32;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -147,7 +184,7 @@
 <div class="container">
     <!-- Header -->
     <div class="header-box">
-        <h2>ஆண்டாள் அழகர் மல்டி-போர்டல் சிஸ்டம்</h2>
+        <h2>ஆண்டாள் அழகர் Matrimony & Multi Portal System</h2>
         <div class="sub-title">Customer, Agency & Admin Portals</div>
         <div class="contact-links">
             📞 Call: <a href="tel:8270045268">8270045268</a> | 
@@ -167,18 +204,52 @@
         <div class="section-box" style="border-color: #2e7d32; background: #f1f8e9;">
             <h3 style="color: #2e7d32; border-color: #2e7d32;">👤 வாடிக்கையாளர் தளம் (Customer Portal)</h3>
             
-            <!-- ராகு காலம் தகவல் பகுதி -->
-            <div class="ragu-kalam-box">
-                <b>⏳ இன்றைய ராகு காலம் (Ragu Kalam Timing):</b><br>
-                • திங்கள்: காலை 07:30 - 09:00<br>
-                • செவ்வாய்: பிற்பகல் 03:00 - 04:30<br>
-                • புதன்: பகல் 12:00 - 01:30<br>
-                • வியாழன்: பகல் 01:30 - 03:00<br>
-                • வெள்ளி: காலை 10:30 - 12:00<br>
-                • சனி: காலை 09:00 - 10:30<br>
-                • ஞாயிறு: மாலை 04:30 - 06:00
+            <!-- தினசரி ராசி பலன்கள் -->
+            <div class="rasi-box">
+                <b>🌟 இன்றைய தினசரி ராசி பலன்கள் (Daily Rasi Palangal):</b><br>
+                • <b>மேஷம், ரிஷபம், மிதுனம்:</b> புதிய முயற்சிகள் வெற்றி தரும், தனவரவு உண்டு.<br>
+                • <b>கடகம், சிம்மம், கன்னி:</b> குடும்பத்தில் மகிழ்ச்சி நிலவும், அலைச்சல் இருக்காது.<br>
+                • <b>துலாம், விருச்சிகம், தனுசு:</b> உத்தியோகத்தில் நற்பெயர் கிடைக்கும், பொறுமை அவசியம்.<br>
+                • <b>மகரம், கும்பம், மீனம்:</b> சுபகாரியப் பேச்சுக்கள் கை கூடும், ஆரோக்கியம் சிறக்கும்.
             </div>
 
+            <!-- ராகு காலம் தகவல் பகுதி -->
+            <div class="info-box">
+                <b>⏳ இன்றைய ராகு காலம் (Ragu Kalam Timing):</b><br>
+                • திங்கள்: 07:30 - 09:00 | செவ்வாய்: 15:00 - 16:30 | புதன்: 12:00 - 13:30<br>
+                • வியாழன்: 13:30 - 15:00 | வெள்ளி: 10:30 - 12:00 | சனி: 09:00 - 10:30 | ஞாயிறு: 16:30 - 18:00
+            </div>
+
+            <!-- AI & Computer Jadhagam Matching பகுதி -->
+            <div style="background: #fff; padding: 10px; border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 12px;">
+                <h4 style="color: #2e7d32; font-size: 12px; margin-top: 0;">🔮 AI & கம்ப்யூட்டர் ஜாதகப் பொருத்தம் (10 பொருத்தங்கள்)</h4>
+                <div class="form-group">
+                    <label>மணமகன் / மணமகள் நட்சத்திரம்:</label>
+                    <input type="text" placeholder="எ.கா: கார்த்திகை / பூசம்">
+                </div>
+                <button class="btn btn-green" onclick="toggleMatchResult()">கம்ப்யூட்டர் & AI மூலம் பொருத்தம் பார்</button>
+                
+                <div id="matchResultBox" class="dynamic-content">
+                    <table>
+                        <tr><th>வ.எண்</th><th>பொருத்தம்</th><th>நிலை</th></tr>
+                        <tr><td>1</td><td>தினம்</td><td style="color:red;">இல்லை</td></tr>
+                        <tr><td>2</td><td>கணம்</td><td style="color:green;">உண்டு</td></tr>
+                        <tr><td>3</td><td>மகேந்திரம்</td><td style="color:green;">உண்டு</td></tr>
+                        <tr><td>4</td><td>ஸ்திரீ தீர்க்கம்</td><td style="color:green;">உண்டு</td></tr>
+                        <tr><td>5</td><td>யோனி</td><td style="color:green;">உண்டு</td></tr>
+                        <tr><td>6</td><td>ராசி</td><td style="color:green;">உண்டு</td></tr>
+                        <tr><td>7</td><td>ராசி அதிபதி</td><td style="color:green;">உண்டு</td></tr>
+                        <tr><td>8</td><td>வசியம்</td><td style="color:red;">இல்லை</td></tr>
+                        <tr><td>9</td><td>ரஜ்ஜு</td><td style="color:green;">உண்டு (சிறப்பு)</td></tr>
+                        <tr><td>10</td><td>வேதை</td><td style="color:green;">உண்டு</td></tr>
+                    </table>
+                    <div style="text-align: center; margin-top: 6px; font-weight: bold; color: #d81b60; font-size: 11px;">
+                        கம்ப்யூட்டர் ஜாதக முடிவு: 8 / 10 பொருத்தங்கள் நன்று!
+                    </div>
+                </div>
+            </div>
+
+            <!-- மேட்ரிமோனி சுயவிவரப் படிவம் -->
             <div class="form-group">
                 <label>உங்கள் பெயர் (Applicant Name):</label>
                 <input type="text" placeholder="பெயரை உள்ளிடவும்">
@@ -196,23 +267,14 @@
                 <input type="text" placeholder="அம்மா பெயர்">
             </div>
 
-            <!-- ஜோதிட விவரங்கள்: ராசி, நட்சத்திரம், லக்னம் -->
+            <!-- ஜோதிட விவரங்கள் -->
             <div class="form-group">
                 <label>ராசி (Rasi):</label>
                 <select>
                     <option value="">ராசியைத் தேர்ந்தெடுக்கவும்</option>
-                    <option>மேஷம் (Mesham)</option>
-                    <option>ரிஷபம் (Rishabam)</option>
-                    <option>மிதுனம் (Midhunam)</option>
-                    <option>கடகம் (Kadagam)</option>
-                    <option>சிம்மம் (Simmam)</option>
-                    <option>கன்னி (Kanni)</option>
-                    <option>துலாம் (Thulaam)</option>
-                    <option>விருச்சிகம் (Viruchigam)</option>
-                    <option>தனுசு (Thanusu)</option>
-                    <option>மகரம் (Magaram)</option>
-                    <option>கும்பம் (Kumbam)</option>
-                    <option>மீனம் (Meenam)</option>
+                    <option>மேஷம்</option><option>ரிஷபம்</option><option>மிதுனம்</option><option>கடகம்</option>
+                    <option>சிம்மம்</option><option>கன்னி</option><option>துலாம்</option><option>விருச்சிகம்</option>
+                    <option>தனுசு</option><option>மகரம்</option><option>கும்பம்</option><option>மீனம்</option>
                 </select>
             </div>
 
@@ -220,33 +282,13 @@
                 <label>நட்சத்திரம் (Nakshatiram):</label>
                 <select>
                     <option value="">நட்சத்திரத்தைத் தேர்ந்தெடுக்கவும்</option>
-                    <option>அசுவினி</option>
-                    <option>பரணி</option>
-                    <option>கார்த்திகை</option>
-                    <option>ரோகிணி</option>
-                    <option>மிருகசீரிடம்</option>
-                    <option>திருவாதிரை</option>
-                    <option>புனர்பூசம்</option>
-                    <option>பூசம்</option>
-                    <option>ஆயில்யம்</option>
-                    <option>மகம்</option>
-                    <option>பூரம்</option>
-                    <option>உத்திரம்</option>
-                    <option>அஸ்தம்</option>
-                    <option>சித்திரை</option>
-                    <option>சுவாதி</option>
-                    <option>விசாகம்</option>
-                    <option>அனுஷம்</option>
-                    <option>கேட்டை</option>
-                    <option>மூலம்</option>
-                    <option>பூராடம்</option>
-                    <option>உத்திராடம்</option>
-                    <option>திருவோணம்</option>
-                    <option>அவிட்டம்</option>
-                    <option>சதயம்</option>
-                    <option>பூரட்டாதி</option>
-                    <option>உத்திரட்டாதி</option>
-                    <option>ரேவதி</option>
+                    <option>அசுவினி</option><option>பரணி</option><option>கார்த்திகை</option><option>ரோகிணி</option>
+                    <option>மிருகசீரிடம்</option><option>திருவாதிரை</option><option>புனர்பூசம்</option><option>பூசம்</option>
+                    <option>ஆயில்யம்</option><option>மகம்</option><option>பூரம்</option><option>உத்திரம்</option>
+                    <option>அஸ்தம்</option><option>சித்திரை</option><option>சுவாதி</option><option>விசாகம்</option>
+                    <option>அனுஷம்</option><option>கேட்டை</option><option>மூலம்</option><option>பூராடம்</option>
+                    <option>உத்திராடம்</option><option>திருவோணம்</option><option>அவிட்டம்</option><option>சதயம்</option>
+                    <option>பூரட்டாதி</option><option>உத்திரட்டாதி</option><option>ரேவதி</option>
                 </select>
             </div>
 
@@ -254,18 +296,9 @@
                 <label>லக்னம் (Lagnam):</label>
                 <select>
                     <option value="">லக்னத்தைத் தேர்ந்தெடுக்கவும்</option>
-                    <option>மேஷ லக்னம்</option>
-                    <option>ரிஷப லக்னம்</option>
-                    <option>மிதுன லக்னம்</option>
-                    <option>கடக லக்னம்</option>
-                    <option>சிம்ம லக்னம்</option>
-                    <option>கன்னி லக்னம்</option>
-                    <option>துலா லக்னம்</option>
-                    <option>விருச்சிக லக்னம்</option>
-                    <option>தனுசு லக்னம்</option>
-                    <option>மகர லக்னம்</option>
-                    <option>கும்ப லக்னம்</option>
-                    <option>மீன லக்னம்</option>
+                    <option>மேஷ லக்னம்</option><option>ரிஷப லக்னம்</option><option>மிதுன லக்னம்</option><option>கடக லக்னம்</option>
+                    <option>சிம்ம லக்னம்</option><option>கன்னி லக்னம்</option><option>துலா லக்னம்</option><option>விருச்சிக லக்னம்</option>
+                    <option>தனுசு லக்னம்</option><option>மகர லக்னம்</option><option>கும்ப லக்னம்</option><option>மீன லக்னம்</option>
                 </select>
             </div>
 
@@ -286,6 +319,12 @@
                 <textarea rows="2" placeholder="முழு முகவரி"></textarea>
             </div>
 
+            <!-- புகைப்படம் அல்லது ஜாதகம் அப்லோடு செய்யும் வசதி -->
+            <div class="form-group">
+                <label>புகைப்படம் / ஜாதகப் பிரதி அப்லோடு (Photo / Jathagam Upload):</label>
+                <input type="file" accept="image/*,application/pdf" style="padding: 5px; background: #fff;">
+            </div>
+
             <!-- கட்டாய பேமெண்ட் பகுதி -->
             <div class="dynamic-sub-section">
                 <b style="color: #d81b60;">💳 ஆன்லைன் கட்டணம் & பேமெண்ட் விவரங்கள்:</b><br>
@@ -299,7 +338,7 @@
                 </div>
             </div>
 
-            <button class="btn" style="background-color: #2e7d32;" onclick="alert('உங்கள் விண்ணப்பம் மற்றும் பேமெண்ட் விவரங்கள் வெற்றிகரமாகச் சமர்ப்பிக்கப்பட்டது!')">ஆர்டரை சமர்ப்பிக்க (Submit)</button>
+            <button class="btn" style="background-color: #2e7d32; margin-top: 10px;" onclick="alert('உங்கள் சுயவிவரம் மற்றும் பேமெண்ட் விவரங்கள் வெற்றிகரமாகச் சமர்ப்பிக்கப்பட்டது!')">விவரங்களைச் சமர்ப்பிக்க (Submit)</button>
         </div>
     </div>
 
@@ -340,8 +379,18 @@ function switchPortal(portalId) {
     portals.forEach(p => p.classList.remove('active'));
     document.getElementById(portalId).classList.add('active');
 }
+
+// AI ஜாதகப் பொருத்தம் ரிசல்ட்டை காட்டுவதற்கும் மறைப்பதற்கும்
+function toggleMatchResult() {
+    let box = document.getElementById('matchResultBox');
+    if (box.style.display === "block") {
+        box.style.display = "none";
+    } else {
+        box.style.display = "block";
+    }
+}
 </script>
 
 </body>
-    </html>
-                        
+                                                                                          </html>
+                                                                                  

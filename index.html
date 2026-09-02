@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ஆண்டாள் அழகர் மேட்ரிமோனி & ஆன்மீக சேவைகள்</title>
+    <title>ஆண்டாள் அழகர் மேட்ரிமோனி & ஆன்மீகம்</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,6 +34,7 @@
         .sub-title {
             font-size: 11px;
             color: #555;
+            line-height: 1.4;
         }
         .section-box {
             border: 2px solid #d81b60;
@@ -79,39 +80,39 @@
             cursor: pointer;
             margin-top: 5px;
         }
-        .btn-green { background-color: #0f3822; }
+        .btn-green { background-color: #2e7d32; }
         .btn-orange { background-color: #ef6c00; }
         .btn-purple { background-color: #7b1fa2; }
         .btn-blue { background-color: #1976d2; }
         
-        /* Grid Layout for Astro MS Features */
+        /* Astro Grid */
         .astro-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 8px;
             margin-top: 10px;
         }
         .astro-card {
             background: #e8f5e9;
             border: 1px solid #c8e6c9;
-            padding: 10px;
+            padding: 8px;
             border-radius: 6px;
             text-align: center;
             cursor: pointer;
         }
         .astro-card b {
-            font-size: 12px;
+            font-size: 11px;
             color: #0f3822;
             display: block;
         }
         .astro-card span {
-            font-size: 10px;
+            font-size: 9px;
             color: #555;
         }
 
-        .info-box {
+        .info-card {
             background: #fff8e1;
-            padding: 10px;
+            padding: 8px;
             border-radius: 5px;
             font-size: 11px;
             line-height: 1.5;
@@ -153,27 +154,29 @@
 <body>
 
 <div class="container">
+    <!-- Header -->
     <div class="header-box">
-        <h2>ஆண்டாள் அழகர் மேட்ரிமோனி & ஆன்மீகம்</h2>
-        <div class="sub-title">Customer Care: 9047661638 | மேட்ரிமோனி + ஜோதிடம் & புக்கிங் சேவைகள்</div>
+        <h2>ஆண்டாள் அழகர் மேட்ரிமோனி</h2>
+        <div class="sub-title">மேட்ரிமோனி + ஆன்மீகம் + புக்கிங் & கஸ்டமர் கேர் சேவைகள்<br>Customer Care: 9047661638</div>
     </div>
 
     <!-- 1. ஆன்லைன் தரிசன புக்கிங் -->
     <div class="section-box" style="border-color: #ef6c00; background: #fffde7;">
         <h3 style="color: #ef6c00; border-color: #ef6c00;">1. ஆன்லைன் தரிசன புக்கிங் (Official Tickets)</h3>
-        <button class="btn btn-purple" onclick="window.open('https://ttdevasthanams.ap.gov.in', '_blank')">Tirupati TTD Online Ticket Booking</button>
-        <button class="btn btn-orange" onclick="window.open('https://sabarimalaonline.org', '_blank')">Sabarimala Online Booking (Virtual Queue)</button>
+        <div style="font-size: 11px; margin-bottom: 8px; color: #555;">அதிகாரப்பூர்வ வலைத்தளத்தில் நேரடி முன்பதிவு:</div>
+        <button class="btn btn-purple" onclick="window.open('https://ttdevasthanams.ap.gov.in', '_blank')">🔴 Tirupati TTD Online Ticket Booking</button>
+        <button class="btn btn-orange" onclick="window.open('https://sabarimalaonline.org', '_blank')">🟢 Sabarimala Online Booking (Virtual Queue)</button>
     </div>
 
-    <!-- 2. Astro MS - ஜோதிடம் & பஞ்சாங்கம் கருவிகள் (New Addition) -->
+    <!-- 2. Astro MS - ஜோதிடம் & பஞ்சாங்கம் கருவிகள் -->
     <div class="section-box" style="border-color: #0f3822; background: #f1f8e9;">
-        <h3 style="color: #0f3822; border-color: #0f3822;">🌟 ஜோதிடம் & பஞ்சாங்கம் (Astro MS Tools)</h3>
+        <h3 style="color: #0f3822; border-color: #0f3822;">🌟 astro ms - ஜாதகம் & பஞ்சாங்கம்</h3>
         <div class="astro-grid">
-            <div class="astro-card" onclick="alert('ஜாதகம் (தசாபுக்தி) பக்கம் திறக்கப்படுகிறது...')">
-                <b>ஜாதகம்</b><span>தசாபுக்தி கணக்கீடு</span>
+            <div class="astro-card" onclick="alert('ஜாதகம் தசாபுக்தி பகுதி திறக்கப்படுகிறது...')">
+                <b>ஜாதகம்</b><span>தசாபுக்தி</span>
             </div>
-            <div class="astro-card" onclick="alert('ஜாதகம் PDF டவுன்லோட் செய்யப்படுகிறது...')">
-                <b>ஜாதகம் PDF</b><span>தசாபுக்தி ரிப்போர்ட்</span>
+            <div class="astro-card" onclick="alert('ஜாதகம் PDF டவுன்லோட்...')">
+                <b>ஜாதகம் Pdf</b><span>தசாபுக்தி</span>
             </div>
             <div class="astro-card" onclick="alert('வாஸ்து நாட்கள் விவரங்கள்...')">
                 <b>வாஸ்து நாட்கள்</b><span>மனை முகூர்த்தம்</span>
@@ -181,7 +184,7 @@
             <div class="astro-card" onclick="alert('மாத பஞ்சாங்கம் பட்டியல்...')">
                 <b>மாத பஞ்சாங்கம்</b><span>சுப தினங்கள்</span>
             </div>
-            <div class="astro-card" onclick="alert('பஞ்சாங்கம் அட்வான்ஸ் அம்சங்கள்...')">
+            <div class="astro-card" onclick="alert('பஞ்சாங்கம் அட்வான்ஸ் திறக்கப்படுகிறது...')">
                 <b>பஞ்சாங்கம் அட்வான்ஸ்</b><span>நட்சத்திரம், யோகம்</span>
             </div>
             <div class="astro-card" onclick="alert('பிரசன்ன ஜாதகம் கணிப்பு...')">
@@ -196,21 +199,67 @@
         </div>
     </div>
 
-    <!-- 3. AI ஜாதகப் பொருத்தம் (10 பொருத்தங்கள் Table) -->
+    <!-- 3. கோவில் நேரங்கள் & சிறப்பு பூஜைகள் -->
+    <div class="section-box" style="border-color: #c2185b; background: #fff5f8;">
+        <h3 style="color: #c2185b; border-color: #c2185b;">🛕 கோவில் நேரங்கள் & சிறப்பு பூஜைகள்</h3>
+        
+        <div class="info-card">
+            <b>1. ஸ்ரீ ஆண்டாள் திருக்கோவில் (ஸ்ரீவில்லிபுத்தூர்):</b><br>
+            • நடை திறக்கும் நேரம்: காலை 6:00 - 1:00 | மாலை 4:00 - 8:30<br>
+            • சிறப்பு பூஜைகள்: ஆண்டாள் சாற்றுமுறை, திருக்கல்யாண உற்சவம் மற்றும் மங்களாசாசனம்.
+        </div>
+        <div class="info-card">
+            <b>2. மதுரை மீனாட்சி சுந்தரேசுவரர் கோவில்:</b><br>
+            • நடை திறக்கும் நேரம்: காலை 5:00 - 12:30 | மாலை 4:00 - 9:30<br>
+            • சிறப்பு பூஜைகள்: ஸ்படிக லிங்க பூஜை, அர்த்தஜாம பூஜை மற்றும் திருக்கல்யாணம்.
+        </div>
+        <div class="info-card">
+            <b>3. திருத்தணி சுப்பிரமணிய சுவாமி கோவில்:</b><br>
+            • நடை திறக்கும் நேரம்: காலை 6:00 - இரவு 9:00 (அனைத்து நாட்களிலும்)<br>
+            • சிறப்பு பூஜைகள்: சஷ்டி விரத பூஜை, பால் அபிஷேகம் மற்றும் தங்கவேல் தரிசனம்.
+        </div>
+        <div class="info-card">
+            <b>4. தஞ்சாவூர் பெரிய கோவில் (பிரகதீஸ்வரர் கோவில்):</b><br>
+            • நடை திறக்கும் நேரம்: காலை 6:00 - மதியம் 12:30 | மாலை 4:00 - 8:30<br>
+            • சிறப்பு பூஜைகள்: பிரதோஷ கால நந்தி சிறப்பு அபிஷேகம் மற்றும் பெருவுடையார் தீபாராதனை.
+        </div>
+    </div>
+
+    <!-- 4. சுப முகூர்த்த நாட்கள் & கோவில் பரிகாரங்கள் -->
     <div class="section-box" style="border-color: #2e7d32; background: #f1f8e9;">
-        <h3 style="color: #2e7d32; border-color: #2e7d32;">3. AI ஜாதகப் பொருத்தம் (10 பொருத்தங்கள்)</h3>
+        <h3 style="color: #2e7d32; border-color: #2e7d32;">📅 சுப முகூர்த்த நாட்கள் & கோவில் பரிகாரங்கள்</h3>
+        <button class="btn btn-green" onclick="alert('மங்களகரமான முகூர்த்த நாட்கள் பட்டியல் விரைவில்...')">மங்களகரமான முகூர்த்த நாட்களைப் பார்</button>
+        
+        <div style="margin-top: 10px;" class="info-card">
+            <b>🙏 சிறப்பு ஆன்மீகக் கோவில் பரிகாரங்கள்:</b><br>
+            • <b>திருமண தடை நீங்க:</b> திருச்சுழி திருமேனிநாதர் கோவில் அல்லது திருநீலகூடி சென்று வழிபடலாம்.<br>
+            • <b>தோஷ நிவர்த்தி:</b> வைதீஸ்வரன் கோவில் சென்று அங்காரக வழிபாடு செய்வது நல்லது.<br>
+            • <b>Lunar / Rasi Pariharam:</b> நவகிரக சன்னதியில் செவ்வாய் மற்றும் சனி பகவானுக்கு அர்ச்சனை செய்து நல்லெண்ணெய் தீபம் ஏற்றுவது தோஷங்களைப் போக்கும்.
+        </div>
+    </div>
+
+    <!-- 5. இன்றைய பஞ்சாங்கம், ராகு காலம் & நல்ல நேரம் -->
+    <div class="section-box" style="border-color: #f57c00; background: #fffde7;">
+        <h3 style="color: #f57c00; border-color: #f57c00;">☀️ இன்றைய பஞ்சாங்கம், ராகு காலம் & நல்ல நேரம்</h3>
+        <div class="info-card" style="background: #fff;">
+            • <b>நல்ல நேரம்:</b> காலை 09:15 - 10:15 | மாலை 04:45 - 05:45<br>
+            • <b>ராகு காலம்:</b> மதியம் 12:00 - 01:30<br>
+            • <b>எமகண்டம்:</b> காலை 07:30 - 09:00<br>
+            • <b>சூலம்:</b> வடக்கு (பரிகாரம்: பால் வெல்லம் உட்கொள்ளவும்)
+        </div>
+    </div>
+
+    <!-- 6. AI ஜாதகப் பொருத்தம் (10 பொருத்தங்கள்) -->
+    <div class="section-box" style="border-color: #2e7d32; background: #f1f8e9;">
+        <h3 style="color: #2e7d32; border-color: #2e7d32;">🔮 AI ஜாதகப் பொருத்தம் (10 பொருத்தங்கள்)</h3>
         <div class="form-group">
             <label>மணமகன் / மணமகள் நட்சத்திரம்:</label>
-            <input type="text" placeholder="எ.கா: பூசம் / பூசம்">
+            <input type="text" placeholder="எ.கா: கார்த்திகை / பூசம்">
         </div>
-        <button class="btn btn-green" onclick="alert('10 பொருத்தங்களும் பரிசீலிக்கப்பட்டன: மொத்தம் 4/10 பொருத்தங்கள் உண்டு!')">AI மூலம் விரிவான பொருத்தம் பார்</button>
+        <button class="btn btn-green" onclick="alert('AI ஜாதகப் பொருத்தம் பார்க்கப்படுகிறது...')">AI மூலம் விரிவான பொருத்தம் பார்</button>
         
         <table>
-            <tr>
-                <th>வ.எண்</th>
-                <th>பொருத்தம்</th>
-                <th>நிலை</th>
-            </tr>
+            <tr><th>வ.எண்</th><th>பொருத்தம்</th><th>நிலை</th></tr>
             <tr><td>1</td><td>தினம்</td><td style="color:red;">பொருத்தம் இல்லை</td></tr>
             <tr><td>2</td><td>கணம்</td><td style="color:green;">பொருத்தம் உண்டு</td></tr>
             <tr><td>3</td><td>மகேந்திரம்</td><td style="color:red;">பொருத்தம் இல்லை</td></tr>
@@ -223,13 +272,13 @@
             <tr><td>10</td><td>வேதை</td><td style="color:green;">பொருத்தம் உண்டு</td></tr>
         </table>
         <div style="text-align: center; margin-top: 8px; font-size: 11px; font-weight: bold; color: #d81b60;">
-            மொத்த பொருத்தம்: 4 / 10 (ரஜ்ஜு பொருத்தம்: இல்லை)
+            மொத்த பொருத்தம்: 4 / 10 (ரஜ்ஜு பொருத்தம்: இல்லை (கவனிக்கவும்))
         </div>
     </div>
 
-    <!-- 4. முழுமையான மேட்ரிமோனி சுயவிவரப் பதிவு -->
+    <!-- 7. மேட்ரிமோனி சுயவிவரப் பதிவு -->
     <div class="section-box">
-        <h3>4. முழுமையான மேட்ரிமோனி சுயவிவரப் பதிவு</h3>
+        <h3>7. மேட்ரிமோனி சுயவிவரப் பதிவு</h3>
         <div class="form-group">
             <label>பெயர் (Full Name):</label>
             <input type="text" placeholder="உங்கள் பெயர்">
@@ -239,44 +288,89 @@
             <select><option>ஆண்</option><option>பெண்</option></select>
         </div>
         <div class="form-group">
-            <label>கைப்பேசி எண் & ஊர்:</label>
-            <input type="text" placeholder="போன் நம்பர் மற்றும் ஊர்">
+            <label>திருமண நிலை (Marital Status):</label>
+            <select><option>திருமணமாகாதவர் (Unmarried)</option><option>மறுமணம் (Divorced/Widow)</option></select>
+        </div>
+        <div class="form-group">
+            <label>கைப்பேசி எண் & முகவரி:</label>
+            <input type="text" placeholder="போன் நம்பர் மற்றும் ஊர், மாவட்டம்">
+        </div>
+        <div class="form-group">
+            <label>தந்தை பெயர் (Father's Name):</label>
+            <input type="text" placeholder="அப்பா பெயர்">
+        </div>
+        <div class="form-group">
+            <label>தாய் பெயர் (Mother's Name):</label>
+            <input type="text" placeholder="அம்மா பெயர்">
+        </div>
+        <div class="form-group">
+            <label>உடன்பிறந்தோர் விவரம் (Brother / Sister Details):</label>
+            <input type="text" placeholder="எ.கா: 1 அண்ணன், 1 தங்கை">
+        </div>
+        <div class="form-group">
+            <label>கல்வித் தகுதி (Education Details):</label>
+            <input type="text" placeholder="எ.கா: B.E / M.Sc / B.Com">
+        </div>
+        <div class="form-group">
+            <label>மாத வருமானம் (Income Details):</label>
+            <input type="text" placeholder="எ.கா: ₹40,000 / மாதம்">
+        </div>
+        <div class="form-group">
+            <label>சொத்து விவரங்கள் (Asset Details):</label>
+            <textarea placeholder="வீடு, நிலம் போன்ற சொத்து விவரங்கள்" rows="2"></textarea>
         </div>
         <div class="form-group">
             <label>ராசி & நட்சத்திரம்:</label>
-            <input type="text" placeholder="எ.கா: கடகம் - பூசம்">
+            <input type="text" placeholder="எ.கா: ரிஷபம், ரோகிணி">
         </div>
         <div class="form-group">
-            <label>ஜாதகம் PDF பதிவேற்றம்:</label>
+            <label>சுயவிவரப் புகைப்படம் (Photo Upload):</label>
+            <input type="file">
+        </div>
+        <div class="form-group">
+            <label>ஜாதகம் PDF பதிவேற்றம் (Horoscope PDF):</label>
             <input type="file">
         </div>
         <button class="btn" onclick="alert('சுயவிவரம் வெற்றிகரமாகச் சேமிக்கப்பட்டது!')">சுயவிவரத்தைப் பதிவு செய்து சேமி</button>
     </div>
 
-    <!-- 5. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் -->
+    <!-- 8. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் -->
     <div class="section-box" style="border-color: #f57c00; background: #fff3e0;">
-        <h3 style="color: #f57c00; border-color: #f57c00;">5. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் (Ads Plan)</h3>
-        <button class="btn btn-orange" onclick="alert('1 தொடர்பு எண் அன்லாக் செய்யப்பட்டது!')">Watch 5 Ads (0/5)</button>
+        <h3 style="color: #f57c00; border-color: #f57c00;">8. சப்ஸ்கிரிப்ஷன் & விளம்பரங்கள் (Ads Plan)</h3>
+        <div style="font-size: 11px; margin-bottom: 5px; font-weight: bold; color: #d81b60;">🎁 இலவச அன்லாக் (Ads Plan):</div>
+        <div style="font-size: 11px; margin-bottom: 8px;">5 விளம்பரங்களைப் பார்த்து இலவசமாக அன்லாக் செய்யுங்கள்!</div>
+        <button class="btn btn-orange" onclick="alert('விளம்பரம் பார்க்கப்படுகிறது (1/5)')">Watch 5 Ads (0/5)</button>
         
-        <div class="plan-container">
+        <div class="plan-container" style="margin-top: 10px;">
             <div class="plan-card">
-                <b style="font-size: 12px; color: #d81b60;">Gold (1 Month)</b><br>
-                <span style="font-size: 13px; font-weight: bold;">₹500</span>
-                <button class="btn" style="padding: 5px; font-size: 11px; margin-top: 5px;" onclick="alert('Gold Plan தேர்ந்தெடுக்கப்பட்டது.')">Select</button>
+                <b style="font-size: 11px; color: #d81b60;">Gold (1 Month)</b><br>
+                <span style="font-size: 12px; font-weight: bold;">₹500</span>
+                <button class="btn" style="padding: 5px; font-size: 10px; margin-top: 5px;" onclick="alert('Gold Plan தேர்ந்தெடுக்கப்பட்டது')">Select</button>
             </div>
             <div class="plan-card">
-                <b style="font-size: 12px; color: #ef6c00;">Diamond (3 Mos)</b><br>
-                <span style="font-size: 13px; font-weight: bold;">₹1200</span>
-                <button class="btn btn-orange" style="padding: 5px; font-size: 11px; margin-top: 5px;" onclick="alert('Diamond Plan தேர்ந்தெடுக்கப்பட்டது.')">Select</button>
+                <b style="font-size: 11px; color: #ef6c00;">Diamond (3 Mos)</b><br>
+                <span style="font-size: 12px; font-weight: bold;">₹1200</span>
+                <button class="btn btn-orange" style="padding: 5px; font-size: 10px; margin-top: 5px;" onclick="alert('Diamond Plan தேர்ந்தெடுக்கப்பட்டது')">Select</button>
             </div>
         </div>
 
         <div style="margin-top: 10px; background: #fff; padding: 8px; border-radius: 4px; border: 1px dashed #f57c00; font-size: 11px;">
-            <b>💳 UPI கட்டணம்:</b> <span style="color: #d81b60; font-weight: bold;">alagirik1956@okaxis</span>
+            <b>💳 UPI கட்டணம்:</b> <span style="color: #d81b60; font-weight: bold;">alagirik1956@okaxis</span><br>
+            <span style="font-size: 10px; color: #555;">பணம் செலுத்திய பின் ஸ்கிரீன்ஷாட்டை சாட்டில் அனுப்பவும்.</span>
         </div>
     </div>
 
-    <!-- 6. அட்மின் கண்ட்ரோல் பேனல் -->
+    <!-- 9. Customer Care & AI Chat Support Portal -->
+    <div class="section-box" style="border-color: #1976d2; background: #e3f2fd;">
+        <h3 style="color: #1976d2; border-color: #1976d2;">🎧 Customer Care & AI Chat Support Portal</h3>
+        <div style="font-size: 11px; margin-bottom: 8px;">உங்கள் சந்தேகங்களை உடனுக்குடன் கேட்டு அறியுங்கள்:</div>
+        <div class="form-group">
+            <input type="text" placeholder="உங்கள் கேள்வியை இங்கே தச்சு செய்யவம்...">
+        </div>
+        <button class="btn btn-blue" onclick="alert('உங்கள் கேள்வி அனுப்பப்பட்டது!')">கேள்வியை அனுப்பு (Send)</button>
+    </div>
+
+    <!-- 10. அட்மின் கண்ட்ரோல் பேனல் -->
     <div class="section-box" style="border-style: dashed; border-color: #555; background: #fafafa;">
         <h3 style="color: #333; border-color: #999;">🛠️ அட்மின் கண்ட்ரோல் பேனல் (Admin Panel)</h3>
         <div class="form-group">
@@ -293,4 +387,5 @@
 </div>
 
 </body>
-</html>
+    </html>
+            

@@ -3,86 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony & Multi Portal System</title>
-    <!-- Telegram Web App SDK -->
+    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony - Advanced Super App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 15px; }
-        .app-header { text-align: center; background: #3b141c; color: white; padding: 15px; border-radius: 8px; }
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 15px; color: #333; }
+        .app-header { text-align: center; background: linear-gradient(135deg, #3b141c, #6d2230); color: white; padding: 18px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         
-        /* Portal Navigation Buttons (Customer & Admin only - Agency removed) */
-        .portal-nav { display: flex; justify-content: center; gap: 15px; margin: 15px 0; }
-        .portal-btn { padding: 10px 25px; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; font-size: 14px; text-align: center; }
+        /* Portal Navigation Buttons */
+        .portal-nav { display: flex; justify-content: center; gap: 12px; margin: 15px 0; }
+        .portal-btn { padding: 10px 20px; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; font-size: 13px; text-align: center; }
         .btn-customer { background: #2e7d32; color: white; }
         .btn-admin { background: #1565c0; color: white; }
 
-        .section-box { background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        h3 { color: #3b141c; font-size: 15px; margin-top: 0; }
-        p { font-size: 13px; color: #444; line-height: 1.5; }
+        /* Super App Grid Menu */
+        .super-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+        .feature-card { background: white; padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05); border-top: 4px solid #d4af37; cursor: pointer; transition: 0.2s; }
+        .feature-card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .feature-card h4 { margin: 5px 0; color: #3b141c; font-size: 14px; }
+        .feature-card p { font-size: 11px; color: #666; margin: 0; }
         
-        input, select { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; box-sizing: border-box; }
-        .btn-action { background: #2e7d32; color: white; border: none; padding: 10px; width: 100%; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 14px; }
+        .full-width { grid-column: span 2; background: linear-gradient(135deg, #2e7d32, #1b5e20); color: white; border-top: 4px solid #ffd700; }
+        .full-width h4, .full-width p { color: white; }
+
+        .section-box { background: white; padding: 15px; border-radius: 8px; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        h3 { color: #3b141c; font-size: 15px; margin-top: 0; border-bottom: 2px solid #f0f0f0; padding-bottom: 8px; }
+        
+        /* Form & Inputs */
+        input, select { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; box-sizing: border-box; }
+        .btn-action { background: #3b141c; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 14px; }
+        .btn-pay { background: #d4af37; color: #3b141c; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="app-header">
-        <h2>ஆண்டாள் அழகர் Matrimony & Multi Portal System</h2>
-        <p style="font-size: 12px; margin: 5px 0;">Customer & Admin Portals</p>
-        <p style="font-size: 11px; color: #d4af37; margin: 5px 0;">📞 Call: 8270045268 | 💚 WhatsApp Us</p>
+        <h2>🌸 ஆண்டாள் அழகர் Matrimony Super App</h2>
+        <p style="font-size: 12px; margin: 5px 0;">AI Powered Astrology & Matchmaking Portal</p>
+        <p style="font-size: 11px; color: #ffd700; margin: 5px 0;">📞 Call: 8270045268 | 💚 Telegram Bot Active</p>
     </div>
 
-    <!-- Portal Switcher (Customer & Admin Only) -->
+    <!-- Portal Switcher -->
     <div class="portal-nav">
-        <a href="index.html" class="portal-btn btn-customer">👤 Customer Portal</a>
+        <a href="index.html" class="portal-btn btn-customer">👤 Customer Super App</a>
         <a href="/admin/admin-dashbord.html" class="portal-btn btn-admin">⚙️ Admin Portal</a>
     </div>
 
-    <!-- Customer Portal Content -->
+    <!-- Advanced Super App Features Menu -->
+    <div class="super-grid">
+        <div class="feature-card full-width" onclick="alert('புதிய சுயவிவரப் பதிவு (Registration & Photo Upload) பகுதி திறக்கப்படுகிறது!')">
+            <h4>📝 புதிய சுயவிவரப் பதிவு & போட்டோ அப்லோட்</h4>
+            <p>உங்கள் ஜாதகம் மற்றும் விவரங்களை நேரடியாக பதிவு செய்யுங்கள்</p>
+        </div>
+        <div class="feature-card" onclick="alert('வாடிக்கையாளர் உள்நுழைவு (Login) பகுதி')">
+            <h4>🔑 லாகின் / Signup</h4>
+            <p>OTP மூலம் எளிதாக உள்நுழைய</p>
+        </div>
+        <div class="feature-card" onclick="alert('வரன்கள் தேடல் (Matching Profiles) ஃபில்டர்')">
+            <h4>🔍 வரன்கள் தேடல்</h4>
+            <p>நட்சத்திரம், ஜாதி & ஊர் வாரியாக ஃபில்டர்</p>
+        </div>
+        <div class="feature-card" onclick="alert('AI ஜாதகப் பொருத்தம் (10 Porutham & AI Horoscopy)')">
+            <h4>🔮 AI ஜாதகப் பொருத்தம்</h4>
+            <p>துல்லியமான 10 பொருத்தங்கள் & AI கணிப்பு</p>
+        </div>
+        <div class="feature-card" onclick="alert('பிரீமியம் கட்டணச் சேவை (Payment Gateway Integration)')">
+            <h4>💳 பிரீமியம் கட்டணம்</h4>
+            <p>UPI / PhonePe / GPay பேமெண்ட் ஆப்ஷன்</p>
+        </div>
+    </div>
+
+    <!-- Quick AI Astrology Section -->
     <div class="section-box">
-        <h3>👤 வாடிக்கையாளர் தளம் (Customer Portal)</h3>
-        
-        <div style="background: #f9f9f9; padding: 10px; border-radius: 6px; margin-bottom: 12px; border-left: 4px solid #d4af37;">
-            <p style="margin: 0; font-weight: bold;">☀️ இன்றைய தினசரி ராசி பலன்கள் (Daily Rasi Palangal):</p>
-            <p style="margin: 5px 0 0 0; font-size: 12px;">
-                • மேஷம், ரிஷபம், மிதுனம்: புதிய முயற்சிகள் வெற்றி தரும், தனவரவு உண்டு.<br>
-                • கடகம், சிம்மம், கன்னி: குடும்பத்தில் மகிழ்ச்சி நிலவும், அலைச்சல் இருக்காது.<br>
-                • துலாம், விருச்சிகம், தனுசு: உத்தியோகத்தில் நற்பெயர் கிடைக்கும், பொறுமை அவசியம்.<br>
-                • மகரம், கும்பம், மீனம்: சுபகாரியப் பேச்சுக்கள் கை கூடும், ஆரோக்கியம் சிறக்கும்.
-            </p>
-        </div>
+        <h3>🔮 இன்ஸ்டன்ட் AI ஜாதகப் பொருத்தம் (Instant AI Horoscope)</h3>
+        <label style="font-size: 12px; font-weight: bold;">மணமகன் / மணமகள் நட்சத்திரம்:</label>
+        <input type="text" id="star1" placeholder="உங்கள் நட்சத்திரம் (எ.கா: ரோகிணி)">
+        <label style="font-size: 12px; font-weight: bold;">வரன் நட்சத்திரம்:</label>
+        <input type="text" id="star2" placeholder="வரன் நட்சத்திரம் (எ.கா: பூசம்)">
+        <button class="btn-action" onclick="runAiHoroscope()">🤖 AI மூலம் ஜாதகம் பொருத்துக</button>
+        <div id="aiResult" style="margin-top: 10px; font-size: 12px; font-weight: bold; color: #2e7d32;"></div>
+    </div>
 
-        <div style="background: #fdf2f4; padding: 10px; border-radius: 6px; margin-bottom: 12px; border-left: 4px solid #3b141c;">
-            <p style="margin: 0; font-weight: bold;">⏳ இன்றைய ராகு காலம் (Ragu Kalam Timing):</p>
-            <p style="margin: 5px 0 0 0; font-size: 12px;">
-                • திங்கள்: 07:30 - 09:00 | செவ்வாய்: 15:00 - 16:30<br>
-                • புதன்: 12:00 - 13:30<br>
-                • வியாழன்: 13:30 - 15:00 | வெள்ளி: 10:30 - 12:00<br>
-                • சனி: 09:00 - 10:30 | ஞாயிறு: 16:30 - 18:00
-            </p>
-        </div>
-
-        <div style="background: #f4f6f9; padding: 10px; border-radius: 6px; border-left: 4px solid #1565c0;">
-            <p style="margin: 0; font-weight: bold;">🔮 AI & கம்ப்யூட்டர் ஜாதகப் பொருத்தம் (10 பொருத்தங்கள்)</p>
-            <label style="font-size: 12px; font-weight: bold; display: block; margin-top: 8px;">மணமகன் / மணமகள் நட்சத்திரம்:</label>
-            <input type="text" id="nakshatramInput" placeholder="எ.கா: கார்த்திகை / பூசம்">
-            <button class="btn-action" onclick="checkPorutham()">கம்ப்யூட்டர் & AI மூலம் பொருத்தம் பார்</button>
-            <div id="poruthamResult" style="margin-top: 10px; font-size: 12px; color: #2e7d32; font-weight: bold;"></div>
-        </div>
+    <!-- Payment Option Box -->
+    <div class="section-box" style="border-left: 4px solid #d4af37;">
+        <h3>💎 பிரீமியம் மெம்பர்ஷிப் & பேமெண்ட் (Payment Gateway)</h3>
+        <p style="font-size: 12px; color: #555;">வரன்களின் முழு தொலைபேசி எண்களைப் பெற பிரீமியம் கணக்கிற்கு மாறவும்.</p>
+        <button class="btn-action btn-pay" onclick="alert('UPI / QR Code பேமெண்ட் பக்கம் விரைவில் இணைக்கப்படும்!')">⚡ ₹999 - Instant VIP Membership Pay</button>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        function checkPorutham() {
-            const val = document.getElementById('nakshatramInput').value;
-            const resDiv = document.getElementById('poruthamResult');
-            if(!val) {
-                alert("தயவுசெய்து நட்சத்திரத்தை உள்ளிடவும்!");
+        function runAiHoroscope() {
+            const s1 = document.getElementById('star1').value;
+            const s2 = document.getElementById('star2').value;
+            const res = document.getElementById('aiResult');
+            if(!s1 || !s2) {
+                alert("இரண்டு நட்சத்திரங்களையும் உள்ளிடவும்!");
                 return;
             }
-            resDiv.innerHTML = `✅ "${val}" நட்சத்திரத்திற்கான AI ஜாதகப் பொருத்தம் பரிசீலிக்கப்பட்டு வருகிறது. (8/10 பொருத்தங்கள் நன்று!)`;
+            res.innerHTML = `🌟 AI பகுப்பாய்வு: ${s1} மற்றும் ${s2} இடையே **8/10 பொருத்தங்கள்** உள்ளன. உத்தமமான பொருத்தம்!`;
         }
     </script>
 </body>

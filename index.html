@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony - Step-by-Step Flow</title>
+    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony - Full Registration Super App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 15px; color: #333; }
@@ -13,48 +13,70 @@
         .hidden { display: none; }
         
         h3 { color: #3b141c; font-size: 16px; margin-top: 0; border-bottom: 2px solid #d4af37; padding-bottom: 8px; }
-        input, select { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; box-sizing: border-box; }
+        label { font-size: 12px; font-weight: bold; display: block; margin-top: 10px; color: #444; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; box-sizing: border-box; }
         
-        .btn-action { background: #3b141c; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 5px; }
+        .btn-action { background: #3b141c; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 15px; }
         .btn-next { background: #2e7d32; }
         .btn-pay { background: #d4af37; color: #3b141c; }
         
-        .profile-card { background: #f9f9f9; border: 1px solid #ddd; padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 12px; }
+        .profile-card { background: #f9f9f9; border: 1px solid #ddd; padding: 12px; border-radius: 6px; margin-bottom: 10px; font-size: 12px; }
     </style>
 </head>
 <body>
 
     <div class="app-header">
         <h2>🌸 ஆண்டாள் அழகர் Matrimony</h2>
-        <p style="font-size: 12px; margin: 5px 0;">Advanced Step-by-Step Super App</p>
+        <p style="font-size: 12px; margin: 5px 0;">Full Registration & Super App Portal</p>
         <p style="font-size: 11px; color: #ffd700; margin: 0;">📞 Call: 8270045268</p>
     </div>
 
     <!-- STEP 1: SIGNUP / LOGIN -->
     <div id="step-login" class="step-container">
         <h3>1️⃣ வாடிக்கையாளர் Signup / Login</h3>
-        <p style="font-size: 12px; color: #666;">தொடர உங்கள் மொபைல் எண்ணை உள்ளிடவும்:</p>
-        <label style="font-size: 12px; font-weight: bold;">Mobile Number:</label>
+        <label>மொபைல் எண் (Mobile Number):</label>
         <input type="tel" id="userMobile" placeholder="எ.கா: 98426XXXXX">
         <button class="btn-action btn-next" onclick="goToRegister()">OTP அனுப்பி உள்நுழைக ➔</button>
     </div>
 
-    <!-- STEP 2: REGISTER & PHOTO UPLOAD -->
+    <!-- STEP 2: FULL REGISTER & PHOTO UPLOAD -->
     <div id="step-register" class="step-container hidden">
-        <h3>2️⃣ புதிய சுயவிவரப் பதிவு & போட்டோ அப்லோட்</h3>
-        <label style="font-size: 12px; font-weight: bold;">பெயர் / Name:</label>
-        <input type="text" id="regName" placeholder="உங்கள் முழு பெயர்">
-        <label style="font-size: 12px; font-weight: bold;">நட்சத்திரம் / Star:</label>
-        <input type="text" id="regStar" placeholder="எ.கா: கார்த்திகை">
-        <label style="font-size: 12px; font-weight: bold;">ஜாதகம் & போட்டோ அப்லோட்:</label>
-        <input type="file" id="regPhoto">
+        <h3>2️⃣ முழுமையான சுயவிவரப் பதிவு (Full Registration Form)</h3>
+        
+        <label>மணமகன் / மணமகள் பெயர்:</label>
+        <input type="text" id="regName" placeholder="முழு பெயர்">
+
+        <label>பாலினம் (Gender):</label>
+        <select id="regGender">
+            <option value="Male">மணமகன் (Bridegroom)</option>
+            <option value="Female">மணமகள் (Bride)</option>
+        </select>
+
+        <label>பிறந்த தேதி (DOB):</label>
+        <input type="date" id="regDob">
+
+        <label>கல்வி & வேலைவாய்ப்பு (Education & Job):</label>
+        <input type="text" id="regEdu" placeholder="எ.கா: B.Tech, Software Engineer">
+
+        <label>நட்சத்திரம் & ராசி (Nakshatram & Rasi):</label>
+        <input type="text" id="regStar" placeholder="எ.கா: கார்த்திகை / ரிஷபம்">
+
+        <label>தந்தை பெயர் & தாய் பெயர்:</label>
+        <input type="text" id="regParents" placeholder="தந்தை / தாய் பெயர்">
+
+        <label>தொடர்பு முகவரி & ஊர்:</label>
+        <textarea id="regAddress" rows="2" placeholder="ஊர், மாவட்டம்"></textarea>
+
+        <label>ஜாதகம் மற்றும் போட்டோ அப்லோட் (Photo & Horoscope):</label>
+        <input type="file" id="regPhoto" multiple>
+
         <button class="btn-action btn-next" onclick="goToPayment()">விவரங்களைச் சேமித்து கட்டணத்திற்குச் செல் ➔</button>
     </div>
 
     <!-- STEP 3: PAYMENT OPTION -->
     <div id="step-payment" class="step-container hidden" style="border-left: 5px solid #d4af37;">
         <h3>3️⃣ பிரீமியம் மெம்பர்ஷிப் கட்டணம் (Payment)</h3>
-        <p style="font-size: 12px; color: #555;">வரண்களைப் பார்க்கவும் ஜாதகம் பொருத்தவும் சிறிய கட்டணம் செலுத்தவும்:</p>
+        <p style="font-size: 12px; color: #555;">பதிவு வெற்றிகரமாக முடிந்தது! வரன்களைப் பார்க்க சிறிய கட்டணம் செலுத்தவும்:</p>
         <button class="btn-action btn-pay" onclick="goToMatching()">💳 ₹999 - Pay via UPI / GPay / PhonePe</button>
     </div>
 
@@ -63,34 +85,32 @@
         <h3>4️⃣ வரன்கள் தேடல் (Matching Profiles)</h3>
         <div class="profile-card">
             <b>ID: AA101</b> | 24 வயது, B.Tech<br>நட்சத்திரம்: ரோகிணி | ஊர்: மதுரை
-            <button style="float:right; background:#2e7d32; color:white; border:none; padding:3px 8px; border-radius:3px;" onclick="goToPorutham()">பொருத்தம் பார்க்க</button>
+            <button style="float:right; background:#2e7d32; color:white; border:none; padding:4px 10px; border-radius:4px;" onclick="goToPorutham()">பொருத்தம் பார்க்க</button>
         </div>
         <div class="profile-card">
             <b>ID: AA102</b> | 23 வயது, M.Sc<br>நட்சத்திரம்: பூசம் | ஊர்: சென்னை
-            <button style="float:right; background:#2e7d32; color:white; border:none; padding:3px 8px; border-radius:3px;" onclick="goToPorutham()">பொருத்தம் பார்க்க</button>
+            <button style="float:right; background:#2e7d32; color:white; border:none; padding:4px 10px; border-radius:4px;" onclick="goToPorutham()">பொருத்தம் பார்க்க</button>
         </div>
-        <button class="btn-action btn-next" onclick="goToPorutham()" style="margin-top:10px;">அடுத்து: ஜாதகப் பொருத்தம் ➔</button>
     </div>
 
     <!-- STEP 5: 10 PORUTHAM -->
     <div id="step-porutham" class="step-container hidden">
         <h3>5️⃣ 10 ஜாதகப் பொருத்தங்கள் (Traditional Porutham)</h3>
-        <p style="font-size: 12px;">தின பொருத்தங்கள் கணக்கிடப்படுகிறது...</p>
         <ul style="font-size: 12px; padding-left: 15px; line-height: 1.6;">
             <li>தின பொருத்தம்: நன்று (Uttamam)</li>
             <li>கண பொருத்த பொருத்தம்: நன்று</li>
             <li>மகேந்திர பொருத்தம்: உத்தமம்</li>
             <li>யோனி பொருத்தம்: நன்று</li>
+            <li><b>முடிவு: 8/10 பொருத்தங்கள் கச்சிதமாக பொருந்துகின்றன!</b></li>
         </ul>
         <button class="btn-action btn-next" onclick="goToAiAstrology()">அடுத்து: AI Astrology & Horoscope ➔</button>
     </div>
 
-    <!-- STEP 6: AI ASTROLOGY & HOROSCOPY -->
+    <!-- STEP 6: AI ASTROLOGY -->
     <div id="step-ai" class="step-container hidden" style="border-left: 5px solid #1565c0;">
         <h3>6️⃣ AI Astrology & Deep Horoscope Analysis</h3>
-        <p style="font-size: 12px; color: #444;">கட்டங்கள் மற்றும் கிரக நிலைகளின் அடிப்படையில் AI கணிப்பு:</p>
-        <div style="background: #eef2f7; padding: 10px; border-radius: 5px; font-size: 12px; color: #1565c0; font-weight: bold;">
-            🤖 AI ரிசல்ட்: இந்த ஜாதக இணைப்பில் குரு பலம் சிறப்பாக உள்ளது. நீண்ட ஆயுள் மற்றும் தம்பதியரிடையே அன்யோன்யம் அருமையாக இருக்கும்! (9.5/10 Score)
+        <div style="background: #eef2f7; padding: 12px; border-radius: 5px; font-size: 12px; color: #1565c0; font-weight: bold; line-height: 1.5;">
+            🤖 AI கணிப்பு: கிரக நிலைகளின்படி இந்த ஜோடிக்கு எதிர்காலம் மிகச் சிறப்பாக இருக்கும். மங்களகரமான யோகம் அமைந்துள்ளது! (9.5/10 Score)
         </div>
         <button class="btn-action" onclick="resetApp()" style="background:#555; margin-top: 15px;">🔄 மீண்டும் முதல் முதல் தொடங்க</button>
     </div>
@@ -110,14 +130,14 @@
 
         function goToRegister() {
             const m = document.getElementById('userMobile').value;
-            if(!m) { alert("மொபைல் எண்ணை உள்ளிடவும்!"); return; }
+            if(!m) { alert("தயவுசெய்து மொபைல் எண்ணை உள்ளிடவும்!"); return; }
             hideAll();
             document.getElementById('step-register').classList.remove('hidden');
         }
 
         function goToPayment() {
             const n = document.getElementById('regName').value;
-            if(!n) { alert("பெயரை உள்ளிடவும்!"); return; }
+            if(!n) { alert("தயவுசெய்து பெயரை உள்ளிடவும்!"); return; }
             hideAll();
             document.getElementById('step-payment').classList.remove('hidden');
         }

@@ -6,62 +6,90 @@
     <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 12px; color: #333; }
+        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; color: #333; }
+        
+        /* Card Style Header with Diagonal Photo Background Look */
         .app-header { 
-            text-align: center; 
-            background: linear-gradient(135deg, #e6c687, #b8860b, #800020); 
+            position: relative;
+            background: linear-gradient(135deg, #dfc378 0%, #c19a4b 50%, #800020 100%);
             color: #3b141c; 
-            padding: 20px 12px; 
+            padding: 16px; 
             border-radius: 12px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             border: 2px solid #800020;
+            overflow: hidden;
+            min-height: 90px;
         }
-        .app-header .om-text { font-size: 16px; font-weight: 900; color: #5c0613; letter-spacing: 1px; margin-bottom: 2px; }
-        .app-header h2 { font-size: 26px; margin: 0 0 8px 0; color: #5c0613; text-shadow: 1px 1px 2px rgba(255,255,255,0.7); font-weight: 900; }
-        .app-header .sub-title { background: #6d1a24; color: #fff; display: inline-block; padding: 5px 14px; border-radius: 20px; font-size: 13px; margin: 4px 0 8px 0; font-weight: bold; }
-        .whatsapp-badge { font-size: 12px; color: #ffffff; background: #25d366; padding: 5px 12px; border-radius: 15px; display: inline-block; margin-top: 5px; font-weight: bold; }
+        .header-content {
+            position: relative;
+            z-index: 2;
+            width: 60%;
+        }
+        .app-header .om-text { font-size: 15px; font-weight: 900; color: #5c0613; letter-spacing: 1px; }
+        .app-header h2 { font-size: 24px; margin: 2px 0; color: #5c0613; text-shadow: 1px 1px 2px rgba(255,255,255,0.7); font-weight: 900; }
+        .app-header .sub-title { background: #6d1a24; color: #fff; display: inline-block; padding: 3px 10px; border-radius: 15px; font-size: 11px; font-weight: bold; margin-top: 2px; }
+        .whatsapp-badge { font-size: 11px; color: #ffffff; background: #25d366; padding: 3px 8px; border-radius: 12px; display: inline-block; margin-top: 6px; font-weight: bold; }
+
+        /* Simulated Wedding Couple Image Area on Right Side like your photo */
+        .header-image-bg {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 45%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400&q=80') center/cover no-repeat;
+            clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+            border-left: 3px solid #800020;
+            opacity: 0.95;
+        }
 
         /* Navigation Switcher Tabs */
-        .nav-tabs { display: flex; gap: 10px; margin-top: 15px; }
-        .nav-btn { flex: 1; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; background: #ddd; color: #333; text-align: center; }
+        .nav-tabs { display: flex; gap: 8px; margin-top: 12px; }
+        .nav-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 12px; background: #ddd; color: #333; }
         .nav-btn.active { background: #800020; color: white; }
 
         .section-box { display: none; }
         .section-box.active { display: block; }
 
-        .step-container { background: white; padding: 18px; border-radius: 8px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-top: 4px solid #800020; }
-        .hidden { display: none !important; }
-        h3 { color: #800020; font-size: 15px; margin-top: 0; border-bottom: 2px solid #e6c687; padding-bottom: 6px; }
-        label { font-size: 12px; font-weight: bold; display: block; margin-top: 10px; color: #444; }
-        input, select, textarea { width: 100%; padding: 9px; margin-top: 4px; margin-bottom: 6px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; box-sizing: border-box; }
-        .btn-action { background: #800020; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 15px; }
+        .step-container { background: white; padding: 15px; border-radius: 8px; margin-top: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-top: 4px solid #800020; }
+        .hidden { display: none; }
+        h3 { color: #800020; font-size: 14px; margin-top: 0; border-bottom: 2px solid #e6c687; padding-bottom: 5px; }
+        label { font-size: 11px; font-weight: bold; display: block; margin-top: 8px; color: #444; }
+        input, select, textarea { width: 100%; padding: 8px; margin-top: 3px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; box-sizing: border-box; }
+        .btn-action { background: #800020; color: white; border: none; padding: 11px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 13px; margin-top: 12px; }
         .btn-next { background: #2e7d32; }
         .btn-pay { background: #d4af37; color: #3b141c; }
-        .profile-card { background: #fdfbf7; border: 1px solid #e6c687; padding: 12px; border-radius: 6px; margin-bottom: 10px; font-size: 12px; }
+        .profile-card { background: #fdfbf7; border: 1px solid #e6c687; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 11px; }
         
         /* Admin Table Styles */
-        table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 10px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 8px; }
+        th, td { border: 1px solid #ddd; padding: 7px; text-align: left; }
         th { background: #800020; color: white; }
     </style>
 </head>
 <body>
 
+    <!-- Card Header with Diagonal Image Design -->
     <div class="app-header">
-        <div class="om-text">ஓம்</div>
-        <h2>ஸ்ரீ ஆண்டாள் அழகர்</h2>
-        <div class="sub-title">Matrimony</div><br>
-        <div class="whatsapp-badge">🟢 WhatsApp Support: 9092745268</div>
+        <div class="header-image-bg"></div>
+        <div class="header-content">
+            <div class="om-text">ஓம்</div>
+            <h2>ஸ்ரீ ஆண்டாள் அழகர்</h2>
+            <div class="sub-title">திருமண அமைப்பு மையம்</div><br>
+            <div class="whatsapp-badge">🟢 9092745268</div>
+        </div>
     </div>
 
     <!-- Switch Between Customer & Admin View -->
     <div class="nav-tabs">
-        <button class="nav-btn active" id="tabCustomerBtn" onclick="switchView('customer')">👤 வாடிக்கையாளர் பக்கம்</button>
-        <button class="nav-btn" id="tabAdminBtn" onclick="switchView('admin')">🔒 அட்மின் பேனல்</button>
+        <button class="nav-btn active" id="tabCustomerBtn" onclick="switchView('customer')">👤 வாடிக்கையாளர் (Customer)</button>
+        <button class="nav-btn" id="tabAdminBtn" onclick="switchView('admin')">🔒 அட்மின் பேனல் (Admin)</button>
     </div>
 
     <!-- ================= CUSTOMER SECTION ================= -->
     <div id="customerSection" class="section-box active">
+        
+        <!-- 1: SIGNUP / LOGIN -->
         <div id="step-auth" class="step-container">
             <h3>1️⃣ கணக்கு தொடங்குதல் & உள்நுழைவு (Signup & Login)</h3>
             <label>மொபைல் எண் (Mobile Number):</label>
@@ -69,6 +97,7 @@
             <button class="btn-action btn-next" onclick="goToRegister()">OTP பெற்று உள்நுழைக ➔</button>
         </div>
 
+        <!-- 2: REGISTER & PHOTO UPLOAD (₹99) -->
         <div id="step-register" class="step-container hidden">
             <h3>2️⃣ சுயவிவரப் பதிவு & போட்டோ அப்லோட் (Registration Form)</h3>
             <label>வரன் பெயர்:</label>
@@ -95,30 +124,34 @@
             <button class="btn-action btn-pay" onclick="goToRegisterPayment()">💳 பதிவுக் கட்டணம் செலுத்த ₹99 (Pay & Register) ➔</button>
         </div>
 
+        <!-- REGISTRATION PAYMENT (₹99) -->
         <div id="step-reg-pay" class="step-container hidden" style="border-left: 5px solid #d4af37;">
             <h3>பதிவுக் கட்டணம் (Registration Fee - ₹99)</h3>
-            <p style="font-size: 12px; color: #555;">விவரங்களைச் சேமிக்க ₹99 செலுத்தவும்:</p>
+            <p style="font-size: 11px; color: #555;">விவரங்களைச் சேமிக்க ₹99 செலுத்தவும்:</p>
             <button class="btn-action btn-pay" onclick="completeRegistration()">✅ UPI / GPay மூலம் ₹99 செலுத்துக</button>
         </div>
 
+        <!-- 3: MATCHING PROFILE -->
         <div id="step-matching" class="step-container hidden">
             <h3>3️⃣ வரன்கள் தேடல் (Matching Profiles)</h3>
-            <p style="font-size: 12px; color: #2e7d32; font-weight: bold;">🎉 பதிவு வெற்றி! பொருத்தமான வரன்கள்:</p>
+            <p style="font-size: 11px; color: #2e7d32; font-weight: bold;">🎉 பதிவு வெற்றி! பொருத்தமான வரன்கள்:</p>
             <div class="profile-card">
-                <b>பதிவு எண்: AA101</b> | பெயர்: கார்த்திக் | 26 வயது, B.E<br>நட்சத்திரம்: பூசம் | ஊர்: சென்னை
-                <button style="float:right; background:#800020; color:#fff; font-weight:bold; border:none; padding:5px 10px; border-radius:4px; margin-top:4px;" onclick="goToMatchingPayment()">ஜாதகம் பார்க்க ₹499</button>
+                <b>பதிவு எண்: AA101</b> | 24 வயது, B.Tech<br>நட்சத்திரம்: ரோகிணி | ஊர்: மதுரை
+                <button style="float:right; background:#800020; color:#fff; font-weight:bold; border:none; padding:4px 8px; border-radius:4px; margin-top:3px;" onclick="goToMatchingPayment()">வரன்கள் பார்க்க ₹499</button>
             </div>
         </div>
 
+        <!-- MATCHING PAYMENT (₹499) -->
         <div id="step-matching-pay" class="step-container hidden" style="border-left: 5px solid #d4af37;">
             <h3>மேட்சிங் கட்டணம் (Matching Fee - ₹499)</h3>
-            <p style="font-size: 12px; color: #555;">முழுமையான வரன் விவரங்கள் மற்றும் 10 பொருத்தம் காண ₹499 செலுத்தவும்:</p>
+            <p style="font-size: 11px; color: #555;">முழுமையான வரன் விவரங்களைக் காண ₹499 செலுத்தவும்:</p>
             <button class="btn-action btn-pay" onclick="openPoruthamStep()">💳 UPI / GPay மூலம் ₹499 செலுத்துக</button>
         </div>
 
+        <!-- 4: 10 PORUTHAM -->
         <div id="step-porutham" class="step-container hidden">
             <h3>4️⃣ 10 ஜாதகப் பொருத்தங்கள் (10 Porutham)</h3>
-            <ul style="font-size: 12px; padding-left: 15px; line-height: 1.6;">
+            <ul style="font-size: 11px; padding-left: 15px; line-height: 1.5;">
                 <li>தின பொருத்தம்: உத்தமம்</li>
                 <li>கண பொருத்த பொருத்தம்: நன்று</li>
                 <li>மகேந்திர பொருத்தம்: சிறப்பு</li>
@@ -128,111 +161,55 @@
             <button class="btn-action btn-next" onclick="openAiPoruthamStep()">அடுத்து: AI பொருத்தம் பார்க்க ➔</button>
         </div>
 
+        <!-- 5: AI PORUTHAM -->
         <div id="step-ai-porutham" class="step-container hidden" style="border-left: 5px solid #1565c0;">
             <h3>5️⃣ AI ஜாதகப் பொருத்தம் (AI Porutham)</h3>
-            <div style="background: #eef2f7; padding: 12px; border-radius: 5px; font-size: 12px; color: #1565c0; font-weight: bold; line-height: 1.5;">
-                🤖 AI பொருத்தம் ஆய்வு முழுமையாக நிறைவடைந்தது. (9.6/10)
+            <div style="background: #eef2f7; padding: 10px; border-radius: 5px; font-size: 11px; color: #1565c0; font-weight: bold; line-height: 1.4;">
+                🤖 AI பொருத்தம் ஆய்வு: நட்சத்துரப் பொருத்தங்கள் மற்றும் தோஷங்கள் முழுமையாக ஆய்வு செய்யப்பட்டன. இந்த ஜோடிக்கு மனப்பொருத்தம் மிக அருமையாக அமையும்! (9.6/10)
             </div>
             <button class="btn-action btn-next" onclick="openAstrologyStep()">அடுத்து: ஜோதிட பலன்கள் பார்க்க ➔</button>
         </div>
 
+        <!-- 6: ASTROLOGY -->
         <div id="step-astrology" class="step-container hidden">
             <h3>6️⃣ ஜோதிட பலன்கள் (Astrology)</h3>
-            <p style="font-size: 12px; line-height: 1.6;"><b>கிரக நிலைகள்:</b> ஜென்ம ராசியில் குரு பார்வை இருப்பதால் சுபிட்சமான வாழ்க்கை அமையும்.</p>
-            <button class="btn-action btn-next" onclick="openAiHoroscopeStep()">அடுத்து: AI ஜாதக கணிப்பு ➔</button>
+            <p style="font-size: 11px; line-height: 1.5;">
+                <b>கிரக நிலைகள்:</b> ஜென்ம ராசியில் குரு பார்வை இருப்பதால் திருமணத்திற்குப் பின் சுபிட்சமான வாழ்க்கை அமையும். மங்களகரமான யோகம் கைகூடியுள்ளது.
+            </p>
+            <button class="btn-action btn-next" onclick="openAiHoroscopeStep()">அடுத்து: AI ஜாதக கணிப்பு (AI Horoscope) ➔</button>
         </div>
 
+        <!-- 7: AI HOROSCOPE -->
         <div id="step-ai-horoscope" class="step-container hidden" style="border-left: 5px solid #800020;">
-            <h3>7️⃣ AI ஜாதக கணிப்பு & விரிவான ரிப்போர்ட்</h3>
-            <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 12px; border-radius: 5px; font-size: 12px; color: #800020; font-weight: bold;">
-                🌟 முழுமையான வெற்றிக்கான ஜாதகம்! (9.9/10 Score)
+            <h3>7️⃣ AI ஜாதக கணிப்பு & விரிவான ரிப்போர்ட் (AI Horoscope)</h3>
+            <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 10px; border-radius: 5px; font-size: 11px; color: #800020; font-weight: bold; line-height: 1.4;">
+                🌟 AI பிரம்மாண்ட ரிப்போர்ட்: லக்னாதிபதி பலம் பெற்றுள்ளதால் எதிர்கால தொழில் மற்றும் குடும்ப வாழ்க்கை வியக்கத்தக்க வகையில் உயரும். முழுமையான வெற்றிக்கான ஜாதகம் இது! (9.9/10 Score)
             </div>
-            <button class="btn-action" onclick="resetApp()" style="background:#555; margin-top: 15px;">🔄 முதல் பக்கத்திற்குச் செல்ல</button>
+            <button class="btn-action" onclick="resetApp()" style="background:#555; margin-top: 12px;">🔄 முதல் பக்கத்திற்குச் செல்ல</button>
         </div>
     </div>
 
     <!-- ================= ADMIN SECTION ================= -->
     <div id="adminSection" class="section-box">
-        
-        <!-- 1. Admin Setup Box (First time setup) -->
-        <div id="adminSetupBox" class="step-container hidden" style="border-top: 4px solid #800020;">
-            <h3>⚙️ புதிய அட்மின் லாகின் உருவாக்க</h3>
-            <p style="font-size: 12px; color: #555;">உங்கள் சொந்த Username மற்றும் Password-ஐ இங்கே உருவாக்கவும்:</p>
-            <label>புதிய Username:</label>
-            <input type="text" id="setupUser" placeholder="எ.கா: myadmin">
-            <label>புதிய Password:</label>
-            <input type="password" id="setupPass" placeholder="பாஸ்வேர்ட் உள்ளிடவும்">
-            <button class="btn-action" onclick="saveAdminCredentials()" style="background: #2e7d32; margin-top: 8px;">💾 லாகின் விவரங்களைச் சேமி</button>
+        <div class="step-container" style="border-top: 4px solid #d4af37;">
+            <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
+            <p style="font-size: 11px; color: #555;">பதிவு செய்த வாடிக்கையாளர்கள் மற்றும் கட்டண விவரங்கள்:</p>
+            
+            <table>
+                <tr>
+                    <th>பெயர்</th>
+                    <th>மொபைல்</th>
+                    <th>கட்டணம் (₹99 / ₹499)</th>
+                </tr>
+                <tr>
+                    <td>மாதவன் (எடுத்துக்காட்டு)</td>
+                    <td>98426XXXXX</td>
+                    <td>₹99 Paid & ₹499 Paid</td>
+                </tr>
+            </table>
+            
+            <button class="btn-action" onclick="alert('புதிய டேட்டா ஒத்திசைக்கப்பட்டது!')" style="background: #2e7d32; margin-top: 12px;">🔄 டேட்டாவைப் புதுப்பிக்க</button>
         </div>
-
-        <!-- 2. Admin Login Box -->
-        <div id="adminLoginBox" class="step-container hidden" style="border-top: 4px solid #800020;">
-            <h3>🔐 அட்மின் பாதுகாப்பு உள்நுழைவு</h3>
-            <label>Username:</label>
-            <input type="text" id="adminUser" placeholder="உங்கள் Username">
-            <label>Password:</label>
-            <input type="password" id="adminPass" placeholder="உங்கள் Password">
-            <button class="btn-action" onclick="checkAdminLogin()" style="background: #800020;">உள்நுழை (Login)</button>
-            <button onclick="resetAdminSetup()" style="background:none; border:none; color:#800020; font-size:11px; text-decoration:underline; cursor:pointer; width:100%; margin-top:10px;">Username/Password மாற்ற</button>
-        </div>
-
-        <!-- 3. Admin Panel Content -->
-        <div id="adminPanelContent" class="hidden">
-            <div class="step-container" style="border-top: 4px solid #d4af37;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h3 style="margin:0; border:none;">➕ புதிய வரனை நேரடியாகப் பதிவு செய்ய</h3>
-                    <button onclick="adminLogout()" style="background:#c62828; color:#white; border:none; padding:4px 8px; border-radius:4px; font-size:11px; cursor:pointer; color:#fff;">Logout ⏏</button>
-                </div>
-                <hr style="border:0; border-top:1px solid #e6c687; margin:8px 0;">
-                
-                <label>வரன் பெயர்:</label>
-                <input type="text" id="adminName" placeholder="முழு பெயர்">
-                <label>மொபைல் எண்:</label>
-                <input type="text" id="adminMobile" placeholder="மொபைல் எண்">
-                <label>பிறந்த தேதி & நேரம்:</label>
-                <input type="text" id="adminDobTime" placeholder="எ.கா: 15.06.1998, காலை 10:15 மணி">
-                <label>படிப்பு & வேலை:</label>
-                <input type="text" id="adminEdu" placeholder="எ.கா: B.Tech, Software Engineer">
-                <label>வேலை செய்யும் இடம் / ஊர்:</label>
-                <input type="text" id="adminWorkPlace" placeholder="எ.கா: சென்னை">
-                <label>வருமானம்:</label>
-                <input type="text" id="adminIncome" placeholder="எ.கா: மாதம் ரூ. 50,000">
-                <label>ராசி, நட்சத்திரம்:</label>
-                <input type="text" id="adminStar" placeholder="எ.கா: ரிஷபம், ரோகிணி">
-                <label>நிறம், உயரம்:</label>
-                <input type="text" id="adminHeight" placeholder="எ.கா: மாநிறம், 5' 10\"">
-                <label>தந்தையார் & தாயார் பெயர்:</label>
-                <input type="text" id="adminParents" placeholder="தந்தை / தாய் பெயர்">
-                <label>பூர்வீகம், இருப்பிடம்:</label>
-                <textarea id="adminAddress" rows="2" placeholder="ஊர், மாவட்டம்"></textarea>
-                
-                <button class="btn-action" onclick="addNewProfileByAdmin()" style="background: #800020; margin-top: 10px;">💾 வரனைச் சேமி (Save Profile)</button>
-            </div>
-
-            <!-- Dashboard List -->
-            <div class="step-container" style="border-top: 4px solid #800020;">
-                <h3>🔒 அட்மின் பிரதான டேஷ்போர்டு (All Registered Profiles Log)</h3>
-                <p style="font-size: 12px; color: #555;">பதிவு செய்தவர்களின் முழு விவரம் மற்றும் நேரம்:</p>
-                
-                <table>
-                    <thead>
-                        <tr>
-                            <th>தேதி & நேரம் (Time)</th>
-                            <th>பெயர் & மொபைல்</th>
-                            <th>விவரம் (Star/City)</th>
-                            <th>நிலை (Status)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminTableBody">
-                        <!-- Dynamic Data loaded via JS -->
-                    </tbody>
-                </table>
-                
-                <button class="btn-action" onclick="loadAdminData()" style="background: #2e7d32; margin-top: 15px;">🔄 டேட்டாவைப் புதுப்பிக்க (Refresh)</button>
-                <button class="btn-action" onclick="clearAllData()" style="background: #c62828; margin-top: 5px;">🗑️ அனைத்து டேட்டாவையும் நீக்க</button>
-            </div>
-        </div>
-
     </div>
 
     <script>
@@ -251,81 +228,7 @@
             } else {
                 document.getElementById('adminSection').classList.add('active');
                 document.getElementById('tabAdminBtn').classList.add('active');
-                checkAdminState();
-                if(sessionStorage.getItem('isAdminLoggedIn') === 'true') {
-                    showAdminPanel();
-                }
             }
-        }
-
-        function checkAdminState() {
-            const savedUser = localStorage.getItem('my_admin_user');
-            if(!savedUser) {
-                document.getElementById('adminSetupBox').classList.remove('hidden');
-                document.getElementById('adminLoginBox').classList.add('hidden');
-                document.getElementById('adminPanelContent').classList.add('hidden');
-            } else {
-                if(sessionStorage.getItem('isAdminLoggedIn') !== 'true') {
-                    document.getElementById('adminSetupBox').classList.add('hidden');
-                    document.getElementById('adminLoginBox').classList.remove('hidden');
-                    document.getElementById('adminPanelContent').classList.add('hidden');
-                } else {
-                    showAdminPanel();
-                }
-            }
-        }
-
-        function saveAdminCredentials() {
-            const u = document.getElementById('setupUser').value.trim();
-            const p = document.getElementById('setupPass').value.trim();
-
-            if(!u || !p) {
-                alert("தயவுசெய்து Username மற்றும் Password-ஐ உள்ளிடவும்!");
-                return;
-            }
-
-            localStorage.setItem('my_admin_user', u);
-            localStorage.setItem('my_admin_pass', p);
-            alert("அட்மின் லாகின் விவரங்கள் வெற்றிகரமாக சேமிக்கப்பட்டன!");
-            checkAdminState();
-        }
-
-        function resetAdminSetup() {
-            if(confirm("புதிய Username மற்றும் Password அமைக்க விரும்புகிறீர்களா?")) {
-                localStorage.removeItem('my_admin_user');
-                localStorage.removeItem('my_admin_pass');
-                checkAdminState();
-            }
-        }
-
-        function checkAdminLogin() {
-            const u = document.getElementById('adminUser').value.trim();
-            const p = document.getElementById('adminPass').value.trim();
-
-            const savedUser = localStorage.getItem('my_admin_user');
-            const savedPass = localStorage.getItem('my_admin_pass');
-
-            if(u === savedUser && p === savedPass) {
-                sessionStorage.setItem('isAdminLoggedIn', 'true');
-                showAdminPanel();
-            } else {
-                alert("தவறான Username அல்லது Password!");
-            }
-        }
-
-        function showAdminPanel() {
-            document.getElementById('adminSetupBox').classList.add('hidden');
-            document.getElementById('adminLoginBox').classList.add('hidden');
-            document.getElementById('adminPanelContent').classList.remove('hidden');
-            loadAdminData();
-        }
-
-        function adminLogout() {
-            sessionStorage.removeItem('isAdminLoggedIn');
-            document.getElementById('adminUser').value = '';
-            document.getElementById('adminPass').value = '';
-            document.getElementById('adminPanelContent').classList.add('hidden');
-            checkAdminState();
         }
 
         function hideAll() {
@@ -347,113 +250,17 @@
             document.getElementById('step-register').classList.remove('hidden');
         }
 
-        let currentProfile = {};
-
         function goToRegisterPayment() {
-            const name = document.getElementById('regName').value;
-            const mobile = document.getElementById('userMobile').value;
-            const star = document.getElementById('regStar').value;
-            const address = document.getElementById('regAddress').value;
-
-            if(!name) { alert("தயவுசெய்து வரன் பெயரை உள்ளிடவும்!"); return; }
-
-            let now = new Date();
-            let timeString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-            currentProfile = {
-                time: timeString,
-                name: name,
-                mobile: mobile || "98426XXXXX",
-                details: (star ? star : "நட்சத்திரம் இல்லை") + " / " + (address ? address : "ஊர் இல்லை"),
-                status: "₹99 Pending"
-            };
-
+            const n = document.getElementById('regName').value;
+            if(!n) { alert("தயவுசெய்து வரன் பெயரை உள்ளிடவும்!"); return; }
             hideAll();
             document.getElementById('step-reg-pay').classList.remove('hidden');
         }
 
         function completeRegistration() {
-            currentProfile.status = "₹99 Paid (Customer)";
-            saveProfileToLocalStorage(currentProfile);
-            loadAdminData();
             alert("₹99 பதிவுக் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது!");
             hideAll();
             document.getElementById('step-matching').classList.remove('hidden');
-        }
-
-        function addNewProfileByAdmin() {
-            const name = document.getElementById('adminName').value;
-            const mobile = document.getElementById('adminMobile').value;
-            const star = document.getElementById('adminStar').value;
-            const address = document.getElementById('adminAddress').value;
-
-            if(!name || !mobile) {
-                alert("தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்!");
-                return;
-            }
-
-            let now = new Date();
-            let timeString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-            const newProfile = {
-                time: timeString,
-                name: name,
-                mobile: mobile,
-                details: (star ? star : "நட்சத்திரம் இல்லை") + " / " + (address ? address : "ஊர் இல்லை"),
-                status: "Admin Added (Direct)"
-            };
-
-            saveProfileToLocalStorage(newProfile);
-            loadAdminData();
-
-            document.getElementById('adminName').value = '';
-            document.getElementById('adminMobile').value = '';
-            document.getElementById('adminDobTime').value = '';
-            document.getElementById('adminEdu').value = '';
-            document.getElementById('adminWorkPlace').value = '';
-            document.getElementById('adminIncome').value = '';
-            document.getElementById('adminStar').value = '';
-            document.getElementById('adminHeight').value = '';
-            document.getElementById('adminParents').value = '';
-            document.getElementById('adminAddress').value = '';
-
-            alert("புதிய வரனின் முழு விவரமும் அட்மின் டேபிளில் வெற்றிகரமாக சேர்க்கப்பட்டது!");
-        }
-
-        function saveProfileToLocalStorage(profile) {
-            let profiles = JSON.parse(localStorage.getItem('matrimony_profiles') || '[]');
-            profiles.push(profile);
-            localStorage.setItem('matrimony_profiles', JSON.stringify(profiles));
-        }
-
-        function loadAdminData() {
-            const tbody = document.getElementById('adminTableBody');
-            if(!tbody) return;
-            let profiles = JSON.parse(localStorage.getItem('matrimony_profiles') || '[]');
-            
-            let allProfiles = [
-                { time: "15/09/2026 03:30 PM", name: "மாதவன்", mobile: "98426XXXXX", details: "ரோகிணி / மதுரை", status: "₹99 & ₹499 Paid (Full Package)" },
-                ...profiles.reverse()
-            ];
-
-            let html = '';
-            allProfiles.forEach(p => {
-                html += `<tr>
-                    <td>${p.time || "நேரம் இல்லை"}</td>
-                    <td><b>${p.name}</b><br><span style="color:#666;">${p.mobile}</span></td>
-                    <td>${p.details}</td>
-                    <td><b style="color:green;">${p.status}</b></td>
-                </tr>`;
-            });
-            tbody.innerHTML = html;
-        }
-
-        function clearAllData() {
-            if(confirm("அனைத்து டேட்டாவையும் நீக்க வேண்டுமா?")) {
-                localStorage.removeItem('matrimony_profiles');
-                loadAdminData();
-                alert("அனைத்து டேட்டாவும் அழிக்கப்பட்டது!");
-            }
         }
 
         function goToMatchingPayment() {
@@ -462,14 +269,7 @@
         }
 
         function openPoruthamStep() {
-            let profiles = JSON.parse(localStorage.getItem('matrimony_profiles') || '[]');
-            if(profiles.length > 0) {
-                profiles[profiles.length - 1].status = "₹99 & ₹499 Paid (Full Package)";
-                localStorage.setItem('matrimony_profiles', JSON.stringify(profiles));
-                loadAdminData();
-            }
-
-            alert("₹499 மேட்சிங் கட்டணம் செலுத்தப்பட்டது!");
+            alert("₹499 மேட்சிங் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது!");
             hideAll();
             document.getElementById('step-porutham').classList.remove('hidden');
         }

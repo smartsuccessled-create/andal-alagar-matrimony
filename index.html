@@ -7,7 +7,7 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 75px; color: #333; }
+        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 30px; color: #333; }
         
         /* Card Style Header */
         .app-header { 
@@ -34,18 +34,15 @@
             border-left: 3px solid #800020;
         }
 
-        /* Bottom Navigation Bar */
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%; background: #2b0b10;
-            border-top: 2px solid #d4af37; display: flex; justify-content: space-around;
-            padding: 6px 2px; box-shadow: 0 -4px 10px rgba(0,0,0,0.3); z-index: 1000;
+        /* Top Tab Menu Buttons inside App */
+        .menu-bar {
+            display: flex; gap: 5px; overflow-x: auto; margin-top: 10px; padding-bottom: 5px;
         }
-        .nav-item {
-            background: none; border: none; color: #d8c29d; font-size: 9px; font-weight: bold;
-            display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 2px; flex: 1;
+        .menu-btn {
+            background: #2b0b10; color: #d8c29d; border: 1px solid #d4af37; padding: 6px 12px;
+            border-radius: 15px; font-size: 11px; font-weight: bold; cursor: pointer; white-space: nowrap;
         }
-        .nav-item span.icon { font-size: 16px; margin-bottom: 2px; }
-        .nav-item.active { color: #ffffff; }
+        .menu-btn.active { background: #800020; color: #ffffff; border-color: #ffffff; }
 
         .section-box { display: none; }
         .section-box.active { display: block; }
@@ -76,6 +73,16 @@
         </div>
     </div>
 
+    <!-- Menu Navigation Bar (Working Buttons) -->
+    <div class="menu-bar">
+        <button class="menu-btn active" id="menuLogin" onclick="switchTab('login')">🔑 Login</button>
+        <button class="menu-btn" id="menuRegister" onclick="switchTab('register')">📝 Register</button>
+        <button class="menu-btn" id="menuPayment" onclick="switchTab('payment')">💳 Payment</button>
+        <button class="menu-btn" id="menuMatches" onclick="switchTab('matches')">✨ Matches</button>
+        <button class="menu-btn" id="menuAi" onclick="switchTab('ai')">🌟 AI Report</button>
+        <button class="menu-btn" id="menuAdmin" onclick="switchTab('admin')">🔒 Admin</button>
+    </div>
+
     <!-- 1. LOGIN TAB -->
     <div id="sec-login" class="section-box active">
         <div class="step-container">
@@ -85,6 +92,7 @@
             <label>பாஸ்வேர்ட் (Password):</label>
             <input type="password" id="loginPassword" placeholder="******">
             <button class="btn-action btn-next" onclick="userLogin()">உள்நுழைய (Login) ➔</button>
+            <p style="font-size: 11px; text-align: center; margin-top: 10px;">புதிய வரனா? மேலே உள்ள **Register** பட்டனை அழுத்தவும்.</p>
         </div>
     </div>
 
@@ -135,7 +143,6 @@
             <label>முகவரி (Address):</label>
             <input type="text" id="bAddress" placeholder="வீட்டு முகவரி">
 
-            <!-- District selection used for filtering matching profiles -->
             <label>மாவட்டம் (District):</label>
             <select id="bDistrict">
                 <option value="தஞ்சாவூர்">தஞ்சாவூர்</option>
@@ -160,7 +167,7 @@
         </div>
     </div>
 
-    <!-- 3. PAYMENT & MATCHING PROFILES TAB -->
+    <!-- 3. PAYMENT TAB -->
     <div id="sec-payment" class="section-box">
         <div class="step-container">
             <h3>💳 கட்டணம் செலுத்துதல் (Payment Gateway - ₹499)</h3>
@@ -174,21 +181,21 @@
         </div>
     </div>
 
-    <!-- 4. MATCHING PROFILES (Opens immediately after payment with District Filter) -->
+    <!-- 4. MATCHING PROFILES TAB (District Filtered) -->
     <div id="sec-matches" class="section-box">
         <div class="step-container">
             <h3>✨ பொருத்தமான வரன்கள் (District Filtered Matches)</h3>
             <p style="font-size: 11px; color: #2e7d32; font-weight: bold;" id="filterInfo">📍 உங்கள் மாவட்டத்தின் வரன்கள்:</p>
             
             <div id="matchProfilesList">
-                <!-- Dynamic Filtered Profiles will appear here -->
+                <!-- Dynamic Filtered Profiles -->
             </div>
 
             <button class="btn-action btn-pdf" onclick="downloadPDF()" style="margin-top: 15px;">📥 Download My Bio-Data PDF</button>
         </div>
     </div>
 
-    <!-- 5. AI HOROSCOPE -->
+    <!-- 5. AI HOROSCOPE TAB -->
     <div id="sec-ai" class="section-box">
         <div class="step-container">
             <h3>🌟 AI ஜாதக கணிப்பு & பரிகாரத் தலங்கள்</h3>
@@ -199,7 +206,7 @@
         </div>
     </div>
 
-    <!-- 6. ADMIN PANEL -->
+    <!-- 6. ADMIN PANEL TAB -->
     <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
@@ -222,63 +229,40 @@
         </div>
     </div>
 
-    <!-- FIXED BOTTOM NAVIGATION BAR -->
-    <div class="bottom-nav">
-        <button class="nav-item active" id="navLogin" onclick="switchTab('login')">
-            <span class="icon">🔑</span>Login
-        </button>
-        <button class="nav-item" id="navRegister" onclick="switchTab('register')">
-            <span class="icon">📝</span>Register
-        </button>
-        <button class="nav-item" id="navPayment" onclick="switchTab('payment')">
-            <span class="icon">💳</span>Payment
-        </button>
-        <button class="nav-item" id="navMatches" onclick="switchTab('matches')">
-            <span class="icon">✨</span>Matches
-        </button>
-        <button class="nav-item" id="navAi" onclick="switchTab('ai')">
-            <span class="icon">🌟</span>AI Report
-        </button>
-        <button class="nav-item" id="navAdmin" onclick="switchTab('admin')">
-            <span class="icon">🔒</span>Admin
-        </button>
-    </div>
-
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        // Sample database of all matching profiles across districts
         const allProfiles = [
             { name: "கார்த்திகேயன்", age: 26, edu: "B.E", job: "Software Engineer", dist: "தஞ்சாவூர்", rasi: "ரிஷபம்", star: "ரோகிணி", mobile: "9092745268" },
             { name: "விஜய் பாபு", age: 25, edu: "M.Sc", job: "Teacher", dist: "திருவாரூர்", rasi: "மேஷம்", star: "அசுவினி", mobile: "9842612345" },
             { name: "அரவிந்த்", age: 27, edu: "MBA", job: "Manager", dist: "மயிலாடுதுறை", rasi: "மிதுனம்", star: "மிருகசீரிடம்", mobile: "9789054321" },
             { name: "இளவரசன்", age: 26, edu: "B.Tech", job: "IT Professional", dist: "தஞ்சாவூர்", rasi: "சிம்மம்", star: "பூரம்", mobile: "9443567890" },
-            { name: "சூர்யா", age: 28, edu: "Diploma",job: "Business", dist: "மதுரை", rasi: "துலாம்", star: "சுவாதி", mobile: "9940123456" }
+            { name: "சூர்யா", age: 28, edu: "Diploma", job: "Business", dist: "மதுரை", rasi: "துலாம்", star: "சுவாதி", mobile: "9940123456" }
         ];
 
         function switchTab(tabName) {
             document.querySelectorAll('.section-box').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.menu-btn').forEach(el => el.classList.remove('active'));
 
             if(tabName === 'login') {
                 document.getElementById('sec-login').classList.add('active');
-                document.getElementById('navLogin').classList.add('active');
+                document.getElementById('menuLogin').classList.add('active');
             } else if(tabName === 'register') {
                 document.getElementById('sec-register').classList.add('active');
-                document.getElementById('navRegister').classList.add('active');
+                document.getElementById('menuRegister').classList.add('active');
             } else if(tabName === 'payment') {
                 document.getElementById('sec-payment').classList.add('active');
-                document.getElementById('navPayment').classList.add('active');
+                document.getElementById('menuPayment').classList.add('active');
             } else if(tabName === 'matches') {
                 document.getElementById('sec-matches').classList.add('active');
-                document.getElementById('navMatches').classList.add('active');
+                document.getElementById('menuMatches').classList.add('active');
             } else if(tabName === 'ai') {
                 document.getElementById('sec-ai').classList.add('active');
-                document.getElementById('navAi').classList.add('active');
+                document.getElementById('menuAi').classList.add('active');
             } else if(tabName === 'admin') {
                 document.getElementById('sec-admin').classList.add('active');
-                document.getElementById('navAdmin').classList.add('active');
+                document.getElementById('menuAdmin').classList.add('active');
             }
         }
 
@@ -289,7 +273,7 @@
                 return;
             }
             alert("🎉 வெற்றிகரமாக உள்நுழைந்தீர்கள்!");
-            loadFilteredMatches("தஞ்சாவூர்"); // Default filter
+            loadFilteredMatches("தஞ்சாவூர்");
             switchTab('matches');
         }
 
@@ -309,11 +293,9 @@
             if(confirmPay) {
                 alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது! உங்கள் மாவட்டத்தின் மேட்சிங் ப்ரொஃபைல்கள் திறக்கப்படுகின்றன.");
                 
-                // Get user selected district
                 let userDist = document.getElementById('bDistrict').value || "தஞ்சாவூர்";
                 loadFilteredMatches(userDist);
 
-                // Add to Admin Table
                 let name = document.getElementById('bName').value || "மதி";
                 let mobile = document.getElementById('bMobile').value || "98426XXXXX";
                 let caste = document.getElementById('bCaste').value || "கச்சிதம்";
@@ -325,19 +307,16 @@
                     <td style="padding: 6px; border: 1px solid #ddd;"><span style="color: green; font-weight: bold;">₹499 Paid ✅</span></td>
                 </tr>`;
 
-                // Instantly open matching profiles tab
                 switchTab('matches');
             }
         }
 
-        // Filter profiles based on selected district
         function loadFilteredMatches(districtName) {
             document.getElementById('filterInfo').innerText = `📍 உங்கள் மாவட்டம் (${districtName}) மற்றும் சுற்றியுள்ள வரன்கள்:`;
             
             const container = document.getElementById('matchProfilesList');
             container.innerHTML = "";
 
-            // Filter matching profiles
             const filtered = allProfiles.filter(p => p.dist === districtName);
 
             if(filtered.length === 0) {
@@ -397,4 +376,8 @@
             });
 
             doc.save("Andal_Alagar_Biodata.pdf");
-            alert("📥 பயோடேட்டா PDF வெற்றிகரமாக டவுன்லோட் செய்யப்பட்டத    
+            alert("📥 பயோடேட்டா PDF வெற்றிகரமாக டவுன்லோட் செய்யப்பட்டது!");
+        }
+    </script>
+</body>
+</html>

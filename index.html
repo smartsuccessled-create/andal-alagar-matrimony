@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony</title>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 30px; color: #333; }
+        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 40px; color: #333; }
         
-        /* Card Style Header */
+        /* Header Card */
         .app-header { 
             position: relative;
             background: linear-gradient(135deg, #e6c687 0%, #b8860b 55%, #800020 100%);
@@ -34,12 +32,12 @@
             border-left: 3px solid #800020;
         }
 
-        /* Top Tab Menu Buttons inside App */
+        /* Menu Navigation Bar */
         .menu-bar {
             display: flex; gap: 5px; overflow-x: auto; margin-top: 10px; padding-bottom: 5px;
         }
         .menu-btn {
-            background: #2b0b10; color: #d8c29d; border: 1px solid #d4af37; padding: 6px 12px;
+            background: #2b0b10; color: #d8c29d; border: 1px solid #d4af37; padding: 7px 12px;
             border-radius: 15px; font-size: 11px; font-weight: bold; cursor: pointer; white-space: nowrap;
         }
         .menu-btn.active { background: #800020; color: #ffffff; border-color: #ffffff; }
@@ -56,7 +54,7 @@
         .btn-next { background: #2e7d32; }
         .btn-pay { background: #d4af37; color: #3b141c; }
         .btn-pdf { background: #1976d2; color: white; }
-        .btn-delete { background: #d32f2f; color: white; border: none; padding: 5px 8px; border-radius: 4px; font-size: 10px; cursor: pointer; font-weight: bold; margin-top: 4px; }
+        .btn-delete { background: #d32f2f; color: white; border: none; padding: 5px 8px; border-radius: 4px; font-size: 10px; cursor: pointer; font-weight: bold; }
 
         .profile-match-card { background: #fffcf5; border: 1px solid #d4af37; padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 11px; }
     </style>
@@ -74,7 +72,7 @@
         </div>
     </div>
 
-    <!-- Menu Navigation Bar -->
+    <!-- Menu Bar -->
     <div class="menu-bar">
         <button class="menu-btn active" id="menuLogin" onclick="switchTab('login')">🔑 Login</button>
         <button class="menu-btn" id="menuRegister" onclick="switchTab('register')">📝 Register</button>
@@ -131,18 +129,6 @@
             <label>ஜாதி (Caste):</label>
             <input type="text" id="bCaste" placeholder="எ.கா: குறிப்பிட்ட ஜாதி">
 
-            <label>பிரிவு / உட்சாதி (Sub-caste):</label>
-            <input type="text" id="bSubCaste" placeholder="எ.கா: உட்பிரிவு">
-
-            <label>தந்தை பெயர் (Father's Name):</label>
-            <input type="text" id="bFather" placeholder="தந்தை பெயர்">
-
-            <label>தாய் பெயர் (Mother's Name):</label>
-            <input type="text" id="bMother" placeholder="தாய் பெயர்">
-
-            <label>முகவரி (Address):</label>
-            <input type="text" id="bAddress" placeholder="வீட்டு முகவரி">
-
             <label>மாவட்டம் (District):</label>
             <select id="bDistrict">
                 <option value="தஞ்சாவூர்">தஞ்சாவூர்</option>
@@ -159,9 +145,6 @@
 
             <label>பாஸ்வேர்ட் (Password):</label>
             <input type="password" id="bPassword" placeholder="பாஸ்வேர்ட்">
-
-            <label>📸 போட்டோ அப்லோட் (Upload Photo):</label>
-            <input type="file" id="bPhoto" accept="image/*">
 
             <button class="btn-action btn-next" onclick="saveBioData()">பதிவு செய்து கட்டணப் பகுதிக்குச் செல்ல ➔</button>
         </div>
@@ -181,7 +164,7 @@
         </div>
     </div>
 
-    <!-- 4. MATCHING PROFILES TAB -->
+    <!-- 4. MATCHES TAB -->
     <div id="sec-matches" class="section-box">
         <div class="step-container">
             <h3>✨ பொருத்தமான வரன்கள் (District Filtered Matches)</h3>
@@ -189,7 +172,7 @@
             
             <div id="matchProfilesList"></div>
 
-            <button class="btn-action btn-pdf" onclick="downloadPDF()" style="margin-top: 15px;">📥 Download My Bio-Data PDF</button>
+            <button class="btn-action btn-pdf" onclick="alert('📥 பயோடேட்டா விவரங்கள் சேமிக்கப்பட்டது!')" style="margin-top: 15px;">📥 Download My Bio-Data Copy</button>
         </div>
     </div>
 
@@ -204,7 +187,7 @@
         </div>
     </div>
 
-    <!-- 6. ADMIN PANEL TAB (With Delete Option) -->
+    <!-- 6. ADMIN PANEL TAB (With Delete Button) -->
     <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
@@ -214,19 +197,22 @@
                     <tr style="background: #800020; color: white;">
                         <th style="padding: 6px; border: 1px solid #ddd;">பெயர் & மொபைல்</th>
                         <th style="padding: 6px; border: 1px solid #ddd;">மாவட்டம் & ஜாதி</th>
-                        <th style="padding: 6px; border: 1px solid #ddd;">செயல் (Action)</th>
+                        <th style="padding: 6px; border: 1px solid #ddd;">செயல்</th>
                     </tr>
                 </thead>
                 <tbody id="adminTableBody">
-                    <!-- Dynamic Rows with Delete Button -->
+                    <!-- Dynamic Rows -->
                 </tbody>
             </table>
         </div>
     </div>
 
     <script>
-        const tg = window.Telegram.WebApp;
-        tg.expand();
+        // Default Admin Records
+        let adminRecords = [
+            { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" },
+            { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" }
+        ];
 
         const allProfiles = [
             { name: "கார்த்திகேயன்", age: 26, edu: "B.E", job: "Software Engineer", dist: "தஞ்சாவூர்", rasi: "ரிஷபம்", star: "ரோகிணி", mobile: "9092745268" },
@@ -235,46 +221,6 @@
             { name: "இளவரசன்", age: 26, edu: "B.Tech", job: "IT Professional", dist: "தஞ்சாவூர்", rasi: "சிம்மம்", star: "பூரம்", mobile: "9443567890" },
             { name: "சூர்யா", age: 28, edu: "Diploma", job: "Business", dist: "மதுரை", rasi: "துலாம்", star: "சுவாதி", mobile: "9940123456" }
         ];
-
-        // Central admin records list
-        let adminRecords = [
-            { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" },
-            { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" }
-        ];
-
-        function renderAdminTable() {
-            let tableBody = document.getElementById('adminTableBody');
-            tableBody.innerHTML = "";
-            
-            if(adminRecords.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding:10px; color:#666;">பதிவுகள் எதுவும் இல்லை</td></tr>`;
-                return;
-            }
-
-            adminRecords.forEach((rec, index) => {
-                tableBody.innerHTML += `
-                    <tr id="row-${rec.id}">
-                        <td style="padding: 6px; border: 1px solid #ddd;"><b>${rec.name}</b><br><small>${rec.mobile}</small></td>
-                        <td style="padding: 6px; border: 1px solid #ddd;">${rec.dist}, ${rec.caste}<br><span style="color: green; font-weight: bold;">${rec.status}</span></td>
-                        <td style="padding: 6px; border: 1px solid #ddd; text-align: center;">
-                            <button class="btn-delete" onclick="deleteRecord(${rec.id})">❌ Delete</button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        function deleteRecord(id) {
-            let confirmDel = confirm("இந்த வரன் பதிவை (Profile) உறுதியாக நீக்க விரும்புகிறீர்களா?");
-            if(confirmDel) {
-                adminRecords = adminRecords.filter(r => r.id !== id);
-                renderAdminTable();
-                alert("🗑️ வரன் பதிவு வெற்றிகரமாக நீக்கப்பட்டது!");
-            }
-        }
-
-        // Initialize table on load
-        renderAdminTable();
 
         function switchTab(tabName) {
             document.querySelectorAll('.section-box').forEach(el => el.classList.remove('active'));
@@ -292,6 +238,7 @@
             } else if(tabName === 'matches') {
                 document.getElementById('sec-matches').classList.add('active');
                 document.getElementById('menuMatches').classList.add('active');
+                loadFilteredMatches("தஞ்சாவூர்");
             } else if(tabName === 'ai') {
                 document.getElementById('sec-ai').classList.add('active');
                 document.getElementById('menuAi').classList.add('active');
@@ -302,6 +249,37 @@
             }
         }
 
+        function renderAdminTable() {
+            let tableBody = document.getElementById('adminTableBody');
+            tableBody.innerHTML = "";
+            
+            if(adminRecords.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding:10px; color:#666;">பதிவுகள் எதுவும் இல்லை</td></tr>`;
+                return;
+            }
+
+            adminRecords.forEach((rec) => {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td style="padding: 6px; border: 1px solid #ddd;"><b>${rec.name}</b><br><small>${rec.mobile}</small></td>
+                        <td style="padding: 6px; border: 1px solid #ddd;">${rec.dist}, ${rec.caste}<br><span style="color: green; font-weight: bold;">${rec.status}</span></td>
+                        <td style="padding: 6px; border: 1px solid #ddd; text-align: center;">
+                            <button class="btn-delete" onclick="deleteRecord(${rec.id})">❌ Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function deleteRecord(id) {
+            let confirmDel = confirm("இந்த வரன் பதிவை உறுதியாக நீக்க விரும்புகிறீர்களா?");
+            if(confirmDel) {
+                adminRecords = adminRecords.filter(r => r.id !== id);
+                renderAdminTable();
+                alert("🗑️ வரன் பதிவு வெற்றிகரமாக நீக்கப்பட்டது!");
+            }
+        }
+
         function userLogin() {
             const mob = document.getElementById('loginMobile').value;
             if(!mob) {
@@ -309,7 +287,6 @@
                 return;
             }
             alert("🎉 வெற்றிகரமாக உள்நுழைந்தீர்கள்!");
-            loadFilteredMatches("தஞ்சாவூர்");
             switchTab('matches');
         }
 
@@ -327,16 +304,13 @@
         function payAndUnlock() {
             let confirmPay = confirm("₹499 செலுத்துவதை உறுதி செய்யவா?");
             if(confirmPay) {
-                alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது! உங்கள் மாவட்டத்தின் மேட்சிங் ப்ரொஃபைல்கள் திறக்கப்படுகின்றன.");
+                alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது!");
                 
                 let userDist = document.getElementById('bDistrict').value || "தஞ்சாவூர்";
-                loadFilteredMatches(userDist);
-
                 let name = document.getElementById('bName').value || "மதி";
                 let mobile = document.getElementById('bMobile').value || "98426XXXXX";
                 let caste = document.getElementById('bCaste').value || "கச்சிதம்";
 
-                // Add to Admin Records List
                 adminRecords.push({
                     id: Date.now(),
                     name: name,
@@ -346,7 +320,6 @@
                     status: "₹499 Paid ✅"
                 });
 
-                renderAdminTable();
                 switchTab('matches');
             }
         }
@@ -360,7 +333,7 @@
             const filtered = allProfiles.filter(p => p.dist === districtName);
 
             if(filtered.length === 0) {
-                container.innerHTML = `<p style="font-size: 11px; color: #666;">உங்கள் மாவட்டத்தில் தற்போது புதிய வரன்கள் இல்லை. விரைவில் சேர்க்கப்படும்.</p>`;
+                container.innerHTML = `<p style="font-size: 11px; color: #666;">உங்கள் மாவட்டத்தில் தற்போது புதிய வரன்கள் இல்லை.</p>`;
                 return;
             }
 
@@ -377,27 +350,9 @@
             });
         }
 
-        function downloadPDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(18);
-            doc.text("SRI ANDAL ALAGAR MATRIMONY", 105, 20, { align: "center" });
-            
-            doc.setFontSize(12);
-            doc.text("Marriage Bio-Data", 105, 28, { align: "center" });
-            doc.line(20, 32, 190, 32);
-
-            doc.setFont("helvetica", "normal");
-            doc.setFontSize(11);
-            let y = 45;
-            
-            const fields = [
-                ["Profile Type:", document.getElementById('bProfileType').value],
-                ["Full Name:", document.getElementById('bName').value],
-                ["Date of Birth:", document.getElementById('bDob').value],
-                ["Birth Time:", document.getElementById('bTime').value],
-                ["Rasi:", document.getElementById('bRasi').value],
-                ["Star:", document.getElementById('bStar').value],
-                ["Education:", do
+        // Initial Load
+        renderAdminTable();
+    </script>
+</body>
+                                  </html>
+                

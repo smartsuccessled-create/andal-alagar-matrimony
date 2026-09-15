@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <!-- Google Authenticator (OTPAuth) Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax5/libs/otpauth/9.3.2/otpauth.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 12px; color: #333; }
         .app-header { 
@@ -157,42 +154,32 @@
     <!-- ================= ADMIN SECTION ================= -->
     <div id="adminSection" class="section-box">
         
-        <!-- 1. Admin Setup / Credentials & 2FA Configuration Box -->
-        <div id="adminSetupBox" class="step-container" style="border-top: 4px solid #800020;">
-            <h3>⚙️ அட்மின் லாகின் & Google Authenticator அமைப்பு</h3>
-            <p style="font-size: 12px; color: #555;">உங்கள் சொந்த Username, Password மற்றும் Google Authenticator செட் செய்ய:</p>
+        <!-- 1. Admin Setup Box (First time you create your own Username & Password) -->
+        <div id="adminSetupBox" class="step-container hidden" style="border-top: 4px solid #800020;">
+            <h3>⚙️ புதிய அட்மின் லாகின் உருவாக்க</h3>
+            <p style="font-size: 12px; color: #555;">உங்கள் சொந்த Username மற்றும் Password-ஐ இங்கே உருவாக்கவும்:</p>
             
             <label>புதிய Username:</label>
             <input type="text" id="setupUser" placeholder="எ.கா: myadmin">
             <label>புதிய Password:</label>
             <input type="password" id="setupPass" placeholder="பாஸ்வேர்ட் உள்ளிடவும்">
             
-            <button class="btn-action" onclick="generateNewAdminCredentials()" style="background: #2e7d32; margin-top: 8px;">🔑 Google Authenticator QR கோடு உருவாக்க</button>
-
-            <!-- QR Code display area -->
-            <div id="qrCodeContainer" class="hidden" style="text-align: center; margin-top: 15px; background: #f9f9f9; padding: 10px; border-radius: 6px;">
-                <p style="font-size: 11px; color: #333; font-weight: bold;">இந்த QR கோடை உங்கள் மொபைலில் உள்ள Google Authenticator ஆப் மூலம் ஸ்கேன் செய்யவும்:</p>
-                <div id="qrcode" style="display: inline-block; padding: 5px; background: white;"></div>
-                <p style="font-size: 10px; color: #666; margin-top: 5px;">Secret Key: <span id="secretKeyText" style="font-family: monospace; font-weight: bold; color: #800020;"></span></p>
-                <button class="btn-action" onclick="showLoginScreen()" style="background: #800020; padding: 8px; margin-top: 5px;">✅ சேமித்துவிட்டு லாகின் செல்ல</button>
-            </div>
+            <button class="btn-action" onclick="saveAdminCredentials()" style="background: #2e7d32; margin-top: 8px;">💾 லாகின் விவரங்களைச் சேமி</button>
         </div>
 
-        <!-- 2. Admin Login Box (Username, Password & Google Auth 6-digit Code) -->
+        <!-- 2. Admin Login Box -->
         <div id="adminLoginBox" class="step-container hidden" style="border-top: 4px solid #800020;">
-            <h3>🔐 அட்மின் பாதுகாப்பு உள்நுழைவு (Google Authenticator Login)</h3>
+            <h3>🔐 அட்மின் பாதுகாப்பு உள்நுழைவு</h3>
             <label>Username:</label>
             <input type="text" id="adminUser" placeholder="உங்கள் Username">
             <label>Password:</label>
             <input type="password" id="adminPass" placeholder="உங்கள் Password">
-            <label>Google Authenticator 6-Digit Code:</label>
-            <input type="text" id="adminOtp" maxlength="6" placeholder="ஆப்பில் உள்ள 6 இலக்க எண்" style="letter-spacing: 3px; font-weight: bold; font-size: 16px; text-align: center;">
             
-            <button class="btn-action" onclick="checkAdminLogin()" style="background: #800020;">உள்நுழை (Secure Login)</button>
-            <button onclick="resetAdminSetup()" style="background:none; border:none; color:#800020; font-size:11px; text-decoration:underline; cursor:pointer; width:100%; margin-top:10px;">மாற்றங்கள் செய்ய / QR கோடு மீளமைக்க</button>
+            <button class="btn-action" onclick="checkAdminLogin()" style="background: #800020;">உள்நுழை (Login)</button>
+            <button onclick="resetAdminSetup()" style="background:none; border:none; color:#800020; font-size:11px; text-decoration:underline; cursor:pointer; width:100%; margin-top:10px;">Username/Password மாற்ற</button>
         </div>
 
-        <!-- 3. Admin Panel Content (Hidden until login success) -->
+        <!-- 3. Admin Panel Content -->
         <div id="adminPanelContent" class="hidden">
             <div class="step-container" style="border-top: 4px solid #d4af37;">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -251,14 +238,12 @@
 
     </div>
 
-    <!-- QR Code Script CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
 
         window.onload = function() {
-            checkAdminSetupState();
+            checkAdminState();
             if(sessionStorage.getItem('isAdminLoggedIn') === 'true') {
                 showAdminPanel();
             }
@@ -276,114 +261,61 @@
             } else {
                 document.getElementById('adminSection').classList.add('active');
                 document.getElementById('tabAdminBtn').classList.add('active');
-                checkAdminSetupState();
+                checkAdminState();
                 if(sessionStorage.getItem('isAdminLoggedIn') === 'true') {
                     showAdminPanel();
                 }
             }
         }
 
-        function checkAdminSetupState() {
-            const savedUser = localStorage.getItem('matrimony_admin_user');
+        function checkAdminState() {
+            const savedUser = localStorage.getItem('my_admin_user');
             if(!savedUser) {
-                // First time setup required
                 document.getElementById('adminSetupBox').classList.remove('hidden');
                 document.getElementById('adminLoginBox').classList.add('hidden');
                 document.getElementById('adminPanelContent').classList.add('hidden');
             } else {
-                // Credentials already exist, show login
                 document.getElementById('adminSetupBox').classList.add('hidden');
                 document.getElementById('adminLoginBox').classList.remove('hidden');
             }
         }
 
-        let generatedSecret = '';
-
-        function generateNewAdminCredentials() {
+        function saveAdminCredentials() {
             const u = document.getElementById('setupUser').value.trim();
             const p = document.getElementById('setupPass').value.trim();
 
             if(!u || !p) {
-                alert("தயவுசெய்து புதிய Username மற்றும் Password-ஐ உள்ளிடவும்!");
+                alert("தயவுசெய்து Username மற்றும் Password-ஐ உள்ளிடவும்!");
                 return;
             }
 
-            // Generate random secret for TOTP (Google Authenticator)
-            const secretObj = new OTPAuth.Secret({ size: 20 });
-            generatedSecret = secretObj.base32;
-
-            localStorage.setItem('matrimony_admin_user', u);
-            localStorage.setItem('matrimony_admin_pass', p);
-            localStorage.setItem('matrimony_admin_secret', generatedSecret);
-
-            // Display QR Code
-            document.getElementById('qrcode').innerHTML = "";
-            const totpUri = `otpauth://totp/AndalAlagarMatrimony:${u}?secret=${generatedSecret}&issuer=AndalAlagarMatrimony`;
-            
-            new QRCode(document.getElementById("qrcode"), {
-                text: totpUri,
-                width: 150,
-                height: 150
-            });
-
-            document.getElementById('secretKeyText').innerText = generatedSecret;
-            document.getElementById('qrCodeContainer').classList.remove('hidden');
-        }
-
-        function showLoginScreen() {
-            document.getElementById('adminSetupBox').classList.add('hidden');
-            document.getElementById('adminLoginBox').classList.remove('hidden');
+            localStorage.setItem('my_admin_user', u);
+            localStorage.setItem('my_admin_pass', p);
+            alert("அட்மின் லாகின் விவரங்கள் வெற்றிகரமாக சேமிக்கப்பட்டன!");
+            checkAdminState();
         }
 
         function resetAdminSetup() {
-            if(confirm("புதிய Username மற்றும் QR கோடு அமைக்க விரும்புகிறீர்களா?")) {
-                localStorage.removeItem('matrimony_admin_user');
-                localStorage.removeItem('matrimony_admin_pass');
-                localStorage.removeItem('matrimony_admin_secret');
-                document.getElementById('qrCodeContainer').classList.add('hidden');
-                document.getElementById('setupUser').value = '';
-                document.getElementById('setupPass').value = '';
-                checkAdminSetupState();
+            if(confirm("புதிய Username மற்றும் Password அமைக்க விரும்புகிறீர்களா?")) {
+                localStorage.removeItem('my_admin_user');
+                localStorage.removeItem('my_admin_pass');
+                checkAdminState();
             }
         }
 
         function checkAdminLogin() {
             const u = document.getElementById('adminUser').value.trim();
             const p = document.getElementById('adminPass').value.trim();
-            const otpCode = document.getElementById('adminOtp').value.trim();
 
-            const savedUser = localStorage.getItem('matrimony_admin_user');
-            const savedPass = localStorage.getItem('matrimony_admin_pass');
-            const savedSecret = localStorage.getItem('matrimony_admin_secret');
+            const savedUser = localStorage.getItem('my_admin_user');
+            const savedPass = localStorage.getItem('my_admin_pass');
 
-            if(u !== savedUser || p !== savedPass) {
+            if(u === savedUser && p === savedPass) {
+                sessionStorage.setItem('isAdminLoggedIn', 'true');
+                showAdminPanel();
+                alert("வெற்றிகரமாக அட்மின் பேனலுக்குள் நுழைந்தீர்கள்!");
+            } else {
                 alert("தவறான Username அல்லது Password!");
-                return;
-            }
-
-            // Verify Google Authenticator OTP code using OTPAuth
-            try {
-                let totp = new OTPAuth.TOTP({
-                    issuer: "AndalAlagarMatrimony",
-                    label: u,
-                    algorithm: "SHA1",
-                    digits: 6,
-                    period: 30,
-                    secret: savedSecret
-                });
-
-                // Delta checks if token is valid within window
-                let delta = totp.validate({ token: otpCode, window: 1 });
-
-                if (delta !== null) {
-                    sessionStorage.setItem('isAdminLoggedIn', 'true');
-                    showAdminPanel();
-                    alert("Google Authenticator சரிபார்க்கப்பட்டது! வெற்றிகரமாக உள்நுழைந்தீர்கள்.");
-                } else {
-                    alert("தவறான Google Authenticator OTP கோடு! உங்கள் மொபைல் ஆப்பில் உள்ள சரியான 6 இலக்க எண்ணை உள்ளிடவும்.");
-                }
-            } catch (e) {
-                alert("OTP சரிபார்ப்பில் பிழை ஏற்பட்டது. மீண்டும் முயற்சிக்கவும்.");
             }
         }
 
@@ -398,9 +330,8 @@
             sessionStorage.removeItem('isAdminLoggedIn');
             document.getElementById('adminUser').value = '';
             document.getElementById('adminPass').value = '';
-            document.getElementById('adminOtp').value = '';
             document.getElementById('adminPanelContent').classList.add('hidden');
-            checkAdminSetupState();
+            checkAdminState();
             alert("வெற்றிகரமாக வெளியேறினீர்கள் (Logged out)!");
         }
 
@@ -482,7 +413,6 @@
             saveProfileToLocalStorage(newProfile);
             loadAdminData();
 
-            // Clear form fields
             document.getElementById('adminName').value = '';
             document.getElementById('adminMobile').value = '';
             document.getElementById('adminDobTime').value = '';
@@ -500,6 +430,7 @@
         function saveProfileToLocalStorage(profile) {
             let profiles = JSON.parse(localStorage.getItem('matrimony_profiles') || '[]');
             profiles.push(profile);
+            localStorage.getItem('matrimony_profiles', JSON.stringify(profiles)); // fixed line below
             localStorage.setItem('matrimony_profiles', JSON.stringify(profiles));
         }
 
@@ -513,7 +444,7 @@
                 ...profiles.reverse()
             ];
 
-            let html = **'';
+            let html = '';
             allProfiles.forEach(p => {
                 html += `<tr>
                     <td>${p.time || "நேரம் இல்லை"}</td>
@@ -563,7 +494,7 @@
 
         function openAiHoroscopeStep() {
             hideAll();
-            document.getElementById('step-ai-horoscope').classList.add('hidden');
+            document.getElementById('step-ai-horoscope').classList.remove('hidden');
         }
 
         function resetApp() {

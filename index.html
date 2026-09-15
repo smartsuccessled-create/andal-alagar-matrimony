@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ta">
 <head>
@@ -43,16 +44,31 @@
             opacity: 1;
         }
 
-        /* Navigation Switcher Tabs */
-        .nav-tabs { display: flex; gap: 8px; margin-top: 12px; }
-        .nav-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 12px; background: #ddd; color: #333; }
+        /* Main Navigation Tabs (Dashboard, Customer, Astrology, Horoscope, Admin) */
+        .nav-tabs { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 6px; 
+            margin-top: 12px; 
+        }
+        .nav-btn { 
+            padding: 8px 4px; 
+            border: none; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-size: 11px; 
+            background: #e6c687; 
+            color: #3b141c; 
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
         .nav-btn.active { background: #800020; color: white; }
 
         .section-box { display: none; }
         .section-box.active { display: block; }
 
         .step-container { background: white; padding: 15px; border-radius: 8px; margin-top: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-top: 4px solid #800020; }
-        .hidden { display: none; }
         h3 { color: #800020; font-size: 14px; margin-top: 0; border-bottom: 2px solid #e6c687; padding-bottom: 5px; }
         label { font-size: 11px; font-weight: bold; display: block; margin-top: 8px; color: #444; }
         input, select, textarea { width: 100%; padding: 8px; margin-top: 3px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; box-sizing: border-box; }
@@ -80,117 +96,86 @@
         </div>
     </div>
 
-    <!-- Switch Between Customer & Admin View -->
+    <!-- Navigation Tabs: Dashboard, Customer, Astrology, Horoscope, Admin -->
     <div class="nav-tabs">
-        <button class="nav-btn active" id="tabCustomerBtn" onclick="switchView('customer')">👤 வாடிக்கையாளர் (Customer)</button>
-        <button class="nav-btn" id="tabAdminBtn" onclick="switchView('admin')">🔒 அட்மின் பேனல் (Admin)</button>
+        <button class="nav-btn active" id="tabDash" onclick="switchTab('dashboard')">📊 Dashboard</button>
+        <button class="nav-btn" id="tabCust" onclick="switchTab('customer')">👤 Customer</button>
+        <button class="nav-btn" id="tabAstro" onclick="switchTab('astrology')">🔮 Astrology</button>
+        <button class="nav-btn" id="tabHoro" onclick="switchTab('horoscope')">🌟 Horoscope</button>
+        <button class="nav-btn" id="tabAdmin" onclick="switchTab('admin')" style="grid-column: span 2; background: #3b141c; color: #e6c687;">🔒 Admin Panel</button>
     </div>
 
-    <!-- ================= CUSTOMER SECTION ================= -->
-    <div id="customerSection" class="section-box active">
-        
-        <!-- 1: SIGNUP / LOGIN -->
-        <div id="step-auth" class="step-container">
-            <h3>1️⃣ கணக்கு தொடங்குதல் & உள்நுழைவு (Signup & Login)</h3>
+    <!-- ================= 1. DASHBOARD SECTION ================= -->
+    <div id="sec-dashboard" class="section-box active">
+        <div class="step-container">
+            <h3>📊 முகப்பு (Dashboard)</h3>
+            <p style="font-size: 11px; line-height: 1.5;">வணக்கம்! ஸ்ரீ ஆண்டாள் அழகர் திருமண அமைப்பு மையத்திற்கு உங்களை வரவேற்கிறோம். நமது சேவைகளைப் பெற கீழே உள்ள பொத்தான்களைப் பயன்படுத்தவும்:</p>
+            <button class="btn-action btn-next" onclick="switchTab('customer')">👤 சுயவிவரம் பதிவு செய்ய (Customer Register)</button>
+            <button class="btn-action btn-pay" onclick="switchTab('astrology')">🔮 ஜாதகப் பொருத்தங்கள் பார்க்க</button>
+        </div>
+    </div>
+
+    <!-- ================= 2. CUSTOMER SECTION ================= -->
+    <div id="sec-customer" class="section-box">
+        <div class="step-container">
+            <h3>👤 வாடிக்கையாளர் பகுதி (Customer Registration & Matching)</h3>
+            
             <label>மொபைல் எண் (Mobile Number):</label>
             <input type="tel" id="userMobile" placeholder="எ.கா: 98426XXXXX">
-            <button class="btn-action btn-next" onclick="goToRegister()">OTP பெற்று உள்நுழைக ➔</button>
-        </div>
-
-        <!-- 2: REGISTER & PHOTO UPLOAD (₹99) -->
-        <div id="step-register" class="step-container hidden">
-            <h3>2️⃣ சுயவிவரப் பதிவு & போட்டோ அப்லோட் (Registration Form)</h3>
+            
             <label>வரன் பெயர்:</label>
             <input type="text" id="regName" placeholder="முழு பெயர்">
+            
             <label>பிறந்த தேதி & நேரம்:</label>
             <input type="text" id="regDobTime" placeholder="எ.கா: 15.06.1998, காலை 10:15 மணி">
+            
             <label>படிப்பு & வேலை:</label>
             <input type="text" id="regEdu" placeholder="எ.கா: B.Tech, Software Engineer">
-            <label>வேலை செய்யும் இடம் / ஊர்:</label>
-            <input type="text" id="regWorkPlace" placeholder="எ.கா: சென்னை">
-            <label>வருமானம்:</label>
-            <input type="text" id="regIncome" placeholder="எ.கா: மாதம் ரூ. 50,000">
+            
             <label>ராசி, நட்சத்திரம்:</label>
             <input type="text" id="regStar" placeholder="எ.கா: ரிஷபம், ரோகிணி">
-            <label>நிறம், உயரம்:</label>
-            <input type="text" id="regHeight" placeholder="எ.கா: மாநிறம், 5' 10\"">
-            <label>தந்தையார் & தாயார் பெயர்:</label>
-            <input type="text" id="regParents" placeholder="தந்தை / தாய் பெயர்">
-            <label>பூர்வீகம், இருப்பிடம்:</label>
-            <textarea id="regAddress" rows="2" placeholder="ஊர், மாவட்டம்"></textarea>
-            <label>📸 போட்டோ மற்றும் ஜாதகம் அப்லோட்:</label>
+            
+            <label>📸 போட்டோ & ஜாதகம் அப்லோட்:</label>
             <input type="file" id="regPhoto" multiple accept="image/*,.pdf">
 
-            <button class="btn-action btn-pay" onclick="goToRegisterPayment()">💳 பதிவுக் கட்டணம் செலுத்த ₹99 (Pay & Register) ➔</button>
-        </div>
-
-        <!-- REGISTRATION PAYMENT (₹99) -->
-        <div id="step-reg-pay" class="step-container hidden" style="border-left: 5px solid #d4af37;">
-            <h3>பதிவுக் கட்டணம் (Registration Fee - ₹99)</h3>
-            <p style="font-size: 11px; color: #555;">விவரங்களைச் சேமிக்க ₹99 செலுத்தவும்:</p>
-            <button class="btn-action btn-pay" onclick="completeRegistration()">✅ UPI / GPay மூலம் ₹99 செலுத்துக</button>
-        </div>
-
-        <!-- 3: MATCHING PROFILE -->
-        <div id="step-matching" class="step-container hidden">
-            <h3>3️⃣ வரன்கள் தேடல் (Matching Profiles)</h3>
-            <p style="font-size: 11px; color: #2e7d32; font-weight: bold;">🎉 பதிவு வெற்றி! பொருத்தமான வரன்கள்:</p>
-            <div class="profile-card">
-                <b>பதிவு எண்: AA101</b> | 24 வயது, B.Tech<br>நட்சத்திரம்: ரோகிணி | ஊர்: மதுரை
-                <button style="float:right; background:#800020; color:#fff; font-weight:bold; border:none; padding:4px 8px; border-radius:4px; margin-top:3px;" onclick="goToMatchingPayment()">வரன்கள் பார்க்க ₹499</button>
+            <button class="btn-action btn-pay" onclick="alert('பதிவு வெற்றிகரமாக முடிந்தது! ₹99 & ₹499 கட்டணம் செலுத்தப்பட்டுள்ளது.')">💳 பதிவுக் கட்டணம் & வரன்கள் பார்க்க (Pay ₹99 / ₹499)</button>
+            
+            <div class="profile-card" style="margin-top: 15px;">
+                <b>பொருத்தமான வரன் உதாரணம்:</b><br>
+                பதிவு எண்: AA101 | 24 வயது, B.Tech | ஊர்: மதுரை
             </div>
-        </div>
-
-        <!-- MATCHING PAYMENT (₹499) -->
-        <div id="step-matching-pay" class="step-container hidden" style="border-left: 5px solid #d4af37;">
-            <h3>மேட்சிங் கட்டணம் (Matching Fee - ₹499)</h3>
-            <p style="font-size: 11px; color: #555;">முழுமையான வரன் விவரங்களைக் காண ₹499 செலுத்தவும்:</p>
-            <button class="btn-action btn-pay" onclick="openPoruthamStep()">💳 UPI / GPay மூலம் ₹499 செலுத்துக</button>
-        </div>
-
-        <!-- 4: 10 PORUTHAM -->
-        <div id="step-porutham" class="step-container hidden">
-            <h3>4️⃣ 10 ஜாதகப் பொருத்தங்கள் (10 Porutham)</h3>
-            <ul style="font-size: 11px; padding-left: 15px; line-height: 1.5;">
-                <li>தின பொருத்தம்: உத்தமம்</li>
-                <li>கண பொருத்த பொருத்தம்: நன்று</li>
-                <li>மகேந்திர பொருத்தம்: சிறப்பு</li>
-                <li>யோனி பொருத்தம்: நன்று</li>
-                <li><b>முடிவு: 9/10 பொருத்தங்கள் கச்சிதமாக பொருந்துகின்றன!</b></li>
-            </ul>
-            <button class="btn-action btn-next" onclick="openAiPoruthamStep()">அடுத்து: AI பொருத்தம் பார்க்க ➔</button>
-        </div>
-
-        <!-- 5: AI PORUTHAM -->
-        <div id="step-ai-porutham" class="step-container hidden" style="border-left: 5px solid #1565c0;">
-            <h3>5️⃣ AI ஜாதகப் பொருத்தம் (AI Porutham)</h3>
-            <div style="background: #eef2f7; padding: 10px; border-radius: 5px; font-size: 11px; color: #1565c0; font-weight: bold; line-height: 1.4;">
-                🤖 AI பொருத்தம் ஆய்வு: நட்சத்துரப் பொருத்தங்கள் மற்றும் தோஷங்கள் முழுமையாக ஆய்வு செய்யப்பட்டன. இந்த ஜோடிக்கு மனப்பொருத்தம் மிக அருமையாக அமையும்! (9.6/10)
-            </div>
-            <button class="btn-action btn-next" onclick="openAstrologyStep()">அடுத்து: ஜோதிட பலன்கள் பார்க்க ➔</button>
-        </div>
-
-        <!-- 6: ASTROLOGY -->
-        <div id="step-astrology" class="step-container hidden">
-            <h3>6️⃣ ஜோதிட பலன்கள் (Astrology)</h3>
-            <p style="font-size: 11px; line-height: 1.5;">
-                <b>கிரக நிலைகள்:</b> ஜென்ம ராசியில் குரு பார்வை இருப்பதால் திருமணத்திற்குப் பின் சுபிட்சமான வாழ்க்கை அமையும். மங்களகரமான யோகம் கைகூடியுள்ளது.
-            </p>
-            <button class="btn-action btn-next" onclick="openAiHoroscopeStep()">அடுத்து: AI ஜாதக கணிப்பு (AI Horoscope) ➔</button>
-        </div>
-
-        <!-- 7: AI HOROSCOPE -->
-        <div id="step-ai-horoscope" class="step-container hidden" style="border-left: 5px solid #800020;">
-            <h3>7️⃣ AI ஜாதக கணிப்பு & விரிவான ரிப்போர்ட் (AI Horoscope)</h3>
-            <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 10px; border-radius: 5px; font-size: 11px; color: #800020; font-weight: bold; line-height: 1.4;">
-                🌟 AI பிரம்மாண்ட ரிப்போர்ட்: லக்னாதிபதி பலம் பெற்றுள்ளதால் எதிர்கால தொழில் மற்றும் குடும்ப வாழ்க்கை வியக்கத்தக்க வகையில் உயரும். முழுமையான வெற்றிக்கான ஜாதகம் இது! (9.9/10 Score)
-            </div>
-            <button class="btn-action" onclick="resetApp()" style="background:#555; margin-top: 12px;">🔄 முதல் பக்கத்திற்குச் செல்ல</button>
         </div>
     </div>
 
-    <!-- ================= ADMIN SECTION ================= -->
-    <div id="adminSection" class="section-box">
+    <!-- ================= 3. ASTROLOGY SECTION ================= -->
+    <div id="sec-astrology" class="section-box">
+        <div class="step-container">
+            <h3>🔮 ஜாதகப் பொருத்தங்கள் (Astrology & 10 Porutham)</h3>
+            <ul style="font-size: 11px; padding-left: 15px; line-height: 1.6;">
+                <li><b>தின பொருத்தம்:</b> உத்தமம்</li>
+                <li><b>கண பொருத்த பொருத்தம்:</b> நன்று</li>
+                <li><b>மகேந்திர பொருத்தம்:</b> சிறப்பு</li>
+                <li><b>யோனி பொருத்தம்:</b> நன்று</li>
+                <li><b>AI பொருத்தம் ஆய்வு:</b> நட்சத்துரப் பொருத்தங்கள் மற்றும் தோஷங்கள் முழுமையாக ஆய்வு செய்யப்பட்டன. (9.6/10 Score)</li>
+            </ul>
+            <p style="font-size: 11px; line-height: 1.5; color: #555;">
+                <b>கிரக நிலைகள்:</b> ஜென்ம ராசியில் குரு பார்வை இருப்பதால் திருமணத்திற்குப் பின் சுபிட்சமான வாழ்க்கை அமையும்.
+            </p>
+        </div>
+    </div>
+
+    <!-- ================= 4. HOROSCOPE SECTION ================= -->
+    <div id="sec-horoscope" class="section-box">
+        <div class="step-container" style="border-top: 4px solid #800020;">
+            <h3>🌟 AI ஜாதக கணிப்பு & ரிப்போர்ட் (AI Horoscope)</h3>
+            <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 12px; border-radius: 5px; font-size: 11px; color: #800020; font-weight: bold; line-height: 1.5;">
+                🌟 AI பிரம்மாண்ட ரிப்போர்ட்: லக்னாதிபதி பலம் பெற்றுள்ளதால் எதிர்கால தொழில் மற்றும் குடும்ப வாழ்க்கை வியக்கத்தக்க வகையில் உயரும். முழுமையான வெற்றிக்கான ஜாதகம் இது! (9.9/10 Score)
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= 5. ADMIN SECTION ================= -->
+    <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
             <p style="font-size: 11px; color: #555;">பதிவு செய்த வாடிக்கையாளர்கள் மற்றும் கட்டண விவரங்கள்:</p>
@@ -199,12 +184,12 @@
                 <tr>
                     <th>பெயர்</th>
                     <th>மொபைல்</th>
-                    <th>கட்டணம் (₹99 / ₹499)</th>
+                    <th>கட்டணம்</th>
                 </tr>
                 <tr>
                     <td>மாதவன் (எடுத்துக்காட்டு)</td>
                     <td>98426XXXXX</td>
-                    <td>₹99 Paid & ₹499 Paid</td>
+                    <td>₹99 & ₹499 Paid</td>
                 </tr>
             </table>
             
@@ -216,82 +201,38 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        function switchView(view) {
-            document.getElementById('customerSection').classList.remove('active');
-            document.getElementById('adminSection').classList.remove('active');
-            document.getElementById('tabCustomerBtn').classList.remove('active');
-            document.getElementById('tabAdminBtn').classList.remove('active');
+        function switchTab(tabName) {
+            // Hide all sections
+            document.getElementById('sec-dashboard').classList.remove('active');
+            document.getElementById('sec-customer').classList.remove('active');
+            document.getElementById('sec-astrology').classList.remove('active');
+            document.getElementById('sec-horoscope').classList.remove('active');
+            document.getElementById('sec-admin').classList.remove('active');
 
-            if(view === 'customer') {
-                document.getElementById('customerSection').classList.add('active');
-                document.getElementById('tabCustomerBtn').classList.add('active');
-            } else {
-                document.getElementById('adminSection').classList.add('active');
-                document.getElementById('tabAdminBtn').classList.add('active');
+            // Remove active from all buttons
+            document.getElementById('tabDash').classList.remove('active');
+            document.getElementById('tabCust').classList.remove('active');
+            document.getElementById('tabAstro').classList.remove('active');
+            document.getElementById('tabHoro').classList.remove('active');
+            document.getElementById('tabAdmin').classList.remove('active');
+
+            // Show selected section & activate button
+            if(tabName === 'dashboard') {
+                document.getElementById('sec-dashboard').classList.add('active');
+                document.getElementById('tabDash').classList.add('active');
+            } else if(tabName === 'customer') {
+                document.getElementById('sec-customer').classList.add('active');
+                document.getElementById('tabCust').classList.add('active');
+            } else if(tabName === 'astrology') {
+                document.getElementById('sec-astrology').classList.add('active');
+                document.getElementById('tabAstro').classList.add('active');
+            } else if(tabName === 'horoscope') {
+                document.getElementById('sec-horoscope').classList.add('active');
+                document.getElementById('tabHoro').classList.add('active');
+            } else if(tabName === 'admin') {
+                document.getElementById('sec-admin').classList.add('active');
+                document.getElementById('tabAdmin').classList.add('active');
             }
-        }
-
-        function hideAll() {
-            document.getElementById('step-auth').classList.add('hidden');
-            document.getElementById('step-register').classList.add('hidden');
-            document.getElementById('step-reg-pay').classList.add('hidden');
-            document.getElementById('step-matching').classList.add('hidden');
-            document.getElementById('step-matching-pay').classList.add('hidden');
-            document.getElementById('step-porutham').classList.add('hidden');
-            document.getElementById('step-ai-porutham').classList.add('hidden');
-            document.getElementById('step-astrology').classList.add('hidden');
-            document.getElementById('step-ai-horoscope').classList.add('hidden');
-        }
-
-        function goToRegister() {
-            const m = document.getElementById('userMobile').value;
-            if(!m) { alert("தயவுசெய்து மொபைல் எண்ணை உள்ளிடவும்!"); return; }
-            hideAll();
-            document.getElementById('step-register').classList.remove('hidden');
-        }
-
-        function goToRegisterPayment() {
-            const n = document.getElementById('regName').value;
-            if(!n) { alert("தயவுசெய்து வரன் பெயரை உள்ளிடவும்!"); return; }
-            hideAll();
-            document.getElementById('step-reg-pay').classList.remove('hidden');
-        }
-
-        function completeRegistration() {
-            alert("₹99 பதிவுக் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது!");
-            hideAll();
-            document.getElementById('step-matching').classList.remove('hidden');
-        }
-
-        function goToMatchingPayment() {
-            hideAll();
-            document.getElementById('step-matching-pay').classList.remove('hidden');
-        }
-
-        function openPoruthamStep() {
-            alert("₹499 மேட்சிங் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது!");
-            hideAll();
-            document.getElementById('step-porutham').classList.remove('hidden');
-        }
-
-        function openAiPoruthamStep() {
-            hideAll();
-            document.getElementById('step-ai-porutham').classList.remove('hidden');
-        }
-
-        function openAstrologyStep() {
-            hideAll();
-            document.getElementById('step-astrology').classList.remove('hidden');
-        }
-
-        function openAiHoroscopeStep() {
-            hideAll();
-            document.getElementById('step-ai-horoscope').classList.remove('hidden');
-        }
-
-        function resetApp() {
-            hideAll();
-            document.getElementById('step-auth').classList.remove('hidden');
         }
     </script>
 </body>

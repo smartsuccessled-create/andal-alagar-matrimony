@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <!-- jsPDF Library for PDF Download -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 70px; color: #333; }
+        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 75px; color: #333; }
         
         /* Card Style Header */
         .app-header { 
@@ -39,10 +38,10 @@
         .bottom-nav {
             position: fixed; bottom: 0; left: 0; width: 100%; background: #2b0b10;
             border-top: 2px solid #d4af37; display: flex; justify-content: space-around;
-            padding: 6px 0; box-shadow: 0 -4px 10px rgba(0,0,0,0.3); z-index: 1000;
+            padding: 6px 2px; box-shadow: 0 -4px 10px rgba(0,0,0,0.3); z-index: 1000;
         }
         .nav-item {
-            background: none; border: none; color: #d8c29d; font-size: 10px; font-weight: bold;
+            background: none; border: none; color: #d8c29d; font-size: 9px; font-weight: bold;
             display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 2px; flex: 1;
         }
         .nav-item span.icon { font-size: 16px; margin-bottom: 2px; }
@@ -77,27 +76,23 @@
         </div>
     </div>
 
-    <!-- 1. DASHBOARD - LOGIN / SIGNUP -->
-    <div id="sec-dashboard" class="section-box active">
+    <!-- 1. LOGIN / SIGNUP TAB -->
+    <div id="sec-login" class="section-box active">
         <div class="step-container">
-            <h3>🔐 Login / Signup (முகப்பு)</h3>
-            <p style="font-size: 11px; color: #666; margin-bottom: 8px;">புதிய பயனர்கள் பதிவு செய்யவும், பழைய பயனர்கள் லாகின் செய்யவும்:</p>
-            
+            <h3>🔐 உள்நுழைவு (Login / Sign In)</h3>
             <label>மொபைல் எண் (Mobile Number):</label>
             <input type="tel" id="loginMobile" placeholder="98426XXXXX">
-
             <label>பாஸ்வேர்ட் (Password):</label>
             <input type="password" id="loginPassword" placeholder="******">
-
-            <button class="btn-action btn-next" onclick="userLogin()">உேள் நுழைய (Login / Register) ➔</button>
+            <button class="btn-action btn-next" onclick="userLogin()">உள்நுழைய (Login) ➔</button>
+            <p style="font-size: 11px; text-align: center; margin-top: 10px;">புதிய வரனா? கீழே உள்ள **Register** மெனுவை அழுத்தவும்.</p>
         </div>
     </div>
 
-    <!-- 2. FULL BIO-DATA REGISTRATION -->
+    <!-- 2. FULL BIO-DATA REGISTRATION (Separate Fields) -->
     <div id="sec-register" class="section-box">
         <div class="step-container">
             <h3>📝 முழுமையான பயோடேட்டா பதிவு (Full Bio-Data Form)</h3>
-            <p style="font-size: 11px; color: #666; margin-bottom: 8px;">உங்கள் விவரங்களை நிரப்பி போட்டோவுடன் சமர்ப்பிக்கவும்:</p>
             
             <label>ஜாதகம் யாருடையது? (Profile For):</label>
             <select id="bProfileType">
@@ -108,23 +103,53 @@
             <label>பெயர் (Full Name):</label>
             <input type="text" id="bName" placeholder="வரன் பெயர்">
 
-            <label>பிறந்த தேதி & நேரம் (DOB & Time):</label>
-            <input type="text" id="bDob" placeholder="எ.கா: 15.06.1998, 10:15 AM">
+            <!-- Separated DOB and Time -->
+            <label>பிறந்த தேதி (Date of Birth):</label>
+            <input type="date" id="bDob">
 
-            <label>ராசி & நட்சத்திரம் (Rasi & Star):</label>
-            <input type="text" id="bStar" placeholder="எ.கா: ரிஷபம், ரோகிணி">
+            <label>பிறந்த நேரம் (Birth Time):</label>
+            <input type="time" id="bTime">
 
-            <label>படிப்பு & வேலை (Education & Job):</label>
-            <input type="text" id="bJob" placeholder="எ.கா: B.Tech, Software Engineer">
+            <!-- Separated Rasi and Star -->
+            <label>ராசி (Rasi):</label>
+            <input type="text" id="bRasi" placeholder="எ.கா: ரிஷபம்">
 
-            <label>ஜாதி & பிரிவு (Caste & Sub-caste):</label>
+            <label>நட்சத்திரம் (Star):</label>
+            <input type="text" id="bStar" placeholder="எ.கா: ரோகிணி">
+
+            <!-- Separated Education and Job -->
+            <label>படிப்பு (Education):</label>
+            <input type="text" id="bEducation" placeholder="எ.கா: B.Tech">
+
+            <label>வேலை (Job / Profession):</label>
+            <input type="text" id="bJob" placeholder="எ.கா: Software Engineer">
+
+            <!-- Separated Caste and Sub-caste -->
+            <label>ஜாதி (Caste):</label>
             <input type="text" id="bCaste" placeholder="எ.கா: குறிப்பிட்ட ஜாதி">
 
-            <label>தந்தை பெயர் & தாய் பெயர்:</label>
-            <input type="text" id="bParents" placeholder="தந்தை பெயர் / தாய் பெயர்">
+            <label>பிரிவு / உட்சாதி (Sub-caste):</label>
+            <input type="text" id="bSubCaste" placeholder="எ.கா: உட்பிரிவு">
 
-            <label>முகவரி & மாவட்டம் (Address & District):</label>
-            <input type="text" id="bAddress" placeholder="ஊர், மாவட்டம்">
+            <!-- Separated Father and Mother Name -->
+            <label>தந்தை பெயர் (Father's Name):</label>
+            <input type="text" id="bFather" placeholder="தந்தை பெயர்">
+
+            <label>தாய் பெயர் (Mother's Name):</label>
+            <input type="text" id="bMother" placeholder="தாய் பெயர்">
+
+            <!-- Separated Address and District -->
+            <label>முகவரி (Address):</label>
+            <input type="text" id="bAddress" placeholder="வீட்டு முகவரி / ஊர்">
+
+            <label>மாவட்டம் (District):</label>
+            <input type="text" id="bDistrict" placeholder="எ.கா: தஞ்சாவூர்">
+
+            <label>மொபைல் எண் (Mobile Number):</label>
+            <input type="tel" id="bMobile" placeholder="98426XXXXX">
+
+            <label>பாஸ்வேர்ட் (Password):</label>
+            <input type="password" id="bPassword" placeholder="புதிய பாஸ்வேர்ட் உருவாக்கவும்">
 
             <label>📸 போட்டோ அப்லோட் (Upload Photo):</label>
             <input type="file" id="bPhoto" accept="image/*">
@@ -133,32 +158,34 @@
         </div>
     </div>
 
-    <!-- 3. PAYMENT GATEWAY (₹499) & PDF DOWNLOAD -->
+    <!-- 3. PAYMENT & PDF DOWNLOAD -->
     <div id="sec-payment" class="section-box">
         <div class="step-container">
-            <h3>💳 கட்டணம் & PDF டவுன்லோட் (Payment & PDF Download)</h3>
-            <p style="font-size: 11px; color: #555;">பதிவு வெற்றிகரமாகச் சேமிக்கப்பட்டது. PDF பயோடேட்டாவை டவுன்லோட் செய்ய **₹499** செலுத்தவும்.</p>
+            <h3>💳 கட்டணம் செலுத்துதல் & PDF (Payment & PDF)</h3>
+            <p style="font-size: 11px; color: #555;">முழுமையான பயோடேட்டா PDF டவுன்லோட் செய்ய **₹499** செலுத்தவும்.</p>
 
             <div style="background: #fff8e1; border: 1px dashed #d4af37; padding: 12px; border-radius: 6px; margin-top: 10px;">
-                <b style="color: #b8860b; font-size: 11px;">UPI / PhonePe / GPay QR:</b>
-                <p style="font-size: 10px; margin: 4px 0;">பதிவு மற்றும் PDF கட்டணம்: <b>₹499</b></p>
+                <b style="color: #b8860b; font-size: 11px;">UPI / PhonePe / GPay Gateway:</b>
+                <p style="font-size: 10px; margin: 4px 0;">பதிவு கட்டணம்: <b>₹499</b></p>
                 <button class="btn-action btn-pay" onclick="payAndUnlock()">🔒 Pay ₹499 Securely</button>
             </div>
 
-            <div id="downloadSection" style="display:none; margin-top: 15px;">
-                <div class="profile-card">
-                    <b>✅ கட்டணம் பெறப்பட்டது! உங்கள் பயோடேட்டா தயார்:</b><br>
-                    பெயர்: <span id="pName">-</span><br>
-                    வகை: <span id="pType">-</span><br>
-                    ராசி / நட்சத்திரம்: <span id="pStar">-</span>
+            <div id="pdfDownloadSection" style="display:none; margin-top: 15px;">
+                <hr style="border: 1px dashed #d4af37;">
+                <h4 style="color: #800020; font-size: 13px;">📥 உங்கள் பயோடேட்டா PDF தயார்:</h4>
+                <div class="profile-card" id="previewCard">
+                    <b>பெயர்:</b> <span id="pName">-</span><br>
+                    <b>ராசி / நட்சத்திரம்:</b> <span id="pRasiStar">-</span><br>
+                    <b>படிப்பு / வேலை:</b> <span id="pEduJob">-</span><br>
+                    <b>மொபைல்:</b> <span id="pMobile">-</span>
                 </div>
-                <button class="btn-action btn-pdf" onclick="downloadPDF()">📥 Download Bio-Data as PDF</button>
+                <button class="btn-action btn-pdf" onclick="downloadPDF()">📥 Download Bio-Data PDF</button>
             </div>
         </div>
     </div>
 
     <!-- 4. AI HOROSCOPE -->
-    <div id="sec-horoscope" class="section-box">
+    <div id="sec-ai" class="section-box">
         <div class="step-container">
             <h3>🌟 AI ஜாதக கணிப்பு & பரிகாரத் தலங்கள்</h3>
             <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 10px; border-radius: 5px; font-size: 11px;">
@@ -175,15 +202,15 @@
             <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 8px;">
                 <thead>
                     <tr style="background: #800020; color: white;">
-                        <th style="padding: 6px; border: 1px solid #ddd;">மொபைல் & பெயர்</th>
-                        <th style="padding: 6px; border: 1px solid #ddd;">வகை & ஜாதி</th>
-                        <th style="padding: 6px; border: 1px solid #ddd;">நிலை</th>
+                        <th style="padding: 6px; border: 1px solid #ddd;">பெயர் & மொபைல்</th>
+                        <th style="padding: 6px; border: 1px solid #ddd;">ராசி & ஜாதி</th>
+                        <th style="padding: 6px; border: 1px solid #ddd;">கட்டணம்</th>
                     </tr>
                 </thead>
                 <tbody id="adminTableBody">
                     <tr>
-                        <td style="padding: 6px; border: 1px solid #ddd;">98426XXXXX<br><small>மாதவன்</small></td>
-                        <td style="padding: 6px; border: 1px solid #ddd;">ஆண், கச்சிதம்</td>
+                        <td style="padding: 6px; border: 1px solid #ddd;">மாதவன்<br><small>98426XXXXX</small></td>
+                        <td style="padding: 6px; border: 1px solid #ddd;">ரிஷபம், கச்சிதம்</td>
                         <td style="padding: 6px; border: 1px solid #ddd;"><span style="color: green; font-weight: bold;">₹499 Paid ✅</span></td>
                     </tr>
                 </tbody>
@@ -193,16 +220,16 @@
 
     <!-- FIXED BOTTOM NAVIGATION BAR -->
     <div class="bottom-nav">
-        <button class="nav-item active" id="navDash" onclick="switchTab('dashboard')">
-            <span class="icon">🔐</span>Login
+        <button class="nav-item active" id="navLogin" onclick="switchTab('login')">
+            <span class="icon">🔑</span>Login
         </button>
-        <button class="nav-item" id="navReg" onclick="switchTab('register')">
+        <button class="nav-item" id="navRegister" onclick="switchTab('register')">
             <span class="icon">📝</span>Register
         </button>
-        <button class="nav-item" id="navPay" onclick="switchTab('payment')">
+        <button class="nav-item" id="navPayment" onclick="switchTab('payment')">
             <span class="icon">💳</span>Payment & PDF
         </button>
-        <button class="nav-item" id="navHoro" onclick="switchTab('horoscope')">
+        <button class="nav-item" id="navAi" onclick="switchTab('ai')">
             <span class="icon">🌟</span>AI Report
         </button>
         <button class="nav-item" id="navAdmin" onclick="switchTab('admin')">
@@ -218,18 +245,18 @@
             document.querySelectorAll('.section-box').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
 
-            if(tabName === 'dashboard') {
-                document.getElementById('sec-dashboard').classList.add('active');
-                document.getElementById('navDash').classList.add('active');
+            if(tabName === 'login') {
+                document.getElementById('sec-login').classList.add('active');
+                document.getElementById('navLogin').classList.add('active');
             } else if(tabName === 'register') {
                 document.getElementById('sec-register').classList.add('active');
-                document.getElementById('navReg').classList.add('active');
+                document.getElementById('navRegister').classList.add('active');
             } else if(tabName === 'payment') {
                 document.getElementById('sec-payment').classList.add('active');
-                document.getElementById('navPay').classList.add('active');
-            } else if(tabName === 'horoscope') {
-                document.getElementById('sec-horoscope').classList.add('active');
-                document.getElementById('navHoro').classList.add('active');
+                document.getElementById('navPayment').classList.add('active');
+            } else if(tabName === 'ai') {
+                document.getElementById('sec-ai').classList.add('active');
+                document.getElementById('navAi').classList.add('active');
             } else if(tabName === 'admin') {
                 document.getElementById('sec-admin').classList.add('active');
                 document.getElementById('navAdmin').classList.add('active');
@@ -237,55 +264,55 @@
         }
 
         function userLogin() {
-            const mobile = document.getElementById('loginMobile').value;
-            const pass = document.getElementById('loginPassword').value;
-
-            if(!mobile || !pass) {
+            const mob = document.getElementById('loginMobile').value;
+            const pwd = document.getElementById('loginPassword').value;
+            if(!mob || !pwd) {
                 alert("தயவுசெய்து மொபைல் எண் மற்றும் பாஸ்வேர்ட் உள்ளிடவும்!");
                 return;
             }
-
-            alert("✅ லாகின் வெற்றி! இப்போது முழுமையான பயோடேட்டா பதிவுப் பகுதிக்குச் செல்கிறோம்.");
-            switchTab('register');
+            alert("🎉 வெற்றிகரமாக உள்நுழைந்தீர்கள்!");
+            switchTab('payment');
         }
 
         function saveBioData() {
             const name = document.getElementById('bName').value;
-            const mobile = document.getElementById('loginMobile').value || "98426XXXXX";
-            const type = document.getElementById('bProfileType').value;
+            const mobile = document.getElementById('bMobile').value;
+            const rasi = document.getElementById('bRasi').value;
             const star = document.getElementById('bStar').value;
+            const edu = document.getElementById('bEducation').value;
+            const job = document.getElementById('bJob').value;
 
-            if(!name) {
-                alert("தயவுசெய்து வரன் பெயரை உள்ளிடவும்!");
+            if(!name || !mobile) {
+                alert("தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்!");
                 return;
             }
 
-            // Update preview details
+            // Update preview card
             document.getElementById('pName').innerText = name;
-            document.getElementById('pType').innerText = type;
-            document.getElementById('pStar').innerText = star;
+            document.getElementById('pRasiStar').innerText = rasi + " / " + star;
+            document.getElementById('pEduJob').innerText = edu + " / " + job;
+            document.getElementById('pMobile').innerText = mobile;
 
-            alert("🎉 பயோடேட்டா சேமிக்கப்பட்டது! கட்டணம் செலுத்தும் பகுதிக்குச் செல்கிறோம்.");
+            alert("🎉 பயோடேட்டா வெற்றிகரமாகச் சேமிக்கப்பட்டது! அடுத்ததாக கட்டணம் செலுத்தவும்.");
             switchTab('payment');
         }
 
         function payAndUnlock() {
             let confirmPay = confirm("₹499 செலுத்துவதை உறுதி செய்யவா?");
             if(confirmPay) {
-                alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது! PDF டவுன்லோட் செய்ய திறக்கப்பட்டுள்ளது.");
-                
-                // Show download section
-                document.getElementById('downloadSection').style.display = 'block';
+                alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது! PDF டவுன்லோட் செய்யும் வசதி திறக்கப்பட்டது.");
+                document.getElementById('pdfDownloadSection').style.display = 'block';
 
                 // Add to Admin Table
                 let name = document.getElementById('bName').value || "மதி";
-                let mobile = document.getElementById('loginMobile').value || "98426XXXXX";
-                let type = document.getElementById('bProfileType').value;
+                let mobile = document.getElementById('bMobile').value || "98426XXXXX";
+                let rasi = document.getElementById('bRasi').value || "ரிஷபம்";
+                let caste = document.getElementById('bCaste').value || "கச்சிதம்";
                 
                 let tableBody = document.getElementById('adminTableBody');
                 tableBody.innerHTML += `<tr>
-                    <td style="padding: 6px; border: 1px solid #ddd;">${mobile}<br><small>${name}</small></td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">${type}</td>
+                    <td style="padding: 6px; border: 1px solid #ddd;">${name}<br><small>${mobile}</small></td>
+                    <td style="padding: 6px; border: 1px solid #ddd;">${rasi}, ${caste}</td>
                     <td style="padding: 6px; border: 1px solid #ddd;"><span style="color: green; font-weight: bold;">₹499 Paid ✅</span></td>
                 </tr>`;
             }
@@ -310,30 +337,37 @@
             const fields = [
                 ["Profile Type:", document.getElementById('bProfileType').value],
                 ["Full Name:", document.getElementById('bName').value],
-                ["DOB & Time:", document.getElementById('bDob').value],
-                ["Rasi & Star:", document.getElementById('bStar').value],
-                ["Education & Job:", document.getElementById('bJob').value],
-                ["Caste:", document.getElementById('bCaste').value],
-                ["Parents Name:", document.getElementById('bParents').value],
-                ["Address / District:", document.getElementById('bAddress').value],
-                ["Mobile Number:", document.getElementById('loginMobile').value]
+                ["Date of Birth:", document.getElementById('bDob'].value],
+                ["Birth Time:", document.getElementById('bTime').value],
+                ["Rasi:", document.getElementById('bRasi').value],
+                ["Star:", document.getElementById('bStar').value],
+                ["Education:", document.getElementById('bEducation').value],
+                ["Job / Profession:", document.getElementById('bJob').value],
+                ["Caste:", document.getElementById('bCaste'].value],
+                ["Sub-caste:", document.getElementById('bSubCaste').value],
+                ["Father Name:", document.getElementById('bFather').value],
+                ["Mother Name:", document.getElementById('bMother').value],
+                ["Address:", document.getElementById('bAddress').value],
+                ["District:", document.getElementById('bDistrict').value],
+                ["Mobile Number:", document.getElementById('bMobile'].value]
             ];
 
             fields.forEach(field => {
                 doc.setFont("helvetica", "bold");
-                doc.text(field[0], 25, y);
+                doc.text(field[0], 20, y);
                 doc.setFont("helvetica", "normal");
-                doc.text(field[1] || "-", 75, y);
-                y += 10;
+                doc.text(field[1] || "-", 65, y);
+                y += 8;
             });
 
-            doc.line(20, y + 5, 190, y + 5);
+            doc.line(20, y + 2, 190, y + 2);
             doc.setFontSize(10);
-            doc.text("Contact: 9092745268 | Sri Andal Alagar Matrimony Centre", 105, y + 15, { align: "center" });
+            doc.text("Contact: 9092745268 | Sri Andal Alagar Matrimony Centre", 105, y + 10, { align: "center" });
 
             doc.save("Andal_Alagar_Biodata.pdf");
             alert("📥 பயோடேட்டா PDF வெற்றிகரமாக டவுன்லோட் செய்யப்பட்டது!");
         }
     </script>
 </body>
-</html>
+    </html>
+    

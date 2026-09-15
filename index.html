@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony - Full Registration Super App</title>
+    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் திருமண மையம்</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 15px; color: #333; }
@@ -26,39 +26,39 @@
 <body>
 
     <div class="app-header">
-        <h2>🌸 ஆண்டாள் அழகர் Matrimony</h2>
-        <p style="font-size: 12px; margin: 5px 0;">Full Registration & Super App Portal</p>
-        <p style="font-size: 11px; color: #ffd700; margin: 0;">📞 Call: 8270045268</p>
+        <h2>🌸 ஓம் ஸ்ரீ ஆண்டாள் அழகர் திருமண மையம்</h2>
+        <p style="font-size: 12px; margin: 5px 0;">செயற்கை நுண்ணறிவு (AI) ஜாதகப் பொருத்தம் மற்றும் வரன் தேடும் தளம்</p>
+        <p style="font-size: 11px; color: #ffd700; margin: 0;">📞 தொலைபேசி: 8270045268</p>
     </div>
 
-    <!-- STEP 1: SIGNUP / LOGIN -->
+    <!-- 1: உள்நுழைவு (SIGNUP / LOGIN) -->
     <div id="step-login" class="step-container">
-        <h3>1️⃣ வாடிக்கையாளர் Signup / Login</h3>
-        <label>மொபைல் எண் (Mobile Number):</label>
+        <h3>1️⃣ வாடிக்கையாளர் உள்நுழைவு (Login)</h3>
+        <label>மொபைல் எண்:</label>
         <input type="tel" id="userMobile" placeholder="எ.கா: 98426XXXXX">
         <button class="btn-action btn-next" onclick="goToRegister()">OTP அனுப்பி உள்நுழைக ➔</button>
     </div>
 
-    <!-- STEP 2: FULL REGISTER & PHOTO UPLOAD -->
+    <!-- 2: முழுமையான சுயவிவரப் பதிவு (REGISTER) -->
     <div id="step-register" class="step-container hidden">
-        <h3>2️⃣ முழுமையான சுயவிவரப் பதிவு (Full Registration Form)</h3>
+        <h3>2️⃣ முழுமையான சுயவிவரப் பதிவு</h3>
         
         <label>மணமகன் / மணமகள் பெயர்:</label>
         <input type="text" id="regName" placeholder="முழு பெயர்">
 
-        <label>பாலினம் (Gender):</label>
+        <label>பாலினம்:</label>
         <select id="regGender">
-            <option value="Male">மணமகன் (Bridegroom)</option>
-            <option value="Female">மணமகள் (Bride)</option>
+            <option value="Male">மணமகன்</option>
+            <option value="Female">மணமகள்</option>
         </select>
 
-        <label>பிறந்த தேதி (DOB):</label>
+        <label>பிறந்த தேதி:</label>
         <input type="date" id="regDob">
 
-        <label>கல்வி & வேலைவாய்ப்பு (Education & Job):</label>
-        <input type="text" id="regEdu" placeholder="எ.கா: B.Tech, Software Engineer">
+        <label>கல்வி & வேலைவாய்ப்பு:</label>
+        <input type="text" id="regEdu" placeholder="எ.கா: B.Tech, மென்பொருள் பொறியாளர்">
 
-        <label>நட்சத்திரம் & ராசி (Nakshatram & Rasi):</label>
+        <label>நட்சத்திரம் & ராசி:</label>
         <input type="text" id="regStar" placeholder="எ.கா: கார்த்திகை / ரிஷபம்">
 
         <label>தந்தை பெயர் & தாய் பெயர்:</label>
@@ -67,52 +67,52 @@
         <label>தொடர்பு முகவரி & ஊர்:</label>
         <textarea id="regAddress" rows="2" placeholder="ஊர், மாவட்டம்"></textarea>
 
-        <label>ஜாதகம் மற்றும் போட்டோ அப்லோட் (Photo & Horoscope):</label>
+        <label>ஜாதகம் மற்றும் புகைப்படம் (Photo & Horoscope Upload):</label>
         <input type="file" id="regPhoto" multiple>
 
         <button class="btn-action btn-next" onclick="goToPayment()">விவரங்களைச் சேமித்து கட்டணத்திற்குச் செல் ➔</button>
     </div>
 
-    <!-- STEP 3: PAYMENT OPTION -->
+    <!-- 3: கட்டணம் செலுத்துதல் (PAYMENT) -->
     <div id="step-payment" class="step-container hidden" style="border-left: 5px solid #d4af37;">
-        <h3>3️⃣ பிரீமியம் மெம்பர்ஷிப் கட்டணம் (Payment)</h3>
-        <p style="font-size: 12px; color: #555;">பதிவு வெற்றிகரமாக முடிந்தது! வரன்களைப் பார்க்க சிறிய கட்டணம் செலுத்தவும்:</p>
-        <button class="btn-action btn-pay" onclick="goToMatching()">💳 ₹999 - Pay via UPI / GPay / PhonePe</button>
+        <h3>3️⃣ பிரீமியம் உறுப்பினர் கட்டணம் (Payment)</h3>
+        <p style="font-size: 12px; color: #555;">பதிவு வெற்றிகரமாக முடிந்தது! வரண்களின் முழு விவரங்களைக் காண சிறிய கட்டணம் செலுத்தவும்:</p>
+        <button class="btn-action btn-pay" onclick="goToMatching()">💳 ₹999 - UPI / GPay / PhonePe மூலம் செலுத்துக</button>
     </div>
 
-    <!-- STEP 4: MATCHING PROFILES -->
+    <!-- 4: வரன்கள் தேடல் (MATCHING PROFILES) -->
     <div id="step-matching" class="step-container hidden">
-        <h3>4️⃣ வரன்கள் தேடல் (Matching Profiles)</h3>
+        <h3>4️⃣ பொருத்தமான வரன்கள்</h3>
         <div class="profile-card">
-            <b>ID: AA101</b> | 24 வயது, B.Tech<br>நட்சத்திரம்: ரோகிணி | ஊர்: மதுரை
+            <b>பதிவு எண்: AA101</b> | 24 வயது, B.Tech<br>நட்சத்திரம்: ரோகிணி | ஊர்: மதுரை
             <button style="float:right; background:#2e7d32; color:white; border:none; padding:4px 10px; border-radius:4px;" onclick="goToPorutham()">பொருத்தம் பார்க்க</button>
         </div>
         <div class="profile-card">
-            <b>ID: AA102</b> | 23 வயது, M.Sc<br>நட்சத்திரம்: பூசம் | ஊர்: சென்னை
+            <b>பதிவு எண்: AA102</b> | 23 வயது, M.Sc<br>நட்சத்திரம்: பூசம் | ஊர்: சென்னை
             <button style="float:right; background:#2e7d32; color:white; border:none; padding:4px 10px; border-radius:4px;" onclick="goToPorutham()">பொருத்தம் பார்க்க</button>
         </div>
     </div>
 
-    <!-- STEP 5: 10 PORUTHAM -->
+    <!-- 5: ஜாதகப் பொருத்தங்கள் (PORUTHAM) -->
     <div id="step-porutham" class="step-container hidden">
-        <h3>5️⃣ 10 ஜாதகப் பொருத்தங்கள் (Traditional Porutham)</h3>
+        <h3>5️⃣ 10 ஜாதகப் பொருத்தங்கள்</h3>
         <ul style="font-size: 12px; padding-left: 15px; line-height: 1.6;">
-            <li>தின பொருத்தம்: நன்று (Uttamam)</li>
+            <li>தின பொருத்தம்: உத்தமம்</li>
             <li>கண பொருத்த பொருத்தம்: நன்று</li>
-            <li>மகேந்திர பொருத்தம்: உத்தமம்</li>
+            <li>மகேந்திர பொருத்தம்: சிறப்பு</li>
             <li>யோனி பொருத்தம்: நன்று</li>
-            <li><b>முடிவு: 8/10 பொருத்தங்கள் கச்சிதமாக பொருந்துகின்றன!</b></li>
+            <li><b>இறுதி முடிவு: 8/10 பொருத்தங்கள் கச்சிதமாக பொருந்துகின்றன!</b></li>
         </ul>
-        <button class="btn-action btn-next" onclick="goToAiAstrology()">அடுத்து: AI Astrology & Horoscope ➔</button>
+        <button class="btn-action btn-next" onclick="goToAiAstrology()">அடுத்து: AI ஜாதக கணிப்பு ➔</button>
     </div>
 
-    <!-- STEP 6: AI ASTROLOGY -->
+    <!-- 6: AI ஜாதக கணிப்பு (AI ASTROLOGY) -->
     <div id="step-ai" class="step-container hidden" style="border-left: 5px solid #1565c0;">
-        <h3>6️⃣ AI Astrology & Deep Horoscope Analysis</h3>
+        <h3>6️⃣ AI ஜாதக கணிப்பு & பலன்கள்</h3>
         <div style="background: #eef2f7; padding: 12px; border-radius: 5px; font-size: 12px; color: #1565c0; font-weight: bold; line-height: 1.5;">
-            🤖 AI கணிப்பு: கிரக நிலைகளின்படி இந்த ஜோடிக்கு எதிர்காலம் மிகச் சிறப்பாக இருக்கும். மங்களகரமான யோகம் அமைந்துள்ளது! (9.5/10 Score)
+            🤖 AI கணிப்பு: கிரக நிலைகளின்படி இந்த ஜோடிக்கு எதிர்காலம் மிகச் சிறப்பாக இருக்கும். மங்களகரமான குரு பலம் அமைந்திருக்கிறது! (9.5/10 மதிப்பெண்)
         </div>
-        <button class="btn-action" onclick="resetApp()" style="background:#555; margin-top: 15px;">🔄 மீண்டும் முதல் முதல் தொடங்க</button>
+        <button class="btn-action" onclick="resetApp()" style="background:#555; margin-top: 15px;">🔄 முதல் பக்கத்திற்குச் செல்ல</button>
     </div>
 
     <script>

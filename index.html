@@ -153,35 +153,44 @@
 
     <!-- ================= ADMIN SECTION ================= -->
     <div id="adminSection" class="section-box">
-        <!-- 1. Add New Profile Form -->
+        <!-- 1. Admin Full Detailed Register Form (No Payment Required) -->
         <div class="step-container" style="border-top: 4px solid #d4af37;">
-            <h3>➕ புதிய ஜாதகம் சேர்க்க (Add 1 Lakh / Manual Profiles)</h3>
+            <h3>➕ புதிய வரனை நேரடியாகப் பதிவு செய்ய (Admin Full Registration Form)</h3>
             <label>வரன் பெயர்:</label>
-            <input type="text" id="adminName" placeholder="பெயர்">
+            <input type="text" id="adminName" placeholder="முழு பெயர்">
             <label>மொபைல் எண்:</label>
             <input type="text" id="adminMobile" placeholder="மொபைல் எண்">
-            <label>நட்சத்திரம் / ஊர்:</label>
-            <input type="text" id="adminDetails" placeholder="எ.கா: ரோகிணி / மதுரை">
-            <label>கட்டண நிலை:</label>
-            <select id="adminStatus">
-                <option value="₹99 Paid">₹99 Paid</option>
-                <option value="₹99 Paid & ₹499 Paid">₹99 Paid & ₹499 Paid</option>
-                <option value="Offline Registered (1 Lakh Data)">Offline Registered (1 Lakh Data)</option>
-            </select>
-            <button class="btn-action" onclick="addNewProfileByAdmin()" style="background: #800020; margin-top: 10px;">💾 இந்த ஜாதகத்தைச் சேமி (Add Profile)</button>
+            <label>பிறந்த தேதி & நேரம்:</label>
+            <input type="text" id="adminDobTime" placeholder="எ.கா: 15.06.1998, காலை 10:15 மணி">
+            <label>படிப்பு & வேலை:</label>
+            <input type="text" id="adminEdu" placeholder="எ.கா: B.Tech, Software Engineer">
+            <label>வேலை செய்யும் இடம் / ஊர்:</label>
+            <input type="text" id="adminWorkPlace" placeholder="எ.கா: சென்னை">
+            <label>வருமானம்:</label>
+            <input type="text" id="adminIncome" placeholder="எ.கா: மாதம் ரூ. 50,000">
+            <label>ராசி, நட்சத்திரம்:</label>
+            <input type="text" id="adminStar" placeholder="எ.கா: ரிஷபம், ரோகிணி">
+            <label>நிறம், உயரம்:</label>
+            <input type="text" id="adminHeight" placeholder="எ.கா: மாநிறம், 5' 10\"">
+            <label>தந்தையார் & தாயார் பெயர்:</label>
+            <input type="text" id="adminParents" placeholder="தந்தை / தாய் பெயர்">
+            <label>பூர்வீகம், இருப்பிடம்:</label>
+            <textarea id="adminAddress" rows="2" placeholder="ஊர், மாவட்டம்"></textarea>
+            
+            <button class="btn-action" onclick="addNewProfileByAdmin()" style="background: #800020; margin-top: 10px;">💾 வரனைச் சேமி (Save Profile - No Payment)</button>
         </div>
 
         <!-- 2. Admin Dashboard List -->
         <div class="step-container" style="border-top: 4px solid #800020;">
-            <h3>🔒 அட்மின் டேட்டா பேஸ் (All Saved Profiles)</h3>
-            <p style="font-size: 12px; color: #555;">உங்கள் தரவுத்தளத்தில் உள்ள அனைத்து ஜாதகங்கள்:</p>
+            <h3>🔒 அட்மின் பிரதான டேஷ்போர்டு (All Registered Profiles Log)</h3>
+            <p style="font-size: 12px; color: #555;">பதிவு செய்தவர்களின் முழு விவரம் மற்றும் நேரம்:</p>
             
             <table>
                 <thead>
                     <tr>
-                        <th>பெயர்</th>
-                        <th>மொபைல்</th>
-                        <th>நட்சத்திரம் / ஊர்</th>
+                        <th>தேதி & நேரம் (Time)</th>
+                        <th>பெயர் & மொபைல்</th>
+                        <th>விவரம் (Star/City)</th>
                         <th>நிலை (Status)</th>
                     </tr>
                 </thead>
@@ -248,7 +257,11 @@
 
             if(!name) { alert("தயவுசெய்து வரன் பெயரை உள்ளிடவும்!"); return; }
 
+            let now = new Date();
+            let timeString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
             currentProfile = {
+                time: timeString,
                 name: name,
                 mobile: mobile || "98426XXXXX",
                 details: (star ? star : "நட்சத்திரம் இல்லை") + " / " + (address ? address : "ஊர் இல்லை"),
@@ -260,7 +273,7 @@
         }
 
         function completeRegistration() {
-            currentProfile.status = "₹99 Paid";
+            currentProfile.status = "₹99 Paid (Customer)";
             saveProfileToLocalStorage(currentProfile);
             loadAdminData();
             alert("₹99 பதிவுக் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது!");
@@ -268,34 +281,45 @@
             document.getElementById('step-matching').classList.remove('hidden');
         }
 
-        // Admin adding new profile directly
+        // Admin Full Form Submission (No Payment Option, Directly Saved)
         function addNewProfileByAdmin() {
             const name = document.getElementById('adminName').value;
             const mobile = document.getElementById('adminMobile').value;
-            const details = document.getElementById('adminDetails').value;
-            const status = document.getElementById('adminStatus').value;
+            const star = document.getElementById('adminStar').value;
+            const address = document.getElementById('adminAddress').value;
 
             if(!name || !mobile) {
                 alert("தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்!");
                 return;
             }
 
+            let now = new Date();
+            let timeString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
             const newProfile = {
+                time: timeString,
                 name: name,
                 mobile: mobile,
-                details: details || "விவரங்கள் இல்லை",
-                status: status
+                details: (star ? star : "நட்சத்திரம் இல்லை") + " / " + (address ? address : "ஊர் இல்லை"),
+                status: "Admin Added (Direct)"
             };
 
             saveProfileToLocalStorage(newProfile);
             loadAdminData();
 
-            // Clear input fields
+            // Clear form fields after submission
             document.getElementById('adminName').value = '';
             document.getElementById('adminMobile').value = '';
-            document.getElementById('adminDetails').value = '';
+            document.getElementById('adminDobTime').value = '';
+            document.getElementById('adminEdu').value = '';
+            document.getElementById('adminWorkPlace').value = '';
+            document.getElementById('adminIncome').value = '';
+            document.getElementById('adminStar').value = '';
+            document.getElementById('adminHeight').value = '';
+            document.getElementById('adminParents').value = '';
+            document.getElementById('adminAddress').value = '';
 
-            alert("புதிய ஜாதகம் வெற்றிகரமாக அட்மின் டேட்டாவில் சேர்க்கப்பட்டது!");
+            alert("புதிய வரனின் முழு விவரமும் அட்மின் டேபிளில் வெற்றிகரமாக சேர்க்கப்பட்டது!");
         }
 
         function saveProfileToLocalStorage(profile) {
@@ -305,19 +329,19 @@
         }
 
         function loadAdminData() {
-            const tbody = document.getElementById('adminTableBoard') || document.getElementById('adminTableBody');
+            const tbody = document.getElementById('adminTableBody');
             let profiles = JSON.parse(localStorage.getItem('matrimony_profiles') || '[]');
             
             let allProfiles = [
-                { name: "மாதவன் (எடுத்துக்காட்டு)", mobile: "98426XXXXX", details: "ரோகிணி / மதுரை", status: "₹99 Paid & ₹499 Paid" },
-                ...profiles
+                { time: "15/09/2026 03:30 PM", name: "மாதவன்", mobile: "98426XXXXX", details: "ரோகிணி / மதுரை", status: "₹99 & ₹499 Paid (Full Package)" },
+                ...profiles.reverse()
             ];
 
             let html = '';
             allProfiles.forEach(p => {
                 html += `<tr>
-                    <td>${p.name}</td>
-                    <td>${p.mobile}</td>
+                    <td>${p.time || "நேரம் இல்லை"}</td>
+                    <td><b>${p.name}</b><br><span style="color:#666;">${p.mobile}</span></td>
                     <td>${p.details}</td>
                     <td><b style="color:green;">${p.status}</b></td>
                 </tr>`;
@@ -341,7 +365,7 @@
         function openPoruthamStep() {
             let profiles = JSON.parse(localStorage.getItem('matrimony_profiles') || '[]');
             if(profiles.length > 0) {
-                profiles[profiles.length - 1].status = "₹99 Paid & ₹499 Paid";
+                profiles[profiles.length - 1].status = "₹99 & ₹499 Paid (Full Package)";
                 localStorage.setItem('matrimony_profiles', JSON.stringify(profiles));
                 loadAdminData();
             }

@@ -56,6 +56,7 @@
         .btn-next { background: #2e7d32; }
         .btn-pay { background: #d4af37; color: #3b141c; }
         .btn-pdf { background: #1976d2; color: white; }
+        .btn-delete { background: #d32f2f; color: white; border: none; padding: 5px 8px; border-radius: 4px; font-size: 10px; cursor: pointer; font-weight: bold; margin-top: 4px; }
 
         .profile-match-card { background: #fffcf5; border: 1px solid #d4af37; padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 11px; }
     </style>
@@ -73,7 +74,7 @@
         </div>
     </div>
 
-    <!-- Menu Navigation Bar (Working Buttons) -->
+    <!-- Menu Navigation Bar -->
     <div class="menu-bar">
         <button class="menu-btn active" id="menuLogin" onclick="switchTab('login')">🔑 Login</button>
         <button class="menu-btn" id="menuRegister" onclick="switchTab('register')">📝 Register</button>
@@ -92,7 +93,6 @@
             <label>பாஸ்வேர்ட் (Password):</label>
             <input type="password" id="loginPassword" placeholder="******">
             <button class="btn-action btn-next" onclick="userLogin()">உள்நுழைய (Login) ➔</button>
-            <p style="font-size: 11px; text-align: center; margin-top: 10px;">புதிய வரனா? மேலே உள்ள **Register** பட்டனை அழுத்தவும்.</p>
         </div>
     </div>
 
@@ -181,15 +181,13 @@
         </div>
     </div>
 
-    <!-- 4. MATCHING PROFILES TAB (District Filtered) -->
+    <!-- 4. MATCHING PROFILES TAB -->
     <div id="sec-matches" class="section-box">
         <div class="step-container">
             <h3>✨ பொருத்தமான வரன்கள் (District Filtered Matches)</h3>
             <p style="font-size: 11px; color: #2e7d32; font-weight: bold;" id="filterInfo">📍 உங்கள் மாவட்டத்தின் வரன்கள்:</p>
             
-            <div id="matchProfilesList">
-                <!-- Dynamic Filtered Profiles -->
-            </div>
+            <div id="matchProfilesList"></div>
 
             <button class="btn-action btn-pdf" onclick="downloadPDF()" style="margin-top: 15px;">📥 Download My Bio-Data PDF</button>
         </div>
@@ -206,24 +204,21 @@
         </div>
     </div>
 
-    <!-- 6. ADMIN PANEL TAB -->
+    <!-- 6. ADMIN PANEL TAB (With Delete Option) -->
     <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
+            <p style="font-size: 11px; color: #666;">திருமணம் முடிந்துவிட்ட பதிவுகளை 'Delete' பட்டன் மூலம் நீக்கலாம்.</p>
             <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 8px;">
                 <thead>
                     <tr style="background: #800020; color: white;">
                         <th style="padding: 6px; border: 1px solid #ddd;">பெயர் & மொபைல்</th>
                         <th style="padding: 6px; border: 1px solid #ddd;">மாவட்டம் & ஜாதி</th>
-                        <th style="padding: 6px; border: 1px solid #ddd;">கட்டணம்</th>
+                        <th style="padding: 6px; border: 1px solid #ddd;">செயல் (Action)</th>
                     </tr>
                 </thead>
                 <tbody id="adminTableBody">
-                    <tr>
-                        <td style="padding: 6px; border: 1px solid #ddd;">மாதவன்<br><small>98426XXXXX</small></td>
-                        <td style="padding: 6px; border: 1px solid #ddd;">தஞ்சாவூர், கச்சிதம்</td>
-                        <td style="padding: 6px; border: 1px solid #ddd;"><span style="color: green; font-weight: bold;">₹499 Paid ✅</span></td>
-                    </tr>
+                    <!-- Dynamic Rows with Delete Button -->
                 </tbody>
             </table>
         </div>
@@ -240,6 +235,46 @@
             { name: "இளவரசன்", age: 26, edu: "B.Tech", job: "IT Professional", dist: "தஞ்சாவூர்", rasi: "சிம்மம்", star: "பூரம்", mobile: "9443567890" },
             { name: "சூர்யா", age: 28, edu: "Diploma", job: "Business", dist: "மதுரை", rasi: "துலாம்", star: "சுவாதி", mobile: "9940123456" }
         ];
+
+        // Central admin records list
+        let adminRecords = [
+            { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" },
+            { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" }
+        ];
+
+        function renderAdminTable() {
+            let tableBody = document.getElementById('adminTableBody');
+            tableBody.innerHTML = "";
+            
+            if(adminRecords.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding:10px; color:#666;">பதிவுகள் எதுவும் இல்லை</td></tr>`;
+                return;
+            }
+
+            adminRecords.forEach((rec, index) => {
+                tableBody.innerHTML += `
+                    <tr id="row-${rec.id}">
+                        <td style="padding: 6px; border: 1px solid #ddd;"><b>${rec.name}</b><br><small>${rec.mobile}</small></td>
+                        <td style="padding: 6px; border: 1px solid #ddd;">${rec.dist}, ${rec.caste}<br><span style="color: green; font-weight: bold;">${rec.status}</span></td>
+                        <td style="padding: 6px; border: 1px solid #ddd; text-align: center;">
+                            <button class="btn-delete" onclick="deleteRecord(${rec.id})">❌ Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function deleteRecord(id) {
+            let confirmDel = confirm("இந்த வரன் பதிவை (Profile) உறுதியாக நீக்க விரும்புகிறீர்களா?");
+            if(confirmDel) {
+                adminRecords = adminRecords.filter(r => r.id !== id);
+                renderAdminTable();
+                alert("🗑️ வரன் பதிவு வெற்றிகரமாக நீக்கப்பட்டது!");
+            }
+        }
+
+        // Initialize table on load
+        renderAdminTable();
 
         function switchTab(tabName) {
             document.querySelectorAll('.section-box').forEach(el => el.classList.remove('active'));
@@ -263,6 +298,7 @@
             } else if(tabName === 'admin') {
                 document.getElementById('sec-admin').classList.add('active');
                 document.getElementById('menuAdmin').classList.add('active');
+                renderAdminTable();
             }
         }
 
@@ -299,14 +335,18 @@
                 let name = document.getElementById('bName').value || "மதி";
                 let mobile = document.getElementById('bMobile').value || "98426XXXXX";
                 let caste = document.getElementById('bCaste').value || "கச்சிதம்";
-                
-                let tableBody = document.getElementById('adminTableBody');
-                tableBody.innerHTML += `<tr>
-                    <td style="padding: 6px; border: 1px solid #ddd;">${name}<br><small>${mobile}</small></td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">${userDist}, ${caste}</td>
-                    <td style="padding: 6px; border: 1px solid #ddd;"><span style="color: green; font-weight: bold;">₹499 Paid ✅</span></td>
-                </tr>`;
 
+                // Add to Admin Records List
+                adminRecords.push({
+                    id: Date.now(),
+                    name: name,
+                    mobile: mobile,
+                    dist: userDist,
+                    caste: caste,
+                    status: "₹499 Paid ✅"
+                });
+
+                renderAdminTable();
                 switchTab('matches');
             }
         }
@@ -360,24 +400,4 @@
                 ["Birth Time:", document.getElementById('bTime').value],
                 ["Rasi:", document.getElementById('bRasi').value],
                 ["Star:", document.getElementById('bStar').value],
-                ["Education:", document.getElementById('bEducation').value],
-                ["Job:", document.getElementById('bJob').value],
-                ["Caste:", document.getElementById('bCaste').value],
-                ["District:", document.getElementById('bDistrict').value],
-                ["Mobile Number:", document.getElementById('bMobile').value]
-            ];
-
-            fields.forEach(field => {
-                doc.setFont("helvetica", "bold");
-                doc.text(field[0], 20, y);
-                doc.setFont("helvetica", "normal");
-                doc.text(field[1] || "-", 65, y);
-                y += 8;
-            });
-
-            doc.save("Andal_Alagar_Biodata.pdf");
-            alert("📥 பயோடேட்டா PDF வெற்றிகரமாக டவுன்லோட் செய்யப்பட்டது!");
-        }
-    </script>
-</body>
-</html>
+                ["Education:", do

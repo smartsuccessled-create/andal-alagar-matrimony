@@ -54,11 +54,25 @@
         <div class="whatsapp-badge">🟢 WhatsApp Support: 9092745268</div>
     </div>
 
-    <!-- 1: SIGNUP / LOGIN -->
+    <!-- 1: SIGNUP / LOGIN (Front Selections: Gender, Language & Mobile) -->
     <div id="step-auth" class="step-container">
         <h3>1️⃣ கணக்கு தொடங்குதல் & உள்நுழைவு (Signup & Login)</h3>
+        
+        <label>பதிவு செய்யும் பிரிவு (Profile For):</label>
+        <select id="profileForGender">
+            <option value="Male">ஆண் பதிவு (Groom / Men)</option>
+            <option value="Female">பெண் பதிவு (Bride / Women)</option>
+        </select>
+
+        <label>மொழி தேர்வு (Select Language):</label>
+        <select id="appLanguage">
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="en">English</option>
+        </select>
+
         <label>மொபைல் எண் (Mobile Number):</label>
         <input type="tel" id="userMobile" placeholder="எ.கா: 98426XXXXX">
+
         <button class="btn-action btn-next" onclick="goToRegister()">OTP பெற்று உள்நுழைக ➔</button>
     </div>
 
@@ -67,6 +81,10 @@
         <h3>2️⃣ சுயவிவரப் பதிவு & போட்டோ அப்லோட் (Registration Form)</h3>
         <label>வரன் பெயர்:</label>
         <input type="text" id="regName" placeholder="முழு பெயர்">
+        
+        <label>ஜாதி (Caste):</label>
+        <input type="text" id="regCaste" placeholder="எ.கா: முதலியார், வன்னியர், முதலியார், கவுண்டர், நாடார், யாதவர், ஆதிதிராவிடர் மற்றும் பிற">
+
         <label>பிறந்த தேதி & நேரம்:</label>
         <input type="text" id="regDobTime" placeholder="எ.கா: 15.06.1998, காலை 10:15 மணி">
         <label>படிப்பு & வேலை:</label>
@@ -178,7 +196,9 @@
 
         function goToRegisterPayment() {
             const n = document.getElementById('regName').value;
+            const c = document.getElementById('regCaste').value;
             if(!n) { alert("தயவுசெய்து வரன் பெயரை உள்ளிடவும்!"); return; }
+            if(!c) { alert("தயவுசெய்து ஜாதி (Caste) விவரத்தை உள்ளிடவும்!"); return; }
             hideAll();
             document.getElementById('step-reg-pay').classList.remove('hidden');
         }

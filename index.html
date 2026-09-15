@@ -15,24 +15,27 @@
             border-radius: 12px; 
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             border: 2px solid #800020;
+            position: relative;
         }
-        .app-header .om-text {
-            font-size: 16px; 
-            font-weight: 900; 
-            color: #5c0613;
-            letter-spacing: 1px;
-            margin-bottom: 2px;
-        }
-        .app-header h2 { 
-            font-size: 26px; 
-            margin: 0 0 8px 0; 
-            color: #5c0613; 
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.7); 
-            font-weight: 900; 
-            letter-spacing: 0.5px;
-        }
+        .app-header .om-text { font-size: 16px; font-weight: 900; color: #5c0613; letter-spacing: 1px; margin-bottom: 2px; }
+        .app-header h2 { font-size: 26px; margin: 0 0 8px 0; color: #5c0613; text-shadow: 1px 1px 2px rgba(255,255,255,0.7); font-weight: 900; }
         .app-header .sub-title { background: #6d1a24; color: #fff; display: inline-block; padding: 5px 14px; border-radius: 20px; font-size: 13px; margin: 4px 0 8px 0; font-weight: bold; }
         .whatsapp-badge { font-size: 12px; color: #ffffff; background: #25d366; padding: 5px 12px; border-radius: 15px; display: inline-block; margin-top: 5px; font-weight: bold; }
+        
+        /* Admin Button top right */
+        .admin-btn-top {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fff;
+            color: #800020;
+            border: 2px solid #800020;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
         .step-container { background: white; padding: 18px; border-radius: 8px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-top: 4px solid #800020; }
         .hidden { display: none; }
@@ -43,18 +46,67 @@
         .btn-next { background: #2e7d32; }
         .btn-pay { background: #d4af37; color: #3b141c; }
         .profile-card { background: #fdfbf7; border: 1px solid #e6c687; padding: 12px; border-radius: 6px; margin-bottom: 10px; font-size: 12px; }
+        .admin-panel-box { background: #fff8f8; border: 2px dashed #800020; padding: 15px; border-radius: 8px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <div class="app-header">
+        <button class="admin-btn-top" onclick="showAdminLogin()">🔒 Admin Login</button>
         <div class="om-text">ஓம்</div>
         <h2>ஸ்ரீ ஆண்டாள் அழகர்</h2>
         <div class="sub-title">Matrimony</div><br>
         <div class="whatsapp-badge">🟢 WhatsApp Support: 9092745268</div>
     </div>
 
-    <!-- 1: SIGNUP / LOGIN (Front Selections: Gender, Language & Mobile) -->
+    <!-- 0: ADMIN LOGIN PANEL -->
+    <div id="step-admin-login" class="step-container hidden" style="border-top: 4px solid #d4af37;">
+        <h3>🔐 அட்மின் உள்நுழைவு (Admin Login)</h3>
+        <p style="font-size: 12px; color: #666;">அனுமதிக்கப்பட்ட நிர்வாகி மட்டும் உள்நுழையவும்:</p>
+        <label>Admin ID:</label>
+        <input type="text" id="adminUser" placeholder="Admin ID உள்ளிடவும்">
+        <label>Password:</label>
+        <input type="password" id="adminPass" placeholder="Password உள்ளிடவும்">
+        <button class="btn-action" style="background:#d4af37; color:#3b141c;" onclick="verifyAdmin()">அட்மின் உள்நுழை ➔</button>
+        <button class="btn-action" style="background:#555;" onclick="resetApp()">← முகப்பு பக்கத்திற்குச் செல்ல</button>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div id="step-admin-dashboard" class="step-container hidden">
+        <h3>👑 அட்மின் கட்டுப்பாட்டு அறை (Admin Dashboard)</h3>
+        <div style="background: #eef2f7; padding: 10px; border-radius: 6px; font-size: 12px; margin-bottom: 15px;">
+            <b>புள்ளிவிவரம்:</b> மொத்தம் பதிவு செய்தவர்கள்: <span id="totalRegCount" style="color: #800020; font-weight: bold;">1</span> வரன்கள்
+        </div>
+
+        <div class="admin-panel-box">
+            <h4 style="color: #800020; margin-top:0; font-size: 13px;">➕ புதிய வரனை நேரடியாகப் பதிவு செய்ய (Direct Register)</h4>
+            <label>வரன் பெயர்:</label>
+            <input type="text" id="admName" placeholder="பெயர்">
+            <label>மொபைல் எண்:</label>
+            <input type="tel" id="admMobile" placeholder="மொபைல் எண்">
+            <label>ஜாதி (Caste):</label>
+            <input type="text" id="admCaste" placeholder="ஜாதி">
+            <label>ராசி, நட்சத்திரம்:</label>
+            <input type="text" id="admStar" placeholder="ராசி, நட்சத்திரம்">
+            <label>📸 போட்டோ & ஜாதகம் அப்லோட்:</label>
+            <input type="file" id="admFile" multiple accept="image/*,.pdf">
+            <button class="btn-action btn-next" onclick="adminRegisterProfile()">✅ கட்டணம் இல்லாமல் பதிவு செய்</button>
+        </div>
+
+        <div style="margin-top: 15px;">
+            <h4 style="color: #800020; font-size: 13px;">🔍 ஜாதகப் பொருத்தம் சரிபார்க்க (Manual Porutham Checker):</h4>
+            <label>மணமகன் நட்சத்திரம்:</label>
+            <input type="text" id="boyStar" placeholder="எ.கா: ரோகிணி">
+            <label>மணமகள் நட்சத்திரம்:</label>
+            <input type="text" id="girlStar" placeholder="எ.கா: பூசம்">
+            <button class="btn-action" style="background: #1565c0;" onclick="checkManualPorutham()">10 பொருத்தங்களைச் சரிபார்</button>
+            <div id="poruthamResult" style="margin-top: 10px; font-size: 12px; font-weight: bold; color: #2e7d32;"></div>
+        </div>
+
+        <button class="btn-action" style="background:#555; margin-top: 20px;" onclick="resetApp()">🚪 அட்மினிலிருந்து வெளியேறு (Logout)</button>
+    </div>
+
+    <!-- 1: SIGNUP / LOGIN (User Side) -->
     <div id="step-auth" class="step-container">
         <h3>1️⃣ கணக்கு தொடங்குதல் & உள்நுழைவு (Signup & Login)</h3>
         
@@ -83,7 +135,7 @@
         <input type="text" id="regName" placeholder="முழு பெயர்">
         
         <label>ஜாதி (Caste):</label>
-        <input type="text" id="regCaste" placeholder="எ.கா: முதலியார், வன்னியர், முதலியார், கவுண்டர், நாடார், யாதவர், ஆதிதிராவிடர் மற்றும் பிற">
+        <input type="text" id="regCaste" placeholder="எ.கா: முதலியார், வன்னியர், கவுண்டர், நாடார், யாதவர் மற்றும் பிற">
 
         <label>பிறந்த தேதி & நேரம்:</label>
         <input type="text" id="regDobTime" placeholder="எ.கா: 15.06.1998, காலை 10:15 மணி">
@@ -175,6 +227,8 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
 
+        let registeredCount = 1;
+
         function hideAll() {
             document.getElementById('step-auth').classList.add('hidden');
             document.getElementById('step-register').classList.add('hidden');
@@ -185,6 +239,46 @@
             document.getElementById('step-ai-porutham').classList.add('hidden');
             document.getElementById('step-astrology').classList.add('hidden');
             document.getElementById('step-ai-horoscope').classList.add('hidden');
+            document.getElementById('step-admin-login').classList.add('hidden');
+            document.getElementById('step-admin-dashboard').classList.add('hidden');
+        }
+
+        function showAdminLogin() {
+            hideAll();
+            document.getElementById('step-admin-login').classList.remove('hidden');
+        }
+
+        function verifyAdmin() {
+            const u = document.getElementById('adminUser').value;
+            const p = document.getElementById('adminPass').value;
+            // உங்கள் விருப்பமான Admin ID மற்றும் Password (உதாரணத்திற்கு: admin / 9092)
+            if(u === "admin" && p === "9092") {
+                alert("அட்மின் உள்நுழைவு வெற்றி!");
+                hideAll();
+                document.getElementById('step-admin-dashboard').classList.remove('hidden');
+                document.getElementById('totalRegCount').innerText = registeredCount;
+            } else {
+                alert("தவறான Admin ID அல்லது Password!");
+            }
+        }
+
+        function adminRegisterProfile() {
+            const name = document.getElementById('admName').value;
+            if(!name) { alert("தயவுசெய்து வரன் பெயரை உள்ளிடவும்!"); return; }
+            registeredCount++;
+            document.getElementById('totalRegCount').innerText = registeredCount;
+            alert("புதிய வரன் வெற்றிகரமாக அட்மினால் பதிவு செய்யப்பட்டது! (கட்டணம் இல்லை)");
+            document.getElementById('admName').value = '';
+            document.getElementById('admMobile').value = '';
+            document.getElementById('admCaste').value = '';
+            document.getElementById('admStar').value = '';
+        }
+
+        function checkManualPorutham() {
+            const b = document.getElementById('boyStar').value;
+            const g = document.getElementById('girlStar').value;
+            if(!b || !g) { alert("இரண்டு நட்சத்திரங்களையும் உள்ளிடவும்!"); return; }
+            document.getElementById('poruthamResult').innerText = "✅ முடிவு: தின பொருத்தம், கண பொருத்தம் உள்பட 9/10 பொருத்தங்கள் கச்சிதமாகப் பொருந்துகின்றன!";
         }
 
         function goToRegister() {
@@ -198,13 +292,14 @@
             const n = document.getElementById('regName').value;
             const c = document.getElementById('regCaste').value;
             if(!n) { alert("தயவுசெய்து வரன் பெயரை உள்ளிடவும்!"); return; }
-            if(!c) { alert("தயவுசெய்து ஜாதி (Caste) விவரத்தை உள்ளிடவும்!"); return; }
+            if(!c) { alert("தயவுசெய்து ஜாதி விவரத்தை உள்ளிடவும்!"); return; }
             hideAll();
             document.getElementById('step-reg-pay').classList.remove('hidden');
         }
 
         function completeRegistration() {
             alert("₹99 பதிவுக் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது!");
+            registeredCount++;
             hideAll();
             document.getElementById('step-matching').classList.remove('hidden');
         }

@@ -6,7 +6,7 @@
     <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; color: #333; }
+        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 70px; color: #333; }
         
         /* Card Style Header */
         .app-header { 
@@ -33,14 +33,36 @@
             border-left: 3px solid #800020;
         }
 
-        /* Navigation Tabs */
-        .nav-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 12px; }
-        .nav-btn { 
-            padding: 8px 4px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; 
-            font-size: 11px; background: #e6c687; color: #3b141c; text-align: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        /* Bottom Navigation Bar (App Style like FaucetPay) */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #2b0b10;
+            border-top: 2px solid #d4af37;
+            display: flex;
+            justify-content: space-around;
+            padding: 6px 0;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
         }
-        .nav-btn.active { background: #800020; color: white; }
+        .nav-item {
+            background: none;
+            border: none;
+            color: #d8c29d;
+            font-size: 10px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 2px;
+            flex: 1;
+        }
+        .nav-item span.icon { font-size: 16px; margin-bottom: 2px; }
+        .nav-item.active { color: #ffffff; }
+        .nav-item.active span.icon { transform: scale(1.15); }
 
         .section-box { display: none; }
         .section-box.active { display: block; }
@@ -61,7 +83,7 @@
         }
         .district-item { font-size: 11px; display: flex; align-items: center; gap: 5px; }
 
-        /* Matching Profiles Card List */
+        /* Matching Profiles Card */
         .profile-match-card {
             background: #fffcf5; border: 1px solid #d4af37; padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 11px;
         }
@@ -82,15 +104,6 @@
             <div class="sub-title">திருமண அமைப்பு மையம்</div><br>
             <div class="whatsapp-badge">🟢 9092745268</div>
         </div>
-    </div>
-
-    <!-- Nav Tabs -->
-    <div class="nav-tabs">
-        <button class="nav-btn active" id="tabDash" onclick="switchTab('dashboard')">📊 Dashboard</button>
-        <button class="nav-btn" id="tabCust" onclick="switchTab('customer')">👤 Customer</button>
-        <button class="nav-btn" id="tabAstro" onclick="switchTab('astrology')">🔮 Astrology</button>
-        <button class="nav-btn" id="tabHoro" onclick="switchTab('horoscope')">🌟 AI Future</button>
-        <button class="nav-btn" id="tabAdmin" onclick="switchTab('admin')" style="grid-column: span 2; background: #3b141c; color: #e6c687;">🔒 Admin Panel</button>
     </div>
 
     <!-- 1. DASHBOARD -->
@@ -156,7 +169,7 @@
             <h3 style="margin-top: 15px; border-bottom: 2px solid #800020;">✨ பொருத்தமான வரன்கள் (Matching Profiles Open)</h3>
             
             <div class="profile-match-card">
-                <b>பதிவு எண்: AA-2041</b> | வயது: 25, B.Tech<, வேலை: Software Engineer<br>
+                <b>பதிவு எண்: AA-2041</b> | வயது: 25, B.Tech | வேலை: Software Engineer<br>
                 📍 இடம்: தஞ்சாவூர் (60 கி.மீக்குள்) | ஜாதி: கச்சிதம்<br>
                 ⭐ ஜாதகப் பொருத்தம்: 9/10 (உத்தமம்)<br>
                 <button class="btn-action" style="padding: 5px; font-size: 11px; margin-top: 5px;" onclick="alert('தொடர்பு எண்: 9092745268 - ஸ்ரீ ஆண்டாள் அழகர் மையம்')">📞 Jathagam & Contact பார்க்க</button>
@@ -215,6 +228,25 @@
         </div>
     </div>
 
+    <!-- FIXED BOTTOM NAVIGATION BAR (Like FaucetPay App) -->
+    <div class="bottom-nav">
+        <button class="nav-item active" id="navDash" onclick="switchTab('dashboard')">
+            <span class="icon">📊</span>Dashboard
+        </button>
+        <button class="nav-item" id="navCust" onclick="switchTab('customer')">
+            <span class="icon">👤</span>Customer
+        </button>
+        <button class="nav-item" id="navAstro" onclick="switchTab('astrology')">
+            <span class="icon">🔮</span>Jathagam
+        </button>
+        <button class="nav-item" id="navHoro" onclick="switchTab('horoscope')">
+            <span class="icon">🌟</span>AI Report
+        </button>
+        <button class="nav-item" id="navAdmin" onclick="switchTab('admin')">
+            <span class="icon">🔒</span>Admin
+        </button>
+    </div>
+
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
@@ -226,27 +258,27 @@
             document.getElementById('sec-horoscope').classList.remove('active');
             document.getElementById('sec-admin').classList.remove('active');
 
-            document.getElementById('tabDash').classList.remove('active');
-            document.getElementById('tabCust').classList.remove('active');
-            document.getElementById('tabAstro').classList.remove('active');
-            document.getElementById('tabHoro').classList.remove('active');
-            document.getElementById('tabAdmin').classList.remove('active');
+            document.getElementById('navDash').classList.remove('active');
+            document.getElementById('navCust').classList.remove('active');
+            document.getElementById('navAstro').classList.remove('active');
+            document.getElementById('navHoro').classList.remove('active');
+            document.getElementById('navAdmin').classList.remove('active');
 
             if(tabName === 'dashboard') {
                 document.getElementById('sec-dashboard').classList.add('active');
-                document.getElementById('tabDash').classList.add('active');
+                document.getElementById('navDash').classList.add('active');
             } else if(tabName === 'customer') {
                 document.getElementById('sec-customer').classList.add('active');
-                document.getElementById('tabCust').classList.add('active');
+                document.getElementById('navCust').classList.add('active');
             } else if(tabName === 'astrology') {
                 document.getElementById('sec-astrology').classList.add('active');
-                document.getElementById('tabAstro').classList.add('active');
+                document.getElementById('navAstro').classList.add('active');
             } else if(tabName === 'horoscope') {
                 document.getElementById('sec-horoscope').classList.add('active');
-                document.getElementById('tabHoro').classList.add('active');
+                document.getElementById('navHoro').classList.add('active');
             } else if(tabName === 'admin') {
                 document.getElementById('sec-admin').classList.add('active');
-                document.getElementById('tabAdmin').classList.add('active');
+                document.getElementById('navAdmin').classList.add('active');
             }
         }
 

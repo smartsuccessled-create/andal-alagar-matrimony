@@ -6,80 +6,77 @@
     <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; margin: 0; padding: 10px; color: #f8fafc; }
+        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; color: #333; }
         
-        /* Trust Card Header Style */
+        /* Card Style Header matching your Visiting Card design */
         .app-header { 
             position: relative;
-            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
-            color: #fff; 
+            background: linear-gradient(135deg, #e6c687 0%, #b8860b 55%, #800020 100%);
+            color: #3b141c; 
             padding: 16px; 
-            border-radius: 14px; 
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-            border: 1px solid #d4af37;
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: 2px solid #800020;
             overflow: hidden;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            min-height: 95px;
         }
-        .header-content { z-index: 2; width: 60%; }
-        .app-header .om-text { font-size: 14px; font-weight: 900; color: #d4af37; letter-spacing: 1px; }
-        .app-header h2 { font-size: 22px; margin: 2px 0; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.5); font-weight: 900; }
-        .app-header .sub-title { background: #d4af37; color: #0f172a; display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 10px; font-weight: bold; margin-top: 2px; }
-        .whatsapp-badge { font-size: 11px; color: #ffffff; background: #059669; padding: 3px 8px; border-radius: 12px; display: inline-block; margin-top: 6px; font-weight: bold; }
+        .header-content {
+            position: relative;
+            z-index: 2;
+            width: 55%;
+        }
+        .app-header .om-text { font-size: 15px; font-weight: 900; color: #5c0613; letter-spacing: 1px; }
+        .app-header h2 { font-size: 23px; margin: 2px 0; color: #5c0613; text-shadow: 1px 1px 2px rgba(255,255,255,0.7); font-weight: 900; }
+        .app-header .sub-title { background: #6d1a24; color: #fff; display: inline-block; padding: 3px 10px; border-radius: 15px; font-size: 11px; font-weight: bold; margin-top: 2px; }
+        .whatsapp-badge { font-size: 11px; color: #ffffff; background: #25d366; padding: 3px 8px; border-radius: 12px; display: inline-block; margin-top: 6px; font-weight: bold; }
 
-        /* Trust Badge Right Image */
-        .header-badge-box {
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid #d4af37;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            width: 35%;
+        /* Traditional Tamil Wedding Couple Image (Saree & Veshti) on Right Side */
+        .header-image-bg {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 48%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1610173827002-cc9d1fb685d6?auto=format&fit=crop&w=400&q=80') center/cover no-repeat;
+            clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+            border-left: 3px solid #800020;
+            opacity: 1;
         }
-        .header-badge-box span { font-size: 10px; color: #d4af37; font-weight: bold; display: block; }
-        .header-badge-box b { font-size: 12px; color: #fff; }
 
         /* Navigation Switcher Tabs */
         .nav-tabs { display: flex; gap: 8px; margin-top: 12px; }
-        .nav-btn { flex: 1; padding: 10px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px; background: #1e293b; color: #94a3b8; border: 1px solid #334155; }
-        .nav-btn.active { background: #d4af37; color: #0f172a; border-color: #d4af37; }
+        .nav-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 12px; background: #ddd; color: #333; }
+        .nav-btn.active { background: #800020; color: white; }
 
         .section-box { display: none; }
         .section-box.active { display: block; }
 
-        .step-container { background: #1e293b; padding: 16px; border-radius: 12px; margin-top: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid #334155; }
+        .step-container { background: white; padding: 15px; border-radius: 8px; margin-top: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-top: 4px solid #800020; }
         .hidden { display: none; }
-        h3 { color: #d4af37; font-size: 14px; margin-top: 0; border-bottom: 1px solid #334155; padding-bottom: 6px; }
-        label { font-size: 11px; font-weight: bold; display: block; margin-top: 8px; color: #cbd5e1; }
-        input, select, textarea { width: 100%; padding: 9px; margin-top: 4px; margin-bottom: 6px; background: #0f172a; border: 1px solid #475569; color: #fff; border-radius: 6px; font-size: 12px; box-sizing: border-box; }
-        input:focus { border-color: #d4af37; outline: none; }
-        
-        .btn-action { background: #d4af37; color: #0f172a; border: none; padding: 11px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; margin-top: 12px; }
-        .btn-next { background: #059669; color: white; }
-        .btn-pay { background: linear-gradient(135deg, #d4af37, #b45309); color: white; }
-        
-        .profile-card { background: #0f172a; border: 1px solid #334155; padding: 10px; border-radius: 8px; margin-bottom: 8px; font-size: 11px; color: #cbd5e1; }
+        h3 { color: #800020; font-size: 14px; margin-top: 0; border-bottom: 2px solid #e6c687; padding-bottom: 5px; }
+        label { font-size: 11px; font-weight: bold; display: block; margin-top: 8px; color: #444; }
+        input, select, textarea { width: 100%; padding: 8px; margin-top: 3px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; box-sizing: border-box; }
+        .btn-action { background: #800020; color: white; border: none; padding: 11px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 13px; margin-top: 12px; }
+        .btn-next { background: #2e7d32; }
+        .btn-pay { background: #d4af37; color: #3b141c; }
+        .profile-card { background: #fdfbf7; border: 1px solid #e6c687; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 11px; }
         
         /* Admin Table Styles */
         table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 8px; }
-        th, td { border: 1px solid #334155; padding: 8px; text-align: left; color: #cbd5e1; }
-        th { background: #334155; color: #d4af37; }
+        th, td { border: 1px solid #ddd; padding: 7px; text-align: left; }
+        th { background: #800020; color: white; }
     </style>
 </head>
 <body>
 
-    <!-- Trust App Header Style -->
+    <!-- Card Header with Traditional Tamil Couple Image -->
     <div class="app-header">
+        <div class="header-image-bg"></div>
         <div class="header-content">
-            <div class="om-text">ஓம் ஸ்ரீ</div>
-            <h2>ஆண்டாள் அழகர்</h2>
-            <div class="sub-title">நம்பகமான திருமண அமைப்பு மையம்</div><br>
+            <div class="om-text">ஓம்</div>
+            <h2>ஸ்ரீ ஆண்டாள் அழகர்</h2>
+            <div class="sub-title">திருமண அமைப்பு மையம்</div><br>
             <div class="whatsapp-badge">🟢 9092745268</div>
-        </div>
-        <div class="header-badge-box">
-            <span>நம்பகத்தன்மை</span>
-            <b>100% Secure</b>
         </div>
     </div>
 
@@ -128,33 +125,33 @@
         </div>
 
         <!-- REGISTRATION PAYMENT (₹99) -->
-        <div id="step-reg-pay" class="step-container hidden" style="border-left: 4px solid #d4af37;">
+        <div id="step-reg-pay" class="step-container hidden" style="border-left: 5px solid #d4af37;">
             <h3>பதிவுக் கட்டணம் (Registration Fee - ₹99)</h3>
-            <p style="font-size: 11px; color: #94a3b8;">விவரங்களைச் சேமிக்க ₹99 செலுத்தவும்:</p>
+            <p style="font-size: 11px; color: #555;">விவரங்களைச் சேமிக்க ₹99 செலுத்தவும்:</p>
             <button class="btn-action btn-pay" onclick="completeRegistration()">✅ UPI / GPay மூலம் ₹99 செலுத்துக</button>
         </div>
 
         <!-- 3: MATCHING PROFILE -->
         <div id="step-matching" class="step-container hidden">
             <h3>3️⃣ வரன்கள் தேடல் (Matching Profiles)</h3>
-            <p style="font-size: 11px; color: #34d399; font-weight: bold;">🎉 பதிவு வெற்றி! பொருத்தமான வரன்கள்:</p>
+            <p style="font-size: 11px; color: #2e7d32; font-weight: bold;">🎉 பதிவு வெற்றி! பொருத்தமான வரன்கள்:</p>
             <div class="profile-card">
                 <b>பதிவு எண்: AA101</b> | 24 வயது, B.Tech<br>நட்சத்திரம்: ரோகிணி | ஊர்: மதுரை
-                <button style="float:right; background:#d4af37; color:#0f172a; font-weight:bold; border:none; padding:4px 8px; border-radius:4px; margin-top:3px;" onclick="goToMatchingPayment()">வரன்கள் பார்க்க ₹499</button>
+                <button style="float:right; background:#800020; color:#fff; font-weight:bold; border:none; padding:4px 8px; border-radius:4px; margin-top:3px;" onclick="goToMatchingPayment()">வரன்கள் பார்க்க ₹499</button>
             </div>
         </div>
 
         <!-- MATCHING PAYMENT (₹499) -->
-        <div id="step-matching-pay" class="step-container hidden" style="border-left: 4px solid #d4af37;">
+        <div id="step-matching-pay" class="step-container hidden" style="border-left: 5px solid #d4af37;">
             <h3>மேட்சிங் கட்டணம் (Matching Fee - ₹499)</h3>
-            <p style="font-size: 11px; color: #94a3b8;">முழுமையான வரன் விவரங்களைக் காண ₹499 செலுத்தவும்:</p>
+            <p style="font-size: 11px; color: #555;">முழுமையான வரன் விவரங்களைக் காண ₹499 செலுத்தவும்:</p>
             <button class="btn-action btn-pay" onclick="openPoruthamStep()">💳 UPI / GPay மூலம் ₹499 செலுத்துக</button>
         </div>
 
         <!-- 4: 10 PORUTHAM -->
         <div id="step-porutham" class="step-container hidden">
             <h3>4️⃣ 10 ஜாதகப் பொருத்தங்கள் (10 Porutham)</h3>
-            <ul style="font-size: 11px; padding-left: 15px; line-height: 1.5; color: #cbd5e1;">
+            <ul style="font-size: 11px; padding-left: 15px; line-height: 1.5;">
                 <li>தின பொருத்தம்: உத்தமம்</li>
                 <li>கண பொருத்த பொருத்தம்: நன்று</li>
                 <li>மகேந்திர பொருத்தம்: சிறப்பு</li>
@@ -165,9 +162,9 @@
         </div>
 
         <!-- 5: AI PORUTHAM -->
-        <div id="step-ai-porutham" class="step-container hidden" style="border-left: 4px solid #3b82f6;">
+        <div id="step-ai-porutham" class="step-container hidden" style="border-left: 5px solid #1565c0;">
             <h3>5️⃣ AI ஜாதகப் பொருத்தம் (AI Porutham)</h3>
-            <div style="background: #0f172a; padding: 10px; border-radius: 6px; font-size: 11px; color: #60a5fa; font-weight: bold; line-height: 1.4; border: 1px solid #1e3a8a;">
+            <div style="background: #eef2f7; padding: 10px; border-radius: 5px; font-size: 11px; color: #1565c0; font-weight: bold; line-height: 1.4;">
                 🤖 AI பொருத்தம் ஆய்வு: நட்சத்துரப் பொருத்தங்கள் மற்றும் தோஷங்கள் முழுமையாக ஆய்வு செய்யப்பட்டன. இந்த ஜோடிக்கு மனப்பொருத்தம் மிக அருமையாக அமையும்! (9.6/10)
             </div>
             <button class="btn-action btn-next" onclick="openAstrologyStep()">அடுத்து: ஜோதிட பலன்கள் பார்க்க ➔</button>
@@ -176,19 +173,19 @@
         <!-- 6: ASTROLOGY -->
         <div id="step-astrology" class="step-container hidden">
             <h3>6️⃣ ஜோதிட பலன்கள் (Astrology)</h3>
-            <p style="font-size: 11px; line-height: 1.5; color: #cbd5e1;">
+            <p style="font-size: 11px; line-height: 1.5;">
                 <b>கிரக நிலைகள்:</b> ஜென்ம ராசியில் குரு பார்வை இருப்பதால் திருமணத்திற்குப் பின் சுபிட்சமான வாழ்க்கை அமையும். மங்களகரமான யோகம் கைகூடியுள்ளது.
             </p>
             <button class="btn-action btn-next" onclick="openAiHoroscopeStep()">அடுத்து: AI ஜாதக கணிப்பு (AI Horoscope) ➔</button>
         </div>
 
         <!-- 7: AI HOROSCOPE -->
-        <div id="step-ai-horoscope" class="step-container hidden" style="border-left: 4px solid #d4af37;">
+        <div id="step-ai-horoscope" class="step-container hidden" style="border-left: 5px solid #800020;">
             <h3>7️⃣ AI ஜாதக கணிப்பு & விரிவான ரிப்போர்ட் (AI Horoscope)</h3>
-            <div style="background: #0f172a; padding: 10px; border-radius: 6px; font-size: 11px; color: #fbbf24; font-weight: bold; line-height: 1.4; border: 1px solid #78350f;">
+            <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 10px; border-radius: 5px; font-size: 11px; color: #800020; font-weight: bold; line-height: 1.4;">
                 🌟 AI பிரம்மாண்ட ரிப்போர்ட்: லக்னாதிபதி பலம் பெற்றுள்ளதால் எதிர்கால தொழில் மற்றும் குடும்ப வாழ்க்கை வியக்கத்தக்க வகையில் உயரும். முழுமையான வெற்றிக்கான ஜாதகம் இது! (9.9/10 Score)
             </div>
-            <button class="btn-action" onclick="resetApp()" style="background:#475569; color:#fff; margin-top: 12px;">🔄 முதல் பக்கத்திற்குச் செல்ல</button>
+            <button class="btn-action" onclick="resetApp()" style="background:#555; margin-top: 12px;">🔄 முதல் பக்கத்திற்குச் செல்ல</button>
         </div>
     </div>
 
@@ -196,7 +193,7 @@
     <div id="adminSection" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
-            <p style="font-size: 11px; color: #94a3b8;">பதிவு செய்த வாடிக்கையாளர்கள் மற்றும் கட்டண விவரங்கள்:</p>
+            <p style="font-size: 11px; color: #555;">பதிவு செய்த வாடிக்கையாளர்கள் மற்றும் கட்டண விவரங்கள்:</p>
             
             <table>
                 <tr>
@@ -211,7 +208,7 @@
                 </tr>
             </table>
             
-            <button class="btn-action" onclick="alert('புதிய டேட்டா ஒத்திசைக்கப்பட்டது!')" style="background: #059669; color:#fff; margin-top: 12px;">🔄 டேட்டாவைப் புதுப்பிக்க</button>
+            <button class="btn-action" onclick="alert('புதிய டேட்டா ஒத்திசைக்கப்பட்டது!')" style="background: #2e7d32; margin-top: 12px;">🔄 டேட்டாவைப் புதுப்பிக்க</button>
         </div>
     </div>
 
@@ -298,5 +295,4 @@
         }
     </script>
 </body>
-    </html>
-    
+</html>

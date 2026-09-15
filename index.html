@@ -23,7 +23,7 @@
 
         /* Navigation Switcher Tabs */
         .nav-tabs { display: flex; gap: 10px; margin-top: 15px; }
-        .nav-btn { flex: 1; padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; background: #ddd; color: #333; }
+        .nav-btn { flex: 1; padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; background: #ddd; color: #333; text-align: center; }
         .nav-btn.active { background: #800020; color: white; }
 
         .section-box { display: none; }
@@ -56,8 +56,8 @@
 
     <!-- Switch Between Customer & Admin View -->
     <div class="nav-tabs">
-        <button class="nav-btn active" id="tabCustomerBtn" onclick="switchView('customer')">👤 வாடிக்கையாளர் பக்கம் (Customer)</button>
-        <button class="nav-btn" id="tabAdminBtn" onclick="switchView('admin')">🔒 அட்மின் பேனல் (Admin)</button>
+        <button class="nav-btn active" id="tabCustomerBtn" onclick="switchView('customer')">👤 வாடிக்கையாளர் பக்கம்</button>
+        <button class="nav-btn" id="tabAdminBtn" onclick="switchView('admin')">🔒 அட்மின் பேனல்</button>
     </div>
 
     <!-- ================= CUSTOMER SECTION ================= -->
@@ -154,16 +154,14 @@
     <!-- ================= ADMIN SECTION ================= -->
     <div id="adminSection" class="section-box">
         
-        <!-- 1. Admin Setup Box (First time you create your own Username & Password) -->
+        <!-- 1. Admin Setup Box (First time setup) -->
         <div id="adminSetupBox" class="step-container hidden" style="border-top: 4px solid #800020;">
             <h3>⚙️ புதிய அட்மின் லாகின் உருவாக்க</h3>
             <p style="font-size: 12px; color: #555;">உங்கள் சொந்த Username மற்றும் Password-ஐ இங்கே உருவாக்கவும்:</p>
-            
             <label>புதிய Username:</label>
             <input type="text" id="setupUser" placeholder="எ.கா: myadmin">
             <label>புதிய Password:</label>
             <input type="password" id="setupPass" placeholder="பாஸ்வேர்ட் உள்ளிடவும்">
-            
             <button class="btn-action" onclick="saveAdminCredentials()" style="background: #2e7d32; margin-top: 8px;">💾 லாகின் விவரங்களைச் சேமி</button>
         </div>
 
@@ -174,7 +172,6 @@
             <input type="text" id="adminUser" placeholder="உங்கள் Username">
             <label>Password:</label>
             <input type="password" id="adminPass" placeholder="உங்கள் Password">
-            
             <button class="btn-action" onclick="checkAdminLogin()" style="background: #800020;">உள்நுழை (Login)</button>
             <button onclick="resetAdminSetup()" style="background:none; border:none; color:#800020; font-size:11px; text-decoration:underline; cursor:pointer; width:100%; margin-top:10px;">Username/Password மாற்ற</button>
         </div>
@@ -242,13 +239,6 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        window.onload = function() {
-            checkAdminState();
-            if(sessionStorage.getItem('isAdminLoggedIn') === 'true') {
-                showAdminPanel();
-            }
-        };
-
         function switchView(view) {
             document.getElementById('customerSection').classList.remove('active');
             document.getElementById('adminSection').classList.remove('active');
@@ -275,8 +265,11 @@
                 document.getElementById('adminLoginBox').classList.add('hidden');
                 document.getElementById('adminPanelContent').classList.add('hidden');
             } else {
-                document.getElementById('adminSetupBox').classList.add('hidden');
-                document.getElementById('adminLoginBox').classList.remove('hidden');
+                if(sessionStorage.getItem('isAdminLoggedIn') !== 'true') {
+                    document.getElementById('adminSetupBox').classList.add('hidden');
+                    document.getElementById('adminLoginBox').classList.remove('hidden');
+                    document.getElementById('adminPanelContent').classList.add('hidden');
+                }
             }
         }
 
@@ -291,7 +284,7 @@
 
             localStorage.setItem('my_admin_user', u);
             localStorage.setItem('my_admin_pass', p);
-            alert("அட்மின் லாகின் விவரங்கள் வெற்றிகரமாக சேமிக்கப்பட்டன!");
+            alert("அட்மின் லாகின் விவரங்கள் வெற்றிகரமாக சேமிக்கப்பட்டன! இப்போது லாகின் செய்யவும்.");
             checkAdminState();
         }
 
@@ -430,7 +423,6 @@
         function saveProfileToLocalStorage(profile) {
             let profiles = JSON.parse(localStorage.getItem('matrimony_profiles') || '[]');
             profiles.push(profile);
-            localStorage.getItem('matrimony_profiles', JSON.stringify(profiles)); // fixed line below
             localStorage.setItem('matrimony_profiles', JSON.stringify(profiles));
         }
 

@@ -3,28 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் திருமண மையம்</title>
+    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் திருமண அமைப்பகம்</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 15px; color: #333; }
-        .app-header { text-align: center; background: linear-gradient(135deg, #3b141c, #6d2230); color: white; padding: 15px; border-radius: 10px; }
-        .step-container { background: white; padding: 20px; border-radius: 8px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 12px; color: #333; }
+        
+        /* Notice/Banner matching Header Style */
+        .app-header { 
+            text-align: center; 
+            background: linear-gradient(135deg, #e6c687, #b8860b, #800020); 
+            color: #3b141c; 
+            padding: 18px 12px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 2px solid #800020;
+        }
+        .app-header h2 {
+            font-size: 20px;
+            margin: 0 0 5px 0;
+            color: #5c0613;
+            text-shadow: 0.5px 0.5px 1px rgba(255,255,255,0.6);
+            font-weight: bold;
+        }
+        .app-header .sub-title {
+            background: #6d1a24;
+            color: #fff;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin: 4px 0 8px 0;
+            font-weight: bold;
+        }
+        .whatsapp-badge {
+            font-size: 12px; 
+            color: #ffffff; 
+            background: #25d366; 
+            padding: 4px 10px; 
+            border-radius: 15px; 
+            display: inline-block; 
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .step-container { background: white; padding: 18px; border-radius: 8px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-top: 4px solid #800020; }
         .hidden { display: none; }
-        h3 { color: #3b141c; font-size: 16px; margin-top: 0; border-bottom: 2px solid #d4af37; padding-bottom: 8px; }
+        h3 { color: #800020; font-size: 15px; margin-top: 0; border-bottom: 2px solid #e6c687; padding-bottom: 6px; }
         label { font-size: 12px; font-weight: bold; display: block; margin-top: 10px; color: #444; }
         input, select, textarea { width: 100%; padding: 9px; margin-top: 4px; margin-bottom: 6px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; box-sizing: border-box; }
-        .btn-action { background: #3b141c; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 15px; }
+        .btn-action { background: #800020; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 15px; }
         .btn-next { background: #2e7d32; }
         .btn-pay { background: #d4af37; color: #3b141c; }
-        .profile-card { background: #f9f9f9; border: 1px solid #ddd; padding: 12px; border-radius: 6px; margin-bottom: 10px; font-size: 12px; }
+        .profile-card { background: #fdfbf7; border: 1px solid #e6c687; padding: 12px; border-radius: 6px; margin-bottom: 10px; font-size: 12px; }
     </style>
 </head>
 <body>
 
     <div class="app-header">
-        <h2>🌸 ஓம் ஸ்ரீ ஆண்டாள் அழகர் திருமண மையம்</h2>
-        <p style="font-size: 12px; margin: 5px 0;">பதிவு, போட்டோ அப்லோட் மற்றும் AI ஜாதகப் பொருத்தம்</p>
-        <p style="font-size: 11px; color: #ffd700; margin: 0;">📞 தொலைபேசி: 8270045268</p>
+        <div style="font-size: 13px; font-weight: bold; color: #5c0613;">ஓம்</div>
+        <h2>ஸ்ரீ ஆண்டாள் அழகர்</h2>
+        <div class="sub-title">திருமண அமைப்பகம்</div><br>
+        <div class="whatsapp-badge">🟢 WhatsApp Support: 9092745268</div>
     </div>
 
     <!-- 1: உள்நுழைவு -->
@@ -64,7 +103,7 @@
         <label>பூர்வீகம், இருப்பிடம்:</label>
         <textarea id="regAddress" rows="2" placeholder="ஊர், மாவட்டம்"></textarea>
         <label>சொத்து & எதிர்பார்ப்பு:</label>
-        <input type="text" id="regExpectation" placeholder="எ.கா: சொந்த வீடு உள்ளது, எதிர்பார்ப்பு..."></textarea>
+        <input type="text" id="regExpectation" placeholder="எ.கா: சொந்த வீடு உள்ளது, எதிர்பார்ப்பு...">
         <label>தொடர்பு எண் (Contact Number):</label>
         <input type="tel" id="regContact" placeholder="போன் நம்பர்">
         <label>📸 போட்டோ மற்றும் ஜாதகம் அப்லோட்:</label>
@@ -86,11 +125,11 @@
         <p style="font-size: 12px; color: #2e7d32; font-weight: bold;">🎉 பதிவு வெற்றிகரமாக முடிந்தது!</p>
         <div class="profile-card">
             <b>பதிவு எண்: AA101</b> | 24 வயது, B.Tech<br>நட்சத்திரம்: ரோகிணி | ஊர்: மதுரை
-            <button style="float:right; background:#d4af37; color:#3b141c; font-weight:bold; border:none; padding:5px 10px; border-radius:4px;" onclick="goToMatchingPayment()">வரன்கள் & பொருத்தம் பார்க்க ₹499</button>
+            <button style="float:right; background:#800020; color:#fff; font-weight:bold; border:none; padding:5px 10px; border-radius:4px; margin-top:4px;" onclick="goToMatchingPayment()">வரன்கள் பார்க்க ₹499</button>
         </div>
         <div class="profile-card">
             <b>பதிவு எண்: AA102</b> | 23 வயது, M.Sc<br>நட்சத்திரம்: பூசம் | ஊர்: சென்னை
-            <button style="float:right; background:#d4af37; color:#3b141c; font-weight:bold; border:none; padding:5px 10px; border-radius:4px;" onclick="goToMatchingPayment()">வரன்கள் & பொருத்தம் பார்க்க ₹499</button>
+            <button style="float:right; background:#800020; color:#fff; font-weight:bold; border:none; padding:5px 10px; border-radius:4px; margin-top:4px;" onclick="goToMatchingPayment()">வரன்கள் பார்க்க ₹499</button>
         </div>
     </div>
 
@@ -111,7 +150,7 @@
             <li>யோனி பொருத்தம்: நன்று</li>
             <li><b>மகிழ்ச்சியான செய்தி: 9/10 பொருத்தங்கள் கச்சிதமாக பொருந்துகின்றன!</b></li>
         </ul>
-        <div style="background: #eef2f7; padding: 12px; border-radius: 5px; font-size: 12px; color: #1565c0; font-weight: bold; line-height: 1.5; margin-top: 10px;">
+        <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 12px; border-radius: 5px; font-size: 12px; color: #800020; font-weight: bold; line-height: 1.5; margin-top: 10px;">
             🤖 AI ஜாதக கணிப்பு: இவர்களின் ஜாதகக் கட்டம் மற்றும் ராசிப்படி எதிர்காலம் மிகவும் யோகமானதாக இருக்கும். (9.8/10 மதிப்பெண்)
         </div>
         <button class="btn-action" onclick="resetApp()" style="background:#555; margin-top: 15px;">🔄 முதல் பக்கத்திற்குச் செல்ல</button>

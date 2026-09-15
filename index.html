@@ -110,26 +110,32 @@
             <h3>3️⃣ வரன்கள் தேடல் (Matching Profiles)</h3>
             <p style="font-size: 12px; color: #2e7d32; font-weight: bold;">🎉 பதிவு வெற்றி! பொருத்தமான வரன்கள்:</p>
             <div class="profile-card">
-                <b>பதிவு எண்: AA101</b> | 24 வயது, B.Tech<br>நட்சத்திரம்: ரோகிணி | ஊர்: மதுரை
-                <button style="float:right; background:#800020; color:#fff; font-weight:bold; border:none; padding:5px 10px; border-radius:4px; margin-top:4px;" onclick="goToMatchingPayment()">வரன்கள் பார்க்க ₹499</button>
+                <b>பதிவு எண்: AA101</b> | பெயர்: கார்த்திக் | 26 வயது, B.E<br>நட்சத்திரம்: பூசம் | ஊர்: சென்னை
+                <button style="float:right; background:#800020; color:#fff; font-weight:bold; border:none; padding:5px 10px; border-radius:4px; margin-top:4px;" onclick="goToMatchingPayment()">ஜாதகம் பார்க்க ₹499</button>
+            </div>
+            <div class="profile-card">
+                <b>பதிவு எண்: AA102</b> | பெயர்: பிரியா | 24 வயது, M.Sc<br>நட்சத்திரம்: உத்திரடம் | ஊர்: மதுரை
+                <button style="float:right; background:#800020; color:#fff; font-weight:bold; border:none; padding:5px 10px; border-radius:4px; margin-top:4px;" onclick="goToMatchingPayment()">ஜாதகம் பார்க்க ₹499</button>
             </div>
         </div>
 
         <!-- MATCHING PAYMENT (₹499) -->
         <div id="step-matching-pay" class="step-container hidden" style="border-left: 5px solid #d4af37;">
             <h3>மேட்சிங் கட்டணம் (Matching Fee - ₹499)</h3>
-            <p style="font-size: 12px; color: #555;">முழுமையான வரன் விவரங்களைக் காண ₹499 செலுத்தவும்:</p>
+            <p style="font-size: 12px; color: #555;">முழுமையான வரன் விவரங்கள் மற்றும் 10 பொருத்தம் காண ₹499 செலுத்தவும்:</p>
             <button class="btn-action btn-pay" onclick="openPoruthamStep()">💳 UPI / GPay மூலம் ₹499 செலுத்துக</button>
         </div>
 
         <!-- 4: 10 PORUTHAM -->
         <div id="step-porutham" class="step-container hidden">
             <h3>4️⃣ 10 ஜாதகப் பொருத்தங்கள் (10 Porutham)</h3>
+            <p style="font-size: 12px; color: #555;">நீங்கள் தேர்ந்தெடுத்த வரனுக்கும் உங்களுக்கும் உள்ள ஜாதகப் பொருத்தங்கள்:</p>
             <ul style="font-size: 12px; padding-left: 15px; line-height: 1.6;">
                 <li>தின பொருத்தம்: உத்தமம்</li>
                 <li>கண பொருத்த பொருத்தம்: நன்று</li>
                 <li>மகேந்திர பொருத்தம்: சிறப்பு</li>
                 <li>யோனி பொருத்தம்: நன்று</li>
+                <li>ராசி அதிபதி பொருத்தம்: நன்று</li>
                 <li><b>முடிவு: 9/10 பொருத்தங்கள் கச்சிதமாக பொருந்துகின்றன!</b></li>
             </ul>
             <button class="btn-action btn-next" onclick="openAiPoruthamStep()">அடுத்து: AI பொருத்தம் பார்க்க ➔</button>
@@ -166,23 +172,24 @@
     <!-- ================= ADMIN SECTION ================= -->
     <div id="adminSection" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
-            <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலقம் (Admin Dashboard)</h3>
-            <p style="font-size: 12px; color: #555;">பதிவு செய்த வாடிக்கையாளர்கள் மற்றும் கட்டண விவரங்கள்:</p>
+            <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
+            <p style="font-size: 12px; color: #555;">வாடிக்கையாளர்கள் பதிவு செய்த விவரங்கள் மற்றும் கட்டண நிலவரம்:</p>
             
             <table>
-                <tr>
-                    <th>பெயர்</th>
-                    <th>மொபைல்</th>
-                    <th>கட்டணம் (₹99 / ₹499)</th>
-                </tr>
-                <tr>
-                    <td>மாதவன் (எடுத்துக்காட்டு)</td>
-                    <td>98426XXXXX</td>
-                    <td>₹99 Paid & ₹499 Paid</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>பெயர்</th>
+                        <th>மொபைல்</th>
+                        <th>நட்சத்திரம் / ஊர்</th>
+                        <th>கட்டணம் (₹99 / ₹499)</th>
+                    </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                    <!-- Dynamic Data from LocalStorage -->
+                </tbody>
             </table>
             
-            <button class="btn-action" onclick="alert('புதிய டேட்டா ஒத்திசைக்கப்பட்டது!')" style="background: #2e7d32; margin-top: 15px;">🔄 டேட்டாவைப் புதுப்பிக்க</button>
+            <button class="btn-action" onclick="loadAdminData()" style="background: #2e7d32; margin-top: 15px;">🔄 டேட்டாவைப் புதுப்பிக்க (Refresh)</button>
         </div>
     </div>
 
@@ -202,6 +209,7 @@
             } else {
                 document.getElementById('adminSection').classList.add('active');
                 document.getElementById('tabAdminBtn').classList.add('active');
+                loadAdminData(); // Load live registrations into admin table
             }
         }
 
@@ -224,17 +232,62 @@
             document.getElementById('step-register').classList.remove('hidden');
         }
 
+        let currentProfile = {};
+
         function goToRegisterPayment() {
-            const n = document.getElementById('regName').value;
-            if(!n) { alert("தயவுசெய்து வரன் பெயரை உள்ளிடவும்!"); return; }
+            const name = document.getElementById('regName').value;
+            const mobile = document.getElementById('userMobile').value;
+            const star = document.getElementById('regStar').value;
+            const address = document.getElementById('regAddress').value;
+
+            if(!name) { alert("தயவுசெய்து வரன் பெயரை உள்ளிடவும்!"); return; }
+
+            currentProfile = {
+                name: name,
+                mobile: mobile || "98426XXXXX",
+                details: (star ? star : "நட்சத்திரம் இல்லை") + " / " + (address ? address : "ஊர் இல்லை"),
+                status: "₹99 Pending"
+            };
+
             hideAll();
             document.getElementById('step-reg-pay').classList.remove('hidden');
         }
 
         function completeRegistration() {
-            alert("₹99 பதிவுக் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது!");
+            currentProfile.status = "₹99 Paid";
+            saveProfileToLocalStorage(currentProfile);
+            alert("₹99 பதிவுக் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது! உங்கள் சுயவிவரம் அட்மினுக்கு அனுப்பப்பட்டது.");
             hideAll();
             document.getElementById('step-matching').classList.remove('hidden');
+        }
+
+        function saveProfileToLocalStorage(profile) {
+            let profiles = JSON.parse(localStorage.getItem('matrimony_profiles') || '[]');
+            profiles.push(profile);
+            localStorage.setItem('matrimony_profiles', JSON.stringify(profiles));
+        }
+
+        function loadAdminData() {
+            const tbody = document.getElementById('adminTableBody');
+            let profiles = JSON.parse(localStorage.getItem('matrimony_profiles') || '[]');
+            
+            // Default sample data if empty
+            if(profiles.length === 0) {
+                profiles = [
+                    { name: "மாதவன் (எடுத்துக்காட்டு)", mobile: "98426XXXXX", details: "ரோகிணி / மதுரை", status: "₹99 Paid & ₹499 Paid" }
+                ];
+            }
+
+            let html = '';
+            profiles.forEach(p => {
+                html += `<tr>
+                    <td>${p.name}</td>
+                    <td>${p.mobile}</td>
+                    <td>${p.details}</td>
+                    <td><b style="color:green;">${p.status}</b></td>
+                </tr>`;
+            });
+            tbody.innerHTML = html;
         }
 
         function goToMatchingPayment() {

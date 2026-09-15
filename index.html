@@ -8,18 +8,14 @@
     <style>
         body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 15px; color: #333; }
         .app-header { text-align: center; background: linear-gradient(135deg, #3b141c, #6d2230); color: white; padding: 15px; border-radius: 10px; }
-        
         .step-container { background: white; padding: 20px; border-radius: 8px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .hidden { display: none; }
-        
         h3 { color: #3b141c; font-size: 16px; margin-top: 0; border-bottom: 2px solid #d4af37; padding-bottom: 8px; }
         label { font-size: 12px; font-weight: bold; display: block; margin-top: 10px; color: #444; }
-        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; box-sizing: border-box; }
-        
+        input, select, textarea { width: 100%; padding: 9px; margin-top: 4px; margin-bottom: 6px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; box-sizing: border-box; }
         .btn-action { background: #3b141c; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 15px; }
         .btn-next { background: #2e7d32; }
         .btn-pay { background: #d4af37; color: #3b141c; }
-        
         .profile-card { background: #f9f9f9; border: 1px solid #ddd; padding: 12px; border-radius: 6px; margin-bottom: 10px; font-size: 12px; }
     </style>
 </head>
@@ -27,11 +23,11 @@
 
     <div class="app-header">
         <h2>🌸 ஓம் ஸ்ரீ ஆண்டாள் அழகர் திருமண மையம்</h2>
-        <p style="font-size: 12px; margin: 5px 0;">செயற்கை நுண்ணறிவு (AI) ஜாதகப் பொருத்தம் மற்றும் வரன் தேடும் தளம்</p>
+        <p style="font-size: 12px; margin: 5px 0;">பதிவு, போட்டோ அப்லோட் மற்றும் AI ஜாதகப் பொருத்தம்</p>
         <p style="font-size: 11px; color: #ffd700; margin: 0;">📞 தொலைபேசி: 8270045268</p>
     </div>
 
-    <!-- 1: உள்நுழைவு (SIGNUP / LOGIN) -->
+    <!-- 1: உள்நுழைவு -->
     <div id="step-login" class="step-container">
         <h3>1️⃣ வாடிக்கையாளர் உள்நுழைவு (Login)</h3>
         <label>மொபைல் எண்:</label>
@@ -39,78 +35,84 @@
         <button class="btn-action btn-next" onclick="goToRegister()">OTP அனுப்பி உள்நுழைக ➔</button>
     </div>
 
-    <!-- 2: முழுமையான சுயவிவரப் பதிவு (REGISTER) -->
+    <!-- 2: முழுமையான பதிவு & போட்டோ அப்லோட் -->
     <div id="step-register" class="step-container hidden">
-        <h3>2️⃣ முழுமையான சுயவிவரப் பதிவு</h3>
+        <h3>2️⃣ புதிய சுயவிவரப் பதிவு (Registration Form)</h3>
         
-        <label>மணமகன் / மணமகள் பெயர்:</label>
+        <label>வரன் பெயர்:</label>
         <input type="text" id="regName" placeholder="முழு பெயர்">
-
-        <label>பாலினம்:</label>
-        <select id="regGender">
-            <option value="Male">மணமகன்</option>
-            <option value="Female">மணமகள்</option>
-        </select>
-
-        <label>பிறந்த தேதி:</label>
-        <input type="date" id="regDob">
-
-        <label>கல்வி & வேலைவாய்ப்பு:</label>
-        <input type="text" id="regEdu" placeholder="எ.கா: B.Tech, மென்பொருள் பொறியாளர்">
-
-        <label>நட்சத்திரம் & ராசி:</label>
-        <input type="text" id="regStar" placeholder="எ.கா: கார்த்திகை / ரிஷபம்">
-
-        <label>தந்தை பெயர் & தாய் பெயர்:</label>
-        <input type="text" id="regParents" placeholder="தந்தை / தாய் பெயர்">
-
-        <label>தொடர்பு முகவரி & ஊர்:</label>
+        <label>பிறந்த தேதி & நேரம்:</label>
+        <input type="text" id="regDobTime" placeholder="எ.கா: 15.06.1998, காலை 10:15 மணி">
+        <label>படிப்பு & வேலை:</label>
+        <input type="text" id="regEdu" placeholder="எ.கா: B.Tech, Software Engineer">
+        <label>வேலை செய்யும் இடம் / ஊர்:</label>
+        <input type="text" id="regWorkPlace" placeholder="எ.கா: சென்னை">
+        <label>வருமானம் (Salary / Income):</label>
+        <input type="text" id="regIncome" placeholder="எ.கா: மாதம் ரூ. 50,000">
+        <label>ராசி, நட்சத்திரம்:</label>
+        <input type="text" id="regStar" placeholder="எ.கா: ரிஷபம், ரோகிணி">
+        <label>நிறம், உயரம்:</label>
+        <input type="text" id="regHeight" placeholder="எ.கா: மாநிறம், 5' 10\"">
+        <label>தந்தையார் பெயர்:</label>
+        <input type="text" id="regFather" placeholder="தந்தை பெயர்">
+        <label>தாயார் பெயர்:</label>
+        <input type="text" id="regMother" placeholder="தாய் பெயர்">
+        <label>உடன் பிறப்பு (Siblings):</label>
+        <input type="text" id="regSiblings" placeholder="எ.கா: 1 அண்ணன், 1 தங்கை">
+        <label>திருமணம் ஆனவர் / விவாகரத்து விவரம்:</label>
+        <input type="text" id="regMarital" placeholder="எ.கா: முதல் திருமணம் / மறுமணம்">
+        <label>பூர்வீகம், இருப்பிடம்:</label>
         <textarea id="regAddress" rows="2" placeholder="ஊர், மாவட்டம்"></textarea>
+        <label>சொத்து & எதிர்பார்ப்பு:</label>
+        <input type="text" id="regExpectation" placeholder="எ.கா: சொந்த வீடு உள்ளது, எதிர்பார்ப்பு..."></textarea>
+        <label>தொடர்பு எண் (Contact Number):</label>
+        <input type="tel" id="regContact" placeholder="போன் நம்பர்">
+        <label>📸 போட்டோ மற்றும் ஜாதகம் அப்லோட்:</label>
+        <input type="file" id="regPhoto" multiple accept="image/*,.pdf">
 
-        <label>ஜாதகம் மற்றும் புகைப்படம் (Photo & Horoscope Upload):</label>
-        <input type="file" id="regPhoto" multiple>
-
-        <button class="btn-action btn-next" onclick="goToPayment()">விவரங்களைச் சேமித்து கட்டணத்திற்குச் செல் ➔</button>
+        <button class="btn-action btn-pay" onclick="goToRegisterPayment()">💳 பதிவுக் கட்டணம் செலுத்த ₹99 (Pay & Register) ➔</button>
     </div>
 
-    <!-- 3: கட்டணம் செலுத்துதல் (PAYMENT) -->
-    <div id="step-payment" class="step-container hidden" style="border-left: 5px solid #d4af37;">
-        <h3>3️⃣ பிரீமியம் உறுப்பினர் கட்டணம் (Payment)</h3>
-        <p style="font-size: 12px; color: #555;">பதிவு வெற்றிகரமாக முடிந்தது! வரண்களின் முழு விவரங்களைக் காண சிறிய கட்டணம் செலுத்தவும்:</p>
-        <button class="btn-action btn-pay" onclick="goToMatching()">💳 ₹999 - UPI / GPay / PhonePe மூலம் செலுத்துக</button>
+    <!-- 3: பதிவுக் கட்டணம் - ₹99 -->
+    <div id="step-reg-payment" class="step-container hidden" style="border-left: 5px solid #d4af37;">
+        <h3>3️⃣ பதிவுக் கட்டணம் (Registration Fee - ₹99)</h3>
+        <p style="font-size: 12px; color: #555;">உங்கள் சுயவிவரப் பதிவு மற்றும் போட்டோவை டேட்டாபேஸில் சேமிக்க ₹99 செலுத்தவும்:</p>
+        <button class="btn-action btn-pay" onclick="completeRegistration()">✅ UPI / GPay / PhonePe மூலம் ₹99 செலுத்துக</button>
     </div>
 
-    <!-- 4: வரன்கள் தேடல் (MATCHING PROFILES) -->
+    <!-- 4: வரன்கள் தேடல் -->
     <div id="step-matching" class="step-container hidden">
         <h3>4️⃣ பொருத்தமான வரன்கள்</h3>
+        <p style="font-size: 12px; color: #2e7d32; font-weight: bold;">🎉 பதிவு வெற்றிகரமாக முடிந்தது!</p>
         <div class="profile-card">
             <b>பதிவு எண்: AA101</b> | 24 வயது, B.Tech<br>நட்சத்திரம்: ரோகிணி | ஊர்: மதுரை
-            <button style="float:right; background:#2e7d32; color:white; border:none; padding:4px 10px; border-radius:4px;" onclick="goToPorutham()">பொருத்தம் பார்க்க</button>
+            <button style="float:right; background:#d4af37; color:#3b141c; font-weight:bold; border:none; padding:5px 10px; border-radius:4px;" onclick="goToMatchingPayment()">வரன்கள் & பொருத்தம் பார்க்க ₹499</button>
         </div>
         <div class="profile-card">
             <b>பதிவு எண்: AA102</b> | 23 வயது, M.Sc<br>நட்சத்திரம்: பூசம் | ஊர்: சென்னை
-            <button style="float:right; background:#2e7d32; color:white; border:none; padding:4px 10px; border-radius:4px;" onclick="goToPorutham()">பொருத்தம் பார்க்க</button>
+            <button style="float:right; background:#d4af37; color:#3b141c; font-weight:bold; border:none; padding:5px 10px; border-radius:4px;" onclick="goToMatchingPayment()">வரன்கள் & பொருத்தம் பார்க்க ₹499</button>
         </div>
     </div>
 
-    <!-- 5: ஜாதகப் பொருத்தங்கள் (PORUTHAM) -->
-    <div id="step-porutham" class="step-container hidden">
-        <h3>5️⃣ 10 ஜாதகப் பொருத்தங்கள்</h3>
+    <!-- 5: மேட்சிங் கட்டணம் - ₹499 -->
+    <div id="step-matching-payment" class="step-container hidden" style="border-left: 5px solid #d4af37;">
+        <h3>5️⃣ மேட்சிங் & 10 பொருத்தங்கள் கட்டணம் (₹499)</h3>
+        <p style="font-size: 12px; color: #555;">முழுமையான வரன் விவரங்கள், ஜாதகக் கட்டம் மற்றும் 10 பொருத்தங்களைக் காண:</p>
+        <button class="btn-action btn-pay" onclick="openFullMatchingAndPorutham()">💳 UPI / GPay / PhonePe மூலம் ₹499 செலுத்துக</button>
+    </div>
+
+    <!-- 6: இறுதி முடிவு -->
+    <div id="step-final" class="step-container hidden" style="border-left: 5px solid #1565c0;">
+        <h3>6️⃣ 10 ஜாதகப் பொருத்தங்கள் & AI கணிப்பு</h3>
         <ul style="font-size: 12px; padding-left: 15px; line-height: 1.6;">
             <li>தின பொருத்தம்: உத்தமம்</li>
             <li>கண பொருத்த பொருத்தம்: நன்று</li>
             <li>மகேந்திர பொருத்தம்: சிறப்பு</li>
             <li>யோனி பொருத்தம்: நன்று</li>
-            <li><b>இறுதி முடிவு: 8/10 பொருத்தங்கள் கச்சிதமாக பொருந்துகின்றன!</b></li>
+            <li><b>மகிழ்ச்சியான செய்தி: 9/10 பொருத்தங்கள் கச்சிதமாக பொருந்துகின்றன!</b></li>
         </ul>
-        <button class="btn-action btn-next" onclick="goToAiAstrology()">அடுத்து: AI ஜாதக கணிப்பு ➔</button>
-    </div>
-
-    <!-- 6: AI ஜாதக கணிப்பு (AI ASTROLOGY) -->
-    <div id="step-ai" class="step-container hidden" style="border-left: 5px solid #1565c0;">
-        <h3>6️⃣ AI ஜாதக கணிப்பு & பலன்கள்</h3>
-        <div style="background: #eef2f7; padding: 12px; border-radius: 5px; font-size: 12px; color: #1565c0; font-weight: bold; line-height: 1.5;">
-            🤖 AI கணிப்பு: கிரக நிலைகளின்படி இந்த ஜோடிக்கு எதிர்காலம் மிகச் சிறப்பாக இருக்கும். மங்களகரமான குரு பலம் அமைந்திருக்கிறது! (9.5/10 மதிப்பெண்)
+        <div style="background: #eef2f7; padding: 12px; border-radius: 5px; font-size: 12px; color: #1565c0; font-weight: bold; line-height: 1.5; margin-top: 10px;">
+            🤖 AI ஜாதக கணிப்பு: இவர்களின் ஜாதகக் கட்டம் மற்றும் ராசிப்படி எதிர்காலம் மிகவும் யோகமானதாக இருக்கும். (9.8/10 மதிப்பெண்)
         </div>
         <button class="btn-action" onclick="resetApp()" style="background:#555; margin-top: 15px;">🔄 முதல் பக்கத்திற்குச் செல்ல</button>
     </div>
@@ -122,10 +124,10 @@
         function hideAll() {
             document.getElementById('step-login').classList.add('hidden');
             document.getElementById('step-register').classList.add('hidden');
-            document.getElementById('step-payment').classList.add('hidden');
+            document.getElementById('step-reg-payment').classList.add('hidden');
             document.getElementById('step-matching').classList.add('hidden');
-            document.getElementById('step-porutham').classList.add('hidden');
-            document.getElementById('step-ai').classList.add('hidden');
+            document.getElementById('step-matching-payment').classList.add('hidden');
+            document.getElementById('step-final').classList.add('hidden');
         }
 
         function goToRegister() {
@@ -135,26 +137,28 @@
             document.getElementById('step-register').classList.remove('hidden');
         }
 
-        function goToPayment() {
+        function goToRegisterPayment() {
             const n = document.getElementById('regName').value;
-            if(!n) { alert("தயவுசெய்து பெயரை உள்ளிடவும்!"); return; }
+            if(!n) { alert("தயவுசெய்து வரன் பெயரை உள்ளிடவும்!"); return; }
             hideAll();
-            document.getElementById('step-payment').classList.remove('hidden');
+            document.getElementById('step-reg-payment').classList.remove('hidden');
         }
 
-        function goToMatching() {
+        function completeRegistration() {
+            alert("₹99 பதிவுக் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது!");
             hideAll();
             document.getElementById('step-matching').classList.remove('hidden');
         }
 
-        function goToPorutham() {
+        function goToMatchingPayment() {
             hideAll();
-            document.getElementById('step-porutham').classList.remove('hidden');
+            document.getElementById('step-matching-payment').classList.remove('hidden');
         }
 
-        function goToAiAstrology() {
+        function openFullMatchingAndPorutham() {
+            alert("₹499 மேட்சிங் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது!");
             hideAll();
-            document.getElementById('step-ai').classList.remove('hidden');
+            document.getElementById('step-final').classList.remove('hidden');
         }
 
         function resetApp() {

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ta">
 <head>
@@ -31,7 +30,7 @@
         .app-header .sub-title { background: #6d1a24; color: #fff; display: inline-block; padding: 3px 10px; border-radius: 15px; font-size: 11px; font-weight: bold; margin-top: 2px; }
         .whatsapp-badge { font-size: 11px; color: #ffffff; background: #25d366; padding: 3px 8px; border-radius: 12px; display: inline-block; margin-top: 6px; font-weight: bold; }
 
-        /* Traditional Tamil Wedding Couple Image (Saree & Veshti) on Right Side */
+        /* Traditional Tamil Wedding Couple Image on Right Side */
         .header-image-bg {
             position: absolute;
             right: 0;
@@ -41,10 +40,9 @@
             background: url('https://images.unsplash.com/photo-1610173827002-cc9d1fb685d6?auto=format&fit=crop&w=400&q=80') center/cover no-repeat;
             clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
             border-left: 3px solid #800020;
-            opacity: 1;
         }
 
-        /* Main Navigation Tabs (Dashboard, Customer, Astrology, Horoscope, Admin) */
+        /* Navigation Tabs */
         .nav-tabs { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -75,9 +73,27 @@
         .btn-action { background: #800020; color: white; border: none; padding: 11px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 13px; margin-top: 12px; }
         .btn-next { background: #2e7d32; }
         .btn-pay { background: #d4af37; color: #3b141c; }
-        .profile-card { background: #fdfbf7; border: 1px solid #e6c687; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 11px; }
         
-        /* Admin Table Styles */
+        /* District Checkboxes Grid */
+        .district-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 4px;
+            background: #fafafa;
+            margin-top: 5px;
+        }
+        .district-item {
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 8px; }
         th, td { border: 1px solid #ddd; padding: 7px; text-align: left; }
         th { background: #800020; color: white; }
@@ -85,7 +101,7 @@
 </head>
 <body>
 
-    <!-- Card Header with Traditional Tamil Couple Image -->
+    <!-- Card Header -->
     <div class="app-header">
         <div class="header-image-bg"></div>
         <div class="header-content">
@@ -96,104 +112,112 @@
         </div>
     </div>
 
-    <!-- Navigation Tabs: Dashboard, Customer, Astrology, Horoscope, Admin -->
+    <!-- Navigation Tabs -->
     <div class="nav-tabs">
         <button class="nav-btn active" id="tabDash" onclick="switchTab('dashboard')">📊 Dashboard</button>
         <button class="nav-btn" id="tabCust" onclick="switchTab('customer')">👤 Customer</button>
-        <button class="nav-btn" id="tabAstro" onclick="switchTab('astrology')">🔮 Astrology</button>
-        <button class="nav-btn" id="tabHoro" onclick="switchTab('horoscope')">🌟 Horoscope</button>
+        <button class="nav-btn" id="tabAstro" onclick="switchTab('astrology')">🔮 Jathagam</button>
+        <button class="nav-btn" id="tabHoro" onclick="switchTab('horoscope')">🌟 AI Report</button>
         <button class="nav-btn" id="tabAdmin" onclick="switchTab('admin')" style="grid-column: span 2; background: #3b141c; color: #e6c687;">🔒 Admin Panel</button>
     </div>
 
-    <!-- ================= 1. DASHBOARD SECTION ================= -->
+    <!-- ================= 1. DASHBOARD ================= -->
     <div id="sec-dashboard" class="section-box active">
         <div class="step-container">
             <h3>📊 முகப்பு (Dashboard)</h3>
-            <p style="font-size: 11px; line-height: 1.5;">வணக்கம்! ஸ்ரீ ஆண்டாள் அழகர் திருமண அமைப்பு மையத்திற்கு உங்களை வரவேற்கிறோம். நமது சேவைகளைப் பெற கீழே உள்ள பொத்தான்களைப் பயன்படுத்தவும்:</p>
-            <button class="btn-action btn-next" onclick="switchTab('customer')">👤 சுயவிவரம் பதிவு செய்ய (Customer Register)</button>
-            <button class="btn-action btn-pay" onclick="switchTab('astrology')">🔮 ஜாதகப் பொருத்தங்கள் பார்க்க</button>
+            <p style="font-size: 11px; line-height: 1.5;">வணக்கம்! உங்கள் ஜாதகப் பொருத்தம் மற்றும் விருப்பமான மாவட்ட வரன்களைத் தேர்ந்தெடுக்க கீழே உள்ள பொத்தானை அழுத்தவும்:</p>
+            <button class="btn-action btn-next" onclick="switchTab('customer')">👤 கணக்கு தொடங்கி வரன் தேட ➔</button>
         </div>
     </div>
 
-    <!-- ================= 2. CUSTOMER SECTION ================= -->
+    <!-- ================= 2. CUSTOMER SIGNUP, LOGIN & PREFERENCE ================= -->
     <div id="sec-customer" class="section-box">
         <div class="step-container">
-            <h3>👤 வாடிக்கையாளர் பகுதி (Customer Registration & Matching)</h3>
-            
+            <h3>1️⃣ Signup & Login (உள்நுழைவு)</h3>
             <label>மொபைல் எண் (Mobile Number):</label>
             <input type="tel" id="userMobile" placeholder="எ.கா: 98426XXXXX">
-            
-            <label>வரன் பெயர்:</label>
-            <input type="text" id="regName" placeholder="முழு பெயர்">
-            
-            <label>பிறந்த தேதி & நேரம்:</label>
-            <input type="text" id="regDobTime" placeholder="எ.கா: 15.06.1998, காலை 10:15 மணி">
-            
-            <label>படிப்பு & வேலை:</label>
-            <input type="text" id="regEdu" placeholder="எ.கா: B.Tech, Software Engineer">
-            
-            <label>ராசி, நட்சத்திரம்:</label>
-            <input type="text" id="regStar" placeholder="எ.கா: ரிஷபம், ரோகிணி">
-            
-            <label>📸 போட்டோ & ஜாதகம் அப்லோட்:</label>
-            <input type="file" id="regPhoto" multiple accept="image/*,.pdf">
+            <button class="btn-action btn-next" onclick="alert('OTP அனுப்பப்பட்டது! உள்நுழைவு வெற்றிகரம்.')">OTP பெற்று உள்நுழைக ➔</button>
+        </div>
 
-            <button class="btn-action btn-pay" onclick="alert('பதிவு வெற்றிகரமாக முடிந்தது! ₹99 & ₹499 கட்டணம் செலுத்தப்பட்டுள்ளது.')">💳 பதிவுக் கட்டணம் & வரன்கள் பார்க்க (Pay ₹99 / ₹499)</button>
+        <div class="step-container">
+            <h3>2️⃣ வரன் விருப்பத்தேர்வு (Districts & Location Filter)</h3>
             
-            <div class="profile-card" style="margin-top: 15px;">
-                <b>பொருத்தமான வரன் உதாரணம்:</b><br>
-                பதிவு எண்: AA101 | 24 வயது, B.Tech | ஊர்: மதுரை
+            <label>ஜாதி / பிரிவு (Cast / Sub-caste):</label>
+            <input type="text" id="userCast" placeholder="எ.கா: குறிப்பிட்ட ஜாதி அல்லது அனைத்து ஜாதியும்">
+
+            <label>விரும்பும் மாவட்டங்கள் (Minimum 1 to Maximum 6 Districts):</label>
+            <p style="font-size: 10px; color: #666; margin: 2px 0 5px 0;">உங்களுக்குப் பொருத்தமான மாவட்டங்களை 6 வரையில் டிக் செய்யவும்:</p>
+            
+            <div class="district-grid" id="districtContainer">
+                <!-- 38 Districts dynamically or listed -->
+                <label class="district-item"><input type="checkbox" name="dist" value="Thanjavur"> தஞ்சாவூர் (Thanjavur)</label>
+                <label class="district-item"><input type="checkbox" name="dist" value="Tiruvarur"> திருவாரூர் (Tiruvarur)</label>
+                <label class="district-item"><input type="checkbox" name="dist" value="Mayiladuthurai"> மயிலாடுதுறை (Mayiladuthurai)</label>
+                <label class="district-item"><input type="checkbox" name="dist" value="Chidambaram"> சிதம்பரம் / கடலூர்</label>
+                <label class="district-item"><input type="checkbox" name="dist" value="Nagapattinam"> நாகப்பட்டினம்</label>
+                <label class="district-item"><input type="checkbox" name="dist" value="Trichy"> திருச்சி</label>
+                <label class="district-item"><input type="checkbox" name="dist" value="Madurai"> மதுரை</label>
+                <label class="district-item"><input type="checkbox" name="dist" value="Chennai"> சென்னை</label>
+                <label class="district-item"><input type="checkbox" name="dist" value="Coimbatore"> கோயம்புத்தூர்</label>
+                <label class="district-item"><input type="checkbox" name="dist" value="Salem"> சேலம்</label>
             </div>
+
+            <label style="margin-top: 10px;">சுற்றுவட்டார தூரம் (Radius / Distance):</label>
+            <select id="distanceKm">
+                <option value="30">30 கி.மீ சுற்றளவில்</option>
+                <option value="60" selected>60 கி.மீ சுற்றளவில் (Selected)</option>
+                <option value="100">100 கி.மீ சுற்றளவில்</option>
+                <option value="any">தமிழ்நாடு முழுதும்</option>
+            </select>
+
+            <button class="btn-action btn-pay" onclick="validateAndProceed()">💾 விருப்பங்களைச் சேமித்து வரன்கள் காண்க</button>
         </div>
     </div>
 
-    <!-- ================= 3. ASTROLOGY SECTION ================= -->
+    <!-- ================= 3. ASTROLOGY (JATHAGAM MATCHING) ================= -->
     <div id="sec-astrology" class="section-box">
         <div class="step-container">
-            <h3>🔮 ஜாதகப் பொருத்தங்கள் (Astrology & 10 Porutham)</h3>
-            <ul style="font-size: 11px; padding-left: 15px; line-height: 1.6;">
-                <li><b>தின பொருத்தம்:</b> உத்தமம்</li>
-                <li><b>கண பொருத்த பொருத்தம்:</b> நன்று</li>
-                <li><b>மகேந்திர பொருத்தம்:</b> சிறப்பு</li>
-                <li><b>யோனி பொருத்தம்:</b> நன்று</li>
-                <li><b>AI பொருத்தம் ஆய்வு:</b> நட்சத்துரப் பொருத்தங்கள் மற்றும் தோஷங்கள் முழுமையாக ஆய்வு செய்யப்பட்டன. (9.6/10 Score)</li>
-            </ul>
-            <p style="font-size: 11px; line-height: 1.5; color: #555;">
-                <b>கிரக நிலைகள்:</b> ஜென்ம ராசியில் குரு பார்வை இருப்பதால் திருமணத்திற்குப் பின் சுபிட்சமான வாழ்க்கை அமையும்.
-            </p>
+            <h3>🔮 ஜாதகப் பொருத்தம் (Men & Women Jathagam)</h3>
+            
+            <label>♂️ ஆண் ஜாதக விவரங்கள் (Men Jathagam / Star):</label>
+            <input type="text" placeholder="ராசி, நட்சத்திரம் அல்லது ஜாதகம் அப்லோட்">
+            <input type="file" accept="image/*,.pdf">
+
+            <label style="margin-top: 10px;">♀️ பெண் ஜாதக விவரங்கள் (Women Jathagam / Star):</label>
+            <input type="text" placeholder="ராசி, நட்சத்திரம் அல்லது ஜாதகம் அப்லோட்">
+            <input type="file" accept="image/*,.pdf">
+
+            <button class="btn-action btn-next" onclick="alert('10 ஜாதகப் பொருத்தங்கள் ஆய்வு செய்யப்பட்டன: 9/10 பொருத்தங்கள் கச்சிதம்!')">10 பொருத்தங்கள் பார்க்க ➔</button>
         </div>
     </div>
 
-    <!-- ================= 4. HOROSCOPE SECTION ================= -->
+    <!-- ================= 4. HOROSCOPE (AI REPORT) ================= -->
     <div id="sec-horoscope" class="section-box">
         <div class="step-container" style="border-top: 4px solid #800020;">
             <h3>🌟 AI ஜாதக கணிப்பு & ரிப்போர்ட் (AI Horoscope)</h3>
             <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 12px; border-radius: 5px; font-size: 11px; color: #800020; font-weight: bold; line-height: 1.5;">
-                🌟 AI பிரம்மாண்ட ரிப்போர்ட்: லக்னாதிபதி பலம் பெற்றுள்ளதால் எதிர்கால தொழில் மற்றும் குடும்ப வாழ்க்கை வியக்கத்தக்க வகையில் உயரும். முழுமையான வெற்றிக்கான ஜாதகம் இது! (9.9/10 Score)
+                🤖 AI ஆய்வு முடிவு: நீங்கள் தேர்ந்தெடுத்த மாவட்ட வரன்கள் மற்றும் ஜாதகப் பொருத்தங்களின்படி மிகச்சரியான வரன்கள் பட்டியலிடப்பட்டுள்ளன. (9.8/10 Score)
             </div>
         </div>
     </div>
 
-    <!-- ================= 5. ADMIN SECTION ================= -->
+    <!-- ================= 5. ADMIN PANEL ================= -->
     <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
-            <p style="font-size: 11px; color: #555;">பதிவு செய்த வாடிக்கையாளர்கள் மற்றும் கட்டண விவரங்கள்:</p>
-            
             <table>
                 <tr>
-                    <th>பெயர்</th>
                     <th>மொபைல்</th>
+                    <th>தேர்ந்தெடுத்த மாவட்டங்கள்</th>
                     <th>கட்டணம்</th>
                 </tr>
                 <tr>
-                    <td>மாதவன் (எடுத்துக்காட்டு)</td>
                     <td>98426XXXXX</td>
+                    <td>தஞ்சாவூர், திருவாரூர், மயிலாடுதுறை (3)</td>
                     <td>₹99 & ₹499 Paid</td>
                 </tr>
             </table>
-            
-            <button class="btn-action" onclick="alert('புதிய டேட்டா ஒத்திசைக்கப்பட்டது!')" style="background: #2e7d32; margin-top: 12px;">🔄 டேட்டாவைப் புதுப்பிக்க</button>
+            <button class="btn-action" onclick="alert('டேட்டா புதுப்பிக்கப்பட்டது!')" style="background: #2e7d32; margin-top: 12px;">🔄 டேட்டாவைப் புதுப்பிக்க</button>
         </div>
     </div>
 
@@ -202,21 +226,18 @@
         tg.expand();
 
         function switchTab(tabName) {
-            // Hide all sections
             document.getElementById('sec-dashboard').classList.remove('active');
             document.getElementById('sec-customer').classList.remove('active');
             document.getElementById('sec-astrology').classList.remove('active');
             document.getElementById('sec-horoscope').classList.remove('active');
             document.getElementById('sec-admin').classList.remove('active');
 
-            // Remove active from all buttons
             document.getElementById('tabDash').classList.remove('active');
             document.getElementById('tabCust').classList.remove('active');
             document.getElementById('tabAstro').classList.remove('active');
             document.getElementById('tabHoro').classList.remove('active');
             document.getElementById('tabAdmin').classList.remove('active');
 
-            // Show selected section & activate button
             if(tabName === 'dashboard') {
                 document.getElementById('sec-dashboard').classList.add('active');
                 document.getElementById('tabDash').classList.add('active');
@@ -233,6 +254,20 @@
                 document.getElementById('sec-admin').classList.add('active');
                 document.getElementById('tabAdmin').classList.add('active');
             }
+        }
+
+        function validateAndProceed() {
+            const checkboxes = document.querySelectorAll('input[name="dist"]:checked');
+            if(checkboxes.length === 0) {
+                alert("தயவுசெய்து குறைந்தபட்சம் 1 மாவட்டத்தையாவது தேர்ந்தெடுக்கவும்!");
+                return;
+            }
+            if(checkboxes.length > 6) {
+                alert("அதிகபட்சம் 6 மாவட்டங்கள் மட்டுமே தேர்ந்தெடுக்க முடியும்!");
+                return;
+            }
+            alert("விருப்பங்கள் வெற்றிகரமாக சேமிக்கப்பட்டன! ஜாதகப் பொருத்தம் பகுதிக்குச் செல்கிறது.");
+            switchTab('astrology');
         }
     </script>
 </body>

@@ -30,7 +30,7 @@
         .section-box.active { display: block; }
 
         .step-container { background: white; padding: 18px; border-radius: 8px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-top: 4px solid #800020; }
-        .hidden { display: none; }
+        .hidden { display: none !important; }
         h3 { color: #800020; font-size: 15px; margin-top: 0; border-bottom: 2px solid #e6c687; padding-bottom: 6px; }
         label { font-size: 12px; font-weight: bold; display: block; margin-top: 10px; color: #444; }
         input, select, textarea { width: 100%; padding: 9px; margin-top: 4px; margin-bottom: 6px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; box-sizing: border-box; }
@@ -269,6 +269,8 @@
                     document.getElementById('adminSetupBox').classList.add('hidden');
                     document.getElementById('adminLoginBox').classList.remove('hidden');
                     document.getElementById('adminPanelContent').classList.add('hidden');
+                } else {
+                    showAdminPanel();
                 }
             }
         }
@@ -284,7 +286,7 @@
 
             localStorage.setItem('my_admin_user', u);
             localStorage.setItem('my_admin_pass', p);
-            alert("அட்மின் லாகின் விவரங்கள் வெற்றிகரமாக சேமிக்கப்பட்டன! இப்போது லாகின் செய்யவும்.");
+            alert("அட்மின் லாகின் விவரங்கள் வெற்றிகரமாக சேமிக்கப்பட்டன!");
             checkAdminState();
         }
 
@@ -306,7 +308,6 @@
             if(u === savedUser && p === savedPass) {
                 sessionStorage.setItem('isAdminLoggedIn', 'true');
                 showAdminPanel();
-                alert("வெற்றிகரமாக அட்மின் பேனலுக்குள் நுழைந்தீர்கள்!");
             } else {
                 alert("தவறான Username அல்லது Password!");
             }
@@ -325,7 +326,6 @@
             document.getElementById('adminPass').value = '';
             document.getElementById('adminPanelContent').classList.add('hidden');
             checkAdminState();
-            alert("வெற்றிகரமாக வெளியேறினீர்கள் (Logged out)!");
         }
 
         function hideAll() {

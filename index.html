@@ -62,8 +62,6 @@
 
     <!-- ================= CUSTOMER SECTION ================= -->
     <div id="customerSection" class="section-box active">
-        
-        <!-- 1: SIGNUP / LOGIN -->
         <div id="step-auth" class="step-container">
             <h3>1️⃣ கணக்கு தொடங்குதல் & உள்நுழைவு (Signup & Login)</h3>
             <label>மொபைல் எண் (Mobile Number):</label>
@@ -71,7 +69,6 @@
             <button class="btn-action btn-next" onclick="goToRegister()">OTP பெற்று உள்நுழைக ➔</button>
         </div>
 
-        <!-- 2: REGISTER & PHOTO UPLOAD (₹99) -->
         <div id="step-register" class="step-container hidden">
             <h3>2️⃣ சுயவிவரப் பதிவு & போட்டோ அப்லோட் (Registration Form)</h3>
             <label>வரன் பெயர்:</label>
@@ -98,14 +95,12 @@
             <button class="btn-action btn-pay" onclick="goToRegisterPayment()">💳 பதிவுக் கட்டணம் செலுத்த ₹99 (Pay & Register) ➔</button>
         </div>
 
-        <!-- REGISTRATION PAYMENT (₹99) -->
         <div id="step-reg-pay" class="step-container hidden" style="border-left: 5px solid #d4af37;">
             <h3>பதிவுக் கட்டணம் (Registration Fee - ₹99)</h3>
             <p style="font-size: 12px; color: #555;">விவரங்களைச் சேமிக்க ₹99 செலுத்தவும்:</p>
             <button class="btn-action btn-pay" onclick="completeRegistration()">✅ UPI / GPay மூலம் ₹99 செலுத்துக</button>
         </div>
 
-        <!-- 3: MATCHING PROFILE -->
         <div id="step-matching" class="step-container hidden">
             <h3>3️⃣ வரன்கள் தேடல் (Matching Profiles)</h3>
             <p style="font-size: 12px; color: #2e7d32; font-weight: bold;">🎉 பதிவு வெற்றி! பொருத்தமான வரன்கள்:</p>
@@ -113,57 +108,44 @@
                 <b>பதிவு எண்: AA101</b> | பெயர்: கார்த்திக் | 26 வயது, B.E<br>நட்சத்திரம்: பூசம் | ஊர்: சென்னை
                 <button style="float:right; background:#800020; color:#fff; font-weight:bold; border:none; padding:5px 10px; border-radius:4px; margin-top:4px;" onclick="goToMatchingPayment()">ஜாதகம் பார்க்க ₹499</button>
             </div>
-            <div class="profile-card">
-                <b>பதிவு எண்: AA102</b> | பெயர்: பிரியா | 24 வயது, M.Sc<br>நட்சத்திரம்: உத்திரடம் | ஊர்: மதுரை
-                <button style="float:right; background:#800020; color:#fff; font-weight:bold; border:none; padding:5px 10px; border-radius:4px; margin-top:4px;" onclick="goToMatchingPayment()">ஜாதகம் பார்க்க ₹499</button>
-            </div>
         </div>
 
-        <!-- MATCHING PAYMENT (₹499) -->
         <div id="step-matching-pay" class="step-container hidden" style="border-left: 5px solid #d4af37;">
             <h3>மேட்சிங் கட்டணம் (Matching Fee - ₹499)</h3>
             <p style="font-size: 12px; color: #555;">முழுமையான வரன் விவரங்கள் மற்றும் 10 பொருத்தம் காண ₹499 செலுத்தவும்:</p>
             <button class="btn-action btn-pay" onclick="openPoruthamStep()">💳 UPI / GPay மூலம் ₹499 செலுத்துக</button>
         </div>
 
-        <!-- 4: 10 PORUTHAM -->
         <div id="step-porutham" class="step-container hidden">
             <h3>4️⃣ 10 ஜாதகப் பொருத்தங்கள் (10 Porutham)</h3>
-            <p style="font-size: 12px; color: #555;">நீங்கள் தேர்ந்தெடுத்த வரனுக்கும் உங்களுக்கும் உள்ள ஜாதகப் பொருத்தங்கள்:</p>
             <ul style="font-size: 12px; padding-left: 15px; line-height: 1.6;">
                 <li>தின பொருத்தம்: உத்தமம்</li>
                 <li>கண பொருத்த பொருத்தம்: நன்று</li>
                 <li>மகேந்திர பொருத்தம்: சிறப்பு</li>
                 <li>யோனி பொருத்தம்: நன்று</li>
-                <li>ராசி அதிபதி பொருத்தம்: நன்று</li>
                 <li><b>முடிவு: 9/10 பொருத்தங்கள் கச்சிதமாக பொருந்துகின்றன!</b></li>
             </ul>
             <button class="btn-action btn-next" onclick="openAiPoruthamStep()">அடுத்து: AI பொருத்தம் பார்க்க ➔</button>
         </div>
 
-        <!-- 5: AI PORUTHAM -->
         <div id="step-ai-porutham" class="step-container hidden" style="border-left: 5px solid #1565c0;">
             <h3>5️⃣ AI ஜாதகப் பொருத்தம் (AI Porutham)</h3>
             <div style="background: #eef2f7; padding: 12px; border-radius: 5px; font-size: 12px; color: #1565c0; font-weight: bold; line-height: 1.5;">
-                🤖 AI பொருத்தம் ஆய்வு: நட்சத்துரப் பொருத்தங்கள் மற்றும் தோஷங்கள் முழுமையாக ஆய்வு செய்யப்பட்டன. இந்த ஜோடிக்கு மனப்பொருத்தம் மிக அருமையாக அமையும்! (9.6/10)
+                🤖 AI பொருத்தம் ஆய்வு முழுமையாக நிறைவடைந்தது. (9.6/10)
             </div>
             <button class="btn-action btn-next" onclick="openAstrologyStep()">அடுத்து: ஜோதிட பலன்கள் பார்க்க ➔</button>
         </div>
 
-        <!-- 6: ASTROLOGY -->
         <div id="step-astrology" class="step-container hidden">
             <h3>6️⃣ ஜோதிட பலன்கள் (Astrology)</h3>
-            <p style="font-size: 12px; line-height: 1.6;">
-                <b>கிரக நிலைகள்:</b> ஜென்ம ராசியில் குரு பார்வை இருப்பதால் திருமணத்திற்குப் பின் சுபிட்சமான வாழ்க்கை அமையும். மங்களகரமான யோகம் கைகூடியுள்ளது.
-            </p>
-            <button class="btn-action btn-next" onclick="openAiHoroscopeStep()">அடுத்து: AI ஜாதக கணிப்பு (AI Horoscope) ➔</button>
+            <p style="font-size: 12px; line-height: 1.6;"><b>கிரக நிலைகள்:</b> ஜென்ம ராசியில் குரு பார்வை இருப்பதால் சுபிட்சமான வாழ்க்கை அமையும்.</p>
+            <button class="btn-action btn-next" onclick="openAiHoroscopeStep()">அடுத்து: AI ஜாதக கணிப்பு ➔</button>
         </div>
 
-        <!-- 7: AI HOROSCOPE -->
         <div id="step-ai-horoscope" class="step-container hidden" style="border-left: 5px solid #800020;">
-            <h3>7️⃣ AI ஜாதக கணிப்பு & விரிவான ரிப்போர்ட் (AI Horoscope)</h3>
-            <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 12px; border-radius: 5px; font-size: 12px; color: #800020; font-weight: bold; line-height: 1.5;">
-                🌟 AI பிரம்மாண்ட ரிப்போர்ட்: லக்னாதிபதி பலம் பெற்றுள்ளதால் எதிர்கால தொழில் மற்றும் குடும்ப வாழ்க்கை வியக்கத்தக்க வகையில் உயரும். முழுமையான வெற்றிக்கான ஜாதகம் இது! (9.9/10 Score)
+            <h3>7️⃣ AI ஜாதக கணிப்பு & விரிவான ரிப்போர்ட்</h3>
+            <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 12px; border-radius: 5px; font-size: 12px; color: #800020; font-weight: bold;">
+                🌟 முழுமையான வெற்றிக்கான ஜாதகம்! (9.9/10 Score)
             </div>
             <button class="btn-action" onclick="resetApp()" style="background:#555; margin-top: 15px;">🔄 முதல் பக்கத்திற்குச் செல்ல</button>
         </div>
@@ -171,9 +153,28 @@
 
     <!-- ================= ADMIN SECTION ================= -->
     <div id="adminSection" class="section-box">
+        <!-- 1. Add New Profile Form -->
         <div class="step-container" style="border-top: 4px solid #d4af37;">
-            <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
-            <p style="font-size: 12px; color: #555;">வாடிக்கையாளர்கள் பதிவு செய்த விவரங்கள் மற்றும் கட்டண நிலவரம்:</p>
+            <h3>➕ புதிய ஜாதகம் சேர்க்க (Add 1 Lakh / Manual Profiles)</h3>
+            <label>வரன் பெயர்:</label>
+            <input type="text" id="adminName" placeholder="பெயர்">
+            <label>மொபைல் எண்:</label>
+            <input type="text" id="adminMobile" placeholder="மொபைல் எண்">
+            <label>நட்சத்திரம் / ஊர்:</label>
+            <input type="text" id="adminDetails" placeholder="எ.கா: ரோகிணி / மதுரை">
+            <label>கட்டண நிலை:</label>
+            <select id="adminStatus">
+                <option value="₹99 Paid">₹99 Paid</option>
+                <option value="₹99 Paid & ₹499 Paid">₹99 Paid & ₹499 Paid</option>
+                <option value="Offline Registered (1 Lakh Data)">Offline Registered (1 Lakh Data)</option>
+            </select>
+            <button class="btn-action" onclick="addNewProfileByAdmin()" style="background: #800020; margin-top: 10px;">💾 இந்த ஜாதகத்தைச் சேமி (Add Profile)</button>
+        </div>
+
+        <!-- 2. Admin Dashboard List -->
+        <div class="step-container" style="border-top: 4px solid #800020;">
+            <h3>🔒 அட்மின் டேட்டா பேஸ் (All Saved Profiles)</h3>
+            <p style="font-size: 12px; color: #555;">உங்கள் தரவுத்தளத்தில் உள்ள அனைத்து ஜாதகங்கள்:</p>
             
             <table>
                 <thead>
@@ -181,21 +182,26 @@
                         <th>பெயர்</th>
                         <th>மொபைல்</th>
                         <th>நட்சத்திரம் / ஊர்</th>
-                        <th>கட்டணம் (₹99 / ₹499)</th>
+                        <th>நிலை (Status)</th>
                     </tr>
                 </thead>
                 <tbody id="adminTableBody">
-                    <!-- Dynamic Data from LocalStorage -->
+                    <!-- Dynamic Data loaded via JS -->
                 </tbody>
             </table>
             
             <button class="btn-action" onclick="loadAdminData()" style="background: #2e7d32; margin-top: 15px;">🔄 டேட்டாவைப் புதுப்பிக்க (Refresh)</button>
+            <button class="btn-action" onclick="clearAllData()" style="background: #c62828; margin-top: 5px;">🗑️ அனைத்து டேட்டாவையும் நீக்க</button>
         </div>
     </div>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
+
+        window.onload = function() {
+            loadAdminData();
+        };
 
         function switchView(view) {
             document.getElementById('customerSection').classList.remove('active');
@@ -209,7 +215,7 @@
             } else {
                 document.getElementById('adminSection').classList.add('active');
                 document.getElementById('tabAdminBtn').classList.add('active');
-                loadAdminData(); // Load live registrations into admin table
+                loadAdminData();
             }
         }
 
@@ -256,9 +262,40 @@
         function completeRegistration() {
             currentProfile.status = "₹99 Paid";
             saveProfileToLocalStorage(currentProfile);
-            alert("₹99 பதிவுக் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது! உங்கள் சுயவிவரம் அட்மினுக்கு அனுப்பப்பட்டது.");
+            loadAdminData();
+            alert("₹99 பதிவுக் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது!");
             hideAll();
             document.getElementById('step-matching').classList.remove('hidden');
+        }
+
+        // Admin adding new profile directly
+        function addNewProfileByAdmin() {
+            const name = document.getElementById('adminName').value;
+            const mobile = document.getElementById('adminMobile').value;
+            const details = document.getElementById('adminDetails').value;
+            const status = document.getElementById('adminStatus').value;
+
+            if(!name || !mobile) {
+                alert("தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்!");
+                return;
+            }
+
+            const newProfile = {
+                name: name,
+                mobile: mobile,
+                details: details || "விவரங்கள் இல்லை",
+                status: status
+            };
+
+            saveProfileToLocalStorage(newProfile);
+            loadAdminData();
+
+            // Clear input fields
+            document.getElementById('adminName').value = '';
+            document.getElementById('adminMobile').value = '';
+            document.getElementById('adminDetails').value = '';
+
+            alert("புதிய ஜாதகம் வெற்றிகரமாக அட்மின் டேட்டாவில் சேர்க்கப்பட்டது!");
         }
 
         function saveProfileToLocalStorage(profile) {
@@ -268,18 +305,16 @@
         }
 
         function loadAdminData() {
-            const tbody = document.getElementById('adminTableBody');
+            const tbody = document.getElementById('adminTableBoard') || document.getElementById('adminTableBody');
             let profiles = JSON.parse(localStorage.getItem('matrimony_profiles') || '[]');
             
-            // Default sample data if empty
-            if(profiles.length === 0) {
-                profiles = [
-                    { name: "மாதவன் (எடுத்துக்காட்டு)", mobile: "98426XXXXX", details: "ரோகிணி / மதுரை", status: "₹99 Paid & ₹499 Paid" }
-                ];
-            }
+            let allProfiles = [
+                { name: "மாதவன் (எடுத்துக்காட்டு)", mobile: "98426XXXXX", details: "ரோகிணி / மதுரை", status: "₹99 Paid & ₹499 Paid" },
+                ...profiles
+            ];
 
             let html = '';
-            profiles.forEach(p => {
+            allProfiles.forEach(p => {
                 html += `<tr>
                     <td>${p.name}</td>
                     <td>${p.mobile}</td>
@@ -290,13 +325,28 @@
             tbody.innerHTML = html;
         }
 
+        function clearAllData() {
+            if(confirm("அனைத்து டேட்டாவையும் நீக்க வேண்டுமா?")) {
+                localStorage.removeItem('matrimony_profiles');
+                loadAdminData();
+                alert("அனைத்து டேட்டாவும் அழிக்கப்பட்டது!");
+            }
+        }
+
         function goToMatchingPayment() {
             hideAll();
             document.getElementById('step-matching-pay').classList.remove('hidden');
         }
 
         function openPoruthamStep() {
-            alert("₹499 மேட்சிங் கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது!");
+            let profiles = JSON.parse(localStorage.getItem('matrimony_profiles') || '[]');
+            if(profiles.length > 0) {
+                profiles[profiles.length - 1].status = "₹99 Paid & ₹499 Paid";
+                localStorage.setItem('matrimony_profiles', JSON.stringify(profiles));
+                loadAdminData();
+            }
+
+            alert("₹499 மேட்சிங் கட்டணம் செலுத்தப்பட்டது!");
             hideAll();
             document.getElementById('step-porutham').classList.remove('hidden');
         }

@@ -13,18 +13,18 @@
             position: relative;
             background: linear-gradient(135deg, #e6c687 0%, #b8860b 55%, #800020 100%);
             color: #3b141c; 
-            padding: 16px; 
+            padding: 14px; 
             border-radius: 12px; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             border: 2px solid #800020;
             overflow: hidden;
-            min-height: 95px;
+            min-height: 85px;
         }
         .header-content { position: relative; z-index: 2; width: 55%; }
-        .app-header .om-text { font-size: 15px; font-weight: 900; color: #5c0613; letter-spacing: 1px; }
-        .app-header h2 { font-size: 23px; margin: 2px 0; color: #5c0613; text-shadow: 1px 1px 2px rgba(255,255,255,0.7); font-weight: 900; }
+        .app-header .om-text { font-size: 14px; font-weight: 900; color: #5c0613; letter-spacing: 1px; }
+        .app-header h2 { font-size: 21px; margin: 2px 0; color: #5c0613; text-shadow: 1px 1px 2px rgba(255,255,255,0.7); font-weight: 900; }
         .app-header .sub-title { background: #6d1a24; color: #fff; display: inline-block; padding: 3px 10px; border-radius: 15px; font-size: 11px; font-weight: bold; margin-top: 2px; }
-        .whatsapp-badge { font-size: 11px; color: #ffffff; background: #25d366; padding: 3px 8px; border-radius: 12px; display: inline-block; margin-top: 6px; font-weight: bold; }
+        .whatsapp-badge { font-size: 11px; color: #ffffff; background: #25d366; padding: 3px 8px; border-radius: 12px; display: inline-block; margin-top: 5px; font-weight: bold; }
 
         .header-image-bg {
             position: absolute; right: 0; top: 0; width: 48%; height: 100%;
@@ -33,7 +33,7 @@
             border-left: 3px solid #800020;
         }
 
-        /* Bottom Navigation Bar (App Style like FaucetPay) */
+        /* Bottom Navigation Bar */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -67,21 +67,14 @@
         .section-box { display: none; }
         .section-box.active { display: block; }
 
-        .step-container { background: white; padding: 15px; border-radius: 8px; margin-top: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-top: 4px solid #800020; }
+        .step-container { background: white; padding: 15px; border-radius: 8px; margin-top: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-top: 4px solid #800020; }
         h3 { color: #800020; font-size: 14px; margin-top: 0; border-bottom: 2px solid #e6c687; padding-bottom: 5px; }
         label { font-size: 11px; font-weight: bold; display: block; margin-top: 8px; color: #444; }
-        input, select, textarea { width: 100%; padding: 8px; margin-top: 3px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; box-sizing: border-box; }
+        input, select { width: 100%; padding: 8px; margin-top: 3px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; box-sizing: border-box; }
         
         .btn-action { background: #800020; color: white; border: none; padding: 11px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 13px; margin-top: 12px; }
         .btn-next { background: #2e7d32; }
         .btn-pay { background: #d4af37; color: #3b141c; }
-
-        /* District Grid */
-        .district-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; max-height: 130px;
-            overflow-y: auto; border: 1px solid #ccc; padding: 8px; border-radius: 4px; background: #fafafa; margin-top: 5px;
-        }
-        .district-item { font-size: 11px; display: flex; align-items: center; gap: 5px; }
 
         /* Matching Profiles Card */
         .profile-match-card {
@@ -106,51 +99,59 @@
         </div>
     </div>
 
-    <!-- 1. DASHBOARD -->
+    <!-- 1. DASHBOARD & SIGNUP (First Screen) -->
     <div id="sec-dashboard" class="section-box active">
         <div class="step-container">
-            <h3>📊 முகப்பு (Dashboard)</h3>
-            <p style="font-size: 11px; line-height: 1.5;">வணக்கம்! உங்கள் சுயவிவரத்தைப் பதிவு செய்து, ₹499 செலுத்தி அனைத்து வரன் பட்டியல்களையும் ஜாதகப் பொருத்தங்களையும் உடனடியாகப் பார்க்கலாம்.</p>
-            <button class="btn-action btn-next" onclick="switchTab('customer')">👤 வாடிக்கையாளர் பதிவு & கட்டணம் செலுத்த ➔</button>
+            <h3>📝 புதிய வரன் பதிவு (Dashboard Signup)</h3>
+            <p style="font-size: 11px; color: #666; margin-bottom: 8px;">உங்கள் விவரங்களைப் பதிவு செய்து உடனடியாக ஜாதகப் பொருத்தங்களைப் பார்க்கவும்!</p>
+            
+            <label>ஜாதகம் யாருடையது? (Profile For):</label>
+            <select id="signProfileType">
+                <option value="Men Jathagam (Groom)">மண் ஜாதகம் (Men / Groom)</option>
+                <option value="Women Jathagam (Bride)">பெண் ஜாதகம் (Women / Bride)</option>
+            </select>
+
+            <label>பெயர் (Full Name):</label>
+            <input type="text" id="signName" placeholder="வரன் பெயர்">
+
+            <label>ஜாதி (Caste):</label>
+            <input type="text" id="signCaste" placeholder="எ.கா: குறிப்பிட்ட ஜாதி">
+
+            <label>மாவட்டம் (District):</label>
+            <select id="signDistrict">
+                <option value="Thanjavur">தஞ்சாவூர்</option>
+                <option value="Tiruvarur">திருவாரூர்</option>
+                <option value="Mayiladuthurai">மயிலாடுதுறை</option>
+                <option value="Nagapattinam">நாகப்பட்டினம்</option>
+                <option value="Trichy">திருச்சி</option>
+                <option value="Madurai">மதுரை</option>
+                <option value="Chennai">சென்னை</option>
+                <option value="Other">மற்ற மாவட்டங்கள்</option>
+            </select>
+
+            <label>மொபைல் எண் (Mobile Number):</label>
+            <input type="tel" id="signMobile" placeholder="98426XXXXX">
+
+            <label>மின்னஞ்சல் (Email ID):</label>
+            <input type="email" id="signEmail" placeholder="example@gmail.com">
+
+            <label>பாஸ்வேர்ட் (Password):</label>
+            <input type="password" id="signPassword" placeholder="******">
+
+            <button class="btn-action btn-next" onclick="submitSignup()">பதிவு செய்து கட்டணப் பகுதிக்குச் செல்ல ➔</button>
         </div>
     </div>
 
-    <!-- 2. CUSTOMER REGISTRATION & ₹499 PAYMENT GATEWAY -->
+    <!-- 2. CUSTOMER & ₹499 PAYMENT GATEWAY -->
     <div id="sec-customer" class="section-box">
         <div class="step-container">
-            <h3>👤 வாடிக்கையாளர் பதிவு (Customer Registration)</h3>
-            
-            <label>பெயர் (Full Name):</label>
-            <input type="text" id="cName" placeholder="வரன் பெயர்">
+            <h3>💳 கட்டணம் & உறுதிப்படுத்தல் (Payment Gateway)</h3>
+            <p style="font-size: 11px; color: #555;">பதிவு வெற்றிகரமாகச் சேமிக்கப்பட்டது. வரன்களை முழுமையாகத் திறக்க ₹499 செலுத்தவும்.</p>
 
-            <label>மொபைல் எண் (Mobile / Login):</label>
-            <input type="tel" id="cMobile" placeholder="98426XXXXX">
-
-            <label>ஜாதி / பிரிவு (Caste / Sub-caste):</label>
-            <input type="text" id="cCaste" placeholder="எ.கா: குறிப்பிட்ட ஜாதி">
-
-            <label>விரும்பும் மாவட்டங்கள் (மினிமம் 1 முதல் அதிகபட்சம் 6):</label>
-            <div class="district-grid">
-                <label class="district-item"><input type="checkbox" name="dist" value="Thanjavur"> தஞ்சாவூர்</label>
-                <label class="district-item"><input type="checkbox" name="dist" value="Tiruvarur"> திருவாரூர்</label>
-                <label class="district-item"><input type="checkbox" name="dist" value="Mayiladuthurai"> மயிலாடுதுறை</label>
-                <label class="district-item"><input type="checkbox" name="dist" value="Chidambaram"> சிதம்பரம் / கடலூர்</label>
-                <label class="district-item"><input type="checkbox" name="dist" value="Trichy"> திருச்சி</label>
-                <label class="district-item"><input type="checkbox" name="dist" value="Madurai"> மதுரை</label>
-            </div>
-
-            <label style="margin-top: 8px;">சுற்றுவட்டார தூரம்:</label>
-            <select id="cDistance">
-                <option value="30">30 கி.மீ சுற்றளவு</option>
-                <option value="60" selected>60 கி.மீ சுற்றளவு</option>
-                <option value="100">100 கி.மீ சுற்றளவு</option>
-            </select>
-
-            <!-- ₹499 Payment Gateway Simulation -->
-            <div style="background: #fff8e1; border: 1px dashed #d4af37; padding: 10px; border-radius: 6px; margin-top: 12px;">
-                <b style="color: #b8860b; font-size: 11px;">💳 Payment Gateway (UPI / QR / Cards):</b>
-                <p style="font-size: 10px; margin: 4px 0;">பதிவுக் கட்டணம் மற்றும் வரன்கள் பார்க்க: <b>₹499</b></p>
-                <button class="btn-action btn-pay" onclick="registerAndPay()">🔒 Pay ₹499 Securely (PhonePe/GPay)</button>
+            <div style="background: #fff8e1; border: 1px dashed #d4af37; padding: 12px; border-radius: 6px; margin-top: 10px;">
+                <b style="color: #b8860b; font-size: 11px;">UPI / PhonePe / GPay QR:</b>
+                <p style="font-size: 10px; margin: 4px 0;">பதிவுக் கட்டணம்: <b>₹499</b></p>
+                <button class="btn-action btn-pay" onclick="payAndUnlock()">🔒 Pay ₹499 Securely</button>
             </div>
         </div>
     </div>
@@ -159,82 +160,66 @@
     <div id="sec-astrology" class="section-box">
         <div class="step-container">
             <h3>🔮 ஜாதகப் பொருத்தம் & Matching Profiles</h3>
-            
-            <label>♂️ ஆண் / ♀️ பெண் ஜாதக விவரங்கள் (Star Match):</label>
+            <label>♂️ / ♀️ ஜாதக விவரங்கள் (Star Match):</label>
             <input type="text" placeholder="ராசி, நட்சத்திரம் உள்ளிடவும்">
             <input type="file" accept="image/*,.pdf">
 
             <button class="btn-action btn-next" onclick="alert('10 ஜாதகப் பொருத்தங்கள் சரிபார்க்கப்பட்டது: 9.5/10 உத்தமம்!')">10 பொருத்தங்கள் பார்க்க ➔</button>
 
-            <h3 style="margin-top: 15px; border-bottom: 2px solid #800020;">✨ பொருத்தமான வரன்கள் (Matching Profiles Open)</h3>
+            <h3 style="margin-top: 15px; border-bottom: 2px solid #800020;">✨ பொருத்தமான வரன்கள் (Matching Profiles)</h3>
             
             <div class="profile-match-card">
-                <b>பதிவு எண்: AA-2041</b> | வயது: 25, B.Tech | வேலை: Software Engineer<br>
-                📍 இடம்: தஞ்சாவூர் (60 கி.மீக்குள்) | ஜாதி: கச்சிதம்<br>
+                <b>பதிவு எண்: AA-2041</b> | வயது: 25, B.Tech<br>
+                📍 இடம்: தஞ்சாவூர் | ஜாதி: கச்சிதம்<br>
                 ⭐ ஜாதகப் பொருத்தம்: 9/10 (உத்தமம்)<br>
                 <button class="btn-action" style="padding: 5px; font-size: 11px; margin-top: 5px;" onclick="alert('தொடர்பு எண்: 9092745268 - ஸ்ரீ ஆண்டாள் அழகர் மையம்')">📞 Jathagam & Contact பார்க்க</button>
             </div>
-
-            <div class="profile-match-card">
-                <b>பதிவு எண்: AA-2089</b> | வயது: 24, M.Sc, B.Ed<br>
-                📍 இடம்: மயிலாடுதுறை / திருவாரூர்<br>
-                ⭐ ஜாதகப் பொருத்தம்: 8.5/10 (நன்று)<br>
-                <button class="btn-action" style="padding: 5px; font-size: 11px; margin-top: 5px;" onclick="alert('தொடர்பு எண்: 9092745268 - ஸ்ரீ ஆண்டாள் அழகர் மையம்')">📞 Jathagam & Contact பார்க்க</button>
-            </div>
         </div>
     </div>
 
-    <!-- 4. HOROSCOPE AI FUTURE & TEMPLE WORSHIP -->
+    <!-- 4. HOROSCOPE AI FUTURE -->
     <div id="sec-horoscope" class="section-box">
-        <div class="step-container" style="border-top: 4px solid #800020;">
-            <h3>🌟 AI ஜாதக கணிப்பு & வாழ்க்கை முறை (AI Future & Worship)</h3>
-            
-            <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 10px; border-radius: 5px; font-size: 11px; margin-bottom: 8px;">
-                <b>🛕 பரிகார & வழிபாட்டுத் தலங்கள் (Temples to Visit):</b><br>
-                திருமணத் தடை நீங்கவும், தம்பதியர் ஒற்றுமையுடன் வாழவும் **ஸ்ரீ வைதீஸ்வரன் கோயில் (Angarakan Sthalam)** மற்றும் **மயிலாடுதுறை துலாக்கட்டம் காசி விஸ்வநாதர் கோயிலில்** வழிபாடு செய்வது மிகவும் சிறப்பு.
-            </div>
-
+        <div class="step-container">
+            <h3>🌟 AI ஜாதக கணிப்பு & வழிபாட்டுத் தலங்கள்</h3>
             <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 10px; border-radius: 5px; font-size: 11px;">
-                <b>🔮 திருமணத்திற்குப் பின் எதிர்கால வாழ்க்கை (Life After Marriage):</b><br>
-                AI ஜோதிட கணிப்புபடி, ஏழாம் வீட்டில் சுப கிரகங்களின் பார்வை இருப்பதால் கணவன்-மனைவி இடையே அன்யோன்யம் அதிகரிக்கும். பொருளாதார வளர்ச்சி மற்றும் சொந்த வீடு யோகம் பிரகாசமாக உள்ளது! (Score: 9.8/10)
+                <b>🛕 பரிகாரத் தலங்கள்:</b> வைதீஸ்வரன் கோயில் மற்றும் மயிலாடுதுறை துலாக்கட்டம் காசி விஸ்வநாதர் கோயிலில் வழிபாடு செய்வது சிறப்பு.<br><br>
+                <b>🔮 எதிர்கால வாழ்க்கை:</b> கணவன்-மனைவி இடையே அன்யோன்யம் அதிகரிக்கும். சொந்த வீடு யோகம் பிரகாசமாக உள்ளது! (Score: 9.8/10)
             </div>
         </div>
     </div>
 
-    <!-- 5. ADMIN DASHBOARD (Auto-Syncs Registrations) -->
+    <!-- 5. ADMIN DASHBOARD -->
     <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
-            <p style="font-size: 11px; color: #555;">வாடிக்கையாளர்கள் பதிவு செய்யும் ஜாதகம் மற்றும் விவரங்கள் இங்கே நேரடியாக சேமிக்கப்படும்:</p>
+            <p style="font-size: 11px; color: #555;">பதிவு செய்தவர்களின் விவரங்கள் இங்கே சேமிக்கப்படும்:</p>
             
             <table>
                 <thead>
                     <tr>
-                        <th>பெயர் & மொபைல்</th>
-                        <th>மாவட்டங்கள்</th>
-                        <th>கட்டணம் (₹499)</th>
+                        <th>விவரம் (Name & Mobile)</th>
+                        <th>ஜாதி & மாவட்டம்</th>
+                        <th>நிலை (Status)</th>
                     </tr>
                 </thead>
                 <tbody id="adminTableBody">
                     <tr>
                         <td>மாதவன்<br><small>98426XXXXX</small></td>
-                        <td>தஞ்சாவூர், திருவாரூர் (2)</td>
+                        <td>கச்சிதம், தஞ்சாவூர்</td>
                         <td><span style="color: green; font-weight: bold;">₹499 Paid ✅</span></td>
                     </tr>
                 </tbody>
             </table>
-            
-            <button class="btn-action" onclick="loadAdminData()" style="background: #2e7d32; margin-top: 12px;">🔄 டேட்டாவைப் புதுப்பிக்க (Refresh Data)</button>
         </div>
     </div>
 
-    <!-- FIXED BOTTOM NAVIGATION BAR (Like FaucetPay App) -->
+    <!-- FIXED BOTTOM NAVIGATION BAR -->
     <div class="bottom-nav">
         <button class="nav-item active" id="navDash" onclick="switchTab('dashboard')">
-            <span class="icon">📊</span>Dashboard
+            <span class="icon">📝</span>Dashboard
         </button>
         <button class="nav-item" id="navCust" onclick="switchTab('customer')">
-            <span class="icon">👤</span>Customer
+            <span class="icon">💳</span>Payment
         </button>
         <button class="nav-item" id="navAstro" onclick="switchTab('astrology')">
             <span class="icon">🔮</span>Jathagam
@@ -252,17 +237,8 @@
         tg.expand();
 
         function switchTab(tabName) {
-            document.getElementById('sec-dashboard').classList.remove('active');
-            document.getElementById('sec-customer').classList.remove('active');
-            document.getElementById('sec-astrology').classList.remove('active');
-            document.getElementById('sec-horoscope').classList.remove('active');
-            document.getElementById('sec-admin').classList.remove('active');
-
-            document.getElementById('navDash').classList.remove('active');
-            document.getElementById('navCust').classList.remove('active');
-            document.getElementById('navAstro').classList.remove('active');
-            document.getElementById('navHoro').classList.remove('active');
-            document.getElementById('navAdmin').classList.remove('active');
+            document.querySelectorAll('.section-box').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
 
             if(tabName === 'dashboard') {
                 document.getElementById('sec-dashboard').classList.add('active');
@@ -282,47 +258,40 @@
             }
         }
 
-        // Handle Customer Registration, Payment Gateway simulation and Admin auto-sync
-        function registerAndPay() {
-            const name = document.getElementById('cName').value;
-            const mobile = document.getElementById('cMobile').value;
-            const checkboxes = document.querySelectorAll('input[name="dist"]:checked');
+        function submitSignup() {
+            const profileType = document.getElementById('signProfileType').value;
+            const name = document.getElementById('signName').value;
+            const caste = document.getElementById('signCaste').value;
+            const district = document.getElementById('signDistrict').value;
+            const mobile = document.getElementById('signMobile').value;
+            const email = document.getElementById('signEmail').value;
+            const password = document.getElementById('signPassword').value;
 
-            if(!name || !mobile) {
-                alert("தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்!");
-                return;
-            }
-            if(checkboxes.length === 0) {
-                alert("குறைந்தபட்சம் 1 மாவட்டத்தையாவது தேர்ந்தெடுக்கவும்!");
-                return;
-            }
-            if(checkboxes.length > 6) {
-                alert("அதிகபட்சம் 6 மாவட்டங்கள் மட்டுமே தேர்ந்தெடுக்க முடியும்!");
+            if(!name || !mobile || !caste || !password) {
+                alert("தயவுசெய்து பெயர், ஜாதி, மொபைல் எண் மற்றும் பாஸ்வேர்ட் ஆகியவற்றை நிரப்பவும்!");
                 return;
             }
 
-            // Simulate Payment Gateway Success
-            let confirmPay = confirm("₹499 செலுத்துவதற்கான Payment Gateway (UPI / PhonePe) பக்கத்திற்குச் செல்லவா?");
-            if(confirmPay) {
-                alert("🎉 கட்டணம் வெற்றிகரமாக செலுத்தப்பட்டது! ₹499 Paid. உங்கள் வரன் விவரங்கள் அட்மின் டேஷ்போர்டுக்கு அனுப்பப்பட்டன.");
+            alert("🎉 பதிவு வெற்றிகரமாக முடிந்தது! (" + profileType + "). அடுத்ததாக கட்டணம் செலுத்தப் பக்கத்திற்குச் செல்கிறோம்.");
 
-                // Add to Admin Table dynamically
-                let distList = Array.from(checkboxes).map(cb => cb.value).join(', ');
-                let tableBody = document.getElementById('adminTableBody');
-                let newRow = `<tr>
-                    <td>${name}<br><small>${mobile}</small></td>
-                    <td>${distList}</td>
-                    <td><span style="color: green; font-weight: bold;">₹499 Paid ✅</span></td>
-                </tr>`;
-                tableBody.innerHTML += newRow;
+            // Add to admin table
+            let tableBody = document.getElementById('adminTableBody');
+            tableBody.innerHTML += `<tr>
+                <td>${name} (${profileType})<br><small>${mobile}</small></td>
+                <td>${caste}, ${district}</td>
+                <td><span style="color: orange; font-weight: bold;">Pending ₹499</span></td>
+            </tr>`;
 
-                // Move user to Astrology matching profiles page
-                switchTab('astrology');
-            }
+            // Move to Payment tab
+            switchTab('customer');
         }
 
-        function loadAdminData() {
-            alert("அட்மின் டேஷ்போர்டு புதுப்பிக்கப்பட்டது! அனைத்து பதிவுகளும் சரியாக உள்ளன.");
+        function payAndUnlock() {
+            let confirmPay = confirm("₹499 செலுத்துவதை உறுதி செய்யவா?");
+            if(confirmPay) {
+                alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது! ஜாதகப் பொருத்தம் மற்றும் வரன்கள் திறக்கப்படுகின்றன.");
+                switchTab('astrology');
+            }
         }
     </script>
 </body>

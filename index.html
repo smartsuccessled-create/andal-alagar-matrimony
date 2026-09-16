@@ -32,7 +32,7 @@
             border-left: 3px solid #800020;
         }
 
-        /* Menu Navigation Bar */
+        /* Menu Bar */
         .menu-bar {
             display: flex; gap: 5px; overflow-x: auto; margin-top: 10px; padding-bottom: 5px;
         }
@@ -53,8 +53,13 @@
         .btn-action { background: #800020; color: white; border: none; padding: 11px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 13px; margin-top: 12px; }
         .btn-next { background: #2e7d32; }
         .btn-pay { background: #d4af37; color: #3b141c; }
-        .btn-pdf { background: #1976d2; color: white; }
         .btn-delete { background: #d32f2f; color: white; border: none; padding: 5px 8px; border-radius: 4px; font-size: 10px; cursor: pointer; font-weight: bold; }
+
+        /* Admin Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
+        .stat-card { background: #fdfbf7; border: 1px solid #d4af37; padding: 10px; border-radius: 6px; text-align: center; }
+        .stat-card h4 { margin: 0; font-size: 11px; color: #555; }
+        .stat-card p { margin: 5px 0 0 0; font-size: 16px; font-weight: bold; color: #800020; }
 
         .profile-match-card { background: #fffcf5; border: 1px solid #d4af37; padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 11px; }
     </style>
@@ -120,11 +125,8 @@
             <label>நட்சத்திரம் (Star):</label>
             <input type="text" id="bStar" placeholder="எ.கா: ரோகிணி">
 
-            <label>படிப்பு (Education):</label>
-            <input type="text" id="bEducation" placeholder="எ.கா: B.Tech">
-
-            <label>வேலை (Job / Profession):</label>
-            <input type="text" id="bJob" placeholder="எ.கா: Software Engineer">
+            <label>படிப்பு & வேலை (Education & Job):</label>
+            <input type="text" id="bJob" placeholder="எ.கா: B.Tech, Software Engineer">
 
             <label>ஜாதி (Caste):</label>
             <input type="text" id="bCaste" placeholder="எ.கா: குறிப்பிட்ட ஜாதி">
@@ -142,9 +144,6 @@
 
             <label>மொபைல் எண் (Mobile Number):</label>
             <input type="tel" id="bMobile" placeholder="98426XXXXX">
-
-            <label>பாஸ்வேர்ட் (Password):</label>
-            <input type="password" id="bPassword" placeholder="பாஸ்வேர்ட்">
 
             <button class="btn-action btn-next" onclick="saveBioData()">பதிவு செய்து கட்டணப் பகுதிக்குச் செல்ல ➔</button>
         </div>
@@ -169,10 +168,7 @@
         <div class="step-container">
             <h3>✨ பொருத்தமான வரன்கள் (District Filtered Matches)</h3>
             <p style="font-size: 11px; color: #2e7d32; font-weight: bold;" id="filterInfo">📍 உங்கள் மாவட்டத்தின் வரன்கள்:</p>
-            
             <div id="matchProfilesList"></div>
-
-            <button class="btn-action btn-pdf" onclick="alert('📥 பயோடேட்டா விவரங்கள் சேமிக்கப்பட்டது!')" style="margin-top: 15px;">📥 Download My Bio-Data Copy</button>
         </div>
     </div>
 
@@ -187,12 +183,43 @@
         </div>
     </div>
 
-    <!-- 6. ADMIN PANEL TAB (With Delete Button) -->
+    <!-- 6. ADMIN PANEL TAB (Fully Featured) -->
     <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
-            <p style="font-size: 11px; color: #666;">திருமணம் முடிந்துவிட்ட பதிவுகளை 'Delete' பட்டன் மூலம் நீக்கலாம்.</p>
-            <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 8px;">
+            
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>இன்று பதிவு செய்தவர்கள்</h4>
+                    <p id="statToday">1</p>
+                </div>
+                <div class="stat-card">
+                    <h4>மொத்த பதிவுகள்</h4>
+                    <p id="statTotal">2</p>
+                </div>
+                <div class="stat-card">
+                    <h4>பேமெண்ட் செய்தவர்கள்</h4>
+                    <p id="statPaid">2</p>
+                </div>
+                <div class="stat-card">
+                    <h4>சாட் & சப்போர்ட்</h4>
+                    <p id="statChat">4</p>
+                </div>
+            </div>
+
+            <!-- Admin Direct Register Form -->
+            <div style="background: #fff8e1; border: 1px solid #d4af37; padding: 10px; border-radius: 6px; margin-bottom: 12px;">
+                <b style="color: #800020; font-size: 11px;">➕ அட்மின் மூலம் புதிய வரனை சேர்க்க:</b>
+                <input type="text" id="adminRegName" placeholder="வரன் பெயர்" style="margin-top: 5px;">
+                <input type="tel" id="adminRegMobile" placeholder="மொபைல் எண்">
+                <input type="text" id="adminRegDist" placeholder="மாவட்டம்">
+                <input type="text" id="adminRegCaste" placeholder="ஜாதி">
+                <button class="btn-action" style="padding: 6px; margin-top: 5px; font-size: 11px;" onclick="adminDirectRegister()">நேரடியாக பதிவு செய்</button>
+            </div>
+
+            <p style="font-size: 11px; color: #666; margin-bottom: 5px;"><b>வரன்கள் பட்டியல் & நீக்குதல் (Delete):</b></p>
+            <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
                 <thead>
                     <tr style="background: #800020; color: white;">
                         <th style="padding: 6px; border: 1px solid #ddd;">பெயர் & மொபைல்</th>
@@ -200,27 +227,24 @@
                         <th style="padding: 6px; border: 1px solid #ddd;">செயல்</th>
                     </tr>
                 </thead>
-                <tbody id="adminTableBody">
-                    <!-- Dynamic Rows -->
-                </tbody>
+                <tbody id="adminTableBody"></tbody>
             </table>
         </div>
     </div>
 
     <script>
-        // Default Admin Records
-        let adminRecords = [
-            { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" },
-            { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" }
+        // Load data from localStorage or use default
+        let adminRecords = JSON.parse(localStorage.getItem('andal_records')) || [
+            { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅", date: "2026-06-06" },
+            { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅", date: "2026-06-06" }
         ];
 
-        const allProfiles = [
-            { name: "கார்த்திகேயன்", age: 26, edu: "B.E", job: "Software Engineer", dist: "தஞ்சாவூர்", rasi: "ரிஷபம்", star: "ரோகிணி", mobile: "9092745268" },
-            { name: "விஜய் பாபு", age: 25, edu: "M.Sc", job: "Teacher", dist: "திருவாரூர்", rasi: "மேஷம்", star: "அசுவினி", mobile: "9842612345" },
-            { name: "அரவிந்த்", age: 27, edu: "MBA", job: "Manager", dist: "மயிலாடுதுறை", rasi: "மிதுனம்", star: "மிருகசீரிடம்", mobile: "9789054321" },
-            { name: "இளவரசன்", age: 26, edu: "B.Tech", job: "IT Professional", dist: "தஞ்சாவூர்", rasi: "சிம்மம்", star: "பூரம்", mobile: "9443567890" },
-            { name: "சூர்யா", age: 28, edu: "Diploma", job: "Business", dist: "மதுரை", rasi: "துலாம்", star: "சுவாதி", mobile: "9940123456" }
-        ];
+        let statsData = JSON.parse(localStorage.getItem('andal_stats')) || { views: 14, chat: 4 };
+
+        function saveData() {
+            localStorage.setItem('andal_records', JSON.stringify(adminRecords));
+            localStorage.setItem('andal_stats', JSON.stringify(statsData));
+        }
 
         function switchTab(tabName) {
             document.querySelectorAll('.section-box').forEach(el => el.classList.remove('active'));
@@ -245,11 +269,18 @@
             } else if(tabName === 'admin') {
                 document.getElementById('sec-admin').classList.add('active');
                 document.getElementById('menuAdmin').classList.add('active');
-                renderAdminTable();
+                renderAdminDashboard();
             }
         }
 
-        function renderAdminTable() {
+        function renderAdminDashboard() {
+            // Update Stats
+            document.getElementById('statTotal').innerText = adminRecords.length;
+            document.getElementById('statPaid').innerText = adminRecords.filter(r => r.status.includes('Paid')).length;
+            document.getElementById('statToday').innerText = adminRecords.length; // Active count
+            document.getElementById('statChat').innerText = statsData.chat;
+
+            // Render Table
             let tableBody = document.getElementById('adminTableBody');
             tableBody.innerHTML = "";
             
@@ -271,11 +302,42 @@
             });
         }
 
+        function adminDirectRegister() {
+            let name = document.getElementById('adminRegName').value;
+            let mobile = document.getElementById('adminRegMobile').value;
+            let dist = document.getElementById('adminRegDist').value || "தஞ்சாவூர்";
+            let caste = document.getElementById('adminRegCaste').value || "பொது";
+
+            if(!name || !mobile) {
+                alert("பெயர் மற்றும் மொபைல் எண் அவசியம்!");
+                return;
+            }
+
+            adminRecords.push({
+                id: Date.now(),
+                name: name,
+                mobile: mobile,
+                dist: dist,
+                caste: caste,
+                status: "Admin Added ✅"
+            });
+
+            saveData();
+            renderAdminDashboard();
+
+            document.getElementById('adminRegName').value = "";
+            document.getElementById('adminRegMobile').value = "";
+            document.getElementById('adminRegDist').value = "";
+            document.getElementById('adminRegCaste').value = "";
+            alert("🎉 புதிய வரன் அட்மின் மூலம் வெற்றிகரமாக சேர்க்கப்பட்டது!");
+        }
+
         function deleteRecord(id) {
             let confirmDel = confirm("இந்த வரன் பதிவை உறுதியாக நீக்க விரும்புகிறீர்களா?");
             if(confirmDel) {
                 adminRecords = adminRecords.filter(r => r.id !== id);
-                renderAdminTable();
+                saveData();
+                renderAdminDashboard();
                 alert("🗑️ வரன் பதிவு வெற்றிகரமாக நீக்கப்பட்டது!");
             }
         }
@@ -286,6 +348,8 @@
                 alert("தயவுசெய்து மொபைல் எண் உள்ளிடவும்!");
                 return;
             }
+            statsData.chat++;
+            saveData();
             alert("🎉 வெற்றிகரமாக உள்நுழைந்தீர்கள்!");
             switchTab('matches');
         }
@@ -307,9 +371,9 @@
                 alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது!");
                 
                 let userDist = document.getElementById('bDistrict').value || "தஞ்சாவூர்";
-                let name = document.getElementById('bName').value || "மதி";
+                let name = document.getElementById('bName').value || "புதிய வரன்";
                 let mobile = document.getElementById('bMobile').value || "98426XXXXX";
-                let caste = document.getElementById('bCaste').value || "கச்சிதம்";
+                let caste = document.getElementById('bCaste')?.value || "பொது";
 
                 adminRecords.push({
                     id: Date.now(),
@@ -320,6 +384,8 @@
                     status: "₹499 Paid ✅"
                 });
 
+                statsData.views++;
+                saveData();
                 switchTab('matches');
             }
         }
@@ -330,29 +396,8 @@
             const container = document.getElementById('matchProfilesList');
             container.innerHTML = "";
 
-            const filtered = allProfiles.filter(p => p.dist === districtName);
-
-            if(filtered.length === 0) {
-                container.innerHTML = `<p style="font-size: 11px; color: #666;">உங்கள் மாவட்டத்தில் தற்போது புதிய வரன்கள் இல்லை.</p>`;
-                return;
-            }
-
-            filtered.forEach((p, index) => {
-                container.innerHTML += `
-                    <div class="profile-match-card">
-                        <b>வரன் எண்: AA-20${index + 50}</b> | பெயர்: ${p.name}<br>
-                        வயது: ${p.age} | படிப்பு: ${p.edu} (${p.job})<br>
-                        📍 இடம்: ${p.dist} | ராசி: ${p.rasi} (${p.star})<br>
-                        ⭐ ஜாதகப் பொருத்தம்: 9.2/10 (உத்தமம்)<br>
-                        <button class="btn-action" style="padding: 5px; font-size: 11px; margin-top: 5px;" onclick="alert('தொடர்பு எண்: ${p.mobile} - ஸ்ரீ ஆண்டாள் அழகர் மையம்')">📞 Jathagam & Contact பார்க்க</button>
-                    </div>
-                `;
-            });
-        }
-
-        // Initial Load
-        renderAdminTable();
-    </script>
-</body>
-                                  </html>
-                
+            const allProfiles = [
+                { name: "கார்த்திகேயன்", age: 26, edu: "B.E, Software Engineer", dist: "தஞ்சாவூர்", rasi: "ரிஷபம்", star: "ரோகிணி", mobile: "9092745268" },
+                { name: "விஜய் பாபு", age: 25, edu: "M.Sc, Teacher", dist: "திருவாரூர்", rasi: "மேஷம்", star: "அசுவினி", mobile: "9842612345" },
+                { name: "அரவிந்த்", age: 27, edu: "MBA, Manager", dist: "மயிலாடுதுறை", rasi: "மிதுனம்", star: "மிருகசீரிடம்", mobile: "9789054321" },
+                { name: "இளவரசன்", age: 26, edu: "B.Tech, IT", dist: "தஞ்சாவூர்", rasi: 

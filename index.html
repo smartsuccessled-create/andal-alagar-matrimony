@@ -7,24 +7,45 @@
     <style>
         body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 50px; color: #333; }
         
-        /* Updated Header Design */
+        /* Header Design */
         .app-header { 
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: linear-gradient(135deg, #e6c687 0%, #b8860b 55%, #800020 100%);
             color: #3b141c; padding: 10px; border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 2px solid #800020; min-height: 90px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 2px solid #800020; min-height: 100px;
             box-sizing: border-box;
         }
-        .header-left-img {
-            width: 75px; height: 75px;
+        .header-img-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            width: 80px;
+        }
+        .header-circle-img {
+            width: 65px; height: 65px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #fff;
             box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            flex-shrink: 0;
             background-color: #fff;
+        }
+        .file-input-label {
+            font-size: 9px;
+            color: #fff;
+            background: #2b0b10;
+            padding: 2px 4px;
+            border-radius: 4px;
+            margin-top: 4px;
+            cursor: pointer;
+            text-align: center;
+            border: 1px solid #d4af37;
+            white-space: nowrap;
+        }
+        .file-input-label input {
+            display: none;
         }
         .header-center-content {
             text-align: center;
@@ -32,18 +53,8 @@
             padding: 0 5px;
         }
         .app-header .om-text { font-size: 12px; font-weight: 900; color: #5c0613; letter-spacing: 1px; }
-        .app-header h2 { font-size: 16px; margin: 2px 0; color: #5c0613; font-weight: 900; line-height: 1.2; text-shadow: 1px 1px 2px rgba(255,255,255,0.5); }
-        .whatsapp-badge { font-size: 10px; color: #ffffff; background: #25d366; padding: 2px 6px; border-radius: 10px; display: inline-block; margin-top: 4px; font-weight: bold; }
-        
-        .header-right-img {
-            width: 75px; height: 75px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #fff;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            flex-shrink: 0;
-            background-color: #fff;
-        }
+        .app-header h2 { font-size: 15px; margin: 2px 0; color: #5c0613; font-weight: 900; line-height: 1.2; text-shadow: 1px 1px 2px rgba(255,255,255,0.5); }
+        .whatsapp-badge { font-size: 10px; color: #ffffff; background: #25d366; padding: 2px 6px; border-radius: 10px; display: inline-block; margin-top: 3px; font-weight: bold; }
 
         .menu-bar { display: flex; gap: 5px; overflow-x: auto; margin-top: 10px; padding-bottom: 5px; }
         .menu-btn {
@@ -69,15 +80,25 @@
     </style>
 </head>
 <body>
-    <!-- Fixed Header Layout with reliable Wikimedia/Public Image Links -->
+    <!-- Header with Self Upload Option -->
     <div class="app-header">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Indian_wedding_couple.jpg/320px-Indian_wedding_couple.jpg" alt="Couple Photo" class="header-left-img">
+        <div class="header-img-box">
+            <img id="displayLeftImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Indian_wedding_couple.jpg/320px-Indian_wedding_couple.jpg" alt="Couple" class="header-circle-img">
+            <label class="file-input-label">📷 மாற்று 
+                <input type="file" accept="image/*" onchange="uploadHeaderImg(event, 'left')">
+            </label>
+        </div>
         <div class="header-center-content">
             <div class="om-text">ஓம் ஸ்ரீ</div>
             <h2>ஆண்டாள் அழகர் Matrimony</h2>
             <div class="whatsapp-badge">🟢 9092745268</div>
         </div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Alagar_Koil_Rajagopuram.jpg/320px-Alagar_Koil_Rajagopuram.jpg" alt="Perumal God Photo" class="header-right-img">
+        <div class="header-img-box">
+            <img id="displayRightImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Alagar_Koil_Rajagopuram.jpg/320px-Alagar_Koil_Rajagopuram.jpg" alt="God" class="header-circle-img">
+            <label class="file-input-label">📷 மாற்று 
+                <input type="file" accept="image/*" onchange="uploadHeaderImg(event, 'right')">
+            </label>
+        </div>
     </div>
 
     <div class="menu-bar">
@@ -154,7 +175,8 @@
                 <b>🛕 பரிகாரத் தலங்கள்:</b> வைதீஸ்வரன் கோயில் வழிபாடு சிறப்பு.<br><b>🔮 பலன்:</b> சிறப்பு (Score: 9.8/10)
             </div>
         </div>
-    </div>    <div id="sec-admin" class="section-box">
+    </div>
+        <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
             <div class="stats-grid">
@@ -209,14 +231,42 @@
         </div>
     </div>
     <script>
-        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v10')) || [
+        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v11')) || [
             { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", job: "B.E", rasi: "ரிஷபம்", status: "₹499 Paid ✅" },
             { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", job: "M.Sc", rasi: "மேஷம்", status: "₹499 Paid ✅" }
         ];
-        let statsData = JSON.parse(localStorage.getItem('andal_stats_v10')) || { chat: 4 };
+        let statsData = JSON.parse(localStorage.getItem('andal_stats_v11')) || { chat: 4 };
+
+        // Load saved images on startup
+        window.onload = function() {
+            let savedLeft = localStorage.getItem('andal_left_img');
+            let savedRight = localStorage.getItem('andal_right_img');
+            if(savedLeft) document.getElementById('displayLeftImg').src = savedLeft;
+            if(savedRight) document.getElementById('displayRightImg').src = savedRight;
+        };
+
+        function uploadHeaderImg(event, side) {
+            let file = event.target.files[0];
+            if(file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    let base64Img = e.target.result;
+                    if(side === 'left') {
+                        document.getElementById('displayLeftImg').src = base64Img;
+                        localStorage.setItem('andal_left_img', base64Img);
+                    } else {
+                        document.getElementById('displayRightImg').src = base64Img;
+                        localStorage.setItem('andal_right_img', base64Img);
+                    }
+                    alert("✅ போட்டோ வெற்றிகரமாக மாற்றப்பட்டது!");
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
         function saveData() {
-            localStorage.setItem('andal_records_v10', JSON.stringify(adminRecords));
-            localStorage.setItem('andal_stats_v10', JSON.stringify(statsData));
+            localStorage.setItem('andal_records_v11', JSON.stringify(adminRecords));
+            localStorage.setItem('andal_stats_v11', JSON.stringify(statsData));
         }
         function switchTab(tab) {
             ['login', 'register', 'payment', 'matches', 'ai', 'admin'].forEach(t => {
@@ -337,5 +387,4 @@
     </script>
 </body>
     </html>
-
     

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony v2</title>
+    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony v3</title>
     <style>
         body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 50px; color: #333; }
         
@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <!-- Menu Bar with direct inline onclick -->
+    <!-- Menu Bar -->
     <div class="menu-bar">
         <button class="menu-btn active" id="m-login" onclick="switchTab('login')">🔑 Login</button>
         <button class="menu-btn" id="m-register" onclick="switchTab('register')">📝 Register</button>
@@ -88,25 +88,50 @@
         </div>
     </div>
 
-    <!-- 2. REGISTER -->
+    <!-- 2. CUSTOMER FULL REGISTER FORM -->
     <div id="sec-register" class="section-box">
         <div class="step-container">
-            <h3>📝 முழுமையான பயோடேட்டா பதிவு</h3>
-            <label>ஜாதகம் யாருடையது?:</label>
-            <select id="bProfileType"><option value="ஆண்">ஆண் ஜாதகம்</option><option value="பெண்">பெண் ஜாதகம்</option></select>
-            <label>பெயர்:</label><input type="text" id="bName" placeholder="வரன் பெயர்">
-            <label>பிறந்த தேதி:</label><input type="date" id="bDob">
-            <label>பிறந்த நேரம்:</label><input type="time" id="bTime">
-            <label>ராசி & நட்சத்திரம்:</label><input type="text" id="bRasi" placeholder="ராசி, நட்சத்திரம்">
-            <label>படிப்பு & வேலை:</label><input type="text" id="bJob" placeholder="படிப்பு, வேலை">
-            <label>ஜாதி:</label><input type="text" id="bCaste" placeholder="ஜாதி">
-            <label>மாவட்டம்:</label>
-            <select id="bDistrict">
-                <option value="தஞ்சாவூர்">தஞ்சாவூர்</option><option value="திருவாரூர்">திருவாரூர்</option>
-                <option value="மயிலாடுதுறை">மயிலாடுதுறை</option><option value="மதுரை">மதுரை</option><option value="சென்னை">சென்னை</option>
+            <h3>📝 முழுமையான பயோடேட்டா பதிவு (Customer Bio-Data Form)</h3>
+            
+            <label>ஜாதகம் யாருடையது? (Profile For):</label>
+            <select id="bProfileType">
+                <option value="ஆண் ஜாதகம் (Groom)">ஆண் ஜாதகம் (Groom)</option>
+                <option value="பெண் ஜாதகம் (Bride)">பெண் ஜாதகம் (Bride)</option>
             </select>
-            <label>மொபைல் எண்:</label><input type="tel" id="bMobile" placeholder="98426XXXXX">
-            <button class="btn-action btn-next" onclick="saveBioData()">பதிவு செய்து கட்டணப் பகுதிக்குச் செல்ல ➔</button>
+
+            <label>வரன் பெயர் (Full Name):</label>
+            <input type="text" id="bName" placeholder="உம். பெயர்">
+
+            <label>பிறந்த தேதி (Date of Birth):</label>
+            <input type="date" id="bDob">
+
+            <label>பிறந்த நேரம் (Birth Time):</label>
+            <input type="time" id="bTime">
+
+            <label>ராசி & நட்சத்திரம் (Rasi & Star):</label>
+            <input type="text" id="bRasi" placeholder="உம். ரிஷபம், ரோகிணி">
+
+            <label>படிப்பு & வேலை (Education & Job):</label>
+            <input type="text" id="bJob" placeholder="உம். B.Tech, Software Engineer">
+
+            <label>ஜாதி (Caste):</label>
+            <input type="text" id="bCaste" placeholder="உம். குறிப்பிட்ட ஜாதி">
+
+            <label>மாவட்டம் (District):</label>
+            <select id="bDistrict">
+                <option value="தஞ்சாவூர்">தஞ்சாவூர்</option>
+                <option value="திருவாரூர்">திருவாரூர்</option>
+                <option value="மயிலாடுதுறை">மயிலாடுதுறை</option>
+                <option value="நாகப்பட்டினம்">நாகப்பட்டினம்</option>
+                <option value="திருச்சி">திருச்சி</option>
+                <option value="மதுரை">மதுரை</option>
+                <option value="சென்னை">சென்னை</option>
+            </select>
+
+            <label>மொபைல் எண் (Mobile Number):</label>
+            <input type="tel" id="bMobile" placeholder="98426XXXXX">
+
+            <button class="btn-action btn-next" onclick="saveCustomerBioData()">பதிவு செய்து கட்டணப் பகுதிக்குச் செல்ல ➔</button>
         </div>
     </div>
 
@@ -174,16 +199,16 @@
     </div>
 
     <script>
-        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v2')) || [
+        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v3')) || [
             { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", status: "₹499 Paid ✅" },
             { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", status: "₹499 Paid ✅" }
         ];
 
-        let statsData = JSON.parse(localStorage.getItem('andal_stats_v2')) || { chat: 4 };
+        let statsData = JSON.parse(localStorage.getItem('andal_stats_v3')) || { chat: 4 };
 
         function saveData() {
-            localStorage.setItem('andal_records_v2', JSON.stringify(adminRecords));
-            localStorage.setItem('andal_stats_v2', JSON.stringify(statsData));
+            localStorage.setItem('andal_records_v3', JSON.stringify(adminRecords));
+            localStorage.setItem('andal_stats_v3', JSON.stringify(statsData));
         }
 
         function switchTab(tab) {
@@ -247,21 +272,35 @@
             switchTab('matches');
         }
 
-        function saveBioData() {
+        function saveCustomerBioData() {
             let name = document.getElementById('bName').value;
             let mobile = document.getElementById('bMobile').value;
-            if(!name || !mobile) { alert("பெயர் மற்றும் மொபைல் எண் அவசியம்!"); return; }
-            alert("பயோடேட்டா சேமிக்கப்பட்டது!");
+            let dist = document.getElementById('bDistrict').value;
+            let caste = document.getElementById('bCaste').value || "பொது";
+
+            if(!name || !mobile) { 
+                alert("தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்!"); 
+                return; 
+            }
+
+            // Temporarily store in session to use after payment
+            localStorage.setItem('temp_cust_name', name);
+            localStorage.setItem('temp_cust_mobile', mobile);
+            localStorage.setItem('temp_cust_dist', dist);
+            localStorage.setItem('temp_cust_caste', caste);
+
+            alert("🎉 பயோடேட்டா சேமிக்கப்பட்டது! கட்டணப் பகுதிக்குச் செல்கிறோம்.");
             switchTab('payment');
         }
 
         function payAndUnlock() {
             if(confirm("₹499 செலுத்துவதை உறுதி செய்யவா?")) {
-                alert("கட்டணம் பெறப்பட்டது!");
-                let name = document.getElementById('bName').value || "புதிய வரன்";
-                let mobile = document.getElementById('bMobile').value || "98426XXXXX";
-                let dist = document.getElementById('bDistrict').value || "தஞ்சாவூர்";
-                let caste = document.getElementById('bCaste').value || "பொது";
+                alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது!");
+                
+                let name = localStorage.getItem('temp_cust_name') || document.getElementById('bName').value || "புதிய வரன்";
+                let mobile = localStorage.getItem('temp_cust_mobile') || document.getElementById('bMobile').value || "98426XXXXX";
+                let dist = localStorage.getItem('temp_cust_dist') || document.getElementById('bDistrict').value || "தஞ்சாவூர்";
+                let caste = localStorage.getItem('temp_cust_caste') || document.getElementById('bCaste').value || "பொது";
 
                 adminRecords.push({ id: Date.now(), name, mobile, dist, caste, status: "₹499 Paid ✅" });
                 saveData();
@@ -311,5 +350,4 @@
         }
     </script>
 </body>
-        </html>
-    
+</html>

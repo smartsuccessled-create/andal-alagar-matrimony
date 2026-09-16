@@ -14,7 +14,7 @@
             justify-content: space-between;
             background: linear-gradient(135deg, #e6c687 0%, #b8860b 55%, #800020 100%);
             color: #3b141c; padding: 10px; border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 2px solid #800020; min-height: 100px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 2px solid #800020; min-height: 90px;
             box-sizing: border-box;
         }
         .header-img-box {
@@ -22,7 +22,7 @@
             flex-direction: column;
             align-items: center;
             flex-shrink: 0;
-            width: 80px;
+            width: 75px;
         }
         .header-circle-img {
             width: 65px; height: 65px;
@@ -32,7 +32,9 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             background-color: #fff;
         }
+        /* Hidden by default, shown only in admin mode */
         .file-input-label {
+            display: none; 
             font-size: 9px;
             color: #fff;
             background: #2b0b10;
@@ -80,11 +82,11 @@
     </style>
 </head>
 <body>
-    <!-- Header with Self Upload Option -->
+    <!-- Header with Conditional Admin Upload Control -->
     <div class="app-header">
         <div class="header-img-box">
             <img id="displayLeftImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Indian_wedding_couple.jpg/320px-Indian_wedding_couple.jpg" alt="Couple" class="header-circle-img">
-            <label class="file-input-label">📷 மாற்று 
+            <label class="file-input-label" id="adminUploadLeft">📷 மாற்று 
                 <input type="file" accept="image/*" onchange="uploadHeaderImg(event, 'left')">
             </label>
         </div>
@@ -95,7 +97,7 @@
         </div>
         <div class="header-img-box">
             <img id="displayRightImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Alagar_Koil_Rajagopuram.jpg/320px-Alagar_Koil_Rajagopuram.jpg" alt="God" class="header-circle-img">
-            <label class="file-input-label">📷 மாற்று 
+            <label class="file-input-label" id="adminUploadRight">📷 மாற்று 
                 <input type="file" accept="image/*" onchange="uploadHeaderImg(event, 'right')">
             </label>
         </div>
@@ -175,8 +177,7 @@
                 <b>🛕 பரிகாரத் தலங்கள்:</b> வைதீஸ்வரன் கோயில் வழிபாடு சிறப்பு.<br><b>🔮 பலன்:</b> சிறப்பு (Score: 9.8/10)
             </div>
         </div>
-    </div>
-        <div id="sec-admin" class="section-box">
+    </div>    <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
             <div class="stats-grid">
@@ -231,11 +232,11 @@
         </div>
     </div>
     <script>
-        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v11')) || [
+        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v12')) || [
             { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", job: "B.E", rasi: "ரிஷபம்", status: "₹499 Paid ✅" },
             { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", job: "M.Sc", rasi: "மேஷம்", status: "₹499 Paid ✅" }
         ];
-        let statsData = JSON.parse(localStorage.getItem('andal_stats_v11')) || { chat: 4 };
+        let statsData = JSON.parse(localStorage.getItem('andal_stats_v12')) || { chat: 4 };
 
         // Load saved images on startup
         window.onload = function() {
@@ -265,9 +266,10 @@
         }
 
         function saveData() {
-            localStorage.setItem('andal_records_v11', JSON.stringify(adminRecords));
-            localStorage.setItem('andal_stats_v11', JSON.stringify(statsData));
+            localStorage.setItem('andal_records_v12', JSON.stringify(adminRecords));
+            localStorage.setItem('andal_stats_v12', JSON.stringify(statsData));
         }
+
         function switchTab(tab) {
             ['login', 'register', 'payment', 'matches', 'ai', 'admin'].forEach(t => {
                 let sec = document.getElementById('sec-' + t);
@@ -279,9 +281,22 @@
             let activeBtn = document.getElementById('m-' + tab);
             if(activeSec) activeSec.classList.add('active');
             if(activeBtn) activeBtn.classList.add('active');
+            
+            // Show upload buttons ONLY when Admin tab is active
+            let uploadLeft = document.getElementById('adminUploadLeft');
+            let uploadRight = document.getElementById('adminUploadRight');
+            if(tab === 'admin') {
+                if(uploadLeft) uploadLeft.style.display = 'block';
+                if(uploadRight) uploadRight.style.display = 'block';
+                renderAdminDashboard();
+            } else {
+                if(uploadLeft) uploadLeft.style.display = 'none';
+                if(uploadRight) uploadRight.style.display = 'none';
+            }
+
             if(tab === 'matches') loadFilteredMatches("தஞ்சாவூர்");
-            if(tab === 'admin') renderAdminDashboard();
         }
+
         function renderAdminDashboard() {
             document.getElementById('statTotal').innerText = adminRecords.length;
             document.getElementById('statPaid').innerText = adminRecords.filter(r => r.status.includes('Paid') || r.status.includes('Added')).length;
@@ -387,4 +402,5 @@
     </script>
 </body>
     </html>
+
     

@@ -32,7 +32,6 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.3);
             background-color: #fff;
         }
-        /* Hidden by default, shown only in admin mode */
         .file-input-label {
             display: none; 
             font-size: 9px;
@@ -54,9 +53,13 @@
             flex-grow: 1;
             padding: 0 5px;
         }
-        .app-header .om-text { font-size: 12px; font-weight: 900; color: #5c0613; letter-spacing: 1px; }
-        .app-header h2 { font-size: 15px; margin: 2px 0; color: #5c0613; font-weight: 900; line-height: 1.2; text-shadow: 1px 1px 2px rgba(255,255,255,0.5); }
-        .whatsapp-badge { font-size: 10px; color: #ffffff; background: #25d366; padding: 2px 6px; border-radius: 10px; display: inline-block; margin-top: 3px; font-weight: bold; }
+        /* Color Customization as requested */
+        .app-header .om-text { font-size: 11px; font-weight: bold; color: #00ffcc; letter-spacing: 0.5px; margin-bottom: 1px; }
+        .app-header h2 { font-size: 14px; margin: 1px 0; font-weight: 900; line-height: 1.2; text-shadow: 1px 1px 2px rgba(0,0,0,0.4); }
+        .app-header h2 .title-green { color: #00e676; }
+        .app-header h2 .title-pink { color: #ff4081; display: inline-block; margin-top: 2px; }
+        
+        .whatsapp-badge { font-size: 11px; color: #ffffff; background: #25d366; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 4px; font-weight: bold; }
 
         .menu-bar { display: flex; gap: 5px; overflow-x: auto; margin-top: 10px; padding-bottom: 5px; }
         .menu-btn {
@@ -82,7 +85,7 @@
     </style>
 </head>
 <body>
-    <!-- Header with Conditional Admin Upload Control -->
+    <!-- Header Design with Exact Color Specifications -->
     <div class="app-header">
         <div class="header-img-box">
             <img id="displayLeftImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Indian_wedding_couple.jpg/320px-Indian_wedding_couple.jpg" alt="Couple" class="header-circle-img">
@@ -92,7 +95,10 @@
         </div>
         <div class="header-center-content">
             <div class="om-text">ஓம் ஸ்ரீ</div>
-            <h2>ஆண்டாள் அழகர் Matrimony</h2>
+            <h2>
+                <span class="title-green">ஆண்டாள் அழகர்</span><br>
+                <span class="title-pink">Matrimony</span>
+            </h2>
             <div class="whatsapp-badge">🟢 9092745268</div>
         </div>
         <div class="header-img-box">
@@ -111,6 +117,7 @@
         <button class="menu-btn" id="m-ai" onclick="switchTab('ai')">🌟 AI Report</button>
         <button class="menu-btn" id="m-admin" onclick="switchTab('admin')">🔒 Admin</button>
     </div>
+
     <div id="sec-login" class="section-box active">
         <div class="step-container">
             <h3>🔐 உள்நுழைவு (Login)</h3>
@@ -121,6 +128,7 @@
             <button class="btn-action btn-next" onclick="userLogin()">உள்நுழைய (Login) ➔</button>
         </div>
     </div>
+
     <div id="sec-register" class="section-box">
         <div class="step-container">
             <h3>📝 முழுமையான பயோடேட்டா பதிவு (Customer Bio-Data Form)</h3>
@@ -156,6 +164,7 @@
             <button class="btn-action btn-next" onclick="saveCustomerBioData()">பதிவு செய்து கட்டணப் பகுதிக்குச் செல்ல ➔</button>
         </div>
     </div>
+
     <div id="sec-payment" class="section-box">
         <div class="step-container">
             <h3>💳 கட்டணம் செலுத்துதல் (₹499)</h3>
@@ -163,6 +172,7 @@
             <button class="btn-action btn-pay" onclick="payAndUnlock()">🔒 Pay ₹499 Securely & View Matches</button>
         </div>
     </div>
+
     <div id="sec-matches" class="section-box">
         <div class="step-container">
             <h3>✨ பொருத்தமான வரன்கள்</h3>
@@ -170,6 +180,7 @@
             <div id="matchProfilesList"></div>
         </div>
     </div>
+
     <div id="sec-ai" class="section-box">
         <div class="step-container">
             <h3>🌟 AI ஜாதக கணிப்பு</h3>
@@ -177,7 +188,9 @@
                 <b>🛕 பரிகாரத் தலங்கள்:</b> வைதீஸ்வரன் கோயில் வழிபாடு சிறப்பு.<br><b>🔮 பலன்:</b> சிறப்பு (Score: 9.8/10)
             </div>
         </div>
-    </div>    <div id="sec-admin" class="section-box">
+    </div>
+
+    <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
             <div class="stats-grid">
@@ -231,14 +244,14 @@
             </table>
         </div>
     </div>
+
     <script>
-        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v12')) || [
+        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v13')) || [
             { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", job: "B.E", rasi: "ரிஷபம்", status: "₹499 Paid ✅" },
             { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", job: "M.Sc", rasi: "மேஷம்", status: "₹499 Paid ✅" }
         ];
-        let statsData = JSON.parse(localStorage.getItem('andal_stats_v12')) || { chat: 4 };
+        let statsData = JSON.parse(localStorage.getItem('andal_stats_v13')) || { chat: 4 };
 
-        // Load saved images on startup
         window.onload = function() {
             let savedLeft = localStorage.getItem('andal_left_img');
             let savedRight = localStorage.getItem('andal_right_img');
@@ -266,8 +279,8 @@
         }
 
         function saveData() {
-            localStorage.setItem('andal_records_v12', JSON.stringify(adminRecords));
-            localStorage.setItem('andal_stats_v12', JSON.stringify(statsData));
+            localStorage.setItem('andal_records_v13', JSON.stringify(adminRecords));
+            localStorage.setItem('andal_stats_v13', JSON.stringify(statsData));
         }
 
         function switchTab(tab) {
@@ -282,7 +295,6 @@
             if(activeSec) activeSec.classList.add('active');
             if(activeBtn) activeBtn.classList.add('active');
             
-            // Show upload buttons ONLY when Admin tab is active
             let uploadLeft = document.getElementById('adminUploadLeft');
             let uploadRight = document.getElementById('adminUploadRight');
             if(tab === 'admin') {
@@ -344,63 +356,4 @@
             let rasi = document.getElementById('bRasi').value;
             if(!name || !mobile) { alert("தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்!"); return; }
             localStorage.setItem('temp_cust_name', name);
-            localStorage.setItem('temp_cust_mobile', mobile);
-            localStorage.setItem('temp_cust_dist', dist);
-            localStorage.setItem('temp_cust_caste', caste);
-            localStorage.setItem('temp_cust_job', job);
-            localStorage.setItem('temp_cust_rasi', rasi);
-            alert("🎉 பயோடேட்டா சேமிக்கப்பட்டது! கட்டணப் பகுதிக்குச் செல்கிறோம்.");
-            switchTab('payment');
-        }
-        function payAndUnlock() {
-            if(confirm("₹499 செலுத்துவதை உறுதி செய்யவா?")) {
-                alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது!");
-                let name = localStorage.getItem('temp_cust_name') || "புதிய வரன்";
-                let mobile = localStorage.getItem('temp_cust_mobile') || "98426XXXXX";
-                let dist = localStorage.getItem('temp_cust_dist') || "தஞ்சாவூர்";
-                let caste = localStorage.getItem('temp_cust_caste') || "பொது";
-                let job = localStorage.getItem('temp_cust_job') || "";
-                let rasi = localStorage.getItem('temp_cust_rasi') || "";
-                adminRecords.push({ id: Date.now(), name, mobile, dist, caste, job, rasi, status: "₹499 Paid ✅" });
-                saveData();
-                switchTab('matches');
-            }
-        }
-        function adminDirectRegisterFull() {
-            let name = document.getElementById('admName').value;
-            let mobile = document.getElementById('admMobile').value;
-            let dist = document.getElementById('admDistrict').value;
-            let caste = document.getElementById('admCaste').value || "பொது";
-            let job = document.getElementById('admJob').value;
-            let rasi = document.getElementById('admRasi').value;
-            if(!name || !mobile) { alert("பெயர் மற்றும் மொபைல் எண் அவசியம்!"); return; }
-            adminRecords.push({ id: Date.now(), name, mobile, dist, caste, job, rasi, status: "Admin Added ✅" });
-            saveData();
-            renderAdminDashboard();
-            document.getElementById('admName').value = "";
-            document.getElementById('admMobile').value = "";
-            document.getElementById('admJob').value = "";
-            document.getElementById('admRasi').value = "";
-            document.getElementById('admCaste').value = "";
-            alert("✅ முழுமையான விவரங்களுடன் வரன் நேரடியாக பதிவு செய்யப்பட்டது!");
-        }
-        function loadFilteredMatches(distName) {
-            document.getElementById('filterInfo').innerText = `📍 உங்கள் மாவட்டம் (${distName}) வரன்கள்:`;
-            let container = document.getElementById('matchProfilesList');
-            container.innerHTML = "";
-            adminRecords.forEach((p, i) => {
-                container.innerHTML += `
-                    <div class="profile-match-card">
-                        <b>வரன் எண்: AA-20${i+50}</b> | பெயர்: ${p.name}<br>
-                        படிப்பு/வேலை: ${p.job || 'குறிப்பிடவில்லை'}<br>
-                        📍 இடம்: ${p.dist}, ஜாதி: ${p.caste} | ராசி: ${p.rasi || '-'}<br>
-                        <button class="btn-action" style="padding: 5px; font-size: 11px; margin-top: 5px;" onclick="alert('தொடர்பு எண்: ${p.mobile}')">📞 Contact பார்க்க</button>
-                    </div>
-                `;
-            });
-        }
-    </script>
-</body>
-    </html>
-
-    
+            localStorage.setItem('temp_cust

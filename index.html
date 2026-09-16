@@ -7,7 +7,7 @@
     <style>
         body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 50px; color: #333; }
         
-        /* Updated Header Design: Left Couple Photo, Center Title, Right Perumal God Image */
+        /* Updated Header Design */
         .app-header { 
             display: flex;
             align-items: center;
@@ -69,15 +69,15 @@
     </style>
 </head>
 <body>
-    <!-- Fixed Header Layout: Left = Couple, Right = Perumal God -->
+    <!-- Fixed Header Layout with reliable Wikimedia/Public Image Links -->
     <div class="app-header">
-        <img src="https://images.unsplash.com/photo-1621619856621-42fe31420922?auto=format&fit=crop&w=300&q=80" alt="Couple Photo" class="header-left-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Indian_wedding_couple.jpg/320px-Indian_wedding_couple.jpg" alt="Couple Photo" class="header-left-img">
         <div class="header-center-content">
             <div class="om-text">ஓம் ஸ்ரீ</div>
             <h2>ஆண்டாள் அழகர் Matrimony</h2>
             <div class="whatsapp-badge">🟢 9092745268</div>
         </div>
-        <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=300&q=80" alt="Perumal God Photo" class="header-right-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Alagar_Koil_Rajagopuram.jpg/320px-Alagar_Koil_Rajagopuram.jpg" alt="Perumal God Photo" class="header-right-img">
     </div>
 
     <div class="menu-bar">
@@ -154,8 +154,7 @@
                 <b>🛕 பரிகாரத் தலங்கள்:</b> வைதீஸ்வரன் கோயில் வழிபாடு சிறப்பு.<br><b>🔮 பலன்:</b> சிறப்பு (Score: 9.8/10)
             </div>
         </div>
-    </div>
-        <div id="sec-admin" class="section-box">
+    </div>    <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
             <div class="stats-grid">
@@ -210,14 +209,14 @@
         </div>
     </div>
     <script>
-        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v9')) || [
+        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v10')) || [
             { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", job: "B.E", rasi: "ரிஷபம்", status: "₹499 Paid ✅" },
             { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", job: "M.Sc", rasi: "மேஷம்", status: "₹499 Paid ✅" }
         ];
-        let statsData = JSON.parse(localStorage.getItem('andal_stats_v9')) || { chat: 4 };
+        let statsData = JSON.parse(localStorage.getItem('andal_stats_v10')) || { chat: 4 };
         function saveData() {
-            localStorage.setItem('andal_records_v9', JSON.stringify(adminRecords));
-            localStorage.setItem('andal_stats_v9', JSON.stringify(statsData));
+            localStorage.setItem('andal_records_v10', JSON.stringify(adminRecords));
+            localStorage.setItem('andal_stats_v10', JSON.stringify(statsData));
         }
         function switchTab(tab) {
             ['login', 'register', 'payment', 'matches', 'ai', 'admin'].forEach(t => {
@@ -337,4 +336,6 @@
         }
     </script>
 </body>
-</html>
+    </html>
+
+    

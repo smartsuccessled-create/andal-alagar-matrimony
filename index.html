@@ -3,25 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony</title>
+    <title>ஓம் ஸ்ரீ ஆண்டாள் அழகர் Matrimony v2</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 40px; color: #333; }
+        body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 50px; color: #333; }
         
-        /* Header Card */
         .app-header { 
             position: relative;
             background: linear-gradient(135deg, #e6c687 0%, #b8860b 55%, #800020 100%);
-            color: #3b141c; 
-            padding: 14px; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            border: 2px solid #800020;
-            overflow: hidden;
-            min-height: 85px;
+            color: #3b141c; padding: 14px; border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 2px solid #800020; overflow: hidden; min-height: 85px;
         }
         .header-content { position: relative; z-index: 2; width: 55%; }
-        .app-header .om-text { font-size: 14px; font-weight: 900; color: #5c0613; letter-spacing: 1px; }
-        .app-header h2 { font-size: 21px; margin: 2px 0; color: #5c0613; text-shadow: 1px 1px 2px rgba(255,255,255,0.7); font-weight: 900; }
+        .app-header .om-text { font-size: 14px; font-weight: 900; color: #5c0613; }
+        .app-header h2 { font-size: 21px; margin: 2px 0; color: #5c0613; font-weight: 900; }
         .app-header .sub-title { background: #6d1a24; color: #fff; display: inline-block; padding: 3px 10px; border-radius: 15px; font-size: 11px; font-weight: bold; margin-top: 2px; }
         .whatsapp-badge { font-size: 11px; color: #ffffff; background: #25d366; padding: 3px 8px; border-radius: 12px; display: inline-block; margin-top: 5px; font-weight: bold; }
 
@@ -32,10 +26,7 @@
             border-left: 3px solid #800020;
         }
 
-        /* Menu Bar */
-        .menu-bar {
-            display: flex; gap: 5px; overflow-x: auto; margin-top: 10px; padding-bottom: 5px;
-        }
+        .menu-bar { display: flex; gap: 5px; overflow-x: auto; margin-top: 10px; padding-bottom: 5px; }
         .menu-btn {
             background: #2b0b10; color: #d8c29d; border: 1px solid #d4af37; padding: 8px 12px;
             border-radius: 15px; font-size: 11px; font-weight: bold; cursor: pointer; white-space: nowrap;
@@ -55,7 +46,6 @@
         .btn-pay { background: #d4af37; color: #3b141c; }
         .btn-delete { background: #d32f2f; color: white; border: none; padding: 5px 8px; border-radius: 4px; font-size: 10px; cursor: pointer; font-weight: bold; }
 
-        /* Admin Stats Grid */
         .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
         .stat-card { background: #fdfbf7; border: 1px solid #d4af37; padding: 10px; border-radius: 6px; text-align: center; }
         .stat-card h4 { margin: 0; font-size: 11px; color: #555; }
@@ -66,7 +56,6 @@
 </head>
 <body>
 
-    <!-- Header -->
     <div class="app-header">
         <div class="header-image-bg"></div>
         <div class="header-content">
@@ -77,17 +66,17 @@
         </div>
     </div>
 
-    <!-- Menu Bar -->
+    <!-- Menu Bar with direct inline onclick -->
     <div class="menu-bar">
-        <button class="menu-btn active" id="menuLogin" data-tab="login">🔑 Login</button>
-        <button class="menu-btn" id="menuRegister" data-tab="register">📝 Register</button>
-        <button class="menu-btn" id="menuPayment" data-tab="payment">💳 Payment</button>
-        <button class="menu-btn" id="menuMatches" data-tab="matches">✨ Matches</button>
-        <button class="menu-btn" id="menuAi" data-tab="ai">🌟 AI Report</button>
-        <button class="menu-btn" id="menuAdmin" data-tab="admin">🔒 Admin</button>
+        <button class="menu-btn active" id="m-login" onclick="switchTab('login')">🔑 Login</button>
+        <button class="menu-btn" id="m-register" onclick="switchTab('register')">📝 Register</button>
+        <button class="menu-btn" id="m-payment" onclick="switchTab('payment')">💳 Payment</button>
+        <button class="menu-btn" id="m-matches" onclick="switchTab('matches')">✨ Matches</button>
+        <button class="menu-btn" id="m-ai" onclick="switchTab('ai')">🌟 AI Report</button>
+        <button class="menu-btn" id="m-admin" onclick="switchTab('admin')">🔒 Admin</button>
     </div>
 
-    <!-- 1. LOGIN TAB -->
+    <!-- 1. LOGIN -->
     <div id="sec-login" class="section-box active">
         <div class="step-container">
             <h3>🔐 உள்நுழைவு (Login)</h3>
@@ -95,130 +84,82 @@
             <input type="tel" id="loginMobile" placeholder="98426XXXXX">
             <label>பாஸ்வேர்ட் (Password):</label>
             <input type="password" id="loginPassword" placeholder="******">
-            <button class="btn-action btn-next" id="btnLoginAction">உள்நுழைய (Login) ➔</button>
+            <button class="btn-action btn-next" onclick="userLogin()">உள்நுழைய (Login) ➔</button>
         </div>
     </div>
 
-    <!-- 2. REGISTER TAB -->
+    <!-- 2. REGISTER -->
     <div id="sec-register" class="section-box">
         <div class="step-container">
-            <h3>📝 முழுமையான பயோடேட்டா பதிவு (Bio-Data Form)</h3>
-            
-            <label>ஜாதகம் யாருடையது? (Profile For):</label>
-            <select id="bProfileType">
-                <option value="ஆண் ஜாதகம் (Groom)">ஆண் ஜாதகம் (Groom)</option>
-                <option value="பெண் ஜாதகம் (Bride)">பெண் ஜாதகம் (Bride)</option>
-            </select>
-
-            <label>பெயர் (Full Name):</label>
-            <input type="text" id="bName" placeholder="வரன் பெயர்">
-
-            <label>பிறந்த தேதி (Date of Birth):</label>
-            <input type="date" id="bDob">
-
-            <label>பிறந்த நேரம் (Birth Time):</label>
-            <input type="time" id="bTime">
-
-            <label>ராசி (Rasi):</label>
-            <input type="text" id="bRasi" placeholder="எ.கா: ரிஷபம்">
-
-            <label>நட்சத்திரம் (Star):</label>
-            <input type="text" id="bStar" placeholder="எ.கா: ரோகிணி">
-
-            <label>படிப்பு & வேலை (Education & Job):</label>
-            <input type="text" id="bJob" placeholder="எ.கா: B.Tech, Software Engineer">
-
-            <label>ஜாதி (Caste):</label>
-            <input type="text" id="bCaste" placeholder="எ.கா: குறிப்பிட்ட ஜாதி">
-
-            <label>மாவட்டம் (District):</label>
+            <h3>📝 முழுமையான பயோடேட்டா பதிவு</h3>
+            <label>ஜாதகம் யாருடையது?:</label>
+            <select id="bProfileType"><option value="ஆண்">ஆண் ஜாதகம்</option><option value="பெண்">பெண் ஜாதகம்</option></select>
+            <label>பெயர்:</label><input type="text" id="bName" placeholder="வரன் பெயர்">
+            <label>பிறந்த தேதி:</label><input type="date" id="bDob">
+            <label>பிறந்த நேரம்:</label><input type="time" id="bTime">
+            <label>ராசி & நட்சத்திரம்:</label><input type="text" id="bRasi" placeholder="ராசி, நட்சத்திரம்">
+            <label>படிப்பு & வேலை:</label><input type="text" id="bJob" placeholder="படிப்பு, வேலை">
+            <label>ஜாதி:</label><input type="text" id="bCaste" placeholder="ஜாதி">
+            <label>மாவட்டம்:</label>
             <select id="bDistrict">
-                <option value="தஞ்சாவூர்">தஞ்சாவூர்</option>
-                <option value="திருவாரூர்">திருவாரூர்</option>
-                <option value="மயிலாடுதுறை">மயிலாடுதுறை</option>
-                <option value="நாகப்பட்டினம்">நாகப்பட்டினம்</option>
-                <option value="திருச்சி">திருச்சி</option>
-                <option value="மதுரை">மதுரை</option>
-                <option value="சென்னை">சென்னை</option>
+                <option value="தஞ்சாவூர்">தஞ்சாவூர்</option><option value="திருவாரூர்">திருவாரூர்</option>
+                <option value="மயிலாடுதுறை">மயிலாடுதுறை</option><option value="மதுரை">மதுரை</option><option value="சென்னை">சென்னை</option>
             </select>
-
-            <label>மொபைல் எண் (Mobile Number):</label>
-            <input type="tel" id="bMobile" placeholder="98426XXXXX">
-
-            <button class="btn-action btn-next" id="btnRegisterAction">பதிவு செய்து கட்டணப் பகுதிக்குச் செல்ல ➔</button>
+            <label>மொபைல் எண்:</label><input type="tel" id="bMobile" placeholder="98426XXXXX">
+            <button class="btn-action btn-next" onclick="saveBioData()">பதிவு செய்து கட்டணப் பகுதிக்குச் செல்ல ➔</button>
         </div>
     </div>
 
-    <!-- 3. PAYMENT TAB -->
+    <!-- 3. PAYMENT -->
     <div id="sec-payment" class="section-box">
         <div class="step-container">
-            <h3>💳 கட்டணம் செலுத்துதல் (Payment Gateway - ₹499)</h3>
-            <p style="font-size: 11px; color: #555;">வரன்கள் மற்றும் ஜாதகப் பொருத்தங்களை உடனே பார்க்க **₹499** செலுத்தவும்.</p>
-
-            <div style="background: #fff8e1; border: 1px dashed #d4af37; padding: 12px; border-radius: 6px; margin-top: 10px;">
-                <b style="color: #b8860b; font-size: 11px;">UPI / PhonePe / GPay QR:</b>
-                <p style="font-size: 10px; margin: 4px 0;">பதிவு கட்டணம்: <b>₹499</b></p>
-                <button class="btn-action btn-pay" id="btnPayAction">🔒 Pay ₹499 Securely & View Matches</button>
-            </div>
+            <h3>💳 கட்டணம் செலுத்துதல் (₹499)</h3>
+            <p style="font-size: 11px;">வரன்களை பார்க்க ₹499 செலுத்தவும்.</p>
+            <button class="btn-action btn-pay" onclick="payAndUnlock()">🔒 Pay ₹499 Securely & View Matches</button>
         </div>
     </div>
 
-    <!-- 4. MATCHES TAB -->
+    <!-- 4. MATCHES -->
     <div id="sec-matches" class="section-box">
         <div class="step-container">
-            <h3>✨ பொருத்தமான வரன்கள் (District Filtered Matches)</h3>
-            <p style="font-size: 11px; color: #2e7d32; font-weight: bold;" id="filterInfo">📍 உங்கள் மாவட்டத்தின் வரன்கள்:</p>
+            <h3>✨ பொருத்தமான வரன்கள்</h3>
+            <p style="font-size: 11px; color: #2e7d32; font-weight: bold;" id="filterInfo">📍 மாவட்ட வரன்கள்:</p>
             <div id="matchProfilesList"></div>
         </div>
     </div>
 
-    <!-- 5. AI HOROSCOPE TAB -->
+    <!-- 5. AI -->
     <div id="sec-ai" class="section-box">
         <div class="step-container">
-            <h3>🌟 AI ஜாதக கணிப்பு & பரிகாரத் தலங்கள்</h3>
+            <h3>🌟 AI ஜாதக கணிப்பு</h3>
             <div style="background: #fdfbf7; border: 1px solid #e6c687; padding: 10px; border-radius: 5px; font-size: 11px;">
-                <b>🛕 பரிகாரத் தலங்கள்:</b> வைதீஸ்வரன் கோயில் மற்றும் மயிலாடுதுறை துலாக்கட்டம் காசி விஸ்வநாதர் கோயிலில் வழிபாடு செய்வது சிறப்பு.<br><br>
-                <b>🔮 எதிர்கால வாழ்க்கை:</b> தம்பதியர் அன்யோன்யம் மற்றும் பொருளாதார வளர்ச்சி சிறப்பாக இருக்கும்! (Score: 9.8/10)
+                <b>🛕 பரிகாரத் தலங்கள்:</b> வைதீஸ்வரன் கோயில் வழிபாடு சிறப்பு.<br><b>🔮 பலன்:</b> சிறப்பு (Score: 9.8/10)
             </div>
         </div>
     </div>
 
-    <!-- 6. ADMIN PANEL TAB -->
+    <!-- 6. ADMIN -->
     <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
             
-            <!-- Statistics Cards -->
             <div class="stats-grid">
-                <div class="stat-card">
-                    <h4>இன்று பதிவு செய்தவர்கள்</h4>
-                    <p id="statToday">1</p>
-                </div>
-                <div class="stat-card">
-                    <h4>மொத்த பதிவுகள்</h4>
-                    <p id="statTotal">2</p>
-                </div>
-                <div class="stat-card">
-                    <h4>பேமெண்ட் செய்தவர்கள்</h4>
-                    <p id="statPaid">2</p>
-                </div>
-                <div class="stat-card">
-                    <h4>சாட் & சப்போர்ட்</h4>
-                    <p id="statChat">4</p>
-                </div>
+                <div class="stat-card"><h4>இன்று பதிவு</h4><p id="statToday">1</p></div>
+                <div class="stat-card"><h4>மொத்த பதிவுகள்</h4><p id="statTotal">2</p></div>
+                <div class="stat-card"><h4>பேமெண்ட் செய்தவர்கள்</h4><p id="statPaid">2</p></div>
+                <div class="stat-card"><h4>சாட் & சப்போர்ட்</h4><p id="statChat">4</p></div>
             </div>
 
-            <!-- Admin Direct Register Form -->
             <div style="background: #fff8e1; border: 1px solid #d4af37; padding: 10px; border-radius: 6px; margin-bottom: 12px;">
-                <b style="color: #800020; font-size: 11px;">➕ அட்மின் மூலம் புதிய வரனை சேர்க்க:</b>
+                <b style="color: #800020; font-size: 11px;">➕ புதிய வரனை சேர்க்க:</b>
                 <input type="text" id="adminRegName" placeholder="வரன் பெயர்" style="margin-top: 5px;">
                 <input type="tel" id="adminRegMobile" placeholder="மொபைல் எண்">
                 <input type="text" id="adminRegDist" placeholder="மாவட்டம்">
                 <input type="text" id="adminRegCaste" placeholder="ஜாதி">
-                <button class="btn-action" id="btnAdminAdd" style="padding: 6px; margin-top: 5px; font-size: 11px;">நேரடியாக பதிவு செய்</button>
+                <button class="btn-action" style="padding: 6px; margin-top: 5px; font-size: 11px;" onclick="adminDirectRegister()">நேரடியாக பதிவு செய்</button>
             </div>
 
-            <p style="font-size: 11px; color: #666; margin-bottom: 5px;"><b>வரன்கள் பட்டியல் & நீக்குதல் (Delete):</b></p>
+            <p style="font-size: 11px; color: #666; margin-bottom: 5px;"><b>வரன்கள் பட்டியல் & நீக்குதல்:</b></p>
             <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
                 <thead>
                     <tr style="background: #800020; color: white;">
@@ -233,34 +174,33 @@
     </div>
 
     <script>
-        // Storage Data Initialization
-        let adminRecords = JSON.parse(localStorage.getItem('andal_records')) || [
-            { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" },
-            { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" }
+        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v2')) || [
+            { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", status: "₹499 Paid ✅" },
+            { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", status: "₹499 Paid ✅" }
         ];
 
-        let statsData = JSON.parse(localStorage.getItem('andal_stats')) || { views: 14, chat: 4 };
+        let statsData = JSON.parse(localStorage.getItem('andal_stats_v2')) || { chat: 4 };
 
         function saveData() {
-            localStorage.setItem('andal_records', JSON.stringify(adminRecords));
-            localStorage.setItem('andal_stats', JSON.stringify(statsData));
+            localStorage.setItem('andal_records_v2', JSON.stringify(adminRecords));
+            localStorage.setItem('andal_stats_v2', JSON.stringify(statsData));
         }
 
-        function switchTab(tabName) {
-            document.querySelectorAll('.section-box').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.menu-btn').forEach(el => el.classList.remove('active'));
+        function switchTab(tab) {
+            ['login', 'register', 'payment', 'matches', 'ai', 'admin'].forEach(t => {
+                let sec = document.getElementById('sec-' + t);
+                let btn = document.getElementById('m-' + t);
+                if(sec) sec.classList.remove('active');
+                if(btn) btn.classList.remove('active');
+            });
 
-            const targetSec = document.getElementById('sec-' + tabName);
-            const targetBtn = document.getElementById('menu' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
+            let activeSec = document.getElementById('sec-' + tab);
+            let activeBtn = document.getElementById('m-' + tab);
+            if(activeSec) activeSec.classList.add('active');
+            if(activeBtn) activeBtn.classList.add('active');
 
-            if(targetSec) targetSec.classList.add('active');
-            if(targetBtn) targetBtn.classList.add('active');
-
-            if(tabName === 'matches') {
-                loadFilteredMatches("தஞ்சாவூர்");
-            } else if(tabName === 'admin') {
-                renderAdminDashboard();
-            }
+            if(tab === 'matches') loadFilteredMatches("தஞ்சாவூர்");
+            if(tab === 'admin') renderAdminDashboard();
         }
 
         function renderAdminDashboard() {
@@ -269,131 +209,107 @@
             document.getElementById('statToday').innerText = adminRecords.length;
             document.getElementById('statChat').innerText = statsData.chat;
 
-            let tableBody = document.getElementById('adminTableBody');
-            tableBody.innerHTML = "";
+            let tbody = document.getElementById('adminTableBody');
+            tbody.innerHTML = "";
             
             if(adminRecords.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding:10px; color:#666;">பதிவுகள் எதுவும் இல்லை</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding:10px;">பதிவுகள் இல்லை</td></tr>`;
                 return;
             }
 
-            adminRecords.forEach((rec) => {
-                let tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="padding: 6px; border: 1px solid #ddd;"><b>${rec.name}</b><br><small>${rec.mobile}</small></td>
-                    <td style="padding: 6px; border: 1px solid #ddd;">${rec.dist}, ${rec.caste}<br><span style="color: green; font-weight: bold;">${rec.status}</span></td>
-                    <td style="padding: 6px; border: 1px solid #ddd; text-align: center;"></td>
+            adminRecords.forEach(r => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td style="padding: 6px; border: 1px solid #ddd;"><b>${r.name}</b><br><small>${r.mobile}</small></td>
+                        <td style="padding: 6px; border: 1px solid #ddd;">${r.dist}, ${r.caste}<br><span style="color: green;">${r.status}</span></td>
+                        <td style="padding: 6px; border: 1px solid #ddd; text-align: center;">
+                            <button class="btn-delete" onclick="deleteRecord(${r.id})">❌ Delete</button>
+                        </td>
+                    </tr>
                 `;
-                let delBtn = document.createElement('button');
-                delBtn.className = "btn-delete";
-                delBtn.innerText = "❌ Delete";
-                delBtn.onclick = function() { deleteRecord(rec.id); };
-                tr.cells[2].appendChild(delBtn);
-                tableBody.appendChild(tr);
             });
         }
 
         function deleteRecord(id) {
-            let confirmDel = confirm("இந்த வரன் பதிவை உறுதியாக நீக்க விரும்புகிறீர்களா?");
-            if(confirmDel) {
+            if(confirm("நிச்சயமாக நீக்க விரும்புகிறீர்களா?")) {
                 adminRecords = adminRecords.filter(r => r.id !== id);
                 saveData();
                 renderAdminDashboard();
-                alert("🗑️ வரன் பதிவு வெற்றிகரமாக நீக்கப்பட்டது!");
             }
         }
 
-        function loadFilteredMatches(districtName) {
-            document.getElementById('filterInfo').innerText = `📍 உங்கள் மாவட்டம் (${districtName}) மற்றும் சுற்றியுள்ள வரன்கள்:`;
-            const container = document.getElementById('matchProfilesList');
-            container.innerHTML = "";
-
-            const allProfiles = [
-                { name: "கார்த்திகேயன்", age: 26, edu: "B.E, Software Engineer", dist: "தஞ்சாவூர்", rasi: "ரிஷபம்", star: "ரோகிணி", mobile: "9092745268" },
-                { name: "விஜய் பாபு", age: 25, edu: "M.Sc, Teacher", dist: "திருவாரூர்", rasi: "மேஷம்", star: "அசுவினி", mobile: "9842612345" },
-                { name: "அரவிந்த்", age: 27, edu: "MBA, Manager", dist: "மயிலாடுதுறை", rasi: "மிதுனம்", star: "மிருகசீரிடம்", mobile: "9789054321" },
-                { name: "இளவரசன்", age: 26, edu: "B.Tech, IT", dist: "தஞ்சாவூர்", rasi: "சிம்மம்", star: "பூரம்", mobile: "9443567890" }
-            ];
-
-            const filtered = allProfiles.filter(p => p.dist === districtName);
-
-            filtered.forEach((p, index) => {
-                let card = document.createElement('div');
-                card.className = "profile-match-card";
-                card.innerHTML = `
-                    <b>வரன் எண்: AA-20${index + 50}</b> | பெயர்: ${p.name}<br>
-                    வயது: ${p.age} | படிப்பு & வேலை: ${p.edu}<br>
-                    📍 இடம்: ${p.dist} | ராசி: ${p.rasi} (${p.star})<br>
-                    ⭐ ஜாதகப் பொருத்தம்: 9.2/10 (உத்தமம்)<br>
-                `;
-                let callBtn = document.createElement('button');
-                callBtn.className = "btn-action";
-                callBtn.style.cssText = "padding: 5px; font-size: 11px; margin-top: 5px;";
-                callBtn.innerText = "📞 Jathagam & Contact பார்க்க";
-                callBtn.onclick = function() { alert('தொடர்பு எண்: ' + p.mobile + ' - ஸ்ரீ ஆண்டாள் அழகர் மையம்'); };
-                card.appendChild(callBtn);
-                container.appendChild(card);
-            });
+        function userLogin() {
+            let mob = document.getElementById('loginMobile').value;
+            if(!mob) { alert("மொபைல் எண் உள்ளிடவும்!"); return; }
+            statsData.chat++;
+            saveData();
+            alert("வெற்றிகரமாக உள்நுழைந்தீர்கள்!");
+            switchTab('matches');
         }
 
-        // Attach Event Listeners securely to prevent any touch blocking
-        document.addEventListener("DOMContentLoaded", function() {
-            // Menu Tabs
-            document.querySelectorAll('.menu-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    switchTab(this.getAttribute('data-tab'));
-                });
-            });
+        function saveBioData() {
+            let name = document.getElementById('bName').value;
+            let mobile = document.getElementById('bMobile').value;
+            if(!name || !mobile) { alert("பெயர் மற்றும் மொபைல் எண் அவசியம்!"); return; }
+            alert("பயோடேட்டா சேமிக்கப்பட்டது!");
+            switchTab('payment');
+        }
 
-            // Login Button
-            document.getElementById('btnLoginAction').addEventListener('click', function() {
-                const mob = document.getElementById('loginMobile').value;
-                if(!mob) {
-                    alert("தயவுசெய்து மொபைல் எண் உள்ளிடவும்!");
-                    return;
-                }
-                statsData.chat++;
+        function payAndUnlock() {
+            if(confirm("₹499 செலுத்துவதை உறுதி செய்யவா?")) {
+                alert("கட்டணம் பெறப்பட்டது!");
+                let name = document.getElementById('bName').value || "புதிய வரன்";
+                let mobile = document.getElementById('bMobile').value || "98426XXXXX";
+                let dist = document.getElementById('bDistrict').value || "தஞ்சாவூர்";
+                let caste = document.getElementById('bCaste').value || "பொது";
+
+                adminRecords.push({ id: Date.now(), name, mobile, dist, caste, status: "₹499 Paid ✅" });
                 saveData();
-                alert("🎉 வெற்றிகரமாக உள்நுழைந்தீர்கள்!");
                 switchTab('matches');
+            }
+        }
+
+        function adminDirectRegister() {
+            let name = document.getElementById('adminRegName').value;
+            let mobile = document.getElementById('adminRegMobile').value;
+            let dist = document.getElementById('adminRegDist').value || "தஞ்சாவூர்";
+            let caste = document.getElementById('adminRegCaste').value || "பொது";
+
+            if(!name || !mobile) { alert("பெயர் மற்றும் மொபைல் எண் அவசியம்!"); return; }
+
+            adminRecords.push({ id: Date.now(), name, mobile, dist, caste, status: "Admin Added ✅" });
+            saveData();
+            renderAdminDashboard();
+
+            document.getElementById('adminRegName').value = "";
+            document.getElementById('adminRegMobile').value = "";
+            document.getElementById('adminRegDist').value = "";
+            document.getElementById('adminRegCaste').value = "";
+            alert("வெற்றிகரமாக சேர்க்கப்பட்டது!");
+        }
+
+        function loadFilteredMatches(distName) {
+            document.getElementById('filterInfo').innerText = `📍 உங்கள் மாவட்டம் (${distName}) வரன்கள்:`;
+            let container = document.getElementById('matchProfilesList');
+            container.innerHTML = "";
+
+            let profiles = [
+                { name: "கார்த்திகேயன்", age: 26, edu: "B.E, Software", dist: "தஞ்சாவூர்", rasi: "ரிஷபம்", mobile: "9092745268" },
+                { name: "விஜய் பாபு", age: 25, edu: "M.Sc, Teacher", dist: "திருவாரூர்", rasi: "மேஷம்", mobile: "9842612345" }
+            ];
+
+            profiles.filter(p => p.dist === distName).forEach((p, i) => {
+                container.innerHTML += `
+                    <div class="profile-match-card">
+                        <b>வரன் எண்: AA-20${i+50}</b> | பெயர்: ${p.name}<br>
+                        வயது: ${p.age} | படிப்பு: ${p.edu}<br>
+                        📍 இடம்: ${p.dist} | ராசி: ${p.rasi}<br>
+                        <button class="btn-action" style="padding: 5px; font-size: 11px; margin-top: 5px;" onclick="alert('தொடர்பு எண்: ${p.mobile}')">📞 Contact பார்க்க</button>
+                    </div>
+                `;
             });
-
-            // Register Button
-            document.getElementById('btnRegisterAction').addEventListener('click', function() {
-                const name = document.getElementById('bName').value;
-                const mobile = document.getElementById('bMobile').value;
-                if(!name || !mobile) {
-                    alert("தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்!");
-                    return;
-                }
-                alert("🎉 பயோடேட்டா சேமிக்கப்பட்டது! கட்டணப் பகுதிக்குச் செல்கிறோம்.");
-                switchTab('payment');
-            });
-
-            // Payment Button
-            document.getElementById('btnPayAction').addEventListener('click', function() {
-                let confirmPay = confirm("₹499 செலுத்துவதை உறுதி செய்யவா?");
-                if(confirmPay) {
-                    alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது!");
-                    let userDist = document.getElementById('bDistrict').value || "தஞ்சாவூர்";
-                    let name = document.getElementById('bName').value || "புதிய வரன்";
-                    let mobile = document.getElementById('bMobile').value || "98426XXXXX";
-                    let caste = document.getElementById('bCaste').value || "பொது";
-
-                    adminRecords.push({
-                        id: Date.now(),
-                        name: name,
-                        mobile: mobile,
-                        dist: userDist,
-                        caste: caste,
-                        status: "₹499 Paid ✅"
-                    });
-
-                    statsData.views++;
-                    saveData();
-                    switchTab('matches');
-                }
-            });
-
-            // Admin Direct Add Button
-            document.getElementById('btnAd
+        }
+    </script>
+</body>
+        </html>
+    

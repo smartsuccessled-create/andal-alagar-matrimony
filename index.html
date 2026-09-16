@@ -7,18 +7,17 @@
     <style>
         body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 50px; color: #333; }
         
-        /* Updated Attractive Header */
+        /* Updated Header without subtitle, showing Matrimony prominently */
         .app-header { 
             position: relative;
             background: linear-gradient(135deg, #e6c687 0%, #b8860b 55%, #800020 100%);
             color: #3b141c; padding: 14px; border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 2px solid #800020; overflow: hidden; min-height: 90px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 2px solid #800020; overflow: hidden; min-height: 85px;
         }
         .header-content { position: relative; z-index: 2; width: 60%; }
         .app-header .om-text { font-size: 13px; font-weight: 900; color: #5c0613; letter-spacing: 1px; }
         .app-header h2 { font-size: 19px; margin: 2px 0; color: #5c0613; font-weight: 900; line-height: 1.2; text-shadow: 1px 1px 2px rgba(255,255,255,0.5); }
-        .app-header .sub-title { background: #6d1a24; color: #fff; display: inline-block; padding: 3px 10px; border-radius: 15px; font-size: 11px; font-weight: bold; margin-top: 3px; }
-        .whatsapp-badge { font-size: 11px; color: #ffffff; background: #25d366; padding: 3px 8px; border-radius: 12px; display: inline-block; margin-top: 5px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .whatsapp-badge { font-size: 11px; color: #ffffff; background: #25d366; padding: 3px 8px; border-radius: 12px; display: inline-block; margin-top: 6px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
 
         .header-image-bg {
             position: absolute; right: 0; top: 0; width: 42%; height: 100%;
@@ -57,13 +56,12 @@
 </head>
 <body>
 
-    <!-- Perfect Header with requested text and WhatsApp number -->
+    <!-- Updated Header: Andal Alagar Matrimony & WhatsApp Number -->
     <div class="app-header">
         <div class="header-image-bg"></div>
         <div class="header-content">
             <div class="om-text">ஓம் ஸ்ரீ</div>
             <h2>ஆண்டாள் அழகர் Matrimony</h2>
-            <div class="sub-title">திருமண அமைப்பு மையம்</div><br>
             <div class="whatsapp-badge">🟢 9092745268</div>
         </div>
     </div>
@@ -201,16 +199,16 @@
     </div>
 
     <script>
-        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v4')) || [
+        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v5')) || [
             { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", status: "₹499 Paid ✅" },
             { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", status: "₹499 Paid ✅" }
         ];
 
-        let statsData = JSON.parse(localStorage.getItem('andal_stats_v4')) || { chat: 4 };
+        let statsData = JSON.parse(localStorage.getItem('andal_stats_v5')) || { chat: 4 };
 
         function saveData() {
-            localStorage.setItem('andal_records_v4', JSON.stringify(adminRecords));
-            localStorage.setItem('andal_stats_v4', JSON.stringify(statsData));
+            localStorage.setItem('andal_records_v5', JSON.stringify(adminRecords));
+            localStorage.setItem('andal_stats_v5', JSON.stringify(statsData));
         }
 
         function switchTab(tab) {
@@ -351,5 +349,4 @@
         }
     </script>
 </body>
-                </html>
-                                                
+</html>

@@ -7,7 +7,6 @@
     <style>
         body { font-family: Arial, sans-serif; background: #fdfbf7; margin: 0; padding: 10px; padding-bottom: 50px; color: #333; }
         
-        /* Updated Header without subtitle, showing Matrimony prominently */
         .app-header { 
             position: relative;
             background: linear-gradient(135deg, #e6c687 0%, #b8860b 55%, #800020 100%);
@@ -56,7 +55,6 @@
 </head>
 <body>
 
-    <!-- Updated Header: Andal Alagar Matrimony & WhatsApp Number -->
     <div class="app-header">
         <div class="header-image-bg"></div>
         <div class="header-content">
@@ -163,7 +161,7 @@
         </div>
     </div>
 
-    <!-- 6. ADMIN -->
+    <!-- 6. ADMIN - FULL FORM ADDITION -->
     <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
@@ -175,13 +173,47 @@
                 <div class="stat-card"><h4>சாட் & சப்போர்ட்</h4><p id="statChat">4</p></div>
             </div>
 
-            <div style="background: #fff8e1; border: 1px solid #d4af37; padding: 10px; border-radius: 6px; margin-bottom: 12px;">
-                <b style="color: #800020; font-size: 11px;">➕ புதிய வரனை சேர்க்க:</b>
-                <input type="text" id="adminRegName" placeholder="வரன் பெயர்" style="margin-top: 5px;">
-                <input type="tel" id="adminRegMobile" placeholder="மொபைல் எண்">
-                <input type="text" id="adminRegDist" placeholder="மாவட்டம்">
-                <input type="text" id="adminRegCaste" placeholder="ஜாதி">
-                <button class="btn-action" style="padding: 6px; margin-top: 5px; font-size: 11px;" onclick="adminDirectRegister()">நேரடியாக பதிவு செய்</button>
+            <!-- ADMIN FULL FORM FOR DIRECT REGISTER -->
+            <div style="background: #fff8e1; border: 1px solid #d4af37; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                <b style="color: #800020; font-size: 12px;">➕ புதிய வரனை நேரடியாக சேர்க்க (Full Form):</b>
+                
+                <label style="font-size:10px;">ஜாதகம் யாருடையது?</label>
+                <select id="admProfileType" style="margin-bottom:4px; padding:6px; font-size:11px;">
+                    <option value="ஆண் ஜாதகம் (Groom)">ஆண் ஜாதகம் (Groom)</option>
+                    <option value="பெண் ஜாதகம் (Bride)">பெண் ஜாதகம் (Bride)</option>
+                </select>
+
+                <label style="font-size:10px;">வரன் பெயர்:</label>
+                <input type="text" id="admName" placeholder="பெயர்" style="margin-bottom:4px; padding:6px; font-size:11px;">
+                
+                <label style="font-size:10px;">பிறந்த தேதி & நேரம்:</label>
+                <input type="date" id="admDob" style="margin-bottom:4px; padding:6px; font-size:11px;">
+                <input type="time" id="admTime" style="margin-bottom:4px; padding:6px; font-size:11px;">
+
+                <label style="font-size:10px;">ராசி & நட்சத்திரம்:</label>
+                <input type="text" id="admRasi" placeholder="உம். ரிஷபம், ரோகிணி" style="margin-bottom:4px; padding:6px; font-size:11px;">
+
+                <label style="font-size:10px;">படிப்பு & வேலை:</label>
+                <input type="text" id="admJob" placeholder="உம். B.E / Software" style="margin-bottom:4px; padding:6px; font-size:11px;">
+
+                <label style="font-size:10px;">ஜாதி:</label>
+                <input type="text" id="admCaste" placeholder="ஜாதி" style="margin-bottom:4px; padding:6px; font-size:11px;">
+
+                <label style="font-size:10px;">மாவட்டம்:</label>
+                <select id="admDistrict" style="margin-bottom:4px; padding:6px; font-size:11px;">
+                    <option value="தஞ்சாவூர்">தஞ்சாவூர்</option>
+                    <option value="திருவாரூர்">திருவாரூர்</option>
+                    <option value="மயிலாடுதுறை">மயிலாடுதுறை</option>
+                    <option value="நாகப்பட்டினம்">நாகப்பட்டினம்</option>
+                    <option value="திருச்சி">திருச்சி</option>
+                    <option value="மதுரை">மதுரை</option>
+                    <option value="சென்னை">சென்னை</option>
+                </select>
+
+                <label style="font-size:10px;">மொபைல் எண்:</label>
+                <input type="tel" id="admMobile" placeholder="98426XXXXX" style="margin-bottom:4px; padding:6px; font-size:11px;">
+
+                <button class="btn-action" style="padding: 8px; margin-top: 8px; font-size: 12px;" onclick="adminDirectRegisterFull()">நேரடியாக முழுமையாக பதிவு செய்</button>
             </div>
 
             <p style="font-size: 11px; color: #666; margin-bottom: 5px;"><b>வரன்கள் பட்டியல் & நீக்குதல்:</b></p>
@@ -189,7 +221,7 @@
                 <thead>
                     <tr style="background: #800020; color: white;">
                         <th style="padding: 6px; border: 1px solid #ddd;">பெயர் & மொபைல்</th>
-                        <th style="padding: 6px; border: 1px solid #ddd;">மாவட்டம் & ஜாதி</th>
+                        <th style="padding: 6px; border: 1px solid #ddd;">விவரங்கள் (District, Caste, Edu)</th>
                         <th style="padding: 6px; border: 1px solid #ddd;">செயல்</th>
                     </tr>
                 </thead>
@@ -199,16 +231,16 @@
     </div>
 
     <script>
-        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v5')) || [
-            { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", status: "₹499 Paid ✅" },
-            { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", status: "₹499 Paid ✅" }
+        let adminRecords = JSON.parse(localStorage.getItem('andal_records_v6')) || [
+            { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", job: "B.E", rasi: "ரிஷபம்", status: "₹499 Paid ✅" },
+            { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "பொது", job: "M.Sc", rasi: "மேஷம்", status: "₹499 Paid ✅" }
         ];
 
-        let statsData = JSON.parse(localStorage.getItem('andal_stats_v5')) || { chat: 4 };
+        let statsData = JSON.parse(localStorage.getItem('andal_stats_v6')) || { chat: 4 };
 
         function saveData() {
-            localStorage.setItem('andal_records_v5', JSON.stringify(adminRecords));
-            localStorage.setItem('andal_stats_v5', JSON.stringify(statsData));
+            localStorage.setItem('andal_records_v6', JSON.stringify(adminRecords));
+            localStorage.setItem('andal_stats_v6', JSON.stringify(statsData));
         }
 
         function switchTab(tab) {
@@ -230,7 +262,7 @@
 
         function renderAdminDashboard() {
             document.getElementById('statTotal').innerText = adminRecords.length;
-            document.getElementById('statPaid').innerText = adminRecords.filter(r => r.status.includes('Paid')).length;
+            document.getElementById('statPaid').innerText = adminRecords.filter(r => r.status.includes('Paid') || r.status.includes('Added')).length;
             document.getElementById('statToday').innerText = adminRecords.length;
             document.getElementById('statChat').innerText = statsData.chat;
 
@@ -246,7 +278,7 @@
                 tbody.innerHTML += `
                     <tr>
                         <td style="padding: 6px; border: 1px solid #ddd;"><b>${r.name}</b><br><small>${r.mobile}</small></td>
-                        <td style="padding: 6px; border: 1px solid #ddd;">${r.dist}, ${r.caste}<br><span style="color: green;">${r.status}</span></td>
+                        <td style="padding: 6px; border: 1px solid #ddd;">${r.dist}, ${r.caste}<br><small>${r.job || ''} | ${r.rasi || ''}</small><br><span style="color: green;">${r.status}</span></td>
                         <td style="padding: 6px; border: 1px solid #ddd; text-align: center;">
                             <button class="btn-delete" onclick="deleteRecord(${r.id})">❌ Delete</button>
                         </td>
@@ -277,6 +309,8 @@
             let mobile = document.getElementById('bMobile').value;
             let dist = document.getElementById('bDistrict').value;
             let caste = document.getElementById('bCaste').value || "பொது";
+            let job = document.getElementById('bJob').value;
+            let rasi = document.getElementById('bRasi').value;
 
             if(!name || !mobile) { 
                 alert("தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்!"); 
@@ -287,6 +321,8 @@
             localStorage.setItem('temp_cust_mobile', mobile);
             localStorage.setItem('temp_cust_dist', dist);
             localStorage.setItem('temp_cust_caste', caste);
+            localStorage.setItem('temp_cust_job', job);
+            localStorage.setItem('temp_cust_rasi', rasi);
 
             alert("🎉 பயோடேட்டா சேமிக்கப்பட்டது! கட்டணப் பகுதிக்குச் செல்கிறோம்.");
             switchTab('payment');
@@ -296,34 +332,39 @@
             if(confirm("₹499 செலுத்துவதை உறுதி செய்யவா?")) {
                 alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது!");
                 
-                let name = localStorage.getItem('temp_cust_name') || document.getElementById('bName').value || "புதிய வரன்";
-                let mobile = localStorage.getItem('temp_cust_mobile') || document.getElementById('bMobile').value || "98426XXXXX";
-                let dist = localStorage.getItem('temp_cust_dist') || document.getElementById('bDistrict').value || "தஞ்சாவூர்";
-                let caste = localStorage.getItem('temp_cust_caste') || document.getElementById('bCaste').value || "பொது";
+                let name = localStorage.getItem('temp_cust_name') || "புதிய வரன்";
+                let mobile = localStorage.getItem('temp_cust_mobile') || "98426XXXXX";
+                let dist = localStorage.getItem('temp_cust_dist') || "தஞ்சாவூர்";
+                let caste = localStorage.getItem('temp_cust_caste') || "பொது";
+                let job = localStorage.getItem('temp_cust_job') || "";
+                let rasi = localStorage.getItem('temp_cust_rasi') || "";
 
-                adminRecords.push({ id: Date.now(), name, mobile, dist, caste, status: "₹499 Paid ✅" });
+                adminRecords.push({ id: Date.now(), name, mobile, dist, caste, job, rasi, status: "₹499 Paid ✅" });
                 saveData();
                 switchTab('matches');
             }
         }
 
-        function adminDirectRegister() {
-            let name = document.getElementById('adminRegName').value;
-            let mobile = document.getElementById('adminRegMobile').value;
-            let dist = document.getElementById('adminRegDist').value || "தஞ்சாவூர்";
-            let caste = document.getElementById('adminRegCaste').value || "பொது";
+        function adminDirectRegisterFull() {
+            let name = document.getElementById('admName').value;
+            let mobile = document.getElementById('admMobile').value;
+            let dist = document.getElementById('admDistrict').value;
+            let caste = document.getElementById('admCaste').value || "பொது";
+            let job = document.getElementById('admJob').value;
+            let rasi = document.getElementById('admRasi').value;
 
             if(!name || !mobile) { alert("பெயர் மற்றும் மொபைல் எண் அவசியம்!"); return; }
 
-            adminRecords.push({ id: Date.now(), name, mobile, dist, caste, status: "Admin Added ✅" });
+            adminRecords.push({ id: Date.now(), name, mobile, dist, caste, job, rasi, status: "Admin Added ✅" });
             saveData();
             renderAdminDashboard();
 
-            document.getElementById('adminRegName').value = "";
-            document.getElementById('adminRegMobile').value = "";
-            document.getElementById('adminRegDist').value = "";
-            document.getElementById('adminRegCaste').value = "";
-            alert("வெற்றிகரமாக சேர்க்கப்பட்டது!");
+            document.getElementById('admName').value = "";
+            document.getElementById('admMobile').value = "";
+            document.getElementById('admJob').value = "";
+            document.getElementById('admRasi').value = "";
+            document.getElementById('admCaste').value = "";
+            alert("✅ முழுமையான விவரங்களுடன் வரன் நேரடியாக பதிவு செய்யப்பட்டது!");
         }
 
         function loadFilteredMatches(distName) {
@@ -331,22 +372,10 @@
             let container = document.getElementById('matchProfilesList');
             container.innerHTML = "";
 
-            let profiles = [
-                { name: "கார்த்திகேயன்", age: 26, edu: "B.E, Software", dist: "தஞ்சாவூர்", rasi: "ரிஷபம்", mobile: "9092745268" },
-                { name: "விஜய் பாபு", age: 25, edu: "M.Sc, Teacher", dist: "திருவாரூர்", rasi: "மேஷம்", mobile: "9842612345" }
-            ];
-
-            profiles.filter(p => p.dist === distName).forEach((p, i) => {
+            adminRecords.forEach((p, i) => {
                 container.innerHTML += `
                     <div class="profile-match-card">
                         <b>வரன் எண்: AA-20${i+50}</b> | பெயர்: ${p.name}<br>
-                        வயது: ${p.age} | படிப்பு: ${p.edu}<br>
-                        📍 இடம்: ${p.dist} | ராசி: ${p.rasi}<br>
-                        <button class="btn-action" style="padding: 5px; font-size: 11px; margin-top: 5px;" onclick="alert('தொடர்பு எண்: ${p.mobile}')">📞 Contact பார்க்க</button>
-                    </div>
-                `;
-            });
-        }
-    </script>
-</body>
-</html>
+                        படிப்பு/வேலை: ${p.job || 'குறிப்பிடவில்லை'}<br>
+                        📍 இடம்: ${p.dist}, ஜாதி: ${p.caste} | ராசி: ${p.rasi || '-'}<br>
+                        <button class="btn-action" style="padding: 5px; font-size: 11px; margin-top: 5px;" onclick="alert('தொடர்பு எண்: ${p.mobile}')">📞 Conta

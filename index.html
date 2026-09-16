@@ -37,7 +37,7 @@
             display: flex; gap: 5px; overflow-x: auto; margin-top: 10px; padding-bottom: 5px;
         }
         .menu-btn {
-            background: #2b0b10; color: #d8c29d; border: 1px solid #d4af37; padding: 7px 12px;
+            background: #2b0b10; color: #d8c29d; border: 1px solid #d4af37; padding: 8px 12px;
             border-radius: 15px; font-size: 11px; font-weight: bold; cursor: pointer; white-space: nowrap;
         }
         .menu-btn.active { background: #800020; color: #ffffff; border-color: #ffffff; }
@@ -79,12 +79,12 @@
 
     <!-- Menu Bar -->
     <div class="menu-bar">
-        <button class="menu-btn active" id="menuLogin" onclick="switchTab('login')">🔑 Login</button>
-        <button class="menu-btn" id="menuRegister" onclick="switchTab('register')">📝 Register</button>
-        <button class="menu-btn" id="menuPayment" onclick="switchTab('payment')">💳 Payment</button>
-        <button class="menu-btn" id="menuMatches" onclick="switchTab('matches')">✨ Matches</button>
-        <button class="menu-btn" id="menuAi" onclick="switchTab('ai')">🌟 AI Report</button>
-        <button class="menu-btn" id="menuAdmin" onclick="switchTab('admin')">🔒 Admin</button>
+        <button class="menu-btn active" id="menuLogin" data-tab="login">🔑 Login</button>
+        <button class="menu-btn" id="menuRegister" data-tab="register">📝 Register</button>
+        <button class="menu-btn" id="menuPayment" data-tab="payment">💳 Payment</button>
+        <button class="menu-btn" id="menuMatches" data-tab="matches">✨ Matches</button>
+        <button class="menu-btn" id="menuAi" data-tab="ai">🌟 AI Report</button>
+        <button class="menu-btn" id="menuAdmin" data-tab="admin">🔒 Admin</button>
     </div>
 
     <!-- 1. LOGIN TAB -->
@@ -95,7 +95,7 @@
             <input type="tel" id="loginMobile" placeholder="98426XXXXX">
             <label>பாஸ்வேர்ட் (Password):</label>
             <input type="password" id="loginPassword" placeholder="******">
-            <button class="btn-action btn-next" onclick="userLogin()">உள்நுழைய (Login) ➔</button>
+            <button class="btn-action btn-next" id="btnLoginAction">உள்நுழைய (Login) ➔</button>
         </div>
     </div>
 
@@ -145,7 +145,7 @@
             <label>மொபைல் எண் (Mobile Number):</label>
             <input type="tel" id="bMobile" placeholder="98426XXXXX">
 
-            <button class="btn-action btn-next" onclick="saveBioData()">பதிவு செய்து கட்டணப் பகுதிக்குச் செல்ல ➔</button>
+            <button class="btn-action btn-next" id="btnRegisterAction">பதிவு செய்து கட்டணப் பகுதிக்குச் செல்ல ➔</button>
         </div>
     </div>
 
@@ -158,7 +158,7 @@
             <div style="background: #fff8e1; border: 1px dashed #d4af37; padding: 12px; border-radius: 6px; margin-top: 10px;">
                 <b style="color: #b8860b; font-size: 11px;">UPI / PhonePe / GPay QR:</b>
                 <p style="font-size: 10px; margin: 4px 0;">பதிவு கட்டணம்: <b>₹499</b></p>
-                <button class="btn-action btn-pay" onclick="payAndUnlock()">🔒 Pay ₹499 Securely & View Matches</button>
+                <button class="btn-action btn-pay" id="btnPayAction">🔒 Pay ₹499 Securely & View Matches</button>
             </div>
         </div>
     </div>
@@ -183,7 +183,7 @@
         </div>
     </div>
 
-    <!-- 6. ADMIN PANEL TAB (Fully Featured) -->
+    <!-- 6. ADMIN PANEL TAB -->
     <div id="sec-admin" class="section-box">
         <div class="step-container" style="border-top: 4px solid #d4af37;">
             <h3>🔒 அட்மின் கட்டுப்பாட்டுப் பலகம் (Admin Dashboard)</h3>
@@ -215,7 +215,7 @@
                 <input type="tel" id="adminRegMobile" placeholder="மொபைல் எண்">
                 <input type="text" id="adminRegDist" placeholder="மாவட்டம்">
                 <input type="text" id="adminRegCaste" placeholder="ஜாதி">
-                <button class="btn-action" style="padding: 6px; margin-top: 5px; font-size: 11px;" onclick="adminDirectRegister()">நேரடியாக பதிவு செய்</button>
+                <button class="btn-action" id="btnAdminAdd" style="padding: 6px; margin-top: 5px; font-size: 11px;">நேரடியாக பதிவு செய்</button>
             </div>
 
             <p style="font-size: 11px; color: #666; margin-bottom: 5px;"><b>வரன்கள் பட்டியல் & நீக்குதல் (Delete):</b></p>
@@ -233,10 +233,10 @@
     </div>
 
     <script>
-        // Load data from localStorage or use default
+        // Storage Data Initialization
         let adminRecords = JSON.parse(localStorage.getItem('andal_records')) || [
-            { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅", date: "2026-06-06" },
-            { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅", date: "2026-06-06" }
+            { id: 1, name: "மாதவன்", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" },
+            { id: 2, name: "மதி", mobile: "98426XXXXX", dist: "தஞ்சாவூர்", caste: "கச்சிதம்", status: "₹499 Paid ✅" }
         ];
 
         let statsData = JSON.parse(localStorage.getItem('andal_stats')) || { views: 14, chat: 4 };
@@ -250,37 +250,25 @@
             document.querySelectorAll('.section-box').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.menu-btn').forEach(el => el.classList.remove('active'));
 
-            if(tabName === 'login') {
-                document.getElementById('sec-login').classList.add('active');
-                document.getElementById('menuLogin').classList.add('active');
-            } else if(tabName === 'register') {
-                document.getElementById('sec-register').classList.add('active');
-                document.getElementById('menuRegister').classList.add('active');
-            } else if(tabName === 'payment') {
-                document.getElementById('sec-payment').classList.add('active');
-                document.getElementById('menuPayment').classList.add('active');
-            } else if(tabName === 'matches') {
-                document.getElementById('sec-matches').classList.add('active');
-                document.getElementById('menuMatches').classList.add('active');
+            const targetSec = document.getElementById('sec-' + tabName);
+            const targetBtn = document.getElementById('menu' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
+
+            if(targetSec) targetSec.classList.add('active');
+            if(targetBtn) targetBtn.classList.add('active');
+
+            if(tabName === 'matches') {
                 loadFilteredMatches("தஞ்சாவூர்");
-            } else if(tabName === 'ai') {
-                document.getElementById('sec-ai').classList.add('active');
-                document.getElementById('menuAi').classList.add('active');
             } else if(tabName === 'admin') {
-                document.getElementById('sec-admin').classList.add('active');
-                document.getElementById('menuAdmin').classList.add('active');
                 renderAdminDashboard();
             }
         }
 
         function renderAdminDashboard() {
-            // Update Stats
             document.getElementById('statTotal').innerText = adminRecords.length;
             document.getElementById('statPaid').innerText = adminRecords.filter(r => r.status.includes('Paid')).length;
-            document.getElementById('statToday').innerText = adminRecords.length; // Active count
+            document.getElementById('statToday').innerText = adminRecords.length;
             document.getElementById('statChat').innerText = statsData.chat;
 
-            // Render Table
             let tableBody = document.getElementById('adminTableBody');
             tableBody.innerHTML = "";
             
@@ -290,46 +278,19 @@
             }
 
             adminRecords.forEach((rec) => {
-                tableBody.innerHTML += `
-                    <tr>
-                        <td style="padding: 6px; border: 1px solid #ddd;"><b>${rec.name}</b><br><small>${rec.mobile}</small></td>
-                        <td style="padding: 6px; border: 1px solid #ddd;">${rec.dist}, ${rec.caste}<br><span style="color: green; font-weight: bold;">${rec.status}</span></td>
-                        <td style="padding: 6px; border: 1px solid #ddd; text-align: center;">
-                            <button class="btn-delete" onclick="deleteRecord(${rec.id})">❌ Delete</button>
-                        </td>
-                    </tr>
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="padding: 6px; border: 1px solid #ddd;"><b>${rec.name}</b><br><small>${rec.mobile}</small></td>
+                    <td style="padding: 6px; border: 1px solid #ddd;">${rec.dist}, ${rec.caste}<br><span style="color: green; font-weight: bold;">${rec.status}</span></td>
+                    <td style="padding: 6px; border: 1px solid #ddd; text-align: center;"></td>
                 `;
+                let delBtn = document.createElement('button');
+                delBtn.className = "btn-delete";
+                delBtn.innerText = "❌ Delete";
+                delBtn.onclick = function() { deleteRecord(rec.id); };
+                tr.cells[2].appendChild(delBtn);
+                tableBody.appendChild(tr);
             });
-        }
-
-        function adminDirectRegister() {
-            let name = document.getElementById('adminRegName').value;
-            let mobile = document.getElementById('adminRegMobile').value;
-            let dist = document.getElementById('adminRegDist').value || "தஞ்சாவூர்";
-            let caste = document.getElementById('adminRegCaste').value || "பொது";
-
-            if(!name || !mobile) {
-                alert("பெயர் மற்றும் மொபைல் எண் அவசியம்!");
-                return;
-            }
-
-            adminRecords.push({
-                id: Date.now(),
-                name: name,
-                mobile: mobile,
-                dist: dist,
-                caste: caste,
-                status: "Admin Added ✅"
-            });
-
-            saveData();
-            renderAdminDashboard();
-
-            document.getElementById('adminRegName').value = "";
-            document.getElementById('adminRegMobile').value = "";
-            document.getElementById('adminRegDist').value = "";
-            document.getElementById('adminRegCaste').value = "";
-            alert("🎉 புதிய வரன் அட்மின் மூலம் வெற்றிகரமாக சேர்க்கப்பட்டது!");
         }
 
         function deleteRecord(id) {
@@ -342,57 +303,8 @@
             }
         }
 
-        function userLogin() {
-            const mob = document.getElementById('loginMobile').value;
-            if(!mob) {
-                alert("தயவுசெய்து மொபைல் எண் உள்ளிடவும்!");
-                return;
-            }
-            statsData.chat++;
-            saveData();
-            alert("🎉 வெற்றிகரமாக உள்நுழைந்தீர்கள்!");
-            switchTab('matches');
-        }
-
-        function saveBioData() {
-            const name = document.getElementById('bName').value;
-            const mobile = document.getElementById('bMobile').value;
-            if(!name || !mobile) {
-                alert("தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்!");
-                return;
-            }
-            alert("🎉 பயோடேட்டா சேமிக்கப்பட்டது! கட்டணப் பகுதிக்குச் செல்கிறோம்.");
-            switchTab('payment');
-        }
-
-        function payAndUnlock() {
-            let confirmPay = confirm("₹499 செலுத்துவதை உறுதி செய்யவா?");
-            if(confirmPay) {
-                alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது!");
-                
-                let userDist = document.getElementById('bDistrict').value || "தஞ்சாவூர்";
-                let name = document.getElementById('bName').value || "புதிய வரன்";
-                let mobile = document.getElementById('bMobile').value || "98426XXXXX";
-                let caste = document.getElementById('bCaste')?.value || "பொது";
-
-                adminRecords.push({
-                    id: Date.now(),
-                    name: name,
-                    mobile: mobile,
-                    dist: userDist,
-                    caste: caste,
-                    status: "₹499 Paid ✅"
-                });
-
-                statsData.views++;
-                saveData();
-                switchTab('matches');
-            }
-        }
-
         function loadFilteredMatches(districtName) {
             document.getElementById('filterInfo').innerText = `📍 உங்கள் மாவட்டம் (${districtName}) மற்றும் சுற்றியுள்ள வரன்கள்:`;
-            
             const container = document.getElementById('matchProfilesList');
             container.innerHTML = "";
 
@@ -400,4 +312,88 @@
                 { name: "கார்த்திகேயன்", age: 26, edu: "B.E, Software Engineer", dist: "தஞ்சாவூர்", rasi: "ரிஷபம்", star: "ரோகிணி", mobile: "9092745268" },
                 { name: "விஜய் பாபு", age: 25, edu: "M.Sc, Teacher", dist: "திருவாரூர்", rasi: "மேஷம்", star: "அசுவினி", mobile: "9842612345" },
                 { name: "அரவிந்த்", age: 27, edu: "MBA, Manager", dist: "மயிலாடுதுறை", rasi: "மிதுனம்", star: "மிருகசீரிடம்", mobile: "9789054321" },
-                { name: "இளவரசன்", age: 26, edu: "B.Tech, IT", dist: "தஞ்சாவூர்", rasi: 
+                { name: "இளவரசன்", age: 26, edu: "B.Tech, IT", dist: "தஞ்சாவூர்", rasi: "சிம்மம்", star: "பூரம்", mobile: "9443567890" }
+            ];
+
+            const filtered = allProfiles.filter(p => p.dist === districtName);
+
+            filtered.forEach((p, index) => {
+                let card = document.createElement('div');
+                card.className = "profile-match-card";
+                card.innerHTML = `
+                    <b>வரன் எண்: AA-20${index + 50}</b> | பெயர்: ${p.name}<br>
+                    வயது: ${p.age} | படிப்பு & வேலை: ${p.edu}<br>
+                    📍 இடம்: ${p.dist} | ராசி: ${p.rasi} (${p.star})<br>
+                    ⭐ ஜாதகப் பொருத்தம்: 9.2/10 (உத்தமம்)<br>
+                `;
+                let callBtn = document.createElement('button');
+                callBtn.className = "btn-action";
+                callBtn.style.cssText = "padding: 5px; font-size: 11px; margin-top: 5px;";
+                callBtn.innerText = "📞 Jathagam & Contact பார்க்க";
+                callBtn.onclick = function() { alert('தொடர்பு எண்: ' + p.mobile + ' - ஸ்ரீ ஆண்டாள் அழகர் மையம்'); };
+                card.appendChild(callBtn);
+                container.appendChild(card);
+            });
+        }
+
+        // Attach Event Listeners securely to prevent any touch blocking
+        document.addEventListener("DOMContentLoaded", function() {
+            // Menu Tabs
+            document.querySelectorAll('.menu-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    switchTab(this.getAttribute('data-tab'));
+                });
+            });
+
+            // Login Button
+            document.getElementById('btnLoginAction').addEventListener('click', function() {
+                const mob = document.getElementById('loginMobile').value;
+                if(!mob) {
+                    alert("தயவுசெய்து மொபைல் எண் உள்ளிடவும்!");
+                    return;
+                }
+                statsData.chat++;
+                saveData();
+                alert("🎉 வெற்றிகரமாக உள்நுழைந்தீர்கள்!");
+                switchTab('matches');
+            });
+
+            // Register Button
+            document.getElementById('btnRegisterAction').addEventListener('click', function() {
+                const name = document.getElementById('bName').value;
+                const mobile = document.getElementById('bMobile').value;
+                if(!name || !mobile) {
+                    alert("தயவுசெய்து பெயர் மற்றும் மொபைல் எண்ணை உள்ளிடவும்!");
+                    return;
+                }
+                alert("🎉 பயோடேட்டா சேமிக்கப்பட்டது! கட்டணப் பகுதிக்குச் செல்கிறோம்.");
+                switchTab('payment');
+            });
+
+            // Payment Button
+            document.getElementById('btnPayAction').addEventListener('click', function() {
+                let confirmPay = confirm("₹499 செலுத்துவதை உறுதி செய்யவா?");
+                if(confirmPay) {
+                    alert("✅ கட்டணம் வெற்றிகரமாக பெறப்பட்டது!");
+                    let userDist = document.getElementById('bDistrict').value || "தஞ்சாவூர்";
+                    let name = document.getElementById('bName').value || "புதிய வரன்";
+                    let mobile = document.getElementById('bMobile').value || "98426XXXXX";
+                    let caste = document.getElementById('bCaste').value || "பொது";
+
+                    adminRecords.push({
+                        id: Date.now(),
+                        name: name,
+                        mobile: mobile,
+                        dist: userDist,
+                        caste: caste,
+                        status: "₹499 Paid ✅"
+                    });
+
+                    statsData.views++;
+                    saveData();
+                    switchTab('matches');
+                }
+            });
+
+            // Admin Direct Add Button
+            document.getElementById('btnAd
